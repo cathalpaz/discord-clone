@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -17,7 +17,7 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal();
     }
   };
 
@@ -33,7 +33,7 @@ function LoginFormModal() {
         <label>
           Email
           <input
-            type="text"
+            type='text'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -42,13 +42,13 @@ function LoginFormModal() {
         <label>
           Password
           <input
-            type="password"
+            type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type='submit'>Log In</button>
       </form>
     </>
   );
