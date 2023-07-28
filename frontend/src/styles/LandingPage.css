@@ -324,6 +324,7 @@ body {
 .body-fourth-block-container > p {
     color: #23272A;
     width: 50rem;
+    font-family: ggsans;
     line-height: 1.8rem;
     font-size: 17px;
     margin-bottom: 1rem;
