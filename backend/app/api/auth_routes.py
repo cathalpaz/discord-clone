@@ -3,6 +3,7 @@ from ..models import User, db
 from ..forms import LoginForm
 from ..forms import UserForm
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import or_
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -39,7 +40,10 @@ def login():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = User.query.filter(User.email == form.data['email']).first()
+        credentials = form.data['credentials']
+        user = User.query.filter(or_(
+            User.email == credentials,
+            User.username == credentials)).first()
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -69,7 +73,7 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return user.to_dict_extra()
+        return user.to_dict_extra(), 201
     print(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
