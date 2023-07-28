@@ -7,7 +7,7 @@ db = SQLAlchemy()
 
 
 # !!! type is a enum that needs to be worked on
-class Channels(db.Model):
+class Channel(db.Model):
     __tablename__ = "channels"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -21,7 +21,7 @@ class Channels(db.Model):
             'type': self.type,
         }
 
-class ChannelMessages(db.Model):
+class ChannelMessage(db.Model):
     __tablename__ = "channelmessages"
 
     id = db.Column(db.Integer, primary_key=True)
