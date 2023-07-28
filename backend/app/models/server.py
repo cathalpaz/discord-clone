@@ -12,12 +12,12 @@ class Server(db.Model):
     name = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(255))
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    created_at = db.Column(db.Datetime, default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-    owner = db.relationship('User', back_populates='servers')
+    # owner = db.relationship('User', back_populates='servers')
 
     # channel relationship
-    
+
 
     # server profiles relationship
 
