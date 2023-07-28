@@ -48,3 +48,15 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email
         }
+
+    def to_dict_extra(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'birthday': self.birthday,
+            'banner_color': self.banner_color,
+            'avatar': self.avatar,
+            'bio': self.bio,
+            'created_at': self.created_at
+        }
