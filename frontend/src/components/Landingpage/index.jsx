@@ -16,7 +16,7 @@ export default () => {
         <div className='heading-nav-container'>
           <div className='heading-nav-items'>
             <div className='heading-nav-logo'>
-              <i class='fa-brands fa-discord fa-xl'></i>
+              <i className='fa-brands fa-discord fa-xl'></i>
               <p
                 style={{
                   marginBottom: "0px",
@@ -170,23 +170,23 @@ export default () => {
               English, USA
             </p>
             <i
-              class='fa-brands fa-twitter fa-lg'
+              className='fa-brands fa-twitter fa-lg'
               style={{ color: "#ffffff" }}
             ></i>
             <i
-              class='fa-brands fa-instagram fa-xl'
+              className='fa-brands fa-instagram fa-xl'
               style={{ color: "#ffffff" }}
             ></i>
             <i
-              class='fa-brands fa-square-facebook fa-xl'
+              className='fa-brands fa-square-facebook fa-xl'
               style={{ color: "#ffffff" }}
             ></i>
             <i
-              class='fa-brands fa-youtube fa-xl'
+              className='fa-brands fa-youtube fa-xl'
               style={{ color: "#ffffff" }}
             ></i>
             <i
-              class='fa-brands fa-tiktok fa-lg'
+              className='fa-brands fa-tiktok fa-lg'
               style={{ color: "#ffffff" }}
             ></i>
           </div>
@@ -232,7 +232,7 @@ export default () => {
           </div>
         </div>
         <div className='body-fifth-block-footer'>
-          <div className='heading-nav-logo'>
+          <div className='footer-nav-logo'>
             <p
               style={{
                 marginBottom: "1rem",
