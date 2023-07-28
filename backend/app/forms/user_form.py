@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, EmailField, PasswordField, DateField, FileField, SelectMultipleField
-from wtforms.validators import DataRequired, Email, ValidationError, URL, Length
+from wtforms.validators import DataRequired, ValidationError, URL, Length
 
 def image_validator(form, field):
     if not form.data["avatar"].endswith("jpg", "png", "jpeg"):
