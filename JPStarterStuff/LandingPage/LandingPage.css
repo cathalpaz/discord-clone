@@ -1,0 +1,476 @@
+@font-face {
+    font-family: "ginto";
+    font-style: normal;
+    font-weight: 800;
+    src: url(../../fonts/ginto/ginto-normal.woff2);
+}
+
+@font-face {
+    font-family: "ggsans";
+    font-style: normal;
+    font-weight: 400;
+    src: url(../../fonts/ggsans/gg_sans_Normal.ttf);
+}
+
+@font-face {
+    font-family: "ggsans";
+    font-style: italic;
+    font-weight: 400;
+    src: url(../../fonts/ggsans/gg_sans_Normal_Italic.ttf)
+}
+
+@font-face {
+    font-family: "ggsans";
+    font-style: normal;
+    font-weight: 500;
+    src: url(../../fonts/ggsans/gg_sans_Medium.ttf)
+}
+
+@font-face {
+    font-family: "ggsans";
+    font-style: italic;
+    font-weight: 500;
+    src: url(../../fonts/ggsans/gg_sans_Medium_Italic.ttf)
+}
+
+@font-face {
+    font-family: "ggsans";
+    font-style: normal;
+    font-weight: 600;
+    src: url(../../fonts/ggsans/gg_sans_Bold.ttf)
+}
+
+@font-face {
+    font-family: "ggsans";
+    font-style: italic;
+    font-weight: 600;
+    src: url(../../fonts/ggsans/gg_sans_Bold_Italic.ttf)
+}
+
+@font-face {
+    font-family: "ggsans";
+    font-style: normal;
+    font-weight: 800;
+    src: url(../../fonts/ggsans/gg_sans_Extrabold.ttf)
+}
+
+body {
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+.heading-background-container {
+    display: flex;
+    position: relative;
+    height: 37rem;
+    background-color: #404EED;
+    z-index: -1;
+    flex-direction: column-reverse;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.heading-items-container {
+    height: 27.77rem;
+    z-index: 1;
+}
+
+.background-picture {
+    position: absolute;
+    max-width: 145rem;
+}
+
+.left-picture {
+    position: absolute;
+    max-width: 39rem;
+    padding-right: 78rem;
+    z-index: 2;
+}
+
+.right-picture {
+    position: absolute;
+    max-width: 35rem;
+    padding-left: 77.5rem;
+    z-index: 2;
+}
+
+.heading-items-container {
+    max-width: 42.5rem;
+    font-family: ggsans;
+    display: flex;
+    position: absolute;
+    z-index: 5;
+    margin-bottom: 5rem;
+    max-height: 20.6rem;
+    flex-direction: column;
+    text-align: center;
+}
+
+.heading-item-buttons {
+    display: flex;
+    justify-content: center;
+    padding-top: .5rem;
+}
+
+.download-button {
+    color: #23272A;
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 1.75rem;
+    font-family: ggsans;
+    font-size: 18px;
+    font-weight: 500;
+    padding: .9rem 2rem;
+    margin-right: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.open-discord-button {
+    color: #ffffff;
+    background-color: #23272A;
+    border: 0;
+    border-radius: 1.75rem;
+    font-family: ggsans;
+    font-size: 18px;
+    font-weight: 500;
+    padding: .9rem 2rem;
+    margin-top: 1.5rem;
+}
+
+.heading-nav-container {
+    max-width: 73.75rem;
+    width: 93%;
+    font-family: ggsans;
+    z-index: 7;
+    padding: 0px 2.5rem;
+    position: absolute;
+    margin-bottom: 33.5rem;
+}
+
+.heading-nav-items {
+    max-width: 73.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.heading-nav-logo {
+    display: flex;
+    align-items: center;
+    font-family: ginto;
+}
+
+.heading-nav-links {
+    display: flex;
+    font-weight: 500;
+    gap: 2.25rem;
+}
+
+.heading-nav-links > p {
+    margin-bottom: 0px;
+}
+
+.heading-nav-login > button {
+    border: 0;
+    border-radius: 2.5rem;
+    height: 2.1rem;
+    font-size: 12px;
+    width: 3.8rem;
+}
+
+.body-first-block-container {
+    height: 37.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+}
+
+.body-first-block-image {
+    height: 30rem;
+    display: flex;
+    align-items: center;
+}
+
+.body-first-block-text {
+    height: 30rem;
+    font-family: ggsans;
+    color: #23272A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 30%;
+}
+
+.body-first-block-text > h2 {
+    font-size: 45px;
+    line-height: 3.3rem;
+    margin-top: 0px;
+    margin-bottom: 1.4rem;
+}
+
+.body-first-block-text > p {
+    font-size: 18px;
+    line-height: 1.9rem;
+}
+
+.body-img1 {
+    max-height: 73%;
+}
+
+.body-second-block-container {
+    height: 35.5rem;
+    background-color: #F6F6F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+}
+
+.body-second-block-text {
+    height: 30rem;
+    font-family: ggsans;
+    color: #23272A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 30%;
+}
+
+.body-second-block-image {
+    height: 30rem;
+    display: flex;
+    align-items: center;
+}
+
+.body-img2 {
+    max-height: 73%;
+}
+
+.body-second-block-text > h2 {
+    font-size: 44px;
+    line-height: 3.3rem;
+    margin-top: 0px;
+    margin-bottom: 1.4rem;
+}
+
+.body-second-block-text > p {
+    font-size: 18px;
+    line-height: 1.9rem;
+}
+
+.body-third-block-container {
+    height: 35.5rem;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+}
+
+.body-third-block-text {
+    height: 30rem;
+    font-family: ggsans;
+    color: #23272A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 30%;
+}
+
+.body-third-block-image {
+    height: 30rem;
+    display: flex;
+    align-items: center;
+}
+
+.body-img3 {
+    max-height: 73%;
+}
+
+.body-third-block-text > h2 {
+    font-size: 44px;
+    line-height: 3.3rem;
+    margin-top: 0px;
+    margin-bottom: 1.4rem;
+}
+
+.body-third-block-text > p {
+    font-size: 18px;
+    line-height: 1.9rem;
+}
+
+.body-fourth-block-container {
+    height: 73.35rem;
+    background-color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.body-fourth-block-container > h1 {
+    color: #23272A;
+    font-family: ginto;
+    margin-top: 6.75rem;
+    font-size: 36px;
+    width: 46rem;
+    margin-bottom: 1.25rem;
+    line-height: 2.25rem;
+}
+
+.body-fourth-block-container > p {
+    color: #23272A;
+    width: 50rem;
+    line-height: 1.8rem;
+    font-size: 17px;
+    margin-bottom: 1rem;
+}
+
+.body-img4 {
+    width: 58.5rem;
+}
+
+.body-img5 {
+    position: absolute;
+    margin-top: 57.15rem;
+    width: 47.8%;
+}
+
+.body-fourth-block-button {
+    margin-top: 1.5rem;
+    border: 0;
+    border-radius: 1.75rem;
+    background-color: #5865F2;
+    color: #FFFFFF;
+    height: 3.25rem;
+    width: 16.5rem;
+    font-size: 17px;
+}
+
+.body-fifth-block-container {
+    background-color: #23272A;
+    height: 36.1rem;
+    font-family: ggsans;
+    font-size: 14.5px;
+}
+
+.body-fifth-block-sub-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.body-fifth-block-social-links {
+    margin-top: .25rem;
+    flex-basis: 34.5%;
+    display: flex;
+}
+
+.body-fifth-block-social-links > p {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-left: 2rem;
+    font-size: 13px;
+    margin-bottom: .5rem;
+}
+
+.body-fifth-block-names {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 4.6rem;
+    flex-basis: 16%;
+}
+
+.body-fifth-block-github {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 4.6rem;
+    flex-basis: 16%;
+}
+
+.body-fifth-block-github > a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.body-fifth-block-linkedin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 4.6rem;
+    flex-basis: 16%;
+}
+
+.body-fifth-block-linkedin > a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.body-fifth-block-capstone {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 4.6rem;
+    flex-basis: 16%;
+}
+
+.body-fifth-block-footer {
+    border-top: 1px solid #5865F2;
+    margin-left: 2.25rem;
+    margin-right: 2.25rem;
+    margin-top: 15.25rem;
+    height: 7rem;
+    display: flex;
+}
+
+.heading-nav-logo {
+    width: 80rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.body-fifth-block-footer-signup-button {
+    border: 0;
+    border-radius: 2.5rem;
+    background-color: #5865F2;
+    margin-bottom: 1.2rem;
+    font-size: 12px;
+    color: #FFFFFF;
+    height: 2.15rem;
+    width: 4.35rem;
+}
+
+.fa-twitter {
+    position: absolute;
+    margin-top: 10.1rem;
+    margin-left: 2.2rem;
+}
+
+.fa-instagram {
+    position: absolute;
+    margin-top: 10.1rem;
+    margin-left: 5rem;
+}
+
+.fa-square-facebook {
+    position: absolute;
+    margin-top: 10.1rem;
+    margin-left: 7.8rem;
+}
+
+.fa-youtube {
+    position: absolute;
+    margin-top: 10.1rem;
+    margin-left: 10.3rem;
+}
+
+.fa-tiktok {
+    position: absolute;
+    margin-top: 10.1rem;
+    margin-left: 13.3rem;
+}
