@@ -7,6 +7,7 @@ import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
+import "./styles/globals/main.css";
 
 const store = configureStore();
 

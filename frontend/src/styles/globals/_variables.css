@@ -1,0 +1,8 @@
+:root {
+    --background: #303338;
+}
+
+
+body.light {
+ --background: white;
+}
