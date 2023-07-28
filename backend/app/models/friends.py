@@ -5,5 +5,23 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+#status is an enum we need to implement
 class Friends(db.Model):
     __tablename__ = "friends"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_to = db.Column(db.Integer)
+    user_from = db.Column(db.Integer)
+    status = db.Column(db.String(50))
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_to': self.user_to,
+            'user_from': self.user_from,
+            'status': self.status,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
