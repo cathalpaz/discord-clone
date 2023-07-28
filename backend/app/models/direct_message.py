@@ -11,13 +11,13 @@ class DirectMessage(db.Model):
     user_from_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user_to_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     content = db.Column(db.String(2000), nullable=False)
-    created_at = db.Column(db.Datetime, default=datetime.utcnow())
-    updated_at = db.Column(db.Datetime, default=datetime.utcnow())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated = db.Column(db.Boolean, nullable=False, default=False)
 
 
     # relationship to user
-    user = db.relationship('User', back_populates='direct_messages')
+    # user = db.relationship('User', back_populates='direct_messages')
 
 
 
