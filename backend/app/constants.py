@@ -3,3 +3,9 @@ pronouns = [
     "She/Her",
     "They/Them"
 ]
+
+status = [
+    "Pending",
+
+    "Approved"
+]
