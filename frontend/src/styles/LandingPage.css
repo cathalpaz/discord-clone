@@ -159,6 +159,7 @@ body {
 .heading-nav-logo {
     display: flex;
     align-items: center;
+    width: 8rem;
     font-family: ginto;
 }
 
@@ -429,11 +430,6 @@ body {
     display: flex;
 }
 
-.heading-nav-logo {
-    width: 80rem;
-    display: flex;
-    justify-content: space-between;
-}
 
 .body-fifth-block-footer-signup-button {
     border: 0;
@@ -474,4 +470,11 @@ body {
     position: absolute;
     margin-top: 10.1rem;
     margin-left: 13.3rem;
+}
+
+.footer-nav-logo {
+    display: flex;
+    align-items: center;
+    width: 80rem;
+    justify-content: space-between;
 }
