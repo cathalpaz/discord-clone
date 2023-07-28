@@ -1,6 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy import DateTime
+from datetime import datetime
 
 
 class User(db.Model, UserMixin):
@@ -13,6 +15,17 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(DateTime, default=datetime.utcnow())
+    # 11/11/1996 would be a valid birthday
+    birthday = db.Column(db.String(12), nullable=False)
+    #  hexcidemal colors are valid #FAFAFA
+    banner_color = db.Column(db.String(7), default="#FAFAFA")
+    bio = db.Column(db.String(255))
+    pronouns = db.Column(db.String(255), nullable=False)
+    # contains user profile image
+    # TODO: setup a proper default avatar image in AWS
+    avatar = db.Column(db.String(255), default="test.png")
+    updated_at = db.Column(DateTime, default=datetime.utcnow())
 
     @property
     def password(self):
@@ -24,6 +37,10 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    @property
+    def pronoun(self):
+        return self.pronoun
 
     def to_dict(self):
         return {
