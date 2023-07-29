@@ -1,9 +1,6 @@
-from .db import db, environment, SCHEMA
+from . import db
 from sqlalchemy.dialects.postgresql import ENUM  # !!! for future implementation
 from flask_sqlalchemy import SQLAlchemy
-
-
-db = SQLAlchemy()
 
 
 # !!! type is a enum that needs to be worked on
@@ -23,7 +20,7 @@ class Channel(db.Model):
 
 
 class ChannelMessage(db.Model):
-    __tablename__ = "channelmessages"
+    __tablename__ = "channel_messages"
 
     id = db.Column(db.Integer, primary_key=True)
     channel_id = db.Column(db.Integer, db.ForeignKey("channels.id"))

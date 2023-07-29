@@ -32,7 +32,7 @@ class User(db.Model, UserMixin):
     servers = db.relationship(
         "Server", secondary='users_servers', back_populates='users')
 
-    server_profiles = db.relationship("ServerProfile")
+    # server_profiles = db.relationship("ServerProfile")
 
     @property
     def password(self):

@@ -6,4 +6,5 @@ users_servers = db.Table("users_servers",
                                    db.ForeignKey("users.id")),
                          db.Column("server_id", db.Integer,
                                    db.ForeignKey("servers.id"))
+
                          )
