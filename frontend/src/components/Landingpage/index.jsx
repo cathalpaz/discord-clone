@@ -46,22 +46,23 @@ export default () => {
           <h1
             style={{
               fontFamily: "ginto",
-              fontSize: "50px",
+              fontSize: "56px",
               maxHeight: "7rem",
               margin: "0px",
-              lineHeight: "3rem",
+              lineHeight: "3.3rem",
               width: "39rem",
+              paddingRight:".8rem"
             }}
           >
             IMAGINE A PLACE...
           </h1>
           <p
             style={{
-              fontSize: "18px",
-              marginTop: "2.25rem",
+              fontSize: "20px",
+              marginTop: "2.45rem",
               marginBottom: "0rem",
               maxWidth: "40rem",
-              lineHeight: "1.8rem",
+              lineHeight: "2.04rem",
             }}
           >
             ...where you can belong to a school club, a gaming group, or a
@@ -79,7 +80,7 @@ export default () => {
               Download for Windows
             </button>
             <button className='open-discord-button'>
-              Open Discord in your browser
+              Open Slacord in your browser
             </button>
           </div>
         </div>
@@ -97,7 +98,7 @@ export default () => {
         <div className='body-first-block-text'>
           <h2>Create an invite-only place where you belong</h2>
           <p>
-            Discord servers are organized into topic-based channels where you
+            Slacord servers are organized into topic-based channels where you
             can collaborate, share, and just talk about your day without
             clogging up a group chat.
           </p>
@@ -148,100 +149,113 @@ export default () => {
           style={{
             fontFamily: "ggsans",
             fontWeight: "600",
-            fontSize: "29px",
-            marginTop: "6.5rem",
+            fontSize: "32px",
+            marginTop: "7rem",
+            marginBottom: "0px"
           }}
         >
           Ready to start your journey?
         </p>
         <button className='body-fourth-block-button'>
-          <i class='fa-solid fa-download' style={{ paddingRight: ".4rem" }}></i>
+          <i class='fa-solid fa-download' style={{ paddingRight: ".7rem" }}></i>
           Download for Windows
         </button>
       </div>
       <div className='body-fifth-block-container'>
         <div className='body-fifth-block-sub-container'>
-          <div className='body-fifth-block-social-links'>
-            <p>
+          <div className='body-fifth-block-techologies'>
+            <p className='body-fifth-block-language'>
               <img
-                style={{ width: "1.4rem", height: ".9rem" }}
+                style={{ width: "1.5rem", height: "1rem" }}
                 src={"/images/flag.png"}
               ></img>
               English, USA
             </p>
+            <p className="body-fifth-block-techologies-header">Used Technologies: </p>
             <i
-              className='fa-brands fa-twitter fa-lg'
+              className='fa-brands fa-react fa-xl'
+              style={{ color: "#ffffff" }}
+            ></i>
+              <img
+                className='fa-redux'
+                src="/images/redux_icon.png"
+              ></img>
+            <i
+              className='fa-brands fa-python fa-2xl'
               style={{ color: "#ffffff" }}
             ></i>
             <i
-              className='fa-brands fa-instagram fa-xl'
+              className='fa-brands fa-aws fa-xl'
               style={{ color: "#ffffff" }}
             ></i>
+            <img
+              className="fa-flask"
+              src="/images/flask_icon.png"
+            >
+            </img>
+            <img
+              className="fa-sqlalchemy"
+              src="/images/sql_alchemy_icon.png"
+            >
+            </img>
+            <img
+              className="fa-vite"
+              src="/images/vite_icon.png"
+            >
+            </img>
+            <img
+              className="fa-socketio"
+              src="/images/socket_io_icon.png"
+            >
+            </img>
             <i
-              className='fa-brands fa-square-facebook fa-xl'
-              style={{ color: "#ffffff" }}
-            ></i>
-            <i
-              className='fa-brands fa-youtube fa-xl'
-              style={{ color: "#ffffff" }}
-            ></i>
-            <i
-              className='fa-brands fa-tiktok fa-lg'
+              className='fa-brands fa-node-js fa-2xl'
               style={{ color: "#ffffff" }}
             ></i>
           </div>
-          <div className='body-fifth-block-names'>
-            <p style={{ color: "#5865F2", paddingBottom: ".75rem" }}>
-              Contributors
+          <div className='body-fifth-block-cathal'>
+            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>
+              Cathal Paz
             </p>
-            <span>Cathal Paz</span>
-            <span>Jason Murphy</span>
-            <span>Jun "JP" Park</span>
-            <span>Zachary Stallings</span>
+            <a href='https://github.com/cathalpaz'>GitHub</a>
+            <a href='https://www.linkedin.com/in/cathal-paz-052239263/'>LinkedIn</a>
           </div>
-          <div className='body-fifth-block-github'>
-            <p style={{ color: "#5865F2", paddingBottom: ".75rem" }}>GitHub</p>
-            <a href='https://github.com/cathalpaz'>cathalpaz</a>
-            <a href='https://github.com/jmurphy1196'>jmurphy1196</a>
-            <a href='https://github.com/thejhp1'>thejhp1</a>
-            <a href='https://github.com/zachary5939'>zachary5939</a>
-          </div>
-          <div className='body-fifth-block-linkedin'>
-            <p style={{ color: "#5865F2", paddingBottom: ".75rem" }}>
-              LinkedIn
-            </p>
-            <a href='https://www.linkedin.com/in/cathal-paz-052239263/'>
-              Cathal
-            </a>
+          <div className='body-fifth-block-jason'>
+            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>Jason Murphy</p>
+            <a href='https://github.com/jmurphy1196'>GitHub</a>
             <a href='https://www.linkedin.com/in/jason-murphy-3704ba1b8/'>
-              Jason
-            </a>
-            <a href='https://www.linkedin.com/in/jun-park-3b23b7285/'>JP</a>
-            <a href='https://www.linkedin.com/in/zachary-stallings-11434b266/'>
-              Zachary
+              LinkedIn
             </a>
           </div>
-          <div className='body-fifth-block-capstone'>
-            <p style={{ color: "#5865F2", paddingBottom: ".75rem" }}>
-              Future Capstone Project
+          <div className='body-fifth-block-jp'>
+            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>
+              Jun "JP" Park
             </p>
-            <span>Coming soon...</span>
-            <span>Coming soon...</span>
-            <span>Coming soon...</span>
-            <span>Coming soon...</span>
+            <a href='https://github.com/thejhp1'>GitHub</a>
+            <a href='https://www.linkedin.com/in/jun-park-3b23b7285/'>LinkedIn</a>
+          </div>
+          <div className='body-fifth-block-zach'>
+            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>
+              Zachary Stallings
+            </p>
+            <a href='https://github.com/zachary5939'>GitHub</a>
+            <a href='https://www.linkedin.com/in/zachary-stallings-11434b266/'>
+              LinkedIn
+            </a>
           </div>
         </div>
         <div className='body-fifth-block-footer'>
           <div className='footer-nav-logo'>
             <p
               style={{
-                marginBottom: "1rem",
+                marginBottom: ".5rem",
                 fontWeight: "800",
-                fontSize: "16px",
+                fontSize: "17px",
+                fontFamily: "ginto"
               }}
             >
               <i
-                style={{ marginBottom: ".8rem", paddingRight: ".5rem" }}
+                style={{ marginBottom: ".9rem", paddingRight: ".5rem" }}
                 class='fa-brands fa-discord fa-xl'
               ></i>
               Slacord
