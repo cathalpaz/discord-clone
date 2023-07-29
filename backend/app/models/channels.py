@@ -1,4 +1,4 @@
-from . import db
+from . import db, environment, SCHEMA
 from sqlalchemy.dialects.postgresql import ENUM  # !!! for future implementation
 from flask_sqlalchemy import SQLAlchemy
 
@@ -7,15 +7,20 @@ from flask_sqlalchemy import SQLAlchemy
 class Channel(db.Model):
     __tablename__ = "channels"
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
     type = db.Column(db.String(50))
+    name = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
             'id': self.id,
             'server_id': self.server_id,
             'type': self.type,
+            "name": self.name
         }
 
 
