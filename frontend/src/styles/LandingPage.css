@@ -81,18 +81,23 @@ body {
     max-width: 145rem;
 }
 
+
 .left-picture {
     position: absolute;
     max-width: 39rem;
-    padding-right: 78rem;
+    padding-right: 30rem;
     z-index: 2;
+    padding-right:0px;
+    width:624px;
+    margin-right:1350px;
 }
 
 .right-picture {
     position: absolute;
     max-width: 35rem;
-    padding-left: 77.5rem;
+    padding-left: 0px;
     z-index: 2;
+    margin-left:1337px;
 }
 
 .heading-items-container {
@@ -136,6 +141,12 @@ body {
     font-weight: 500;
     padding: .9rem 2rem;
     margin-top: 1.5rem;
+}
+
+.open-discord-button:hover {
+    background-color: #313338;
+    box-shadow:0px 1px 8px 1px #3d3d3d;
+    transition-duration: .2s;
 }
 
 .heading-nav-container {
