@@ -1,10 +1,11 @@
-from flask import Blueprint
-from ..models import Server
+from flask import Blueprint, request
+from ..models import Server, db
 from ..models.user import User
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from ..utils.validate_errors import validation_errors_to_error_messages
 from ..errors import NotFoundError, ForbiddenError
+from ..forms.server_form import ServerForm
 
 servers_routes = Blueprint('servers', __name__, url_prefix="/servers")
 
@@ -51,3 +52,22 @@ def all_server_channels(id):
         if serv.id == server.id:
             return {"channels": {channel.to_dict() for channel in server.channels}}
     return {"error": "You do not have access to this server"}, 403
+
+
+@servers_routes.route("/new", methods=["POST"])
+@login_required
+def create_server():
+    form = ServerForm()
+    user = User.query.filter(User.id == current_user.id).first()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        server_data = {val: form.data[val]
+                       for val in form.data if val != 'csrf_token'}
+        server_data["owner_id"] = user.id
+        new_server = Server(**server_data)
+        db.session.add(new_server)
+        db.session.commit()
+        return new_server.to_dict(), 201
+    print(form.errors)
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
