@@ -11,7 +11,7 @@ from ..forms.channel_form import ChannelForm
 
 servers_routes = Blueprint('servers', __name__, url_prefix="/servers")
 
-
+#all public servers
 @servers_routes.route("")
 def all_servers():
     """
@@ -20,14 +20,14 @@ def all_servers():
     servers = Server.query.filter(Server.public == True).all()
     return {"severs": [server.to_dict() for server in servers]}
 
-
+#all users servers
 @servers_routes.route("/current")
 @login_required
 def all_user_servers():
     user = User.query.filter(User.id == current_user.id).first()
     return {"servers": [server.to_dict() for server in user.servers]}
 
-
+#server information by id
 @servers_routes.route("/<int:id>")
 @login_required
 def server_info(id):
@@ -42,7 +42,7 @@ def server_info(id):
     forbidden_error = ForbiddenError("You do not have access to this server!")
     return forbidden_error.error_json()
 
-
+# show channels in a server if you are an authenticated user
 @servers_routes.route("/<int:id>/channels")
 @login_required
 def all_server_channels(id):
@@ -57,7 +57,8 @@ def all_server_channels(id):
     forbidden_error = ForbiddenError("You do not have access to this server!")
     return forbidden_error.error_json()
 
-
+# if you are not the server owner, you cannot create a channel.
+# refactor if possible!
 @servers_routes.route("/<int:id>/channels", methods=["POST"])
 @login_required
 def create_channel(id):
