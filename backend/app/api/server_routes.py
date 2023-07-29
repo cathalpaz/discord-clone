@@ -66,6 +66,7 @@ def create_server():
                        for val in form.data if val != 'csrf_token'}
         server_data["owner_id"] = user.id
         new_server = Server(**server_data)
+        user.servers.append(new_server)
         db.session.add(new_server)
         db.session.commit()
         return new_server.to_dict(), 201
@@ -87,3 +88,29 @@ def delete_server(id):
     db.session.delete(server)
     db.session.commit()
     return {"message": "successfully deleted", "serverId": server.id}
+
+
+# TODO: DRY THIS UP
+@servers_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_server(id):
+    server = Server.query.filter(Server.id == id).first()
+    user = User.query.filter(User.id == current_user.id).first()
+    form = ServerForm()
+    if not server:
+        not_found_error = NotFoundError("Server Not Found")
+        return not_found_error.error_json()
+    if user.id != server.owner_id:
+        forbidden_error = ForbiddenError(
+            "You do not have permission to delete this server!")
+        return forbidden_error.error_json()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        for field in form.data:
+            if field != 'csrf_token':
+                setattr(server, field, form.data[field])
+        db.session.commit()
+        return {"server": server.to_dict()}
+    print(form.errors)
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
