@@ -4,6 +4,7 @@ from ..models.user import User
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from ..utils.validate_errors import validation_errors_to_error_messages
+from ..utils.servers import server_owner_required
 from ..errors import NotFoundError, ForbiddenError
 from ..forms.server_form import ServerForm
 from ..forms.channel_form import ChannelForm
@@ -106,15 +107,8 @@ def create_server():
 
 @servers_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
-def delete_server(id):
-    server = Server.query.filter(Server.id == id).first()
-    if not server:
-        not_found_error = NotFoundError("Server Not Found")
-        return not_found_error.error_json()
-    if current_user.id != server.owner_id:
-        forbidden_error = ForbiddenError(
-            "You do not have permission to delete this server!")
-        return forbidden_error.error_json()
+@server_owner_required
+def delete_server(server):
     db.session.delete(server)
     db.session.commit()
     return {"message": "successfully deleted", "serverId": server.id}
@@ -123,18 +117,9 @@ def delete_server(id):
 # TODO: DRY THIS UP
 @servers_routes.route("/<int:id>", methods=["PUT"])
 @login_required
-def update_server(id):
-    server = Server.query.filter(Server.id == id).first()
-    user = User.query.filter(User.id == current_user.id).first()
+@server_owner_required
+def update_server(server):
     form = ServerForm()
-    if not server:
-        not_found_error = NotFoundError("Server Not Found")
-        return not_found_error.error_json()
-    if user.id != server.owner_id:
-        forbidden_error = ForbiddenError(
-            "You do not have permission to delete this server!")
-        return forbidden_error.error_json()
-
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         for field in form.data:
