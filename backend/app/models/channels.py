@@ -20,7 +20,7 @@ class Channel(db.Model):
             'id': self.id,
             'server_id': self.server_id,
             'type': self.type,
-            "name": self.name
+            "name": self.name,
         }
 
 
