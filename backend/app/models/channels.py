@@ -1,4 +1,4 @@
-from . import db
+from . import db, environment, SCHEMA
 from sqlalchemy.dialects.postgresql import ENUM  # !!! for future implementation
 from flask_sqlalchemy import SQLAlchemy
 
@@ -6,6 +6,9 @@ from flask_sqlalchemy import SQLAlchemy
 # !!! type is a enum that needs to be worked on
 class Channel(db.Model):
     __tablename__ = "channels"
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
@@ -17,6 +20,7 @@ class Channel(db.Model):
             'id': self.id,
             'server_id': self.server_id,
             'type': self.type,
+            "name": self.name
         }
 
 
