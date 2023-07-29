@@ -71,3 +71,19 @@ def create_server():
         return new_server.to_dict(), 201
     print(form.errors)
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+@servers_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_server(id):
+    server = Server.query.filter(Server.id == id).first()
+    if not server:
+        not_found_error = NotFoundError("Server Not Found")
+        return not_found_error.error_json()
+    if current_user.id != server.owner_id:
+        forbidden_error = ForbiddenError(
+            "You do not have permission to delete this server!")
+        return forbidden_error.error_json()
+    db.session.delete(server)
+    db.session.commit()
+    return {"message": "successfully deleted", "serverId": server.id}

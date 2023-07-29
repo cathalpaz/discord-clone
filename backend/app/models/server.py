@@ -25,7 +25,8 @@ class Server(db.Model):
     # channel relationship
     channels = db.relationship("Channel", backref='server')
     # server profiles relationship
-    server_profiles = db.relationship("ServerProfile", back_populates='server')
+    server_profiles = db.relationship(
+        "ServerProfile", back_populates='server', cascade="all, delete-orphan")
 
     # server invites relationship
 
