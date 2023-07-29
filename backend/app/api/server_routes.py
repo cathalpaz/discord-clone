@@ -1,11 +1,12 @@
 from flask import Blueprint, request
-from ..models import Server, db
+from ..models import Server, db, Channel
 from ..models.user import User
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from ..utils.validate_errors import validation_errors_to_error_messages
 from ..errors import NotFoundError, ForbiddenError
 from ..forms.server_form import ServerForm
+from ..forms.channel_form import ChannelForm
 
 servers_routes = Blueprint('servers', __name__, url_prefix="/servers")
 
@@ -59,7 +60,28 @@ def all_server_channels(id):
 @servers_routes.route("/<int:id>/channels", methods=["POST"])
 @login_required
 def create_channel(id):
-    pass
+    server = Server.query.get(id)
+    user = User.query.get(current_user.id)
+    if not server:
+        not_found_error = NotFoundError("Server not found")
+        return not_found_error.error_json()
+    if user.id != server.owner_id:
+        forbidden_error = ForbiddenError(
+            "You do not have permissions to make a channel here")
+        return forbidden_error.error_json()
+    form = ChannelForm()
+    form["csrf_token"].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        channel_data = {
+            val: form.data[val] for val in form.data if val != "csrf_token"
+        }
+        new_channel = Channel(**channel_data)
+        db.session.add(new_channel)
+        server.channels.append(new_channel)
+        db.session.commit()
+        return new_channel.to_dict()
+    print(form.errors)
+    return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 @servers_routes.route("/new", methods=["POST"])
