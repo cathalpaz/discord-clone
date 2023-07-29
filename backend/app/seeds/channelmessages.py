@@ -1,4 +1,4 @@
-from ..models import db
+from ..models import db, environment, SCHEMA
 from ..models.channels import ChannelMessage
 from sqlalchemy.sql import text
 
@@ -17,5 +17,15 @@ def seed_channel_messages():
     for data in sample_messages:
         message = ChannelMessage(**data)
         db.session.add(message)
+
+    db.session.commit()
+
+
+def undo_channel_messages():
+    if environment == "production":
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM channel_messages"))
 
     db.session.commit()

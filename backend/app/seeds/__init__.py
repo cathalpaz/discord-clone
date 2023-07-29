@@ -3,7 +3,10 @@ from .users import seed_users, undo_users
 from .servers import seed_servers, undo_servers
 from .user_servers import seed_users_servers
 from .direct_messages import seed_direct_messages, undo_direct_messages
-from .channels import seed_channels
+from .friends import seed_friends, undo_friends
+from .channels import seed_channels, undo_channels
+from .channelmessages import seed_channel_messages, undo_channel_messages
+from .server_profiles import seed_server_profiles, undo_server_profiles
 
 from ..models.db import db, environment, SCHEMA
 
@@ -29,7 +32,9 @@ def seed():
     seed_direct_messages()
     seed_users_servers()
     # Add other seed functions here
-
+    # seed_friends()
+    seed_channel_messages()
+    seed_server_profiles()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
@@ -38,3 +43,7 @@ def undo():
     undo_servers()
     undo_users()
     # Add other undo functions here
+    undo_friends()
+    undo_channels()
+    undo_channel_messages()
+    undo_server_profiles()

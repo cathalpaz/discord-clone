@@ -45,7 +45,7 @@ def seed_server_profiles():
 
     db.session.commit()
 
-def undo_users():
+def undo_server_profiles():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.server_profiles RESTART IDENTITY CASCADE;")
