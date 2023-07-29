@@ -7,7 +7,7 @@
     border-radius: .3rem;
     background-color: #313338;
     width: 30rem;
-    height: 42.375rem;
+    max-height: 50rem;
     margin-top: 19.85rem;
     box-shadow: 0px 2px 15px rgba(0,0,0,.2);
     display: flex;
@@ -88,6 +88,7 @@
 
 .signup-already-have-account {
     margin-top:.7rem;
+    margin-bottom: 1rem;
     color:#00A8FC;
     transition-duration: .2s;
 }
@@ -95,4 +96,12 @@
 .signup-already-have-account:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.signup-modal-errors-color {
+    padding-top: .2rem;
+}
+
+.signup-modal-errors-pronoun {
+    padding-top: .2rem;
 }
