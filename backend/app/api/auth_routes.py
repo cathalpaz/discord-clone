@@ -6,7 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from ..utils.validate_errors import validation_errors_to_error_messages
 
-auth_routes = Blueprint('auth', __name__)
+auth_routes = Blueprint('auth', __name__, url_prefix="/auth")
 
 
 @auth_routes.route('/')
