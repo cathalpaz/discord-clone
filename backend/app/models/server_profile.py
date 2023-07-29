@@ -10,12 +10,15 @@ class ServerProfile(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    server_id = db.Column(db.Integer, db.ForeignKey('servers.id'), nullable=False)
+    server_id = db.Column(db.Integer, db.ForeignKey(
+        'servers.id'), nullable=False)
     banner_color = db.Column(db.String)
     nickname = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
+    # server relationship
+    server = db.relationship("Server", back_populates='server_profiles')
 
     def to_dict(self):
         return {

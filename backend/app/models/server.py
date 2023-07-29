@@ -14,7 +14,7 @@ class Server(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-    # owner = db.relationship('User', back_populates='servers')
+    owner = db.relationship('User')
 
     # users relationship
     users = db.relationship(
@@ -23,6 +23,7 @@ class Server(db.Model):
     # channel relationship
     channels = db.relationship("Channel", backref='server')
     # server profiles relationship
+    server_profiles = db.relationship("ServerProfile", back_populates='server')
 
     # server invites relationship
 
@@ -33,5 +34,7 @@ class Server(db.Model):
             'avatar': self.avatar,
             'owner_id': self.owner_id,
             'created_at': self.created_at,
-            'channels': [channel.to_dict() for channel in self.channels]
+            'channels': [channel.to_dict() for channel in self.channels],
+            'owner': self.owner.to_dict(),
+            'server_profiiles': [server_profile.to_dict() for server_profile in self.server_profiles]
         }
