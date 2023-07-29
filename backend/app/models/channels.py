@@ -10,6 +10,7 @@ class Channel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
     type = db.Column(db.String(50))
+    name = db.Column(db.String(50), nullable=False)
 
     def to_dict(self):
         return {
