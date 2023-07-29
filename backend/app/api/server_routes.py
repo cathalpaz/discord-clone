@@ -56,6 +56,12 @@ def all_server_channels(id):
     return forbidden_error.error_json()
 
 
+@servers_routes.route("/<int:id>/channels", methods=["POST"])
+@login_required
+def create_channel(id):
+    pass
+
+
 @servers_routes.route("/new", methods=["POST"])
 @login_required
 def create_server():

@@ -11,7 +11,24 @@ from .seeds import seed_commands
 from .config import Config
 from .api import bp
 
-app = Flask(__name__, static_folder='../../frontend/dist', static_url_path='/')
+
+def create_app(test=False):
+    if test == False:
+        app = Flask(__name__, static_folder='../../frontend/dist',
+                    static_url_path='/')
+        app.config.from_object(Config)
+        db.init_app(app)
+        return app, db
+    else:
+        app = Flask(__name__, static_folder='../../frontend/dist',
+                    static_url_path='/')
+        app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///test.db'
+        app.config["SECRET_KEY"] = 'lkasdjf'
+        db.init_app(app)
+        return app, db
+
+
+app, db = create_app()
 
 # Setup login manager
 login = LoginManager(app)
@@ -27,11 +44,10 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 
-app.config.from_object(Config)
 app.register_blueprint(bp)
 # app.register_blueprint(user_routes, url_prefix='/api/users')
 # app.register_blueprint(auth_routes, url_prefix='/api/auth')
-db.init_app(app)
+# db.init_app(app)
 Migrate(app, db)
 
 # Application Security
