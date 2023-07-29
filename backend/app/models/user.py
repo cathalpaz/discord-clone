@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     birthday = db.Column(db.String(12), nullable=False)
     #  hexcidemal colors are valid #FAFAFA
     banner_color = db.Column(db.String(7), default="#FAFAFA")
-    bio = db.Column(db.String(255))
+    bio = db.Column(db.String(255), default="")
     pronouns = db.Column(db.String(255), nullable=False)
     # contains user profile image
     # TODO: setup a proper default avatar image in AWS

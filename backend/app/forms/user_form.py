@@ -21,6 +21,6 @@ class UserForm(FlaskForm):
     email = EmailField("Email", validators=[DataRequired()])
     birthday = StringField("Birthday", validators=[DataRequired()])
     banner_color = StringField("Banner Color", validators=[DataRequired()])
-    bio = StringField("Bio", validators=[DataRequired()])
+    bio = StringField("Bio")
     pronouns = StringField("Pronouns", validators=[DataRequired()])
-    avatar = FileField("Avatar", validators=[DataRequired(), image_validator])
+    avatar = FileField("Avatar")
