@@ -21,7 +21,7 @@ class Server(db.Model):
         'User', secondary='users_servers', back_populates='servers')
 
     # channel relationship
-
+    channels = db.relationship("Channel", backref='server')
     # server profiles relationship
 
     # server invites relationship
@@ -32,5 +32,6 @@ class Server(db.Model):
             'name': self.name,
             'avatar': self.avatar,
             'owner_id': self.owner_id,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'channels': [channel.to_dict() for channel in self.channels]
         }

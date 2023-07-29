@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-from sqlalchemy.dialects.postgresql import ENUM #!!! for future implementation
+from sqlalchemy.dialects.postgresql import ENUM  # !!! for future implementation
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -11,7 +11,7 @@ class Channel(db.Model):
     __tablename__ = "channels"
 
     id = db.Column(db.Integer, primary_key=True)
-    server_id = db.Column(db.Integer)
+    server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
     type = db.Column(db.String(50))
 
     def to_dict(self):
@@ -21,6 +21,7 @@ class Channel(db.Model):
             'type': self.type,
         }
 
+
 class ChannelMessage(db.Model):
     __tablename__ = "channelmessages"
 
@@ -29,7 +30,8 @@ class ChannelMessage(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     content = db.Column(db.String(4000))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(
+    ), onupdate=db.func.current_timestamp())
     updated = db.Column(db.Boolean)
 
     def to_dict(self):
