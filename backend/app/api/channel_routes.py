@@ -97,4 +97,28 @@ def create_channel_message(id):
         return {"message": new_channel_message.to_dict()}
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
-    pass
+
+@channel_routes.route("/<int:id>/messages/<int:message_id>", methods=["PUT"])
+@login_required
+def update_channel_message(id, message_id):
+    channel = Channel.query.get(id)
+    channel_message = ChannelMessage.query.get(message_id)
+    if not channel:
+        not_found_error = NotFoundError("Channel not found")
+        return not_found_error.error_json()
+    user = User.query.filter(
+        User.id == current_user.id,
+        User.servers.any(id=channel.server_id)
+    ).first()
+    if not user or channel_message.user_id != user.id:
+        forbidden_error = ForbiddenError(
+            "You do not have permissions to update this message")
+        return forbidden_error.error_json()
+    form = ChannelMessageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        channel_message.content = form.data['content']
+        channel_message.updated = True
+        db.session.commit()
+        return {"message": channel_message.to_dict()}
+    return {"errors": validation_errors_to_error_messages(form.errors)}
