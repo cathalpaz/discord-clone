@@ -1,12 +1,8 @@
-from .db import db, environment, SCHEMA
+from . import db, environment, SCHEMA
 from sqlalchemy.dialects.postgresql import ENUM  # for future implementation
 from flask_sqlalchemy import SQLAlchemy
 
-
-db = SQLAlchemy()
-
 # status is an enum we need to implement
-
 
 class Friend(db.Model):
     __tablename__ = "friends"

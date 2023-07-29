@@ -32,7 +32,7 @@ def seed():
     seed_direct_messages()
     seed_users_servers()
     # Add other seed functions here
-    # seed_friends()
+    seed_friends()
     seed_channel_messages()
     seed_server_profiles()
 
