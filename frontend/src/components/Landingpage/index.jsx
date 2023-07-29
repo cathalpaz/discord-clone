@@ -1,15 +1,14 @@
-// import BackgroundImage from "../../images/landing_img3.svg";
-// import BackgroundImageLeft from "../../images/landing_img2.svg";
-// import BackgroundImageRight from "../../images/landing_img1.svg";
-// import BodyImg1 from "../../images/landing_body_img1.svg";
-// import BodyImg2 from "../../images/landing_body_img2.svg";
-// import BodyImg3 from "../../images/landing_body_img3.svg";
-// import BodyImg4 from "../../images/landing_body_img4.svg";
-// import BodyImg5 from "../../images/landing_body_img5.svg";
-// import flag from "../../images/flag.png";
+
+import { useHistory } from "react-router-dom";
 import "../../styles/LandingPage.css";
 
 export default () => {
+  const history = useHistory()
+
+  const sendToLogin = () => {
+    history.push("/login")
+  }
+
   return (
     <div className='landing-page'>
       <div className='heading-background-container'>
@@ -38,7 +37,7 @@ export default () => {
               <p>Careers</p>
             </div>
             <div className='heading-nav-login'>
-              <button>Login</button>
+              <button onClick={sendToLogin}>Log In</button>
             </div>
           </div>
         </div>
