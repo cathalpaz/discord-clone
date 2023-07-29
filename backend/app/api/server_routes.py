@@ -47,11 +47,13 @@ def all_server_channels(id):
     user = User.query.filter(User.id == current_user.id).first()
     server = Server.query.filter(Server.id == id).first()
     if not server:
-        return {"error": "Not found"}, 404
+        not_found_error = NotFoundError("Server Not Found")
+        return not_found_error.error_json()
     for serv in user.servers:
         if serv.id == server.id:
-            return {"channels": {channel.to_dict() for channel in server.channels}}
-    return {"error": "You do not have access to this server"}, 403
+            return {"channels": [channel.to_dict() for channel in server.channels]}
+    forbidden_error = ForbiddenError("You do not have access to this server!")
+    return forbidden_error.error_json()
 
 
 @servers_routes.route("/new", methods=["POST"])
