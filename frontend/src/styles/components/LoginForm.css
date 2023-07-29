@@ -1,0 +1,150 @@
+.login-background1{
+    position: fixed;
+    z-index: -1;
+}
+
+.login-background2 {
+    display: none;
+}
+
+.login-container-main {
+    display: flex;
+    justify-content: center
+}
+
+.login-container {
+    z-index: 2;
+    width: 49rem;
+    height: 25.5rem;
+    margin-top: 27.3rem;
+    background-color: #313338;
+    border-radius: 0.3rem;
+    display: flex;
+    box-shadow: 0px 2px 15px rgba(0,0,0,.2);
+}
+
+.login-input-container {
+    font-family: ggsans;
+    flex-basis: 62.5%;
+}
+
+.login-input-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-input-area > p:hover {
+    cursor: default;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 2rem;
+}
+
+.login-form > input {
+    height: 2.5rem;
+    border: 0;
+    border-radius: .2rem;
+    padding-left: .6rem;
+}
+
+.login-forgot-pass {
+    font-size: 14px;
+    color: #00A8FC;
+    margin-top: .3rem;
+    margin-bottom: 1.35rem;
+    font-weight: 500;
+}
+
+.login-forgot-pass:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-register {
+    color:#00A8FC;
+    font-weight: 500;
+    padding-left: .08rem;
+}
+
+.login-register:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-form > button {
+    height: 2.7rem;
+    background-color: #5865F2;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family: ggsans;
+    font-weight: 500;
+    border: 0;
+    border-radius: .2rem;
+    transition-duration: .2s;
+}
+
+.login-form > button:hover {
+    background-color: #4752C4;
+    cursor: pointer;
+}
+
+.login-qr-code {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 40%;
+}
+
+.login-qr-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.login-qr-info > p:hover {
+    cursor: default;
+}
+
+.login-errors {
+    position: absolute;
+}
+
+.login-errors li:nth-child(1){
+    margin-right:.875rem;
+    position:static;
+    transform:translatex(8.8rem) translatey(-0.25rem);
+    min-height:3.55rem;
+    list-style-type:none;
+    color:#f23f42;
+    font-size:1.05rem;
+    font-weight:600;
+}
+
+.login-errors li:nth-child(2){
+    list-style-type:none;
+    color:#f23f42;
+    font-weight:600;
+    margin-bottom:1rem;
+    min-height:2.38rem;
+    transform:translatex(5.13rem) translatey(1.5rem);
+}
+
+@media (min-width: 1790px) {
+    #root .login-background1{
+        display: none;
+        z-index: -10;
+    }
+
+    #root .login-background2{
+        display: flex;
+        position: fixed;
+        z-index: -10;
+    }
+
+}
