@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import '../../styles/components/SignupForm.css';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -102,6 +103,10 @@ function SignupFormPage() {
 
     setErrors(errors)
   };
+
+  const sentToLogin = () => {
+    history.push("/login")
+  }
 
   return (
     <>
@@ -227,7 +232,7 @@ function SignupFormPage() {
           </div>
           <button type="submit">Continue</button>
         </form>
-        <p className="signup-already-have-account">Already have an account?</p>
+        <span onClick={sentToLogin} className="signup-already-have-account">Already have an account?</span>
         </div>
       </div>
     </>
