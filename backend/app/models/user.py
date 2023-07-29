@@ -27,8 +27,12 @@ class User(db.Model, UserMixin):
     avatar = db.Column(db.String(255), default="test.png")
     updated_at = db.Column(DateTime, default=datetime.utcnow())
 
+    # relationships
+
     servers = db.relationship(
         "Server", secondary='users_servers', back_populates='users')
+
+    server_profiles = db.relationship("ServerProfile")
 
     @property
     def password(self):
