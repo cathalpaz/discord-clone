@@ -15,6 +15,7 @@ function SignupFormPage() {
   const [color, setColor] = useState("");
   const [pronoun, setPronoun] = useState("")
   const [errors, setErrors] = useState([]);
+  const [serverError, setServerError] = useState([])
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -95,14 +96,13 @@ function SignupFormPage() {
     if (Object.values(errors).length === 0) {
       const data = await dispatch(signUp(username, email, password, birthday, color, pronoun));
       if (data) {
-        setErrors(data)
+        setServerError(data)
       }
     }
 
     setErrors(errors)
   };
 
-  console.log('this is errors', errors)
   return (
     <>
       <img
@@ -117,8 +117,8 @@ function SignupFormPage() {
         <div className="signup-form-container">
         <h2 style={{fontWeight:"600", marginTop:"2rem", marginBottom:".8rem", color:"#F2F3F5"}}>Create an account</h2>
         <form onSubmit={handleSubmit} className="signup-form">
-          <ul>
-            {/* {errors.map((error, idx) => <li key={idx}>{error}</li>)} */}
+          <ul className="signup-server-errors">
+            {serverError.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
           <label>
             EMAIL<label style={{fontSize:"12px", color:"#F23F42", paddingLeft:".1rem"}}> *</label>
