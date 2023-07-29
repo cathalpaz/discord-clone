@@ -47,3 +47,21 @@ def delete_channel(id):
     db.session.delete(channel)
     db.session.commit()
     return {"message": "successfully deleted", "channelId": channel.id}
+
+
+@channel_routes.route("/<int:id>/messages")
+@login_required
+def get_channel_messages(id):
+    channel = Channel.query.get(id)
+    if not channel:
+        not_found_error = NotFoundError("Channel not found")
+        return not_found_error.error_json()
+    user = User.query.filter(
+        User.id == current_user.id,
+        User.servers.any(id=channel.server_id)
+    ).first()
+    if not user:
+        forbidden_error = ForbiddenError(
+            "You do not have permissions to view messages")
+        return forbidden_error.error_json()
+    return {"messages": [message.to_dict() for message in channel.channel_messages]}

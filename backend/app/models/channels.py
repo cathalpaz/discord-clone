@@ -14,6 +14,8 @@ class Channel(db.Model):
     server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
     type = db.Column(db.String(50))
     name = db.Column(db.String(50), nullable=False)
+    channel_messages = db.relationship(
+        "ChannelMessage", back_populates='channel')
 
     def to_dict(self):
         return {
@@ -21,6 +23,7 @@ class Channel(db.Model):
             'server_id': self.server_id,
             'type': self.type,
             "name": self.name,
+            "messages": [message.to_dict() for message in self.channel_messages]
         }
 
 
@@ -35,6 +38,7 @@ class ChannelMessage(db.Model):
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(
     ), onupdate=db.func.current_timestamp())
     updated = db.Column(db.Boolean)
+    channel = db.relationship("Channel", back_populates="channel_messages")
 
     def to_dict(self):
         return {
