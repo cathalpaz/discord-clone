@@ -8,6 +8,7 @@ def seed_servers():
         name='Demo Server',
         avatar='test.png',
         owner_id=1,
+        public=True
     )
 
     server_2 = Server(
@@ -15,7 +16,7 @@ def seed_servers():
         name='Gaming',
         avatar='test1.jpg',
         owner_id=3,
-
+        public=True
     )
 
     server_3 = Server(

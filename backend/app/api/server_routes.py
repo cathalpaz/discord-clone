@@ -11,9 +11,9 @@ servers_routes = Blueprint('servers', __name__, url_prefix="/servers")
 @servers_routes.route("")
 def all_servers():
     """
-    Query for all servers and returns them in a list of user dictionaries
+    Query for all public servers and returns them in a list of user dictionaries
     """
-    servers = Server.query.all()
+    servers = Server.query.filter(Server.public == True).all()
     return {"severs": [server.to_dict() for server in servers]}
 
 

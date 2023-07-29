@@ -13,6 +13,8 @@ class Server(db.Model):
     avatar = db.Column(db.String(255))
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    # TODO add this column to db diagram. It doesn't exist currently...
+    public = db.Column(db.Boolean, default=False)
 
     owner = db.relationship('User')
 
