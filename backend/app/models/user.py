@@ -27,6 +27,9 @@ class User(db.Model, UserMixin):
     avatar = db.Column(db.String(255), default="test.png")
     updated_at = db.Column(DateTime, default=datetime.utcnow())
 
+    servers = db.relationship(
+        "Server", secondary='users_servers', back_populates='users')
+
     @property
     def password(self):
         return self.hashed_password
@@ -59,4 +62,17 @@ class User(db.Model, UserMixin):
             'avatar': self.avatar,
             'bio': self.bio,
             'created_at': self.created_at
+        }
+
+    def to_dict_servers(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'birthday': self.birthday,
+            'banner_color': self.banner_color,
+            'avatar': self.avatar,
+            'bio': self.bio,
+            'created_at': self.created_at,
+            "servers": [server.to_dict() for server in self.servers]
         }

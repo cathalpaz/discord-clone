@@ -1,6 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .servers import seed_servers, undo_servers
+from .user_servers import seed_users_servers
 from .direct_messages import seed_direct_messages, undo_direct_messages
 
 from ..models.db import db, environment, SCHEMA
@@ -24,6 +25,7 @@ def seed():
     seed_users()
     seed_servers()
     seed_direct_messages()
+    seed_users_servers()
     # Add other seed functions here
 
 

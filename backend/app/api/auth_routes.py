@@ -35,7 +35,7 @@ def login():
             User.email == credentials,
             User.username == credentials)).first()
         login_user(user)
-        return user.to_dict()
+        return user.to_dict_servers()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

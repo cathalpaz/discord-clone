@@ -16,13 +16,15 @@ class Server(db.Model):
 
     # owner = db.relationship('User', back_populates='servers')
 
-    # channel relationship
+    # users relationship
+    users = db.relationship(
+        'User', secondary='users_servers', back_populates='servers')
 
+    # channel relationship
 
     # server profiles relationship
 
     # server invites relationship
-
 
     def to_dict(self):
         return {

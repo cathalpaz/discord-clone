@@ -4,22 +4,25 @@ from sqlalchemy.sql import text
 
 def seed_servers():
     server_1 = Server(
-        name = 'Demo Server',
-        avatar = 'test.png',
-        owner_id = 1,
+        id=1,
+        name='Demo Server',
+        avatar='test.png',
+        owner_id=1,
     )
 
     server_2 = Server(
-        name = 'Gaming',
-        avatar = 'test1.jpg',
-        owner_id = 3,
+        id=2,
+        name='Gaming',
+        avatar='test1.jpg',
+        owner_id=3,
 
     )
 
     server_3 = Server(
-        name = 'Programming',
-        avatar = 'test3.png',
-        owner_id = 2,
+        id=3,
+        name='Programming',
+        avatar='test3.png',
+        owner_id=2,
     )
 
     db.session.add(server_1)
@@ -27,6 +30,7 @@ def seed_servers():
     db.session.add(server_3)
 
     db.session.commit()
+
 
 def undo_servers():
     if environment == "production":
