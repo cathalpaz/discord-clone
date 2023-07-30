@@ -29,7 +29,6 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(DateTime, default=datetime.utcnow())
 
     # relationships
-
     servers = db.relationship(
         "Server", secondary='users_servers', back_populates='users')
 

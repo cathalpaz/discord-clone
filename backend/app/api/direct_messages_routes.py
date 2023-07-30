@@ -39,6 +39,26 @@ def all_friends():
                for friend in get_friends if friend.status == 'ACCEPTED']
     return {'friends': friends}
 
+# GET DMS from a specific friend
+
+
+@direct_messages_routes.route('/friends/<int:id>')
+@login_required
+def get_friend_messages(id):
+    dms = DirectMessage.query.filter(
+        or_(
+            and_(
+                DirectMessage.user_from_id == current_user.id,
+                DirectMessage.user_to_id == id
+            ),
+            and_(
+                DirectMessage.user_from_id == id,
+                DirectMessage.user_to_id == current_user.id
+            )
+        )
+    ).all()
+    return {"messages": [dm.to_dict() for dm in dms]}
+
 
 # CREATE new direct message
 # TODO: double check to see if message history already exists
