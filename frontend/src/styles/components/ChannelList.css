@@ -1,0 +1,34 @@
+.channel-list-container {
+    display: flex;
+    flex-direction: column;
+    font-family: ggsans;
+    color: #949BA4;
+}
+
+.channel-list-container > span {
+    margin-left: 1.2rem;
+    height: 2rem;
+    width: 80%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: .2rem;
+}
+
+.channel-list-container > span:hover {
+    background-color: #35373C;
+}
+
+
+.channel-list-textchannels {
+    margin-top: 4.3rem;
+    margin-bottom: .3rem;
+    font-size: 12px;
+    padding-left: 1rem;
+    font-weight: 600;
+}
+
+.fa-hashtag {
+    padding-right: .6rem;
+    font-size: 1.1rem;
+}

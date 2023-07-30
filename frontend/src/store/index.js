@@ -1,10 +1,16 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
+import serverReducer from "./server";
 import logger from "redux-logger";
+import { singleServerReducer } from "./singleServer";
+import { directMessagesReducer } from "./directMessages";
 
 const rootReducer = combineReducers({
   session,
+  servers: serverReducer,
+  singleServer: singleServerReducer,
+  directMessages: directMessagesReducer,
 });
 
 let enhancer;

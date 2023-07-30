@@ -1,13 +1,11 @@
 .main-page-container {
     display: flex;
-
 }
 
 .server-list-container {
     background-color: #1E1F22;
     width: 4.5rem;
     height: 100rem;
-    word-wrap: break-word;
 }
 
 .dm-list-container {
@@ -18,6 +16,6 @@
 
 .general-view-container {
     background-color: #313338;
-    width: 44.5rem;
+    width: 30.5rem;
     height: 100rem;
 }

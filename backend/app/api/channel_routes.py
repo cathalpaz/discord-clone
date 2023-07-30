@@ -1,4 +1,3 @@
-
 from flask import Blueprint, request
 from ..models import Channel, User, db, ChannelMessage
 from flask_login import current_user, login_required
@@ -10,6 +9,7 @@ from ..utils.validate_errors import validation_errors_to_error_messages
 channel_routes = Blueprint("channel_routes", __name__, url_prefix='/channels')
 
 
+# UPDATE server channel
 @channel_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_channel(id):
@@ -34,6 +34,7 @@ def update_channel(id):
 # TODO: DRY THIS UP
 
 
+# DELETE server channel
 @channel_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_channel(id):
@@ -50,6 +51,7 @@ def delete_channel(id):
     return {"message": "successfully deleted", "channelId": channel.id}
 
 
+# GET channel messages
 @channel_routes.route("/<int:id>/messages")
 @login_required
 def get_channel_messages(id):
@@ -68,6 +70,7 @@ def get_channel_messages(id):
     return {"messages": [message.to_dict() for message in channel.channel_messages]}
 
 
+# CREATE channel message
 @channel_routes.route("/<int:id>/messages", methods=["POST"])
 @login_required
 def create_channel_message(id):
@@ -98,6 +101,7 @@ def create_channel_message(id):
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
+# EDIT channel messages
 @channel_routes.route("/<int:id>/messages/<int:message_id>", methods=["PUT"])
 @login_required
 def update_channel_message(id, message_id):
