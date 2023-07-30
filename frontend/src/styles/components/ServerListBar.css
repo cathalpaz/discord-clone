@@ -1,0 +1,23 @@
+.main-page-container {
+    display: flex;
+
+}
+
+.server-list-container {
+    background-color: #1E1F22;
+    width: 4.5rem;
+    height: 100rem;
+    word-wrap: break-word;
+}
+
+.dm-list-container {
+    background-color: #2B2D31;
+    width: 15rem;
+    height: 100rem;
+}
+
+.friend-list-container {
+    background-color: #313338;
+    width: 44.5rem;
+    height: 100rem;
+}
