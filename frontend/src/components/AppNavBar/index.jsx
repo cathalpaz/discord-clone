@@ -5,7 +5,7 @@ import "./AppNavBar.css"
 
 function AppNavigation({ isLoaded }) {
     const sessionUser = useSelector((state) => state.session.user);
-    const [selectedNavItem, setSelectedNavItem] = useState("home")
+    const [selectedNavItem, setSelectedNavItem] = useState("home");
     const [searchQuery, setSearchQuery] = useState("");
 
     const navbarItem = (navItem) => {
@@ -18,55 +18,54 @@ function AppNavigation({ isLoaded }) {
 
     const renderContent = () => {
         switch (selectedNavItem) {
-          case "online":
-            return <div>Online Friends</div>;
+            case "online":
+                return <div>Online Friends</div>;
             case "all":
-            return <div>All Friends</div>;
-          case "pending":
-        case "add":
-            return <div>Add Friend</div>
-          default:
-            return null;
+                return <div>All Friends</div>;
+            case "add":
+                return <div>Add Friend</div>;
+            default:
+                return null;
         }
-      };
+    };
 
-      return (
+    return (
         <div className="discord">
-        <nav className="app-nav">
-          <ul>
-            <li
-              className={selectedNavItem === "online" ? "active" : ""}
-              onClick={() => handleNavItemClick("online")}
-            >
-              Online Friends
-            </li>
-            <li
-              className={selectedNavItem === "all" ? "active" : ""}
-              onClick={() => handleNavItemClick("all")}
-            >
-              <p> All Friends </p>
-            </li>
-            <li
-              className={selectedNavItem === "add" ? "active" : ""}
-              onClick={() => handleNavItemClick("add")}
-            >
-                Add Friend
-            </li>
-          </ul>
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Find or start a conversation"
-              value={searchQuery}
-              onChange={handleSearchInputChange}
-            />
-            <button onClick={() => setSearchQuery("")}>Clear</button>
-          </div>
+            <nav className="app-nav">
+                <ul>
+                    <li
+                        className={selectedNavItem === "online" ? "active" : ""}
+                        onClick={() => navbarItem("online")}
+                    >
+                        Online Friends
+                    </li>
+                    <li
+                        className={selectedNavItem === "all" ? "active" : ""}
+                        onClick={() => navbarItem("all")}
+                    >
+                        <p> All Friends </p>
+                    </li>
+                    <li
+                        className={selectedNavItem === "add" ? "active" : ""}
+                        onClick={() => navbarItem("add")}
+                    >
+                        Add Friend
+                    </li>
+                </ul>
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Find or start a conversation"
+                        value={searchQuery}
+                        onChange={searchMessages}
+                    />
+                    <button onClick={() => setSearchQuery("")}>Clear</button>
+                </div>
 
-          <div className="content-container">{renderContent()}</div>
-        </nav>
+                <div className="content-container">{renderContent()}</div>
+            </nav>
         </div>
-      );
-    }
+    );
+}
 
 export default AppNavigation;
