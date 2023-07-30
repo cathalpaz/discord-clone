@@ -1,5 +1,6 @@
 import { actionTypes } from "./actionTypes";
 
+const initialState = { user: null, friends: null };
 const setUser = (user) => ({
   type: actionTypes.SET_SESSION,
   payload: user,
@@ -8,8 +9,6 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: actionTypes.REMOVE_SESSION,
 });
-
-const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {

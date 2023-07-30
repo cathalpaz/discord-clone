@@ -1,122 +1,110 @@
 {
-    "session": {
-        "user": {
-            "username": "",
-            "email": "",
-            "birthday": "",
-            "bannerColor": "",
-            "bio": "",
-            "pronouns": "",
-            "avatar": "",
+  "session": {
+    "user": {
+      "username": "",
+      "email": "",
+      "birthday": "",
+      "bannerColor": "",
+      "bio": "",
+      "pronouns": "",
+      "avatar": "",
+      "created_at": "",
+      "updated_at": ""
+    },
+
+    "friends": {
+      "1": {
+        "id": 1,
+        "username": "",
+        "email": "",
+        "accepted": true
+      },
+      "2": {
+        "id": 2,
+        "username": "",
+        "email": "",
+        "accepted": true
+      },
+      "3": {
+        "id": 3,
+        "username": "",
+        "email": "",
+        "accepted": false
+      },
+      "orderedFriendsList": [1, 2],
+      "orderedPendingFriendsList": [3]
+    }
+  },
+  "servers": {
+    "1": {
+      "id": 1,
+      "name": "",
+      "avatar": "",
+      "owner_id": 1,
+      "created_at": "",
+      "public": true
+    },
+    "2": {
+      "id": 2,
+      "name": "",
+      "avatar": "",
+      "owner_id": 2,
+      "created_at": "",
+      "public": false
+    },
+    "orderedServers": [1, 2]
+  },
+  "singleServer": {
+    "id": 1,
+    "name": "",
+    "avatar": "",
+    "owner_id": 1,
+    "created_at": "",
+    "public": true,
+    "users": [
+      {
+        "id": 1,
+        "username": "",
+        "avatar": "",
+        "bannerColor": ""
+      }
+    ],
+    "channels": {
+      "1": {
+        "id": 1,
+        "type": "",
+        "name": "",
+        "messages": [
+          {
+            "channelId": 1,
+            "userId": 1,
+            "content": "",
             "created_at": "",
             "updated_at": ""
-        }
-    },
-    "servers": {
-        "1": {
-            "id": 1,
-            "name": "",
-            "avatar": "",
-            "owner_id": 1,
-            "created_at": "",
-            "public": true 
-        },
-        "2": {
-            "id": 2,
-            "name": "",
-            "avatar": "",
-            "owner_id": 2,
-            "created_at": "",
-            "public": false 
-        },
-        "orderedServers": [
-            1,
-            2
+          }
         ]
-    },
-    "singleServer": {
-        "id": 1,
-        "name": "",
-        "avatar": "",
-        "owner_id": 1,
-        "created_at": "",
-        "public": true,
-        "users": [
-            {
-                "id": 1,
-                "username": "",
-                "avatar": "",
-                "bannerColor": ""
-            }
-        ],
-        "channels": {
-            "1": {
-                "id": 1,
-                "type": "",
-                "name": "",
-                "messages": [
-                    {
-                        "channelId": 1,
-                        "userId": 1,
-                        "content": "",
-                        "created_at": "",
-                        "updated_at": ""
-                    }
-                ]
-                
-            },
-            "orderedChannelsList": [
-                1
-            ]
-        } 
-
-    },
-    "friends": {
-        "1": {
-            "id": 1,
-            "username": "",
-            "email": "",
-            "accepted": true
-        },
-        "2": {
-            "id": 2,
-            "username": "",
-            "email": "",
-            "accepted": true
-        },
-        "3": {
-            "id": 3,
-            "username": "",
-            "email": "",
-            "accepted": false 
-        },
-        "orderedFriendsList": [
-            1,
-            2
-        ],
-        "orderedPendingFriendsList": [
-            3
-        ]
-
-    },
-    "directMessages": {
-        "1": {
-            "messages": [
-                {
-                    "userToId": 1,
-                    "userFromId": 2,
-                    "content": "",
-                    "created_at": "",
-                    "updated_at": ""
-                },
-                {
-                    "userToId": 2,
-                    "userFromId": 1,
-                    "content": "",
-                    "created_at": "",
-                    "updated_at": ""
-                }
-            ]
-        }
+      },
+      "orderedChannelsList": [1]
     }
+  },
+  "directMessages": {
+    "1": {
+      "messages": [
+        {
+          "userToId": 1,
+          "userFromId": 2,
+          "content": "",
+          "created_at": "",
+          "updated_at": ""
+        },
+        {
+          "userToId": 2,
+          "userFromId": 1,
+          "content": "",
+          "created_at": "",
+          "updated_at": ""
+        }
+      ]
+    }
+  }
 }
