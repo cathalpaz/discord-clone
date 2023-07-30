@@ -23,9 +23,6 @@ function AppNavigation({ isLoaded }) {
             case "all":
             return <div>All Friends</div>;
           case "pending":
-            return <div>Pending Friends</div>;
-          case "blocked":
-            return <div>Blocked Friends</div>;
         case "add":
             return <div>Add Friend</div>
           default:
@@ -34,6 +31,7 @@ function AppNavigation({ isLoaded }) {
       };
 
       return (
+        <div className="discord">
         <nav className="app-nav">
           <ul>
             <li
@@ -49,30 +47,16 @@ function AppNavigation({ isLoaded }) {
               All Friends
             </li>
             <li
-              className={selectedNavItem === "pending" ? "active" : ""}
-              onClick={() => handleNavItemClick("pending")}
-            >
-              Pending Friends
-            </li>
-            <li
-              className={selectedNavItem === "blocked" ? "active" : ""}
-              onClick={() => handleNavItemClick("blocked")}
-            >
-              Blocked Friends
-            </li>
-            <li
               className={selectedNavItem === "add" ? "active" : ""}
               onClick={() => handleNavItemClick("add")}
             >
                 Add Friend
             </li>
           </ul>
-
-          {/* We need to add to the search bar */}
           <div className="search-container">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Find or start a conversation"
               value={searchQuery}
               onChange={handleSearchInputChange}
             />
@@ -81,6 +65,7 @@ function AppNavigation({ isLoaded }) {
 
           <div className="content-container">{renderContent()}</div>
         </nav>
+        </div>
       );
     }
 
