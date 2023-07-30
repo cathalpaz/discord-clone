@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy import DateTime
 from datetime import datetime
+from .server_invite import ServerInvite
 
 
 class User(db.Model, UserMixin):
@@ -34,7 +35,10 @@ class User(db.Model, UserMixin):
 
     # server_profiles = db.relationship("ServerProfile")
 
-    server_invites = db.relationship("ServerInvite", back_populates='user')
+    server_invites_received = db.relationship(
+        "ServerInvite", back_populates='user', foreign_keys=[ServerInvite.user_id])
+    server_invites_sent = db.relationship(
+        "ServerInvite", back_populates='user', foreign_keys=[ServerInvite.owner_id])
 
     @property
     def password(self):
@@ -81,4 +85,13 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'created_at': self.created_at,
             "servers": [server.to_dict() for server in self.servers]
+        }
+# only shows server invites that have a status of PENDING
+
+    def to_dict_server_invites_received(self):
+        return {
+            "server_invites_received": [server_invite.to_dict()
+                                        for server_invite in self.server_invites_received
+                                        if server_invite.status != "ACCEPTED"
+                                        or server_invite.status != 'REJECTED']
         }
