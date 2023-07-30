@@ -21,8 +21,10 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
+            <LandingPage />
+          </Route>
+          <Route path='/main'>
             <MainPageTemplate />
-            {/* <LandingPage /> */}
           </Route>
           <Route path='/login'>
             <LoginFormPage />

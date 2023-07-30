@@ -1,11 +1,34 @@
 import { useHistory } from "react-router-dom";
 import "../../styles/LandingPage.css";
+import { useSelector } from "react-redux";
 
 export default () => {
   const history = useHistory()
+  const sessionUser = useSelector((state) => state.session.user)
+  console.log('sessionuser', sessionUser)
 
   const sendToLogin = () => {
     history.push("/login")
+  }
+
+  const sendToMain = () => {
+    history.push("/main")
+  }
+
+  const sendToLanding = () => {
+    history.push("/")
+  }
+
+  const sendToTop = () => {
+    window.scrollTo({top:0, behavior:"smooth"})
+  }
+
+  const sendToRegister = () => {
+    history.push("/register")
+  }
+
+  const sendToApp = () => {
+    alert("Feature coming soon!")
   }
 
   return (
@@ -13,7 +36,7 @@ export default () => {
       <div className='heading-background-container'>
         <div className='heading-nav-container'>
           <div className='heading-nav-items'>
-            <div className='heading-nav-logo'>
+            <div onClick={sendToLanding} className='heading-nav-logo'>
               <i className='fa-brands fa-discord fa-xl'></i>
               <p
                 style={{
@@ -36,7 +59,7 @@ export default () => {
               <p>Careers</p>
             </div>
             <div className='heading-nav-login'>
-              <button onClick={sendToLogin}>Log In</button>
+              {sessionUser ? <button className="heading-nav-main-button" onClick={sendToMain}>Open Discord</button> : <button className="heading-nav-login-button" onClick={sendToLogin}>Login</button>}
             </div>
           </div>
         </div>
@@ -69,7 +92,7 @@ export default () => {
             and hang out more often.
           </p>
           <div className='heading-item-buttons'>
-            <button className='download-button'>
+            <button onClick={sendToApp} className='download-button'>
               {" "}
               <i
                 class='fa-solid fa-download'
@@ -77,9 +100,12 @@ export default () => {
               ></i>{" "}
               Download for Windows
             </button>
-            <button className='open-discord-button'>
+            {sessionUser ? <button onClick={sendToMain} className='open-discord-button'>
               Open Slacord in your browser
-            </button>
+            </button> : <button onClick={sendToLogin} className='open-discord-button'>
+              Open Slacord in your browser
+            </button> }
+
           </div>
         </div>
         <img src={"/images/landing_img2.svg"} className='left-picture' />
@@ -251,6 +277,7 @@ export default () => {
                 fontSize: "17px",
                 fontFamily: "ginto"
               }}
+              onClick={sendToTop}
             >
               <i
                 style={{ marginBottom: ".9rem", paddingRight: ".5rem" }}
@@ -258,7 +285,7 @@ export default () => {
               ></i>
               Slacord
             </p>
-            <button className='body-fifth-block-footer-signup-button'>
+            <button onClick={sendToRegister} className='body-fifth-block-footer-signup-button'>
               Sign up
             </button>
           </div>
