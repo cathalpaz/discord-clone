@@ -103,4 +103,10 @@ def edit_direct_message(id):
 @direct_messages_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_direct_message(id):
-    pass
+    dm = DirectMessage.query.get(id)
+    if dm.user_from_id != current_user.id:
+        return {'error': 'Not your message!'}
+
+    db.session.delete(dm)
+    db.session.commit()
+    return {'message': 'Message successfully deleted'}
