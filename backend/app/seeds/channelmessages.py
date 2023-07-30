@@ -1,5 +1,5 @@
 from ..models import db, environment, SCHEMA
-from ..models.channels import ChannelMessage
+from ..models.channel import ChannelMessage
 from sqlalchemy.sql import text
 
 
