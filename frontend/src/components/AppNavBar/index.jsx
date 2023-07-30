@@ -44,7 +44,7 @@ function AppNavigation({ isLoaded }) {
               className={selectedNavItem === "all" ? "active" : ""}
               onClick={() => handleNavItemClick("all")}
             >
-              All Friends
+              <p> All Friends </p>
             </li>
             <li
               className={selectedNavItem === "add" ? "active" : ""}
