@@ -62,16 +62,22 @@
 .dm-list-header {
     position: fixed;
     width: 15rem;
-    height: 3rem;
+    height: 3.05rem;
     background-color: #2B2D31;
-    border-bottom: 2px solid #1F2023;
+    border-bottom: 1px solid #1F2023;
     font-family: ggsans;
     display: flex;
     align-items: center;
+}
+
+.dm-list-header:hover {
+    background-color: #35373C;
+    cursor: pointer;
 }
 
 .dm-list-header > p {
     padding-left: 1rem;
     font-weight: 600;
     font-size: 17px;
+    padding-bottom: 0.1rem;
 }

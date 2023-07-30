@@ -6,17 +6,19 @@
 }
 
 .channel-list-container > span {
-    margin-left: 1.2rem;
+    margin-left: 0.5rem;
     height: 2rem;
-    width: 80%;
+    width: 93%;
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-radius: .2rem;
+    border-radius: 0.2rem;
+    padding-left: 0.65rem;
 }
 
 .channel-list-container > span:hover {
     background-color: #35373C;
+    color: #D5D8DB;
 }
 
 
@@ -26,9 +28,26 @@
     font-size: 12px;
     padding-left: 1rem;
     font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+.channel-list-textchannels > p:hover {
+    color: #D5D8DB;
+    cursor: pointer;
 }
 
 .fa-hashtag {
     padding-right: .6rem;
     font-size: 1.1rem;
+}
+
+.channel-list-add {
+    margin-right: 1.1rem;
+    font-size: 16px;
+}
+
+.channel-list-add:hover {
+    color: #D5D8DB;
+    cursor: pointer;
 }

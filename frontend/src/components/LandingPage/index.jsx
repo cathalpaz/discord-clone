@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 export default () => {
   const history = useHistory()
   const sessionUser = useSelector((state) => state.session.user)
-  console.log('sessionuser', sessionUser)
 
   const sendToLogin = () => {
     history.push("/login")
@@ -50,13 +49,13 @@ export default () => {
               </p>
             </div>
             <div className='heading-nav-links'>
-              <p>Download</p>
-              <p>Nitro</p>
-              <p>Discover</p>
-              <p>Safety</p>
-              <p>Support</p>
-              <p>Blog</p>
-              <p>Careers</p>
+              <p onClick={sendToApp}>Download</p>
+              <p onClick={sendToApp}>Nitro</p>
+              <p onClick={sendToApp}>Discover</p>
+              <p onClick={sendToApp}>Safety</p>
+              <p onClick={sendToApp}>Support</p>
+              <p onClick={sendToApp}>Blog</p>
+              <p onClick={sendToApp}>Careers</p>
             </div>
             <div className='heading-nav-login'>
               {sessionUser ? <button className="heading-nav-main-button" onClick={sendToMain}>Open Discord</button> : <button className="heading-nav-login-button" onClick={sendToLogin}>Login</button>}
@@ -95,7 +94,7 @@ export default () => {
             <button onClick={sendToApp} className='download-button'>
               {" "}
               <i
-                class='fa-solid fa-download'
+                className='fa-solid fa-download'
                 style={{ paddingRight: ".4rem" }}
               ></i>{" "}
               Download for Windows
@@ -181,7 +180,7 @@ export default () => {
           Ready to start your journey?
         </p>
         <button className='body-fourth-block-button'>
-          <i class='fa-solid fa-download' style={{ paddingRight: ".7rem" }}></i>
+          <i className='fa-solid fa-download' style={{ paddingRight: ".7rem" }}></i>
           Download for Windows
         </button>
       </div>
@@ -281,7 +280,7 @@ export default () => {
             >
               <i
                 style={{ marginBottom: ".9rem", paddingRight: ".5rem" }}
-                class='fa-brands fa-discord fa-xl'
+                className='fa-brands fa-discord fa-xl'
               ></i>
               Slacord
             </p>
