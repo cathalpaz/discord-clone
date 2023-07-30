@@ -29,6 +29,7 @@ class Server(db.Model):
         "ServerProfile", back_populates='server', cascade="all, delete-orphan")
 
     # server invites relationship
+    server_invites = db.relationship("ServerInvite", back_populates="server")
 
     def to_dict(self):
         return {
