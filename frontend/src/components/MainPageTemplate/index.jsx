@@ -15,7 +15,7 @@ function MainPageTemplate() {
 				<div className="dm-list-container">
 
 				</div>
-				<div className="friend-list-container">
+				<div className="general-view-container">
 
 				</div>
 
