@@ -42,3 +42,14 @@ class Server(db.Model):
             'owner': self.owner.to_dict(),
             'server_profiiles': [server_profile.to_dict() for server_profile in self.server_profiles]
         }
+
+    def to_dict_basic(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'avatar': self.avatar,
+            'owner_id': self.owner_id,
+            'created_at': self.created_at,
+            'owner': self.owner.to_dict(),
+
+        }
