@@ -34,6 +34,8 @@ class User(db.Model, UserMixin):
 
     # server_profiles = db.relationship("ServerProfile")
 
+    server_invites = db.relationship("ServerInvite", back_populates='user')
+
     @property
     def password(self):
         return self.hashed_password

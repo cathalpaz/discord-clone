@@ -5,5 +5,6 @@ from .user import User
 from .channels import Channel, ChannelMessage
 from .server_profile import ServerProfile
 from .server import Server
+from .server_invite import ServerInvite
 from .direct_message import DirectMessage
 from .friends import Friend
