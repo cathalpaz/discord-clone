@@ -17,7 +17,6 @@ function ServerList() {
     }, [dispatch]);
 
     const openServer = (server) => {
-
         history.push(`/${server.id}/${server.channels[0].id}`)
     }
 

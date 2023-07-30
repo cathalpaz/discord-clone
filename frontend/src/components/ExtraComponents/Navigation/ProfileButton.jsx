@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../store/session";
+import OpenModalButton from "../../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user)
   const ulRef = useRef();
+
 
   const openMenu = () => {
     if (showMenu) return;
@@ -40,30 +42,20 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+        <i class="fa-solid fa-angle-down"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        {user ? (
+        {sessionUser ? (
           <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
+            <li>{sessionUser.username}</li>
+            <li>{sessionUser.email}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+            <h1>wait you're not the user</h1>
           </>
         )}
       </ul>
