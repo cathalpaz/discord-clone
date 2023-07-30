@@ -1,0 +1,77 @@
+.serverlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.serverlist-friend-button {
+    margin-top: .75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: #5865F2;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.serverlist-friend-button > i {
+    font-size: 1.4rem;
+}
+
+.serverlist-icon {
+    border-radius: 2rem;
+    transition-duration: .1s;
+}
+
+.serverlist-icon:hover {
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.serverlist-main-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .6rem;
+}
+
+.serverlist-add-server {
+    width: 3rem;
+    height: 3rem;
+    font-size: 29px;
+    font-weight: 800;
+    color:#23A459;
+    border-radius: 2rem;
+    background-color:#313338;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .15s;
+    transition-timing-function: ease-out;
+}
+
+.serverlist-add-server:hover {
+    border-radius: 1rem;
+    color: #FFFFFF;
+    background-color: #23A459;
+    cursor: pointer;
+}
+
+.dm-list-header {
+    position: fixed;
+    width: 15rem;
+    height: 3rem;
+    background-color: #2B2D31;
+    border-bottom: 2px solid #1F2023;
+    font-family: ggsans;
+    display: flex;
+    align-items: center;
+}
+
+.dm-list-header > p {
+    padding-left: 1rem;
+    font-weight: 600;
+    font-size: 17px;
+}

@@ -18,7 +18,7 @@ def all_servers():
     Query for all public servers and returns them in a list of user dictionaries
     """
     servers = Server.query.filter(Server.public == True).all()
-    return {"severs": [server.to_dict() for server in servers]}
+    return {"servers": [server.to_dict() for server in servers]}
 
 #all users servers
 @servers_routes.route("/current")
