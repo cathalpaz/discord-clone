@@ -32,6 +32,7 @@ function AppNavigation({ isLoaded }) {
     return (
         <div className="discord">
             <nav className="app-nav">
+                <p>This is a test p</p>
                 <ul>
                     <li
                         className={selectedNavItem === "online" ? "active" : ""}
