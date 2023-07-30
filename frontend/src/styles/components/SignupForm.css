@@ -112,3 +112,24 @@
     flex-direction: column;
     align-items: center;
 }
+
+.signup-birthday-select-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+.signup-birthday-select-container > select {
+    height: 2.5rem;
+    background-color: #1E1F22;
+    border: 0;
+    border-radius: .2rem;
+    margin-bottom: 1rem;
+    width: 30%;
+    margin-top: 0.4rem;
+    color: #FFFFFF;
+}
+
+.signup-errors {
+    color:#F23F42
+}

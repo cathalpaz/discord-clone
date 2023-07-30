@@ -12,11 +12,20 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [birthday, setBirthday] = useState("");
   const [color, setColor] = useState("");
   const [pronoun, setPronoun] = useState("")
   const [errors, setErrors] = useState([]);
   const [serverError, setServerError] = useState([])
+  const [birthdayMonth, setBirthdayMonth] = useState("")
+  const [birthdayDay, setBirthdayDay] = useState("")
+  const [birthdayYear, setBirthdayYear] = useState("")
+  const startYear = 1900
+  const currentYear = 2023
+  let years = []
+
+  for (let i = currentYear; i >= startYear; i--) {
+    years.push(i)
+  }
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -56,45 +65,13 @@ function SignupFormPage() {
     } else if (password.length < 4 || password.length > 50) {
       errors.password = "Password must be between 4 and 50 characters long."
     }
-    console.log(birthday.length)
-    if (!(birthday.length === 10 || birthday.length === 9)) {
-      errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-    } else if (birthday.includes("/")) {
-      let count = 0;
-      for (let ele of birthday.split("")) {
-        if (ele === "/") {
-          count++;
-        }
-      }
-      if (count !== 2) {
-        errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-      }
-    }
-
-    if (birthday.split("/")[0].length !== 2) {
-      errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-    } else if (birthday.split("/")[1].length !== 2) {
-      errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-    } else if (birthday.split("/")[2].length !== 4) {
-      errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-    }
-
-    if (birthday.length == 9) {
-      const arr = birthday.split("/")
-      if (arr[0].length > 1) {
-        errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-      } else if (arr[1].length !== 2) {
-        errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-      } else if (arr[1].length !== 4) {
-        errors.birthday = "Please enter correct birthday format in MM/DD/YYYY"
-      }
-    }
 
     if (!color.length) {
       errors.color = "Must pick a banner color"
     }
 
     if (Object.values(errors).length === 0) {
+      const birthday = `${birthdayMonth}/${birthdayDay}/${birthdayYear}`
       const data = await dispatch(signUp(username, email, password, birthday, color, pronoun));
       if (data) {
         setServerError(data)
@@ -130,7 +107,7 @@ function SignupFormPage() {
           </label>
           <label>
           {errors.email && (
-            <p className="signup-modal-errors-email">{errors.email}</p>
+            <p className="signup-errors -email">{errors.email}</p>
           )}
           </label>
           <input
@@ -144,7 +121,7 @@ function SignupFormPage() {
           </label>
           <label>
           {errors.username && (
-            <p className="signup-modal-errors-username">{errors.username}</p>
+            <p className="signup-errors -username">{errors.username}</p>
           )}
           </label>
           <input
@@ -158,7 +135,7 @@ function SignupFormPage() {
           </label>
           <label>
           {errors.password && (
-            <p className="signup-modal-errors-password">{errors.password}</p>
+            <p className="signup-errors -password">{errors.password}</p>
           )}
           </label>
           <input
@@ -172,7 +149,7 @@ function SignupFormPage() {
           </label>
           <label>
           {errors.confirmpassword && (
-            <p className="signup-modal-errors-confirmpassword">{errors.confirmpassword}</p>
+            <p className="signup-errors -confirmpassword">{errors.confirmpassword}</p>
           )}
           </label>
           <input
@@ -186,15 +163,86 @@ function SignupFormPage() {
           </label>
           <label>
           {errors.birthday && (
-            <p className="signup-modal-errors-birthday">{errors.birthday}</p>
+            <p className="signup-errors -birthday">{errors.birthday}</p>
           )}
           </label>
-          <input
-            type="birthday"
-            value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
-            required
-          />
+          <div className="signup-birthday-select-container">
+            <select
+              name="birthday-month"
+              onChange={e => setBirthdayMonth(e.target.value)}
+              value={birthdayMonth}
+              required
+              >
+              <option value='' disabled>
+                Select a month...
+              </option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+            </select>
+            <select
+                name="birthday-day"
+                onChange={e => setBirthdayDay(e.target.value)}
+                value={birthdayDay}
+                required
+                >
+                <option value='' disabled>
+                  Select a day...
+                </option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+            </select>
+            <select
+                name="birthday-year"
+                onChange={e => setBirthdayYear(e.target.value)}
+                value={birthdayYear}
+                required
+                >
+                <option value='' disabled>
+                  Select a year...
+                </option>
+                {years.map(year => <option>{year}</option>)}
+            </select>
+          </div>
+
           <div className="signup-form-footer">
             <div className="signup-form-banner-color">
               <label>
@@ -202,7 +250,7 @@ function SignupFormPage() {
               </label>
               <label>
                 {errors.color && (
-                  <p className="signup-modal-errors-color">{errors.color}</p>
+                  <p className="signup-errors -color">{errors.color}</p>
                 )}
               </label>
               <input
@@ -219,7 +267,7 @@ function SignupFormPage() {
               </label>
               <label>
                 {errors.pronoun && (
-                  <p className="signup-modal-errors-pronoun">{errors.pronoun}</p>
+                  <p className="signup-errors -pronoun">{errors.pronoun}</p>
                 )}
               </label>
               <input
