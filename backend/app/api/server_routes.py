@@ -11,7 +11,7 @@ from ..forms.channel_form import ChannelForm
 
 servers_routes = Blueprint('servers', __name__, url_prefix="/servers")
 
-#all public servers
+# GET all public servers
 @servers_routes.route("")
 def all_servers():
     """
@@ -20,14 +20,16 @@ def all_servers():
     servers = Server.query.filter(Server.public == True).all()
     return {"servers": [server.to_dict() for server in servers]}
 
-#all users servers
+
+# GET all users servers
 @servers_routes.route("/current")
 @login_required
 def all_user_servers():
     user = User.query.filter(User.id == current_user.id).first()
     return {"servers": [server.to_dict() for server in user.servers]}
 
-#server information by id
+
+# GET server information by id
 @servers_routes.route("/<int:id>")
 @login_required
 def server_info(id):
@@ -42,7 +44,8 @@ def server_info(id):
     forbidden_error = ForbiddenError("You do not have access to this server!")
     return forbidden_error.error_json()
 
-# show channels in a server if you are an authenticated user
+
+# GET all channels in a server, if you are an authenticated user
 @servers_routes.route("/<int:id>/channels")
 @login_required
 def all_server_channels(id):
@@ -57,8 +60,9 @@ def all_server_channels(id):
     forbidden_error = ForbiddenError("You do not have access to this server!")
     return forbidden_error.error_json()
 
-# if you are not the server owner, you cannot create a channel.
-# refactor if possible!
+
+# CREATE new server channel (if owner)
+# TODO: REFACTOR
 @servers_routes.route("/<int:id>/channels", methods=["POST"])
 @login_required
 def create_channel(id):
@@ -86,6 +90,7 @@ def create_channel(id):
     return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
+# CREATE new server
 @servers_routes.route("/new", methods=["POST"])
 @login_required
 def create_server():
@@ -106,6 +111,7 @@ def create_server():
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
+# DELETE server (if owner)
 @servers_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 @server_owner_required
@@ -115,6 +121,7 @@ def delete_server(server):
     return {"message": "successfully deleted", "serverId": server.id}
 
 
+# UPDATE server (if owner)
 # TODO: DRY THIS UP
 @servers_routes.route("/<int:id>", methods=["PUT"])
 @login_required
