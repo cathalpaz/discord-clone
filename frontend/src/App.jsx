@@ -28,6 +28,9 @@ function App() {
           <Route path='/register'>
             <SignupFormPage />
           </Route>
+          <Route path='/channels'>
+            <AppNavigation />
+          </Route>
         </Switch>
       )}
     </>
