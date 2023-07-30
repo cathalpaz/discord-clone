@@ -4,7 +4,8 @@ from ..models import db, DirectMessage, User, Friend
 from sqlalchemy import or_, and_
 from ..forms import UserMessage
 
-direct_messages_routes = Blueprint('direct_messages', __name__, url_prefix='/@me')
+direct_messages_routes = Blueprint(
+    'direct_messages', __name__, url_prefix='/@me')
 
 
 # GET all user direct messages
@@ -34,7 +35,8 @@ def all_friends():
         Friend.user_to == current_user.id,
         Friend.user_from == current_user.id
     )).all()
-    friends = [friend.to_dict() for friend in get_friends if friend.status == 'FRIENDS']
+    friends = [friend.to_dict()
+               for friend in get_friends if friend.status == 'ACCEPTED']
     return {'friends': friends}
 
 
@@ -47,13 +49,13 @@ def create_direct_message(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_dm = DirectMessage(
-            user_from_id = current_user.id,
-            user_to_id = id,
-            content = form.data['content']
+            user_from_id=current_user.id,
+            user_to_id=id,
+            content=form.data['content']
         )
         db.session.add(new_dm)
         db.session.commit()
         return {'new_dm': new_dm.to_dict()}
 
     if form.errors:
-       return {'errors': form.errors}
+        return {'errors': form.errors}
