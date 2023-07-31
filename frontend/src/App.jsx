@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import { authenticate } from "./store/session";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
-import { authenticate } from "./store/session";
-import Navigation from "./components/ExtraComponents/Navigation";
+import ChannelList from "./components/ChannelList";
 import LandingPage from "./components/LandingPage";
 import MainPageTemplate from "./components/MainPageTemplate";
-import ChannelList from "./components/ChannelList";
+import AppNavigation from "./components/AppNavigation";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +23,9 @@ function App() {
           <Route exact path='/'>
             <LandingPage />
           </Route>
+          <Route path='/:serverId/:channelId'>
+            <ChannelList />
+          </Route>
           <Route path='/main'>
             <MainPageTemplate />
           </Route>
@@ -32,10 +35,10 @@ function App() {
           <Route path='/register'>
             <SignupFormPage />
           </Route>
-          <Route path='/:serverId/:channelId'>
-            <ChannelList />
+          <Route path='/channels'>
+            <AppNavigation />
           </Route>
-        </Switch>
+      </Switch>
       )}
     </>
   );

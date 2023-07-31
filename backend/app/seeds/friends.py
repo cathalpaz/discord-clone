@@ -1,6 +1,7 @@
 from ..models import db, Friend, environment, SCHEMA
 from sqlalchemy.sql import text
 
+
 def seed_friends():
     friend1 = Friend(user_to=2, user_from=1, status="FRIENDS")
     friend2 = Friend(user_to=3, user_from=1)
@@ -38,9 +39,6 @@ def seed_friends():
     friend29 = Friend(user_to=4, user_from=6)
     friend30 = Friend(user_to=5, user_from=6)
 
-
-
-
     friend31 = Friend(user_to=8, user_from=7, status="FRIENDS")
     friend32 = Friend(user_to=9, user_from=7, status="FRIENDS")
     friend33 = Friend(user_to=10, user_from=7)
@@ -76,9 +74,6 @@ def seed_friends():
     friend58 = Friend(user_to=9, user_from=12)
     friend59 = Friend(user_to=10, user_from=12)
     friend60 = Friend(user_to=11, user_from=12)
-
-
-
 
     friend61 = Friend(user_to=14, user_from=13)
     friend62 = Friend(user_to=15, user_from=13, status="FRIENDS")
@@ -209,10 +204,11 @@ def seed_friends():
 
     db.session.commit()
 
+
 def undo_friends():
     if environment == "production":
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.servers RESTART IDENTITY CASCADE;")
+            f"TRUNCATE table {SCHEMA}.friends RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM friends"))
 

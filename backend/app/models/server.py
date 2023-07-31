@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 
@@ -11,7 +11,8 @@ class Server(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     avatar = db.Column(db.String(255))
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     # TODO add this column to db diagram. It doesn't exist currently...
     public = db.Column(db.Boolean, default=False)
@@ -20,7 +21,7 @@ class Server(db.Model):
 
     # users relationship
     users = db.relationship(
-        'User', secondary='users_servers', back_populates='servers')
+        'User', secondary=add_prefix_for_prod('users_servers'), back_populates='servers')
 
     # channel relationship
     channels = db.relationship("Channel", backref='server')
@@ -40,7 +41,7 @@ class Server(db.Model):
             'created_at': self.created_at,
             'channels': [channel.to_dict() for channel in self.channels],
             'owner': self.owner.to_dict(),
-            'server_profiiles': [server_profile.to_dict() for server_profile in self.server_profiles]
+            'server_profiles': [server_profile.to_dict() for server_profile in self.server_profiles]
         }
 
     def to_dict_basic(self):

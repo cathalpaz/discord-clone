@@ -126,3 +126,22 @@ def update_channel_message(id, message_id):
         db.session.commit()
         return {"message": channel_message.to_dict()}
     return {"errors": validation_errors_to_error_messages(form.errors)}
+
+
+# DELETE channel messages
+# TODO: add functionality for server owners to delete messages
+@channel_routes.route('/<int:id>/messages/<int:message_id>', methods=['DELETE'])
+@login_required
+def delete_channel_message(id, message_id):
+    channel = Channel.query.get(id)
+    channel_message = ChannelMessage.query.get(message_id)
+    if not channel:
+        not_found_error = NotFoundError("Channel not found")
+        return not_found_error.error_json()
+    if channel_message.user_id != current_user.id:
+        forbidden_error = ForbiddenError(
+            "You do not have permissions to update this message")
+        return forbidden_error.error_json()
+    db.session.delete(channel_message)
+    db.session.commit()
+    return {'message': 'Message successfully deleted'}

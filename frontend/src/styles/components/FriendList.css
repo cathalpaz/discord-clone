@@ -1,0 +1,97 @@
+.discord {
+    background-color: #36393e;
+    font-family: ggsans;
+  }
+
+  .friends-bar {
+    display: flex;
+    align-items: center;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-bottom-color: #515151 !important;
+    border-bottom-width: 1px !important;
+    border-width: 0px;
+    border-color: #ffffff;
+    border-style: solid;
+    border-bottom-style: solid;
+  }
+
+  .text-bar {
+    font-family: ggsans;
+    text-decoration: none;
+  }
+
+  .divider {
+    height: 24px;
+    width: 1px;
+    background-color: #fff;
+    margin: 0 10px;
+    padding-left: 0px;
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+
+  .friends-h1 {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .fa-poo {
+    padding-top: 7px;
+    padding-left: 14px;
+    font-size: 20px;
+  }
+
+  .friends-h1 .fa-poo {
+    margin-right: 5px;
+  }
+
+  .app-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+  }
+
+  .text-bar {
+    display: flex;
+    flex-direction: row;
+    font-family: ggsans;
+    text-decoration: none;
+    color: white;
+    list-style-type: none;
+  }
+
+  .nav-button {
+    padding: 8px 16px;
+    margin: 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    padding: 8px 14px;
+  }
+
+  .nav-button:hover {
+    background-color: #424549;
+    padding: 8px 14px;
+  }
+
+  .add-friend {
+    background-color: #43b581;
+  }
+
+  .add-friend:hover {
+    background-color: #43b581;
+  }
+
+  .active {
+    background-color: #424549;
+    padding: 8px 14px;
+  }

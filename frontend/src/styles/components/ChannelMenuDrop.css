@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .channel-menu-button{
     position: absolute;
     margin-top: .1376rem;

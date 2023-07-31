@@ -20,10 +20,14 @@ function ServerList() {
         history.push(`/${server.id}/${server.channels[0].id}`)
     }
 
+    const sendToMain = () => {
+        history.push("/main")
+    }
+
 	return (
 		<>
 			<div className="serverlist-container">
-                <div className="serverlist-friend-button">
+                <div onClick={sendToMain} className="serverlist-friend-button">
                     <i className='fa-brands fa-discord fa-lg'></i>
                 </div>
                 <div>
