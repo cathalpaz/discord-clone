@@ -99,6 +99,6 @@
   .search-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin: 50px;
     position: absolute;
   }
