@@ -49,12 +49,15 @@ const initialState = {};
 
 export default function serverReducer (state = initialState, action) {
 	switch (action.type) {
-		case GET_SERVERS:
+		case GET_SERVERS: {
             const newState = action.servers.servers
             return newState
-        case CREATE_SERVER:
-            // EDIT!!!!!
-            return state
+        }
+        case CREATE_SERVER: {
+            const newState = {...state}
+            newState["servers"] = action.server
+            return newState
+        }
 		default:
 			return state;
 	}
