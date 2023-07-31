@@ -1,7 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .servers import seed_servers, undo_servers
-from .user_servers import seed_users_servers
+from .user_servers import seed_users_servers, undo_users_servers
 from .direct_messages import seed_direct_messages, undo_direct_messages
 from .friends import seed_friends, undo_friends
 from .channels import seed_channels, undo_channels
@@ -29,6 +29,7 @@ def seed():
         undo_channels()
         undo_server_profiles()
         undo_server_invites()
+        undo_users_servers()
         undo_servers()
         undo_friends()
         undo_users()
@@ -49,6 +50,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_direct_messages()
+    undo_users_servers()
     undo_servers()
     undo_users()
     # Add other undo functions here
