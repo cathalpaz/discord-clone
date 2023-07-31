@@ -12,7 +12,7 @@ function CreateServerModal() {
 
     const [name, setName] = useState(`${user.username}'s server`)
     const [errors, setErrors] = useState([])
-    const { closeModal } = useModal
+    const { closeModal } = useModal()
 
     const handleSubmit = async(e) => {
         e.preventDefault();
