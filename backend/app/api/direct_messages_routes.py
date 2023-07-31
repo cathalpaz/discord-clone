@@ -22,11 +22,14 @@ def all_direct_messages():
 
 
 # GET single direct message
-# @direct_messages_routes.route('/<int:id>')
-# @login_required
-# def single_direct_message(id):
-#     pass
-
+@direct_messages_routes.route('/<int:id>')
+@login_required
+def single_direct_message(id):
+    dm = DirectMessage.query.get(id)
+    if not dm:
+        not_found_error = NotFoundError("Message not found")
+        return not_found_error.error_json()
+    return {'message': dm.to_dict()}
 
 # GET all friends
 @direct_messages_routes.route('/friends')
@@ -57,6 +60,9 @@ def get_friend_messages(id):
             )
         )
     ).all()
+    if not dms:
+        not_found_error = NotFoundError("Messages not found")
+        return not_found_error.error_json()
     return {"messages": [dm.to_dict() for dm in dms]}
 
 
