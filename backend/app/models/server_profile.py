@@ -6,7 +6,11 @@ class ServerProfile(db.Model):
     __tablename__ = 'server_profiles'
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = (db.UniqueConstraint(
+            'user_id', 'server_id', name='_user_server_uc'), {'schema': SCHEMA})
+    else:
+        __table_args__ = (db.UniqueConstraint(
+            'user_id', 'server_id', name='_user_server_uc'),)
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
