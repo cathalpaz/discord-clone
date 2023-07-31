@@ -7,7 +7,7 @@ from .friends import seed_friends, undo_friends
 from .channels import seed_channels, undo_channels
 from .channelmessages import seed_channel_messages, undo_channel_messages
 from .server_profiles import seed_server_profiles, undo_server_profiles
-from .server_invites import seed_server_invites
+from .server_invites import seed_server_invites, undo_server_invites
 
 from ..models.db import db, environment, SCHEMA
 
@@ -25,7 +25,12 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_direct_messages()
+        undo_channel_messages()
+        undo_channels()
+        undo_server_profiles()
+        undo_server_invites()
         undo_servers()
+        undo_friends()
         undo_users()
     seed_users()
     seed_servers()
@@ -47,6 +52,7 @@ def undo():
     undo_servers()
     undo_users()
     # Add other undo functions here
+    undo_server_invites()
     undo_friends()
     undo_channels()
     undo_channel_messages()

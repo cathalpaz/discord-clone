@@ -1,5 +1,6 @@
 
 from ..models import db, User, environment, SCHEMA, ServerInvite, Server
+from sqlalchemy.sql import text
 
 
 def seed_server_invites():
@@ -21,4 +22,14 @@ def seed_server_invites():
             owner_id=user_sender.id
         )
         db.session.add(new_server_invite)
+    db.session.commit()
+
+
+def undo_server_invites():
+    if environment == "production":
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.server_invites RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM server_invites"))
+
     db.session.commit()
