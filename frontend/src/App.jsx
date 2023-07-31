@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/ExtraComponents/Navigation";
 import LandingPage from "./components/LandingPage";
 import MainPageTemplate from "./components/MainPageTemplate";
-import ChannelList from "./components/ChannelList";
+import AppNavigation from "./components/AppNavigation";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ function App() {
           </Route>
           <Route path='/main'>
             <MainPageTemplate />
+            <LandingPage />
           </Route>
           <Route path='/login'>
             <LoginFormPage />
@@ -32,8 +33,8 @@ function App() {
           <Route path='/register'>
             <SignupFormPage />
           </Route>
-          <Route path='/:serverId/:channelId'>
-            <ChannelList />
+          <Route path='/channels'>
+            <AppNavigation />
           </Route>
         </Switch>
       )}
