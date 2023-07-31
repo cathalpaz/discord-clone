@@ -32,6 +32,7 @@ function FriendList({ isLoaded }) {
   return (
     <div className="discord">
       <div className="friends-bar">
+        <div className="general-view-header">
         <div className="friends-h1">
           <i className="poo fa-solid fa-poo"></i>
           <h1>Friends</h1>
@@ -80,13 +81,15 @@ function FriendList({ isLoaded }) {
             </li>
           </ul>
         </nav>
+        </div>
       </div>
       <div className="search-container">
         <input
           type="text"
-          placeholder="Find or start a conversation"
+          placeholder="Search"
           value={searchQuery}
           onChange={searchMessages}
+          style={{ width: "300px", height: "30px" }}
         />
       </div>
 

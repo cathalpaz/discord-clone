@@ -3,6 +3,16 @@
     font-family: ggsans;
   }
 
+  .general-view-container {
+    max-width: auto;
+    width: 100%;
+  }
+
+  .discord .friends-bar .general-view-header{
+    padding-top:35px;
+    min-height:83px;
+   }
+
   .friends-bar {
     display: flex;
     align-items: center;
@@ -94,4 +104,11 @@
   .active {
     background-color: #424549;
     padding: 8px 14px;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
   }
