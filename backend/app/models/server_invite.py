@@ -5,6 +5,9 @@ from datetime import datetime
 class ServerInvite(db.Model):
     __tablename__ = "server_invites"
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
