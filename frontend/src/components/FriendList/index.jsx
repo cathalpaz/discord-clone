@@ -17,16 +17,19 @@ function FriendList({ isLoaded }) {
   };
 
   const renderContent = () => {
-    switch (selectedNavItem) {
-      case "online":
-        return <div>Online Friends</div>;
-      case "all":
-        return <div>All Friends</div>;
-      case "add":
-        return <div>Add Friend</div>;
-      default:
-        return null;
+    if (selectedNavItem === "online") {
+      return <div className="content-online">Online</div>;
+    } else if (selectedNavItem === "all") {
+      return <div className="content-all">All Friends</div>;
+    } else if (selectedNavItem === "add") {
+      return (
+        <div className="content-add">
+          <div>Add Friend</div>
+          <div>You can add friends with their Discord username</div>
+        </div>
+      );
     }
+    return null;
   };
 
   return (
@@ -42,7 +45,7 @@ function FriendList({ isLoaded }) {
           <ul className="text-bar">
             <li className="friends-buttons">
               <NavLink
-                to="/channels/online"
+                to="/main"
                 className={
                   selectedNavItem === "online"
                     ? "active nav-button online-friend"
@@ -55,7 +58,7 @@ function FriendList({ isLoaded }) {
             </li>
             <li>
               <NavLink
-                to="/channels/all"
+                to="/main"
                 className={
                   selectedNavItem === "all"
                     ? "active nav-button online-friend"
@@ -68,7 +71,7 @@ function FriendList({ isLoaded }) {
             </li>
             <li>
               <NavLink
-                to="/channels/add"
+                to="/main"
                 className={
                   selectedNavItem === "add"
                     ? "active nav-button add-friend"
@@ -84,13 +87,16 @@ function FriendList({ isLoaded }) {
         </div>
       </div>
       <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search"
-          value={searchQuery}
-          onChange={searchMessages}
-          style={{ width: "300px", height: "30px" }}
-        />
+        <div className="search-input-container">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={searchMessages}
+            style={{ width: "600px", height: "30px", backgroundColor: "#1e2124" }}
+          />
+          <i className="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
       </div>
 
       <div className="content-container">{renderContent()}</div>

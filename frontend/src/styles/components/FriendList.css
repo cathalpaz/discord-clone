@@ -1,6 +1,6 @@
 .discord {
-    background-color: #36393e;
     font-family: ggsans;
+    position:fixed;
   }
 
   .general-view-container {
@@ -110,5 +110,33 @@
     display: flex;
     justify-content: center;
     margin-top: 50px;
-
+    min-width: 800px;
+    width: 100%;
   }
+
+  .search-input-container {
+    position: relative;
+  }
+
+.discord input[type=text]{
+ transform:translatex(0px) translatey(0px);
+ padding-left:15px;
+ padding-left: 20px;
+ padding-top:0px;
+ border: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #424549;
+}
+
+.content-online,
+.content-all {
+  padding-left: 20px;
+  padding-top: 20px
+}
