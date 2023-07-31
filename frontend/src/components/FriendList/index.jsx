@@ -1,12 +1,18 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/FriendList.css";
+import { fetchFriends } from "../../store/session";
 
 function FriendList({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const [selectedNavItem, setSelectedNavItem] = useState("online");
   const [searchQuery, setSearchQuery] = useState("");
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchFriends());
+  }, [dispatch]);
 
   const navbarItem = (navItem) => {
     setSelectedNavItem(navItem);
@@ -20,7 +26,14 @@ function FriendList({ isLoaded }) {
     if (selectedNavItem === "online") {
       return <div className="content-online">Online</div>;
     } else if (selectedNavItem === "all") {
-      return <div className="content-all">All Friends</div>;
+      return (
+        <div className="content-all">
+          {friends &&
+            friends.map((friend) => (
+              <div key={friend.id}>{friend.username}</div>
+            ))}
+        </div>
+      );
     } else if (selectedNavItem === "add") {
       return (
         <div className="content-add">

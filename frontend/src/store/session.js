@@ -1,6 +1,14 @@
 import { actionTypes } from "./actionTypes";
 
+const friendsAction = {
+  SET_SESSION: "SET_SESSION",
+  REMOVE_SESSION: "REMOVE_SESSION",
+  SET_FRIENDS: "SET_FRIENDS",
+};
+
 const initialState = { user: null, friends: null };
+
+// Actions
 const setUser = (user) => ({
   type: actionTypes.SET_SESSION,
   payload: user,
@@ -96,13 +104,34 @@ export const signUp =
     }
   };
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case actionTypes.SET_SESSION:
-      return { user: action.payload };
-    case actionTypes.REMOVE_SESSION:
-      return { user: null };
-    default:
-      return state;
+  export const fetchFriends = () => async (dispatch) => {
+    try {
+      const response = await fetch("/api/friends");
+      if (response.ok) {
+        const data = await response.json();
+        const friends = data.friends;
+        dispatch(setFriends(friends));
+      } else {
+      }
+    } catch (error) {
+      // Handle error if needed
+    }
+  };
+
+  const setFriends = (friends) => ({
+    type: actionTypes.SET_FRIENDS,
+    payload: friends,
+  });
+
+  export default function reducer(state = initialState, action) {
+    switch (action.type) {
+      case actionTypes.SET_SESSION:
+        return { ...state, user: action.payload };
+      case actionTypes.REMOVE_SESSION:
+        return { ...state, user: null };
+      case actionTypes.SET_FRIENDS:
+        return { ...state, friends: action.payload };
+      default:
+        return state;
+    }
   }
-}
