@@ -7,17 +7,25 @@ import { useEffect } from "react";
 import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
+import { MainLoader } from "../Loading/MainLoader";
 
 export default function ChannelBrowser() {
-  const serverStore = useSelector((state) => state.servers);
+  const serverStore = useSelector((state) => state.servers.orderedServers);
   const { serverId, channelId } = useParams();
   const dispatch = useDispatch();
-  const server = serverStore.find(server => server.id == Number(serverId));
+  const server = useSelector((state) => state.servers[serverId]);
+  const selectedChannel = useSelector(
+    (state) => state.singleServer.selectedChannelId
+  );
   const history = useHistory();
 
   useEffect(() => {
     dispatch(thunkGetAllServers);
   }, [dispatch]);
+
+  if (!server) {
+    return null;
+  }
 
   const createChannel = () => {
     alert("Need to add create channel");
@@ -39,13 +47,14 @@ export default function ChannelBrowser() {
         {server.channels.map((channel) => (
           <>
             <span
+              className={`${selectedChannel === channel.id && "highlight"}`}
               onClick={() => {
                 dispatch(updateSelectedChannelId(channel.id));
                 history.push(`/${serverId}/${channel.id}`);
               }}
             >
               {channel.type == "text" ? (
-                <i class='fa-solid fa-hashtag fa-md'></i>
+                <i className={`fa - solid fa-hashtag fa-md`}></i>
               ) : (
                 ""
               )}

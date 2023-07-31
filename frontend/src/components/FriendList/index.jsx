@@ -41,7 +41,9 @@ function FriendList({ isLoaded }) {
           <h2>All Friends</h2>
           {allFriends &&
             allFriends.map((friend) => (
-              <div key={friend.id}>{friend.username}</div>
+              <div key={friend.id}>
+                <p>{friend.username}</p>
+              </div>
             ))}
         </div>
       );
@@ -120,7 +122,6 @@ function FriendList({ isLoaded }) {
           <i className="fa-solid fa-magnifying-glass search-icon"></i>
         </div>
       </div>
-
       <div className="content-container">{renderContent()}</div>
     </div>
   );

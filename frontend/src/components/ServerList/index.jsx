@@ -6,50 +6,63 @@ import { signUp } from "../../store/session";
 import { thunkGetAllServers } from "../../store/server";
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
-import '../../styles/components/ServerList.css';
+import "../../styles/components/ServerList.css";
 
 function ServerList() {
-    const serversStore = useSelector((state) => state.servers)
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const servers = Object.values(serversStore)
+  const serversStore = useSelector((state) => state.servers);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const serverIds = useSelector((state) => state.servers.orderedServers);
 
-    useEffect(() => {
-        dispatch(thunkGetAllServers())
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(thunkGetAllServers());
+  }, [dispatch]);
 
-    const openServer = (server) => {
-        history.push(`/${server.id}/${server.channels[0].id}`)
-    }
+  const openServer = (server) => {
+    history.push(`/${server.id}/${server.channels[0].id}`);
+  };
 
-    const sendToMain = () => {
-        history.push("/main")
-    }
+  const sendToMain = () => {
+    history.push("/main");
+  };
 
-	return (
-		<>
-			<div className="serverlist-container">
-                <div onClick={sendToMain} className="serverlist-friend-button">
-                    <i className='fa-brands fa-discord fa-lg'></i>
-                </div>
-                <div>
-                    <p style={{borderBottom:"2px solid #35363C", width:"2rem", marginTop:".5rem", marginBottom:".5rem"}}></p>
-                </div>
-                <div className="serverlist-main-list">
-                    {servers.map(server => (
-                        <>
-                            <img style={{width:"3rem", height:"3rem"}} onClick={() => openServer(server)} className="serverlist-icon" src={server.avatar}></img>
-                        </>
-                    ))}
-                    {/* <span className="serverlist-add-server">+</span> */}
-                    <span className="serverlist-add-server">
-                        <OpenModalButton className="serverlist-add-server" modalComponent={<CreateServerModal />} buttonText={'+'} />
-                    </span>
-                </div>
-
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className='serverlist-container'>
+        <div onClick={sendToMain} className='serverlist-friend-button'>
+          <i className='fa-brands fa-discord fa-lg'></i>
+        </div>
+        <div>
+          <p
+            style={{
+              borderBottom: "2px solid #35363C",
+              width: "2rem",
+              marginTop: ".5rem",
+              marginBottom: ".5rem",
+            }}
+          ></p>
+        </div>
+        <div className='serverlist-main-list'>
+          {serverIds.map((id) => (
+            <>
+              <img
+                style={{ width: "3rem", height: "3rem" }}
+                onClick={() => openServer(serversStore[id])}
+                className='serverlist-icon'
+                src={serversStore[id].avatar}
+              ></img>
+            </>
+          ))}
+          <span className='serverlist-add-server'>
+            <OpenModalButton
+              modalComponent={<CreateServerModal />}
+              buttonText={"+"}
+            />
+          </span>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default ServerList;

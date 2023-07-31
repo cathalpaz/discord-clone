@@ -3,6 +3,11 @@
     position:fixed;
   }
 
+.discord h2{
+ font-weight:300;
+ font-size:14px;
+}
+
   .general-view-container {
     max-width: auto;
     width: 100%;
@@ -86,6 +91,7 @@
     transition: background-color 0.3s;
     border-radius: 5px;
     padding: 8px 14px;
+    background-color: transparent;
   }
 
   .nav-button:hover {
@@ -119,11 +125,11 @@
   }
 
 .discord input[type=text]{
- transform:translatex(0px) translatey(0px);
  padding-left:15px;
  padding-left: 20px;
- padding-top:0px;
  border: none;
+ border-radius: 4px;
+ color: white;
 }
 
 .search-icon {

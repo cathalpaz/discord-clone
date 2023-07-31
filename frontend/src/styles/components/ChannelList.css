@@ -16,6 +16,11 @@
     padding-left: 0.65rem;
 }
 
+.channel-list-container > span.highlight {
+    color: var(--light-background);
+}
+
+
 .channel-list-container > span:hover {
     background-color: var(--primary-background);
     color: var(--text-color);

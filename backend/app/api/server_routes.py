@@ -106,9 +106,14 @@ def create_server():
         user.servers.append(new_server)
         db.session.add(new_server)
         # add channel
+        general_channel = Channel(
+            type='text',
+            name='general'
+        )
+        new_server.channels.append(general_channel)
         db.session.commit()
         return new_server.to_dict(), 201
-    print(form.errors)
+    # print(form.errors)
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 
