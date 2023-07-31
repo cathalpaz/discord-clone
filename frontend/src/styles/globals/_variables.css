@@ -1,63 +1,82 @@
 :root {
-    --background: #303338;
+  --background: #32353a;
+  --secondary-background: #292d2f;
+  --secondary-background-darker: #242728;
+  --accent: #36393e;
+  --light-accent: #949BA4;
+  --primary: #7289da;
+  --light-background: #fafafa;
+  --text-color: #fafafa;
+  --secondary: #57f287;
+  --errors: #F23F42;
 }
 
+/* TODO adjust these properly */
 body.light {
- --background: white;
+  --background: white;
+  --text-color: #36393e;
+  --secondary-background: #36393e;
+  --accent: #36393e;
+  --light-accent: #949BA4;
+  --primary: #7289da;
+  --light-background: #fafafa;
+  --secondary: #57f287;
+  --secondary-background-darker: #242728;
+  --errors: #F23F42;
 }
 
 @font-face {
-    font-family: "ginto";
-    font-style: normal;
-    font-weight: 800;
-    src: url(../../fonts/ginto/ginto-normal.woff2);
+  font-family: "ginto";
+  font-style: normal;
+  font-weight: 800;
+  src: url(../../fonts/ginto/ginto-normal.woff2);
 }
 
 @font-face {
-    font-family: "ggsans";
-    font-style: normal;
-    font-weight: 400;
-    src: url(../../fonts/ggsans/gg_sans_Normal.ttf);
+  font-family: "ggsans";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../../fonts/ggsans/gg_sans_Normal.ttf);
 }
 
 @font-face {
-    font-family: "ggsans";
-    font-style: italic;
-    font-weight: 400;
-    src: url(../../fonts/ggsans/gg_sans_Normal_Italic.ttf)
+  font-family: "ggsans";
+  font-style: italic;
+  font-weight: 400;
+  src: url(../../fonts/ggsans/gg_sans_Normal_Italic.ttf);
 }
 
 @font-face {
-    font-family: "ggsans";
-    font-style: normal;
-    font-weight: 500;
-    src: url(../../fonts/ggsans/gg_sans_Medium.ttf)
+  font-family: "ggsans";
+  font-style: normal;
+  font-weight: 500;
+  src: url(../../fonts/ggsans/gg_sans_Medium.ttf);
 }
 
 @font-face {
-    font-family: "ggsans";
-    font-style: italic;
-    font-weight: 500;
-    src: url(../../fonts/ggsans/gg_sans_Medium_Italic.ttf)
+  font-family: "ggsans";
+  font-style: italic;
+  font-weight: 500;
+  src: url(../../fonts/ggsans/gg_sans_Medium_Italic.ttf);
 }
 
 @font-face {
-    font-family: "ggsans";
-    font-style: normal;
-    font-weight: 600;
-    src: url(../../fonts/ggsans/gg_sans_Bold.ttf)
+  font-family: "ggsans";
+  font-style: normal;
+  font-weight: 600;
+  src: url(../../fonts/ggsans/gg_sans_Bold.ttf);
 }
 
 @font-face {
-    font-family: "ggsans";
-    font-style: italic;
-    font-weight: 600;
-    src: url(../../fonts/ggsans/gg_sans_Bold_Italic.ttf)
+  font-family: "ggsans";
+  font-style: italic;
+  font-weight: 600;
+  src: url(../../fonts/ggsans/gg_sans_Bold_Italic.ttf);
 }
 
 @font-face {
-    font-family: "ggsans";
-    font-style: normal;
-    font-weight: 800;
-    src: url(../../fonts/ggsans/gg_sans_Extrabold.ttf)
+  font-family: "ggsans";
+  font-style: normal;
+  font-weight: 800;
+  src: url(../../fonts/ggsans/gg_sans_Extrabold.ttf);
 }

@@ -11,7 +11,8 @@
     align-items: center;
     width: 3rem;
     height: 3rem;
-    background-color: #5865F2;
+    background-color: var(--primary);
+    filter: saturate(300%);
     border-radius: 1rem;
     cursor: pointer;
 }
@@ -44,7 +45,7 @@
     font-weight: 800;
     color:#23A459;
     border-radius: 2rem;
-    background-color:#313338;
+    background-color:var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,8 +55,8 @@
 
 .serverlist-add-server:hover {
     border-radius: 1rem;
-    color: #FFFFFF;
-    background-color: #23A459;
+    color: var(--light-background);
+    background-color: var(--secondary);
     cursor: pointer;
 }
 
@@ -63,15 +64,15 @@
     position: fixed;
     width: 15rem;
     height: 3.05rem;
-    background-color: #2B2D31;
-    border-bottom: 1px solid #1F2023;
+    background-color: var(--secondary-background);
+    border-bottom: 1px solid var(--background);
     font-family: ggsans;
     display: flex;
     align-items: center;
 }
 
 .dm-list-header:hover {
-    background-color: #35373C;
+    background-color: var(--accent);
     cursor: pointer;
 }
 
