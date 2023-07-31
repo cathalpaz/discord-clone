@@ -1,17 +1,32 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import '../../styles/components/CreateServerModal.css'
+import { useSelector, useDispatch } from 'react-redux'
 import { useModal } from '../../context/Modal'
+import { thunkCreateServer } from '../../store/server'
+import '../../styles/components/CreateServerModal.css'
 
 function CreateServerModal() {
+    const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
 
     const [name, setName] = useState(`${user.username}'s server`)
+    const [errors, setErrors] = useState([])
     const { closeModal } = useModal
-    
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+
+        const newServer = {
+            name,
+            avatar,
+            owner_id: user.id
+        }
+        const data = await dispatch(thunkCreateServer(newServer))
+        if (data.errors) {
+            setErrors(data.errors)
+        } else {
+            // push to new server
+            return
+        }
     }
 
     // console.log('hello')
