@@ -5,7 +5,7 @@ import "./AppNav.css";
 
 function AppNavigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const [selectedNavItem, setSelectedNavItem] = useState("online"); // Change "home" to "online"
+  const [selectedNavItem, setSelectedNavItem] = useState("online");
   const [searchQuery, setSearchQuery] = useState("");
 
   const navbarItem = (navItem) => {
@@ -36,7 +36,7 @@ function AppNavigation({ isLoaded }) {
           <i className="poo fa-solid fa-poo"></i>
           <h1>Friends</h1>
         </div>
-        <div className="divider"></div> {/* This div will act as the divider */}
+        <div className="divider"></div>
         <nav className="app-nav">
           <ul className="text-bar">
             <li className="friends-buttons">
@@ -88,7 +88,6 @@ function AppNavigation({ isLoaded }) {
           value={searchQuery}
           onChange={searchMessages}
         />
-        <button onClick={() => setSearchQuery("")}>Clear</button>
       </div>
 
       <div className="content-container">{renderContent()}</div>
