@@ -3,6 +3,7 @@ from flask_login import current_user, login_required
 from ..models import db, DirectMessage, User, Friend
 from sqlalchemy import or_, and_
 from ..forms import UserMessage
+from ..errors import NotFoundError, ForbiddenError
 
 direct_messages_routes = Blueprint(
     'direct_messages', __name__, url_prefix='/@me')
@@ -21,11 +22,14 @@ def all_direct_messages():
 
 
 # GET single direct message
-# @direct_messages_routes.route('/<int:id>')
-# @login_required
-# def single_direct_message(id):
-#     pass
-
+@direct_messages_routes.route('/<int:id>')
+@login_required
+def single_direct_message(id):
+    dm = DirectMessage.query.get(id)
+    if not dm:
+        not_found_error = NotFoundError("Message not found")
+        return not_found_error.error_json()
+    return {'message': dm.to_dict()}
 
 # GET all friends
 @direct_messages_routes.route('/friends')
@@ -56,6 +60,9 @@ def get_friend_messages(id):
             )
         )
     ).all()
+    if not dms:
+        not_found_error = NotFoundError("Messages not found")
+        return not_found_error.error_json()
     return {"messages": [dm.to_dict() for dm in dms]}
 
 
@@ -88,7 +95,9 @@ def edit_direct_message(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     dm = DirectMessage.query.get(id)
     if dm.user_from_id != current_user.id:
-        return {'error': 'Not your message!'}
+        forbidden_error = ForbiddenError(
+            "You do not have permission to edit this message!")
+        return forbidden_error.error_json()
 
     if form.validate_on_submit():
         dm.content = form.data['content']
@@ -104,8 +113,14 @@ def edit_direct_message(id):
 @login_required
 def delete_direct_message(id):
     dm = DirectMessage.query.get(id)
+    if not dm:
+        not_found_error = NotFoundError("Message not found")
+        return not_found_error.error_json()
+
     if dm.user_from_id != current_user.id:
-        return {'error': 'Not your message!'}
+        forbidden_error = ForbiddenError(
+            "You do not have permission to delete this message!")
+        return forbidden_error.error_json()
 
     db.session.delete(dm)
     db.session.commit()

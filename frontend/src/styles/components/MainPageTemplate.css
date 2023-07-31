@@ -3,19 +3,19 @@
 }
 
 .server-list-container {
-    background-color: #1E1F22;
+    background-color: var(--secondary-background-darker);
     width: 4.5rem;
     height: 100rem;
 }
 
 .dm-list-container {
-    background-color: #2B2D31;
+    background-color: var(--secondary-background);
     width: 15rem;
     height: 100rem;
 }
 
 .general-view-container {
-    background-color: #313338;
+    background-color: var(--background);
     width: 30.5rem;
     height: 100rem;
 }

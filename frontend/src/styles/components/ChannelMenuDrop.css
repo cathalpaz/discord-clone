@@ -11,7 +11,7 @@
 
 .channel-menu-dropdown {
     position: absolute;
-    background-color: #111214;
+    background-color: var(--secondary-background-darker);
     margin-top: 16rem;
     margin-left: 0.6rem;
     width: 13.76rem;
@@ -39,7 +39,7 @@
 }
 
 .channel-menu-option:hover {
-    background-color: #4752C4;
+    background-color: var(--primary);
     color: #FFFFFF;
 }
 
