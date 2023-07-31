@@ -1,11 +1,5 @@
 import { actionTypes } from "./actionTypes";
 
-const friendsAction = {
-  SET_SESSION: "SET_SESSION",
-  REMOVE_SESSION: "REMOVE_SESSION",
-  SET_FRIENDS: "SET_FRIENDS",
-};
-
 const initialState = { user: null, friends: null };
 
 // Actions
@@ -16,6 +10,11 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: actionTypes.REMOVE_SESSION,
+});
+
+const setFriends = (friends) => ({
+  type: actionTypes.SET_FRIENDS,
+  payload: friends,
 });
 
 export const authenticate = () => async (dispatch) => {
@@ -106,22 +105,20 @@ export const signUp =
 
   export const fetchFriends = () => async (dispatch) => {
     try {
-      const response = await fetch("/api/friends");
+      const response = await fetch("/api/@me/friends");
+      console.log(response, "ressssponse")
       if (response.ok) {
         const data = await response.json();
         const friends = data.friends;
         console.log(friends, "aaaaa")
         dispatch(setFriends(friends));
       } else {
+        throw new Error("Failed to fetch friends data");
       }
     } catch (error) {
+
     }
   };
-
-  const setFriends = (friends) => ({
-    type: actionTypes.SET_FRIENDS,
-    payload: friends,
-  });
 
   export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -130,6 +127,7 @@ export const signUp =
       case actionTypes.REMOVE_SESSION:
         return { ...state, user: null };
       case actionTypes.SET_FRIENDS:
+        console.log(action.payload, "ppppp")
         return { ...state, friends: action.payload };
       default:
         return state;
