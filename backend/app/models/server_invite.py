@@ -1,14 +1,21 @@
 from . import db, environment, SCHEMA
+from .db import add_prefix_for_prod
 from datetime import datetime
 
 
 class ServerInvite(db.Model):
     __tablename__ = "server_invites"
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
-    server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    server_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("servers.id")))
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("users.id")))
+    owner_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("users.id")))
     # TODO make this a proper enum
     status = db.Column(db.String(20), default='PENDING')
     created_at = db.Column(db.DateTime, default=datetime.utcnow())

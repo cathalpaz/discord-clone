@@ -101,14 +101,14 @@ body {
     font-family: ggsans;
     z-index: 7;
     position: absolute;
-    margin-bottom: 44.15rem;
+    margin-bottom: 44.65rem;
+    margin-left: 0.4rem;
 }
 
 .heading-nav-items {
     max-width: 73.75rem;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
 }
 
 .heading-nav-logo {
@@ -131,7 +131,7 @@ body {
     font-weight: 500;
     gap: 2.55rem;
     margin-right: 6.1rem;
-    margin-left: 2.1rem
+    margin-left: 2.5rem
 }
 
 .heading-nav-links > p {
@@ -143,16 +143,38 @@ body {
     text-decoration: underline;
 }
 
-.heading-nav-login > button {
+.heading-nav-login-button {
+    position: absolute;
     border: 0;
     border-radius: 2.5rem;
-    height: 2.35rem;
+    height: 2.4rem;
     font-size: 14px;
-    width: 4rem;
+    width: 4.05rem;
     font-family: 'ggsans';
     background-color: #FFFFFF;
     transition-duration: .2s;
     transition-timing-function: ease-in-out;
+}
+
+.heading-nav-login-button {
+    transform:translatex(4px) translatey(-19px);
+}
+
+.heading-nav-main-button {
+    position: absolute;
+    border: 0;
+    border-radius: 2.5rem;
+    height: 2.35rem;
+    font-size: 14px;
+    width: 7rem;
+    font-family: 'ggsans';
+    background-color: #FFFFFF;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+}
+
+.heading-nav-main-button{
+    transform:translatex(-43px) translatey(-19px);
 }
 
 .heading-nav-login > button:hover {

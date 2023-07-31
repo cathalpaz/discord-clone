@@ -17,14 +17,14 @@ def all_direct_messages():
         DirectMessage.user_to_id == current_user.id,
     )).all()
     dms = [dm.to_dict() for dm in get_dms]
-    return {'dms': dms}
+    return {'messages': dms}
 
 
 # GET single direct message
-@direct_messages_routes.route('/<int:id>')
-@login_required
-def single_direct_message(id):
-    pass
+# @direct_messages_routes.route('/<int:id>')
+# @login_required
+# def single_direct_message(id):
+#     pass
 
 
 # GET all friends
@@ -39,9 +39,8 @@ def all_friends():
                for friend in get_friends if friend.status == 'ACCEPTED']
     return {'friends': friends}
 
+
 # GET DMS from a specific friend
-
-
 @direct_messages_routes.route('/friends/<int:id>')
 @login_required
 def get_friend_messages(id):
@@ -75,7 +74,39 @@ def create_direct_message(id):
         )
         db.session.add(new_dm)
         db.session.commit()
-        return {'new_dm': new_dm.to_dict()}
+        return {'message': new_dm.to_dict()}
 
     if form.errors:
         return {'errors': form.errors}
+
+
+# UPDATE single direct message
+@direct_messages_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_direct_message(id):
+    form = UserMessage()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    dm = DirectMessage.query.get(id)
+    if dm.user_from_id != current_user.id:
+        return {'error': 'Not your message!'}
+
+    if form.validate_on_submit():
+        dm.content = form.data['content']
+        dm.updated = True
+        db.session.commit()
+        return {'message': dm.to_dict()}
+
+    if form.errors:
+        return {'errors': form.errors}
+
+# DELETE direct message
+@direct_messages_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_direct_message(id):
+    dm = DirectMessage.query.get(id)
+    if dm.user_from_id != current_user.id:
+        return {'error': 'Not your message!'}
+
+    db.session.delete(dm)
+    db.session.commit()
+    return {'message': 'Message successfully deleted'}

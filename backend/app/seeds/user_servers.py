@@ -1,6 +1,8 @@
 from ..models import db
+from ..models import User, environment, SCHEMA
 from ..models.server import Server
 from ..models.user import User
+from sqlalchemy.sql import text
 
 
 def seed_users_servers():
@@ -33,3 +35,13 @@ def seed_users_servers():
         [server_3.users.append(user)
          for user in [user_1, user_2, user_3, user_4, user_5, user_6, user_7, user_8, user_9]]
         db.session.commit()
+
+
+def undo_users_servers():
+    if environment == "production":
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.users_servers RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM users_servers"))
+
+    db.session.commit()

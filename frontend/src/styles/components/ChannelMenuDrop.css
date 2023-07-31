@@ -1,0 +1,73 @@
+.hidden {
+    display: none;
+}
+
+.channel-menu-button{
+    position: absolute;
+    margin-top: .1376rem;
+    margin-left: 13.05rem;
+    color: #CDCDD0;
+}
+
+.channel-menu-dropdown {
+    position: absolute;
+    background-color: #111214;
+    margin-top: 16rem;
+    margin-left: 0.6rem;
+    width: 13.76rem;
+    height: 12rem;
+    list-style-type: none;
+    border-radius: 0.2rem;
+    box-shadow: 0px 8px 15px rgba(0,0,0,.2);
+    z-index: 10;
+}
+
+.channel-menu-container {
+    color: #B5BAC1;
+    font-family: ggsans;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.channel-menu-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: .5rem;
+    padding-right: .6rem;
+    height: 2rem;
+}
+
+.channel-menu-option:hover {
+    background-color: #4752C4;
+    color: #FFFFFF;
+}
+
+.channel-menu-option-delete {
+    color:#DA373C;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: .5rem;
+    padding-right: .6rem;
+    height: 2rem;
+}
+
+.channel-menu-option-delete:hover {
+    background-color: #DA373C;
+    color: #FFFFFF;
+}
+
+.channel-menu-container {
+    margin: .5rem .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-menu-border {
+    border-bottom: 1px solid #2E2F34;
+    width: 12.3rem;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    margin-left: .25rem;
+}
