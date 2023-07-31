@@ -105,6 +105,7 @@ def create_server():
         new_server = Server(**server_data)
         user.servers.append(new_server)
         db.session.add(new_server)
+        # add channel
         db.session.commit()
         return new_server.to_dict(), 201
     print(form.errors)
