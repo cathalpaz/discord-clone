@@ -7,7 +7,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import ChannelList from "./components/ChannelList";
 import LandingPage from "./components/LandingPage";
 import MainPageTemplate from "./components/MainPageTemplate";
-import FriendList from "./components/FriendList";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path='/channels'>
-            <FriendList />
+            <AppNavigation />
           </Route>
       </Switch>
       )}
