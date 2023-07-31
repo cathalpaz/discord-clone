@@ -3,7 +3,7 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import ServerList from "../ServerList";
@@ -11,16 +11,21 @@ import "../../styles/components/MainPageTemplate.css";
 import FriendList from "../FriendList";
 import { DmListContainer } from "./DmListContainer";
 import { thunkGetServerInfo } from "../../store/singleServer";
+import { MainLoader } from "../Loading/MainLoader";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
   const { serverId, channelId } = useParams();
   const [oldServerId, setOldServerId] = useState(serverId);
   const dispatch = useDispatch();
+  const loc = location.pathname.split("/").filter((el) => el !== "");
+  const singleServerId = useSelector((state) => state.singleServer.id);
 
   useEffect(() => {
     // TODO clean this up
     (async () => {
+      console.log("THIS IS RUNNING");
+      console.log(oldServerId, serverId);
       if (
         location.pathname.split("/").filter((el) => el !== "").length == 2 &&
         serverId !== oldServerId
@@ -30,6 +35,20 @@ function MainPageTemplate({ leftTab, rightTab }) {
       }
     })();
   }, [location.pathname]);
+
+  useEffect(() => {
+    (async () => {
+      if (location.pathname.split("/").filter((el) => el !== "").length == 2) {
+        await dispatch(thunkGetServerInfo(serverId));
+        setOldServerId(serverId);
+      }
+    })();
+  }, [dispatch]);
+
+  //   TODO again not a good way of doing this. Come back to this.... or else
+  if (serverId && loc.length == 2 && !singleServerId) {
+    return <MainLoader />;
+  }
 
   return (
     <>
