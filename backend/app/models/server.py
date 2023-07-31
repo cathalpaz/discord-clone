@@ -21,7 +21,7 @@ class Server(db.Model):
 
     # users relationship
     users = db.relationship(
-        'User', secondary='users_servers', back_populates='servers')
+        'User', secondary=add_prefix_for_prod('users_servers'), back_populates='servers')
 
     # channel relationship
     channels = db.relationship("Channel", backref='server')
