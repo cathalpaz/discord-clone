@@ -84,7 +84,7 @@ function AppNavigation({ isLoaded }) {
       <div className="search-container">
         <input
           type="text"
-          placeholder="Find or start a conversation"
+          placeholder="Search"
           value={searchQuery}
           onChange={searchMessages}
         />
