@@ -12,8 +12,7 @@ export default function ChannelBrowser() {
   const serverStore = useSelector((state) => state.servers);
   const { serverId, channelId } = useParams();
   const dispatch = useDispatch();
-  const servers = Object.values(serverStore);
-  const server = serverStore[0];
+  const server = serverStore.find(server => server.id == Number(serverId));
   const history = useHistory();
 
   useEffect(() => {
