@@ -110,11 +110,11 @@ export const signUp =
       if (response.ok) {
         const data = await response.json();
         const friends = data.friends;
+        console.log(friends, "aaaaa")
         dispatch(setFriends(friends));
       } else {
       }
     } catch (error) {
-      // Handle error if needed
     }
   };
 
