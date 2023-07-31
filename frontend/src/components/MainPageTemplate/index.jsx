@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import ServerList from "../ServerList";
 import '../../styles/components/MainPageTemplate.css';
+import FriendList from "../FriendList";
 
 function MainPageTemplate() {
 
@@ -17,9 +18,8 @@ function MainPageTemplate() {
 					<div>asd</div>
 				</div>
 				<div className="general-view-container">
-					<div>asdasd</div>
+					<FriendList />
 				</div>
-
 			</div>
 		</>
 	);

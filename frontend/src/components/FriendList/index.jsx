@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import "./AppNav.css";
+import "../../styles/components/FriendList.css";
 
-function AppNavigation({ isLoaded }) {
+function FriendList({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const [selectedNavItem, setSelectedNavItem] = useState("online");
   const [searchQuery, setSearchQuery] = useState("");
@@ -95,4 +95,4 @@ function AppNavigation({ isLoaded }) {
   );
 }
 
-export default AppNavigation;
+export default FriendList;
