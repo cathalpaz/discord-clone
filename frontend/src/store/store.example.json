@@ -61,6 +61,7 @@
     "owner_id": 1,
     "created_at": "",
     "public": true,
+    "selectedChannelId": 0,
     "users": [
       {
         "id": 1,

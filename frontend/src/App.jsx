@@ -8,6 +8,9 @@ import ChannelList from "./components/ChannelList";
 import LandingPage from "./components/LandingPage";
 import MainPageTemplate from "./components/MainPageTemplate";
 import { MainLoader } from "./components/Loading/MainLoader";
+import { DmListContainer } from "./components/MainPageTemplate/DmListContainer";
+import FriendList from "./components/FriendList";
+import ChannelBrowser from "./components/ChannelList/ChannelBrowser";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,10 +27,17 @@ function App() {
             <LandingPage />
           </Route>
           <Route path='/:serverId/:channelId'>
-            <ChannelList />
+            {/* <ChannelList /> */}
+            <MainPageTemplate
+              leftTab={<ChannelBrowser />}
+              rightTab={<ChannelList />}
+            />
           </Route>
           <Route path='/main'>
-            <MainPageTemplate />
+            <MainPageTemplate
+              leftTab={<DmListContainer />}
+              rightTab={<FriendList />}
+            />
           </Route>
           <Route path='/login'>
             <LoginFormPage />
