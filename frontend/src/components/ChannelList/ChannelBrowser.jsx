@@ -9,10 +9,10 @@ import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
 
 export default function ChannelBrowser() {
-  const serverStore = useSelector((state) => state.servers);
+  const serverStore = useSelector((state) => state.servers.orderedServers);
   const { serverId, channelId } = useParams();
   const dispatch = useDispatch();
-  const server = serverStore.find(server => server.id == Number(serverId));
+  const server = useSelector((state) => state.servers[serverId]);
   const history = useHistory();
 
   useEffect(() => {
