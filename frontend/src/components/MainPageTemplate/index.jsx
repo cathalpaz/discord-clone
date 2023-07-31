@@ -15,10 +15,13 @@ function MainPageTemplate() {
 					<ServerList />
 				</div>
 				<div className="dm-list-container">
-					<div>asd</div>
+					<div className="dm-list-header">asd</div>
 				</div>
 				<div className="general-view-container">
+					<div className="general-view-header">
+					</div>
 					<FriendList />
+
 				</div>
 			</div>
 		</>

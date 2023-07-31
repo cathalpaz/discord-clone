@@ -7,7 +7,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import ChannelList from "./components/ChannelList";
 import LandingPage from "./components/LandingPage";
 import MainPageTemplate from "./components/MainPageTemplate";
-import AppNavigation from "./components/AppNavigation";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,9 +33,6 @@ function App() {
           </Route>
           <Route path='/register'>
             <SignupFormPage />
-          </Route>
-          <Route path='/channels'>
-            <AppNavigation />
           </Route>
       </Switch>
       )}

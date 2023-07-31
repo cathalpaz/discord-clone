@@ -6,6 +6,7 @@ import ServerList from "../ServerList";
 import ChannelMenuDrop from "./ChannelMenuDrop";
 import '../../styles/components/ServerList.css';
 import '../../styles/components/ChannelList.css';
+import ChannelDirectMessage from "../ChannelDirectMessage";
 
 function ChannelList() {
     const serversStore = useSelector((state) => state.servers)
@@ -45,7 +46,10 @@ function ChannelList() {
                     </div>
 				</div>
 				<div className="general-view-container">
-					<div>asdasd</div>
+                    <div className="general-view-header">
+                        <p><i class="fa-solid fa-hashtag fa-md"></i>{server.name}</p>
+                    </div>
+					    <ChannelDirectMessage />
 				</div>
 			</div>
         </>
