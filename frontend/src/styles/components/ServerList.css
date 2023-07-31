@@ -38,26 +38,22 @@
     gap: .6rem;
 }
 
-.serverlist-add-server {
+.serverlist-add-server > button {
+    color: var(--secondary);
+    background-color:var(--accent);
     width: 3rem;
     height: 3rem;
-    font-size: 29px;
-    font-weight: 800;
-    color:#23A459;
     border-radius: 2rem;
-    background-color:var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 0;
+    font-size: 30px;
     transition-duration: .15s;
     transition-timing-function: ease-out;
 }
 
-.serverlist-add-server:hover {
-    border-radius: 1rem;
+.serverlist-add-server > button:hover {
     color: var(--light-background);
     background-color: var(--secondary);
-    cursor: pointer;
+    border-radius: 1rem;
 }
 
 .dm-list-header {
