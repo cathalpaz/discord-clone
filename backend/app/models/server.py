@@ -41,7 +41,9 @@ class Server(db.Model):
             'created_at': self.created_at,
             'channels': [channel.to_dict() for channel in self.channels],
             'owner': self.owner.to_dict(),
-            'server_profiles': [server_profile.to_dict() for server_profile in self.server_profiles]
+            'server_profiles': [server_profile.to_dict() for server_profile in self.server_profiles],
+            'users': [user.to_dict() for user in self.users],
+            'public': self.public
         }
 
     def to_dict_basic(self):
