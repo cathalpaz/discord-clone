@@ -28,10 +28,10 @@ export const thunkGetServerInfo = (serverId) => async (dispatch) => {
     const res = await fetch(`/api/servers/${serverId}`);
     if (res.ok) {
       const data = await res.json();
-      dispatch(getSingleServer(data.server));
       if (data.server.channels.length) {
         dispatch(updateSelectedChannelId(data.server.channels[0].id));
       }
+      dispatch(getSingleServer(data.server));
     }
   } catch (err) {
     console.log(err);

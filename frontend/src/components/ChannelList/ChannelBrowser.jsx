@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
+import { MainLoader } from "../Loading/MainLoader";
 
 export default function ChannelBrowser() {
   const serverStore = useSelector((state) => state.servers.orderedServers);
@@ -18,6 +19,10 @@ export default function ChannelBrowser() {
   useEffect(() => {
     dispatch(thunkGetAllServers);
   }, [dispatch]);
+
+  if (!server) {
+    return null;
+  }
 
   const createChannel = () => {
     alert("Need to add create channel");
