@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { useModal } from '../../context/Modal'
 import { thunkCreateServer } from '../../store/server'
 import '../../styles/components/CreateServerModal.css'
 
 function CreateServerModal() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const user = useSelector(state => state.session.user)
 
     const [name, setName] = useState(`${user.username}'s server`)
@@ -17,15 +19,17 @@ function CreateServerModal() {
 
         const newServer = {
             name,
-            avatar,
+            avatar: 'test.png',
             owner_id: user.id
         }
         const data = await dispatch(thunkCreateServer(newServer))
         if (data.errors) {
+            console.log('hello')
             setErrors(data.errors)
         } else {
-            // push to new server
-            return
+            closeModal()
+            // add push to new server link
+            history.push('/main')
         }
     }
 
@@ -45,6 +49,7 @@ function CreateServerModal() {
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
+                    <p className='errors'>{errors.name}</p>
                 </label>
                 <div className='server_form-btns'>
                     <p>Back</p>
