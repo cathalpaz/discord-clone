@@ -1,0 +1,23 @@
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+}
+.loading-container__content > i {
+    animation: spinner .5s ease-out  infinite;
+    animation-delay: 1.5s;
+    font-size: 10rem;
+}
+.loading-container__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+    padding: 0 20px;
+}

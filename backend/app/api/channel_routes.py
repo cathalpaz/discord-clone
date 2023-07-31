@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..models import Channel, User, db, ChannelMessage
+from ..models import Channel, User, db, ChannelMessage, Server
 from flask_login import current_user, login_required
 from ..forms.channel_form import ChannelForm
 from ..forms.channel_message import ChannelMessageForm
@@ -129,18 +129,23 @@ def update_channel_message(id, message_id):
 
 
 # DELETE channel messages
-# TODO: add functionality for server owners to delete messages
+# TODO: check functionality for server owners to delete messages
 @channel_routes.route('/<int:id>/messages/<int:message_id>', methods=['DELETE'])
 @login_required
 def delete_channel_message(id, message_id):
     channel = Channel.query.get(id)
+    owned_servers = Server.query.filter(Server.owner_id == current_user.id).all()
+    owned_servers_ids = [server.id for server in owned_servers]
     channel_message = ChannelMessage.query.get(message_id)
     if not channel:
         not_found_error = NotFoundError("Channel not found")
         return not_found_error.error_json()
-    if channel_message.user_id != current_user.id:
+    if not channel_message:
+        not_found_error = NotFoundError("Channel Message not found")
+        return not_found_error.error_json()
+    if channel_message.user_id != current_user.id or channel.server_id not in owned_servers_ids:
         forbidden_error = ForbiddenError(
-            "You do not have permissions to update this message")
+            "You do not have permissions to delete this message")
         return forbidden_error.error_json()
     db.session.delete(channel_message)
     db.session.commit()
