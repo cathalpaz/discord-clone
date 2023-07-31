@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 
@@ -13,9 +13,10 @@ class ServerProfile(db.Model):
             'user_id', 'server_id', name='_user_server_uc'),)
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')), nullable=False)
     server_id = db.Column(db.Integer, db.ForeignKey(
-        'servers.id'), nullable=False)
+        add_prefix_for_prod('servers.id')), nullable=False)
     banner_color = db.Column(db.String)
     nickname = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())

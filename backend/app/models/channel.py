@@ -1,6 +1,7 @@
 from . import db, environment, SCHEMA
 from sqlalchemy.dialects.postgresql import ENUM  # !!! for future implementation
 from flask_sqlalchemy import SQLAlchemy
+from .db import add_prefix_for_prod
 
 
 # !!! type is a enum that needs to be worked on
@@ -11,7 +12,8 @@ class Channel(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    server_id = db.Column(db.Integer, db.ForeignKey("servers.id"))
+    server_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("servers.id")))
     type = db.Column(db.String(50))
     name = db.Column(db.String(50), nullable=False)
     channel_messages = db.relationship(
@@ -34,8 +36,10 @@ class ChannelMessage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    channel_id = db.Column(db.Integer, db.ForeignKey("channels.id"))
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    channel_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("channels.id")))
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod("users.id")))
     content = db.Column(db.String(4000))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(
