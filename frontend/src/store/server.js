@@ -45,17 +45,29 @@ export const thunkCreateServer = (server) => async (dispatch) => {
     }
 }
 
-const initialState = {};
+const initialState = {
+    orderedServers: []
+};
 
 export default function serverReducer (state = initialState, action) {
 	switch (action.type) {
 		case GET_SERVERS: {
-            const newState = action.servers.servers
+            const newState = {...state}
+            const servers = action.servers.servers
+            const orderedServers = [...newState.orderedServers]
+            for (let server of servers) {
+                newState[server.id] = server
+                orderedServers.push(server.id)
+            }
+            newState.orderedServers = orderedServers
             return newState
         }
         case CREATE_SERVER: {
             const newState = {...state}
-            newState["servers"] = action.server
+            newState[action.server.id] = action.server
+            let orderedServers = [...newState.orderedServers]
+            orderedServers.push(action.server.id)
+            newState.orderedServers = orderedServers
             return newState
         }
 		default:
