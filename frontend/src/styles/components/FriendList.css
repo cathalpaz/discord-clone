@@ -157,6 +157,8 @@ padding-top: 20px
  .friend-list div p{
   margin-left:21px;
   font-weight: 600;
+  padding-left:0px;
+  margin-right:-19px;
  }
 
 
@@ -164,6 +166,11 @@ padding-top: 20px
   color: #2DC770;
   background-color: transparent;
 }
+
+.friend-list div img{
+  height:29px;
+  border-radius: 20px;
+ }
 
 
 /* Division for friends list */
