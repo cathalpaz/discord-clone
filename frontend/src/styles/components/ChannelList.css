@@ -18,6 +18,7 @@
 
 .channel-list-container > span.highlight {
     color: var(--light-background);
+    background-color: var(--background);
 }
 
 
