@@ -16,8 +16,17 @@ function OpenModalSpan({
     if (onButtonClick) onButtonClick();
   };
 
+  const icon = () => {
+    if (className == "channel-menu-option") {
+      return <i class="fa-solid fa-circle-plus"></i>
+    } else if (className == "channel-menu-option-delete" ){
+
+      return <i class="fa-solid fa-trash-can"></i>
+    }
+  }
+  
   return (
-    <span className={className} onClick={onClick}>{buttonText} <i class="fa-solid fa-trash-can"></i></span>
+    <span className={className} onClick={onClick}>{buttonText} {icon()}</span>
   );
 }
 

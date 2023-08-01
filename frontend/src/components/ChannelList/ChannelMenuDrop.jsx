@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import OpenModalSpan from "../OpenModalSpan";
 import DeleteModal from "../DeleteModal";
 import "../../styles/components/ChannelMenuDrop.css"
+import CreateChannelModal from "../CreateChannelModal";
 
 function ChannelMenuDrop({ user }) {
   const dispatch = useDispatch();
@@ -48,7 +49,9 @@ function ChannelMenuDrop({ user }) {
         {sessionUser ? (
           <div className="channel-menu-container">
               <p className="channel-menu-option">Edit Server Profile<i class="fa-solid fa-pencil"></i></p>
-              <p className="channel-menu-option">Create a Channel<i class="fa-solid fa-circle-plus"></i></p>
+              <span>
+                <OpenModalSpan className={"channel-menu-option"} modalComponent={<CreateChannelModal />} buttonText={"Create a server"}/>
+              </span>
               <p className="channel-menu-border"></p>
               <span>
                 <OpenModalSpan className={"channel-menu-option-delete"} modalComponent={<DeleteModal type={"server"}/>} buttonText={"Delete Server"}/>
