@@ -13,7 +13,7 @@ function NotFoundPage() {
   }
 
   const sendToMain = () => {
-    history.push("/main")
+    history.push("/@")
   }
 
   const sendToLanding = () => {
