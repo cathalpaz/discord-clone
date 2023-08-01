@@ -1,11 +1,12 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
 
-function OpenModalButton({
+function OpenModalSpan({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose, // optional: callback function that will be called once the modal is closed
+  className
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -15,9 +16,18 @@ function OpenModalButton({
     if (onButtonClick) onButtonClick();
   };
 
+  const icon = () => {
+    if (className == "channel-menu-option") {
+      return <i class="fa-solid fa-circle-plus"></i>
+    } else if (className == "channel-menu-option-delete" ){
+
+      return <i class="fa-solid fa-trash-can"></i>
+    }
+  }
+  
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <span className={className} onClick={onClick}>{buttonText} {icon()}</span>
   );
 }
 
-export default OpenModalButton;
+export default OpenModalSpan;

@@ -50,19 +50,18 @@ function MainPageTemplate({ leftTab, rightTab }) {
     })();
   }, [dispatch]);
 
-
-  let selected = document.querySelector(".active")
   useEffect(() => {
-    selected = document.querySelector(".active")
-  }, []);
-
+    if (singleServerId == null) {
+      console.log("USEEFFECT IS RUNNING!")
+      setOldServerId(null)
+    }
+  }, [singleServerId])
 
   //   TODO again not a good way of doing this. Come back to this.... or else
   if (serverId && loc.length == 2 && !singleServerId) {
     return <MainLoader />;
   }
 
-  console.log(selected)
 
   return (
     <>
