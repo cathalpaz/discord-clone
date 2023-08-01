@@ -8,12 +8,16 @@ import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
+import OpenModalButton from "../OpenModalButton";
+import CreateChannelModal from '../CreateChannelModal';
 
 export default function ChannelBrowser() {
   const serverStore = useSelector((state) => state.servers.orderedServers);
   const { serverId, channelId } = useParams();
   const dispatch = useDispatch();
-  const server = useSelector((state) => state.servers[serverId]);
+  const server = useSelector((state) => state.singleServer);
+  const user = useSelector((state) => state.session.user);
+
   const selectedChannel = useSelector(
     (state) => state.singleServer.selectedChannelId
   );
@@ -27,20 +31,17 @@ export default function ChannelBrowser() {
     return null;
   }
 
-  const createChannel = () => {
-    alert("Need to add create channel");
-  };
+
   return (
     <div className='dm-list-container'>
       <div className='channel-list-container'>
         <div className='channel-list-textchannels'>
           <p>TEXT CHANNELS</p>{" "}
-          <i
-            onClick={createChannel}
-            className='fa-solid fa-plus channel-list-add'
-          ></i>
+          {server.owner_id == user.id ? (
+            <OpenModalButton className='channel-list-add' modalComponent={<CreateChannelModal serverId={serverId} />} buttonText={<i className='fa-solid fa-plus'></i>}/>
+          ): null}
         </div>
-        {server.channels.map((channel) => (
+        {server.channels.orderedChannelsList.map((channel) => (
           <>
             <span
               className={`${selectedChannel === channel.id && "highlight"}`}
