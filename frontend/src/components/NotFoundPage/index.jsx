@@ -1,10 +1,12 @@
 import React from 'react'
 import { useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Footer from '../Footer';
 import "../../styles/components/NotFoundPage.css"
 
 function NotFoundPage() {
   const sessionUser = useSelector((state) => state.session.user)
+  const history = useHistory()
 
   const sendToLogin = () => {
     history.push("/login")
@@ -14,10 +16,14 @@ function NotFoundPage() {
     history.push("/main")
   }
 
+  const sendToLanding = () => {
+    history.push("/")
+  }
+
   return (
     <>
         <div className='nav-bar-container'>
-            <div className='nav-bar-logo'>
+            <div onClick={sendToLanding} className='nav-bar-logo'>
                 <i className='fa-brands fa-discord fa-xl'></i>
                 <p
                     style={{

@@ -1,13 +1,13 @@
 .nav-bar-container {
     color: var(--secondary-background-darker);
     font-family: ggsans;
-    font-weight: 500;
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-items: center;
     justify-content: center;
     margin-top: 1.3rem;
-    gap: 3.2rem;
+    gap: 2.6rem;
 }
 
 .nav-bar-logo {
@@ -20,7 +20,7 @@
 .nav-bar-links {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2.4rem;
 }
 
 .nav-bar-main-button {
@@ -39,11 +39,17 @@
     border-radius: 2.5rem;
     height: 2.35rem;
     font-size: 13px;
-    width: 4rem;
+    width: 7rem;
     margin-left: 1rem;
     background-color: var(--primary);
     color: var(--white);
-    transform:translatex(17px);
+}
+
+
+.not-found-body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .not-found-body-container > img {
@@ -56,7 +62,6 @@
 .not-found-body-container > h1 {
     color: var(--primary);
     font-family: ginto;
-    /* margin-left: 1rem; */
 }
 
 .not-found-body-container > p {
