@@ -1,0 +1,147 @@
+.create-channel_modal {
+    background-color: var(--background);
+    border-radius: 15px;
+    width: 460px;
+    color: var(--light-accent);
+}
+
+
+
+.create-channel-modal-title-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.create-channel-modal-title-top > i:hover {
+    cursor: pointer;
+    color: var(--white);
+}
+
+.create-channel-modal-title-top > span {
+    color: var(--white);
+    font-size: 20px;
+}
+
+.create-channel_modal-title > p {
+    font-size: 12px;
+}
+
+.create-channel_modal-title {
+    margin-bottom: 16px;
+    padding: 16px;
+}
+
+.create-channel_names {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.create-channel_modal-type {
+    padding: 0 16px;
+}
+
+.create-channel_types {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary-background);
+    padding: 10px 12px;
+    margin-top: 8px;
+    width: 428px;
+    height: 62px;
+    border-radius: 5px;
+}
+
+.create-channel_types > label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+.create-channel_types-text > p {
+    font-size: 14px;
+}
+
+.create-channel_types-text > span {
+    color: var(--white);
+}
+
+.create-channel_icon {
+    width: 18px;
+}
+
+.create-channel_modal-name {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.create-channel_modal-name > input {
+    margin-top: 8px;
+    padding: 10px;
+    font-size: 14px;
+    background-color: rgb(31, 31, 34);
+    color: rgb(222, 225, 235);
+    border: none;
+    border-radius: 3px;
+    outline: none;
+}
+
+.create-channel_hashtag {
+    color: rgb(222, 225, 235);
+    position: absolute;
+    left: 27px;
+    top: 297px;
+    font-size: 17px;
+    background-color: transparent;
+    transform: scale(1, 0.8);
+}
+
+#name-input {
+    padding-left: 30px;
+    width: 368px;
+    position: relative;
+}
+
+.create-channel_modal-footer {
+    margin-top: 10px;
+    background-color: rgb(43, 45, 49);
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.create-channel_footer-btns {
+    padding: 0 16px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.create-cancel_btn {
+    border: none;
+    background: none;
+    color: white;
+}
+
+.create-cancel_btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.create-channel_btn {
+    background-color: var(--primary);
+    border: none;
+    padding: 10px 16px;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.create-channel_btn:disabled {
+    color: var(--message);
+}

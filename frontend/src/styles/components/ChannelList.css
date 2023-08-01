@@ -48,12 +48,15 @@
     font-size: 1.1rem;
 }
 
-.channel-list-add {
+.channel-list-textchannels > button {
     margin-right: 1.1rem;
     font-size: 16px;
+    background-color: transparent;
+    border: none;
+    color: var(--light-accent);
 }
 
-.channel-list-add:hover {
+.channel-list-textchannels > button:hover {
     color: var(--light-background);
     cursor: pointer;
 }

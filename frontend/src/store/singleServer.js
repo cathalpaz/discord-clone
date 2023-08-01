@@ -13,6 +13,13 @@ const initialState = {
   channels: null,
 };
 
+export const addChannel = (channel) => {
+  return {
+    type: actionTypes.ADD_CHANNEL,
+    channel
+  }
+}
+
 export const updateSelectedChannelId = (id) => ({
   type: actionTypes.UPDATE_CHANNEL_ID,
   payload: id,
@@ -38,6 +45,24 @@ export const thunkGetServerInfo = (serverId) => async (dispatch) => {
   }
 };
 
+export const thunkCreateChannel = (serverId, channel) => async (dispatch) => {
+  const res = await fetch(`/api/servers/${serverId}/channels`, {
+    method: 'POST',
+    body: JSON.stringify(channel),
+    headers: {'Content-Type': 'application/json'}
+  });
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(addChannel(data))
+    dispatch(updateSelectedChannelId(data.id))
+    return data
+  } else {
+    const errorData = await res.json()
+    return errorData
+  }
+}
+
+
 export const singleServerReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_CHANNEL_ID: {
@@ -58,6 +83,14 @@ export const singleServerReducer = (state = initialState, action) => {
         };
       }
       return newState;
+    }
+    case actionTypes.ADD_CHANNEL: {
+      const newState = { ...state }
+      // console.log('state:', newState);
+      newState.channels[action.channel.id] = action.channel
+      newState.channels.orderedChannelsList = [...newState.channels.orderedChannelsList, action.channel]
+
+      return newState
     }
     default: {
       return state;

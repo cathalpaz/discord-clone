@@ -71,7 +71,7 @@
 }
 
 .dm-list-header {
-    padding: 0.75rem 1rem;
+    padding: 0.8rem 1rem;
     background-color: var(--secondary-background);
     border-bottom: 1px solid var(--secondary-background-darker);
     font-family: ggsans;

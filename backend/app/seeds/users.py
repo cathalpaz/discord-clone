@@ -6,73 +6,73 @@ from ..constants import pronouns
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', birthday="11/11/1993", banner_color="#FAFAFA", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='Demo', email='demo@aa.io', password='password', birthday="11/11/1993", banner_color="#FAFAFA", bio="this is a test...", pronouns=pronouns[0]
     )
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', birthday="01/11/1994", banner_color="#C0C0C0", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='marnie', email='marnie@aa.io', password='password', birthday="01/11/1994", banner_color="#C0C0C0", bio="this is a test...", pronouns=pronouns[0],
     )
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', birthday="12/11/1997", banner_color="#808080", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='bobbie', email='bobbie@aa.io', password='password', birthday="12/11/1997", banner_color="#808080", bio="this is a test...", pronouns=pronouns[0],
     )
     kai = User(
-        username='kai', email='kai@aa.io', password='password', birthday="05/11/1992", banner_color="#808000", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='kai', email='kai@aa.io', password='password', birthday="05/11/1992", banner_color="#808000", bio="this is a test...", pronouns=pronouns[1],
     )
     eliana = User(
-        username='eliana', email='eliana@aa.io', password='password', birthday="03/11/1994", banner_color="#800000", bio="this is a test...", pronouns=pronouns[2], avatar='test.png'
+        username='eliana', email='eliana@aa.io', password='password', birthday="03/11/1994", banner_color="#800000", bio="this is a test...", pronouns=pronouns[2],
     )
     jayden = User(
-        username='jayden', email='jayden@aa.io', password='password', birthday="06/11/1988", banner_color="#00FF00 ", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='jayden', email='jayden@aa.io', password='password', birthday="06/11/1988", banner_color="#00FF00 ", bio="this is a test...", pronouns=pronouns[0],
     )
     ezra = User(
-        username='ezra', email='ezra@aa.io', password='password', birthday="09/11/1995", banner_color="#00FFFF", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='ezra', email='ezra@aa.io', password='password', birthday="09/11/1995", banner_color="#00FFFF", bio="this is a test...", pronouns=pronouns[1],
     )
     luca = User(
-        username='luca', email='luca@aa.io', password='password', birthday="03/11/1999", banner_color="#008080", bio="this is a test...", pronouns=pronouns[2], avatar='test.png'
+        username='luca', email='luca@aa.io', password='password', birthday="03/11/1999", banner_color="#008080", bio="this is a test...", pronouns=pronouns[2],
     )
     rowan = User(
-        username='rowan', email='rowan@aa.io', password='password', birthday="08/11/2000", banner_color="#000080", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='rowan', email='rowan@aa.io', password='password', birthday="08/11/2000", banner_color="#000080", bio="this is a test...", pronouns=pronouns[1],
     )
     nova = User(
-        username='nova', email='nova@aa.io', password='password', birthday="11/11/1996", banner_color="#FF00FF", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='nova', email='nova@aa.io', password='password', birthday="11/11/1996", banner_color="#FF00FF", bio="this is a test...", pronouns=pronouns[0],
     )
     amara = User(
-        username='amara', email='amara@aa.io', password='password', birthday="10/11/2001", banner_color="#800080", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='amara', email='amara@aa.io', password='password', birthday="10/11/2001", banner_color="#800080", bio="this is a test...", pronouns=pronouns[1],
     )
     aaliyah = User(
-        username='aaliyah', email='aaliyah@aa.io', password='password', birthday="01/11/2004", banner_color="#CD5C5C", bio="this is a test...", pronouns=pronouns[2], avatar='test.png'
+        username='aaliyah', email='aaliyah@aa.io', password='password', birthday="01/11/2004", banner_color="#CD5C5C", bio="this is a test...", pronouns=pronouns[2],
     )
     finn = User(
-        username='finn', email='finn@aa.io', password='password', birthday="04/11/2003", banner_color="#F08080", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='finn', email='finn@aa.io', password='password', birthday="04/11/2003", banner_color="#F08080", bio="this is a test...", pronouns=pronouns[0],
     )
     zion = User(
-        username='zion', email='zion@aa.io', password='password', birthday="03/11/1987", banner_color="#FA8072", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='zion', email='zion@aa.io', password='password', birthday="03/11/1987", banner_color="#FA8072", bio="this is a test...", pronouns=pronouns[1],
     )
     maeve = User(
-        username='maeve', email='maeve@aa.io', password='password', birthday="07/11/1996", banner_color="#E9967A", bio="this is a test...", pronouns=pronouns[2], avatar='test.png'
+        username='maeve', email='maeve@aa.io', password='password', birthday="07/11/1996", banner_color="#E9967A", bio="this is a test...", pronouns=pronouns[2],
     )
     kayden = User(
-        username='kayden', email='kayden@aa.io', password='password', birthday="11/11/2002", banner_color="#00FF7F", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='kayden', email='kayden@aa.io', password='password', birthday="11/11/2002", banner_color="#00FF7F", bio="this is a test...", pronouns=pronouns[0],
     )
     mia = User(
-        username='mia', email='mia@aa.io', password='password', birthday="12/11/1996", banner_color="#EEE8AA", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='mia', email='mia@aa.io', password='password', birthday="12/11/1996", banner_color="#EEE8AA", bio="this is a test...", pronouns=pronouns[1],
     )
     mila = User(
-        username='mila', email='mia2@aa.io', password='password', birthday="10/11/2001", banner_color="#FFFFE0", bio="this is a test...", pronouns=pronouns[2], avatar='test.png'
+        username='mila', email='mia2@aa.io', password='password', birthday="10/11/2001", banner_color="#FFFFE0", bio="this is a test...", pronouns=pronouns[2],
     )
     aurora = User(
-        username='aurora', email='aurora@aa.io', password='password', birthday="08/11/1997", banner_color="#00BFFF", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='aurora', email='aurora@aa.io', password='password', birthday="08/11/1997", banner_color="#00BFFF", bio="this is a test...", pronouns=pronouns[0],
     )
     alina = User(
-        username='alina', email='alina@aa.io', password='password', birthday="07/11/2000", banner_color="#FF4500", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='alina', email='alina@aa.io', password='password', birthday="07/11/2000", banner_color="#FF4500", bio="this is a test...", pronouns=pronouns[1],
     )
     remi = User(
-        username='remi', email='remi@aa.io', password='password', birthday="06/11/1999", banner_color="#98FB98", bio="this is a test...", pronouns=pronouns[0], avatar='test.png'
+        username='remi', email='remi@aa.io', password='password', birthday="06/11/1999", banner_color="#98FB98", bio="this is a test...", pronouns=pronouns[0],
     )
     amaya = User(
-        username='amaya', email='amaya@aa.io', password='password', birthday="04/11/2000", banner_color="#DEB887", bio="this is a test...", pronouns=pronouns[1], avatar='test.png'
+        username='amaya', email='amaya@aa.io', password='password', birthday="04/11/2000", banner_color="#DEB887", bio="this is a test...", pronouns=pronouns[1],
     )
     ari = User(
-        username='ari', email='ari@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2], avatar='test.png'
+        username='ari', email='ari@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
     )
 
     db.session.add(demo)

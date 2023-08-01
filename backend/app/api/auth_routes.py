@@ -5,6 +5,8 @@ from ..forms import UserForm
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 from ..utils.validate_errors import validation_errors_to_error_messages
+from ..utils.s3 import s3
+from werkzeug.utils import secure_filename
 
 auth_routes = Blueprint('auth', __name__, url_prefix="/auth")
 
@@ -56,12 +58,27 @@ def sign_up():
     form = UserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        user_data = {
-            val: form.data[val] for val in form.data if val != 'csrf_token'
-        }
+        user_data = {}
+        user_data["username"] = form.data["username"]
+        user_data["password"] = form.data["password"]
+        user_data["email"] = form.data["email"]
+        user_data["birthday"] = form.data["birthday"]
+        if form.data["bio"] != None:
+            user_data["bio"] = form.data['bio']
+        user_data['banner_color'] = form.data["banner_color"]
+        user_data["pronouns"] = form.data["pronouns"]
         user = User(**user_data)
         db.session.add(user)
         db.session.commit()
+        file = form.file.data
+        # TODO IMPLEMENT ERROR HANDLING
+        if file != None:
+            filename = secure_filename(file.filename)
+            success, file_url = s3.upload_file(file, filename, user.id)
+            if success:
+                setattr(user, 'avatar', file_url)
+                db.session.commit()
+
         login_user(user)
         return user.to_dict_extra(), 201
     print(form.errors)
