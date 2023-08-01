@@ -53,6 +53,7 @@
   text-decoration: none;
   color: white;
   list-style-type: none;
+  justify-content: space-between;
 }
 
 .nav-button {
@@ -66,11 +67,13 @@
   padding: 2px 8px;
   background-color: transparent;
   font-size: 16px;
+  box-sizing: border-box;
 }
 
 .nav-button.online-friend:hover {
   background-color: #424549;
-  padding: 8px 14px;
+  padding: 2px 8px;
+  margin: 0px 8px;
 }
 
 .add-friend {
@@ -131,11 +134,43 @@ padding-top: 20px
   font-size: 20px;
 }
 
+.friend-list h2{
+  font-size:13px;
+  padding-bottom:15px;
+ }
+
+
 .friend-list {
   margin-left: 20px;
 }
+
+.friend-list .content-online div{
+  display:flex;
+  padding: 12px;
+ }
+
+ .friend-list .content-all div{
+  display:flex;
+  padding: 12px;
+ }
+
+ .friend-list div p{
+  margin-left:21px;
+  font-weight: 600;
+ }
+
 
 .active.nav-button.add-friend {
   color: #2DC770;
   background-color: transparent;
 }
+
+
+/* Division for friends list */
+.friend-list div{
+  min-width:0px;
+  padding-left:0px;
+  border-top-style:solid;
+  border-top-color:#474747;
+  border-top-width:2px;
+ }

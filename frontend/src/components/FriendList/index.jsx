@@ -39,6 +39,7 @@ function FriendList({ selectedTab }) {
                           <div key={friend.id}>
                               {friend.user_from}
                               <p>{friend.user.username}</p>
+                              <p>{friend.user.avatar}</p>
                           </div>
                       ))}
               </div>
