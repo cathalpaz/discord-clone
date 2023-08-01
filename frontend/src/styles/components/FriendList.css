@@ -124,7 +124,7 @@ padding-top: 20px
 }
 
 .friend-list {
-  display: flex;
+  margin-left: 20px;
 }
 
 .active.nav-button.add-friend {
