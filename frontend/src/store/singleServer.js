@@ -54,6 +54,7 @@ export const thunkCreateChannel = (serverId, channel) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(addChannel(data))
+    dispatch(updateSelectedChannelId(data.id))
     return data
   } else {
     const errorData = await res.json()
@@ -85,8 +86,10 @@ export const singleServerReducer = (state = initialState, action) => {
     }
     case actionTypes.ADD_CHANNEL: {
       const newState = { ...state }
-      console.log('state:', newState);
+      // console.log('state:', newState);
       newState.channels[action.channel.id] = action.channel
+      newState.channels.orderedChannelsList = [...newState.channels.orderedChannelsList, action.channel]
+
       return newState
     }
     default: {
