@@ -32,5 +32,5 @@ class Friend(db.Model):
             'status': self.status,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'user': self.user_1.to_dict() if current_user_id != self.user_1.id else self.user_2.to_dict()
+            'user': self.user_1.to_dict_extra() if current_user_id != self.user_1.id else self.user_2.to_dict_extra()
         }

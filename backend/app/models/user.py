@@ -24,8 +24,8 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(255), default="")
     pronouns = db.Column(db.String(255), nullable=False)
     # contains user profile image
-    # TODO: setup a proper default avatar image in AWS
-    avatar = db.Column(db.String(255), default="test.png")
+    avatar = db.Column(db.String(
+        255), default="https://discord-clone-a-a.s3.us-west-1.amazonaws.com/default-user.jpg")
     updated_at = db.Column(DateTime, default=datetime.utcnow())
 
     # relationships

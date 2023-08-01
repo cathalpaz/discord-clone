@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, PasswordField, DateField, FileField, SelectMultipleField
+from wtforms import StringField, EmailField, PasswordField, DateField, FileField
 from wtforms.validators import DataRequired, ValidationError, URL, Length
 
 
@@ -23,4 +23,4 @@ class UserForm(FlaskForm):
     banner_color = StringField("Banner Color", validators=[DataRequired()])
     bio = StringField("Bio")
     pronouns = StringField("Pronouns", validators=[DataRequired()])
-    avatar = FileField("Avatar")
+    file = FileField("Avatar")
