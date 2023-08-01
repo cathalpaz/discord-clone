@@ -8,6 +8,8 @@ import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
+import OpenModalButton from "../OpenModalButton";
+import CreateChannelModal from '../CreateChannelModal';
 
 export default function ChannelBrowser() {
   const serverStore = useSelector((state) => state.servers.orderedServers);
@@ -28,17 +30,15 @@ export default function ChannelBrowser() {
   }
 
   const createChannel = () => {
-    alert("Need to add create channel");
+
   };
   return (
     <div className='dm-list-container'>
       <div className='channel-list-container'>
         <div className='channel-list-textchannels'>
           <p>TEXT CHANNELS</p>{" "}
-          <i
-            onClick={createChannel}
-            className='fa-solid fa-plus channel-list-add'
-          ></i>
+
+          <OpenModalButton className='channel-list-add' modalComponent={<CreateChannelModal serverId={serverId} />} buttonText={<i className='fa-solid fa-plus'></i>}/>
         </div>
         {server.channels.map((channel) => (
           <>
