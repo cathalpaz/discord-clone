@@ -30,7 +30,7 @@
     grid-column: 2/3;
     grid-row: 1/2;
     background-color: var(--secondary-background);
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 .main-page-container__item--3 {
@@ -43,7 +43,7 @@
     grid-column: 2/3;
     grid-row: 2/4;
     background-color: var(--secondary-background);
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 }
 
 .main-page-container__item--5 {

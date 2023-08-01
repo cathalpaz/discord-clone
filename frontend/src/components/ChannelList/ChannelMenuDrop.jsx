@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import "../../styles/components/ChannelMenuDrop.css"
@@ -7,6 +8,8 @@ import "../../styles/components/ChannelMenuDrop.css"
 function ChannelMenuDrop({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const { serverId, channelId } = useParams()
+  const server = useSelector((state) => state.servers[serverId]);
   const sessionUser = useSelector((state) => state.session.user)
   const ulRef = useRef();
 
@@ -35,6 +38,7 @@ function ChannelMenuDrop({ user }) {
 
   return (
     <>
+      <p>{server?.name}</p>
       {showMenu ? <i onClick={openMenu} class="fa-solid fa-xmark channel-menu-button"></i> : <i onClick={openMenu} class="fa-solid fa-angle-down channel-menu-button fa-sm"></i> }
       <ul className={ulClassName} ref={ulRef}>
         {sessionUser ? (

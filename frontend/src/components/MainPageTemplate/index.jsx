@@ -12,6 +12,7 @@ import FriendList from "../FriendList";
 import { DmListContainer } from "./DmListContainer";
 import { thunkGetServerInfo } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
+import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -57,12 +58,15 @@ function MainPageTemplate({ leftTab, rightTab }) {
           <ServerList />
         </div>
         <div className="main-page-container__item main-page-container__item--2">
-
-        </div>
+          <div className='dm-list-header'>
+            <ChannelMenuDrop />
+            </div>
+          </div>
         <div className="main-page-container__item main-page-container__item--3">
 
         </div>
         <div className="main-page-container__item main-page-container__item--4">
+        {leftTab}
 
         </div>
         <div className="main-page-container__item main-page-container__item--5">
@@ -74,7 +78,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
         <div className="main-page-container__item main-page-container__item--7">
 
         </div>
-        {/* {leftTab} */}
         {/* <div className='general-view-container'> */}
           {/* {rightTab} */}
         {/* </div> */}
