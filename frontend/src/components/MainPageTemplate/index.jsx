@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   useLocation,
   useParams,
+  Route
 } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -54,33 +55,61 @@ function MainPageTemplate({ leftTab, rightTab }) {
   return (
     <>
       <div className='main-page-container'>
+        <Route path="/@">
+          <div className="main-page-container__item main-page-container__item--1">
+            <ServerList />
+          </div>
+          <div className="main-page-container__item main-page-container__item--2">
+            {/* <div className='dm-list-header'>
+              <ChannelMenuDrop />
+            </div> */}
+          </div>
+          <div className="main-page-container__item main-page-container__item--3">
+
+          </div>
+          <div className="main-page-container__item main-page-container__item--4">
+          {leftTab}
+
+          </div>
+          <div className="main-page-container__item main-page-container__item--5">
+
+          </div>
+          <div className="main-page-container__item main-page-container__item--6">
+
+          </div>
+          <div className="main-page-container__item main-page-container__item--7">
+
+          </div>
+          {/* <div className='general-view-container'> */}
+            {/* {rightTab} */}
+          {/* </div> */}
+        </Route>
+        <Route path="/:serverId/:channelId">
         <div className="main-page-container__item main-page-container__item--1">
-          <ServerList />
-        </div>
-        <div className="main-page-container__item main-page-container__item--2">
-          <div className='dm-list-header'>
-            <ChannelMenuDrop />
+            <ServerList />
+          </div>
+          <div className="main-page-container__item main-page-container__item--2">
+            <div className='dm-list-header'>
+              <ChannelMenuDrop />
             </div>
           </div>
-        <div className="main-page-container__item main-page-container__item--3">
+          <div className="main-page-container__item main-page-container__item--3">
 
-        </div>
-        <div className="main-page-container__item main-page-container__item--4">
-        {leftTab}
+          </div>
+          <div className="main-page-container__item main-page-container__item--4">
+          {leftTab}
 
-        </div>
-        <div className="main-page-container__item main-page-container__item--5">
+          </div>
+          <div className="main-page-container__item main-page-container__item--5">
 
-        </div>
-        <div className="main-page-container__item main-page-container__item--6">
+          </div>
+          <div className="main-page-container__item main-page-container__item--6">
 
-        </div>
-        <div className="main-page-container__item main-page-container__item--7">
+          </div>
+          <div className="main-page-container__item main-page-container__item--7">
 
-        </div>
-        {/* <div className='general-view-container'> */}
-          {/* {rightTab} */}
-        {/* </div> */}
+          </div>
+        </Route>
       </div>
     </>
   );

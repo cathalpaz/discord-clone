@@ -23,7 +23,7 @@ function ServerList() {
   };
 
   const sendToMain = () => {
-    history.push("/main");
+    history.push("/@");
   };
 
   return (

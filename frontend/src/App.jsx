@@ -34,10 +34,10 @@ function App() {
               rightTab={<ChannelList />}
             />
           </Route>
-          <Route path='/main'>
+          <Route path='/'>
             <MainPageTemplate
-              leftTab={<DmListContainer />}
-              rightTab={<FriendList />}
+              // leftTab={<DmListContainer />}
+              // rightTab={<FriendList />}
             />
           </Route>
           <Route path='/login'>
