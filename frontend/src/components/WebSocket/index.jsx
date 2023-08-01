@@ -13,38 +13,28 @@ const Chat = () => {
         // open socket connection
         // create websocket
         socket = io("localhost:5000/", {
-            // transports: ["websocket"],
             cors: {
                 origin: "*"
             }
         });
-
         setSocketInstance(socket)
-
         socket.on("connect", (chat) => {
             console.log(chat)
         })
-        // console.log("socket connected?")
-
-        // socket.on("chat", (chat) => {
-        //     console.log("Chat", chat)
-        //     setMessages(messages => [...messages, chat])
-        // })
-        console.log('messages1', messages)
-        // when component unmounts, disconnect
         return (() => {
             socket.disconnect()
         })
     }, [])
 
     useEffect(() => {
-        console.log("BEFORE SOCKET")
         if (socketInstance) {
             socketInstance.on("chat", (chat) => {
                 setMessages(messages => [...messages, chat]);
             })
         }
-
+        return (() => {
+            socketInstance.disconnect()
+        })
     }, [socketInstance])
 
     const updateChatInput = (e) => {
@@ -56,7 +46,7 @@ const Chat = () => {
         socketInstance.emit("chat", { user: user.username, msg: chatInput });
         setChatInput("")
     }
-    console.log('MESSAGES'), messages
+
     return (user && (
         <div>
             <div>

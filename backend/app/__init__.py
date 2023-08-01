@@ -5,15 +5,10 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User
-# from .socket import socketio
+from .socket import socketio
 from .seeds import seed_commands
 from .config import Config
 from .api import bp
-# import os
-# from .models import DirectMessage
-# from . import app
-from flask_socketio import SocketIO, emit, send
-
 
 def create_app(test=False):
     if test == False:
@@ -30,7 +25,6 @@ def create_app(test=False):
         db.init_app(app)
         return app, db
 
-
 app, db = create_app()
 
 # Setup login manager
@@ -42,7 +36,6 @@ login.login_view = 'auth.unauthorized'
 def load_user(id):
     return User.query.get(int(id))
 
-
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
 
@@ -50,39 +43,8 @@ app.register_blueprint(bp)
 
 Migrate(app, db)
 
-
-if os.environ.get("FLASK_ENV") == "production":
-    origins = [
-        "http://slacord.onrender.com",
-        "https://slacord.onrender.com"
-    ]
-else:
-    origins = "*"
-
-socketio = SocketIO(cors_allowed_origins=origins)
 socketio.init_app(app)
 
-# handle chat messages
-@socketio.on("connect")
-def connection(data):
-    print("User connected!")
-
-@socketio.on("chat")
-def handle_chat(data):
-    print("THIS WAS HIT @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    # if data != "User connected!":
-        # dm = DirectMessage (
-    #         sender_id=data['sender_id'],
-    #         recipient_id=data['recipient_id'],
-    #         message=data['msg'],
-    #         sent_at="hi"
-    #     )
-    #     db.session.add(dm)
-    #     db.session.commit()
-
-    emit("chat", data, broadcast=True)
-
-# socketio.run(app)
 if __name__ == "__main__":
     socketio.run(app)
 

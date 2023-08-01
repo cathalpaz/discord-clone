@@ -1,6 +1,5 @@
 import os
 from .models import DirectMessage
-from . import app
 from flask_socketio import SocketIO, emit, send
 
 if os.environ.get("FLASK_ENV") == "production":
@@ -12,7 +11,6 @@ else:
     origins = "*"
 
 socketio = SocketIO(cors_allowed_origins=origins)
-socketio.init_app(app)
 
 # handle chat messages
 @socketio.on("connect")
@@ -33,7 +31,3 @@ def handle_chat(data):
     #     db.session.commit()
 
     emit("chat", data, broadcast=True)
-
-# socketio.run(app)
-if __name__ == "__main__":
-    socketio.run(app)
