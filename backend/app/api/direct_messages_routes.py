@@ -32,6 +32,8 @@ def single_direct_message(id):
     return {'message': dm.to_dict()}
 
 # GET all friends
+
+
 @direct_messages_routes.route('/friends')
 @login_required
 def all_friends():
@@ -39,7 +41,8 @@ def all_friends():
         Friend.user_to == current_user.id,
         Friend.user_from == current_user.id
     )).all()
-    friends = [friend.to_dict()
+
+    friends = [friend.to_dict(current_user.id)
                for friend in get_friends if friend.status == 'ACCEPTED']
     return {'friends': friends}
 
@@ -109,6 +112,8 @@ def edit_direct_message(id):
         return {'errors': form.errors}
 
 # DELETE direct message
+
+
 @direct_messages_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_direct_message(id):

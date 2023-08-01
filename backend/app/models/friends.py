@@ -21,8 +21,10 @@ class Friend(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(
     ), onupdate=db.func.current_timestamp())
+    user_1 = db.relationship("User", foreign_keys=[user_to])
+    user_2 = db.relationship("User", foreign_keys=[user_from])
 
-    def to_dict(self):
+    def to_dict(self, current_user_id):
         return {
             'id': self.id,
             'user_to': self.user_to,
@@ -30,4 +32,5 @@ class Friend(db.Model):
             'status': self.status,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'user': self.user_1.to_dict() if current_user_id != self.user_1.id else self.user_2.to_dict()
         }
