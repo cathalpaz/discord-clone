@@ -8,11 +8,6 @@
  font-size:14px;
 }
 
-  .general-view-container {
-    max-width: auto;
-    width: 100%;
-  }
-
   .discord .friends-bar .general-view-header{
     padding-top:35px;
     min-height:83px;
