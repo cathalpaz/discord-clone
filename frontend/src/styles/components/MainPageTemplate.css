@@ -11,11 +11,13 @@
 .dm-list-container {
     background-color: var(--secondary-background);
     width: 15rem;
+    z-index: 1000;
     height: 100rem;
 }
 
+
 .general-view-container {
     background-color: var(--background);
-    width: 69.1%;
     height: 100rem;
+    width: 100%;
 }
