@@ -53,17 +53,31 @@ function MainPageTemplate({ leftTab, rightTab }) {
   return (
     <>
       <div className='main-page-container'>
-        <div className='server-list-container'>
+        <div className="main-page-container__item main-page-container__item--1">
           <ServerList />
         </div>
-        {/* <div className='dm-list-container'>
-          <div className='dm-list-header'>asd</div>
-        </div> */}
-        {leftTab}
-        <div className='general-view-container'>
-          <div className='general-view-header'></div>
-          {rightTab}
+        <div className="main-page-container__item main-page-container__item--2">
+
         </div>
+        <div className="main-page-container__item main-page-container__item--3">
+
+        </div>
+        <div className="main-page-container__item main-page-container__item--4">
+
+        </div>
+        <div className="main-page-container__item main-page-container__item--5">
+
+        </div>
+        <div className="main-page-container__item main-page-container__item--6">
+
+        </div>
+        <div className="main-page-container__item main-page-container__item--7">
+
+        </div>
+        {/* {leftTab} */}
+        {/* <div className='general-view-container'> */}
+          {/* {rightTab} */}
+        {/* </div> */}
       </div>
     </>
   );
