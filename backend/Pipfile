@@ -27,6 +27,13 @@ werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 pytest = "==7.4.0"
 boto3 = "==1.28.16"
+flask-socketio = "==5.3.5"
+eventlet = "==0.30.2"
+dnspython = "==1.16.0"
+bidict = "==0.22.1"
+python-socketio = "==5.8.0"
+python-engineio = "==4.5.1"
+simple-websocket = "*"
 
 [dev-packages]
 

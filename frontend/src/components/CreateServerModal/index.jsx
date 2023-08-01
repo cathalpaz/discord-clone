@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkCreateServer } from "../../store/server";
 import "../../styles/components/CreateServerModal.css";
+import { UploadIcon } from "../Icons/UploadIcon";
 
 function CreateServerModal() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const fileRef = useRef();
   const user = useSelector((state) => state.session.user);
 
   const [name, setName] = useState(`${user.username}'s server`);
@@ -27,13 +29,19 @@ function CreateServerModal() {
 
     const data = await dispatch(thunkCreateServer(newServerForm));
     if (data.errors) {
-      console.log("hello");
       setErrors(data.errors);
     } else {
       closeModal();
       console.log("this is the data", data);
       // add push to new server link
       history.push(`/${data.id}/${data.channels[0].id}`);
+    }
+  };
+
+  const handleImageUpload = (e) => {
+    e.preventDefault();
+    if (fileRef.current) {
+      fileRef.current.click();
     }
   };
 
@@ -47,7 +55,21 @@ function CreateServerModal() {
             Give your new server a personality with a name and an icon. You can
             always change it later.
           </p>
+          {!avatar ? (
+            <button
+              className='server_form__file-upload-btn'
+              onClick={handleImageUpload}
+            >
+              <UploadIcon />
+            </button>
+          ) : (
+            <div className='server_form__file-img-preview'>
+              <img src={URL.createObjectURL(avatar)} alt='' />
+            </div>
+          )}
           <input
+            className='server_form__file-input'
+            ref={fileRef}
             type='file'
             onChange={(e) => {
               if (e.target.files[0]) {
