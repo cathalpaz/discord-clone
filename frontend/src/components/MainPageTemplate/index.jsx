@@ -17,6 +17,7 @@ import { ChannelHeader } from "../Channel/ChannelHeader";
 import { ServerUsersList } from "../server/ServerUsersList";
 import FriendBar from "../FriendList/FriendBar";
 import FriendList from "../FriendList";
+import UserProfile from "../UserProfile";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -72,6 +73,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
             {leftTab}
+            <UserProfile />
           </div>
           <div className='main-page-container__item main-page-container__item--5'>
             <FriendList />

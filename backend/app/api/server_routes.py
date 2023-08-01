@@ -8,10 +8,14 @@ from ..utils.servers import server_owner_required
 from ..errors import NotFoundError, ForbiddenError
 from ..forms.server_form import ServerForm
 from ..forms.channel_form import ChannelForm
+from ..utils.s3 import s3
+from werkzeug.utils import secure_filename
 
 servers_routes = Blueprint('servers', __name__, url_prefix="/servers")
 
 # GET all public servers
+
+
 @servers_routes.route("")
 def all_servers():
     """
@@ -99,9 +103,20 @@ def create_server():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        server_data = {val: form.data[val]
-                       for val in form.data if val != 'csrf_token'}
-        server_data["owner_id"] = user.id
+        file = form.file.data
+        server_data = {
+            "name": form.data['name'],
+            "public": form.data['public'],
+            "owner_id": user.id,
+        }
+        if file:
+            filename = secure_filename(file.filename)
+            success, file_url = s3.upload_file(file, filename)
+            server_data["avatar"] = file_url
+
+            if not success:
+                return {"errors": [file_url]}, 400
+
         new_server = Server(**server_data)
         user.servers.append(new_server)
         db.session.add(new_server)
@@ -118,6 +133,7 @@ def create_server():
 
 
 # DELETE server (if owner)
+# TODO DELETE AVATAR UNLESS ITS USING PLACEHOLDER AVATAR
 @servers_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 @server_owner_required
@@ -129,6 +145,7 @@ def delete_server(server):
 
 # UPDATE server (if owner)
 # TODO: DRY THIS UP
+# TODO DELETE OLD AVATAR IF UPLOADING A NEW IMAGE. DONT WANT THOSE AWS BILLS
 @servers_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 @server_owner_required
@@ -137,8 +154,14 @@ def update_server(server):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         for field in form.data:
-            if field != 'csrf_token':
+            if field != 'csrf_token' and field != 'file':
                 setattr(server, field, form.data[field])
+        if form.file.data != None:
+            file = form.file.data
+            filename = secure_filename(file.filename)
+            success, file_url = s3.upload_file(file, filename)
+            if success:
+                setattr(server, 'avatar', file_url)
         db.session.commit()
         return {"server": server.to_dict()}
     print(form.errors)

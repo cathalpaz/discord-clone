@@ -1,0 +1,95 @@
+.user_prof-container {
+    width: 240px;
+    position: fixed;
+    bottom: 0;
+    padding: 8px;
+    background-color: var(--secondary-background-darker);
+    display: flex;
+    justify-content: space-between;
+}
+
+.user_prof-info {
+    display: flex;
+    gap: 0.5rem;
+    color: var(--light-accent);
+}
+
+.user_prof-settings > button {
+    background: none;
+    border: none;
+    color: var(--light-accent);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.user-modal {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--secondary-background-darker);
+    color: var(--white);
+    border-radius: 10px;
+    margin: -10px;
+}
+
+.user-modal_color {
+    margin-right: 10px;
+}
+
+.user-modal_banner {
+    height: 80px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.user-modal_top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 0px 10px;
+}
+
+.user-modal_title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-modal_avatar {
+    height: 60px;
+    width: 60px;
+    border: 5px solid var(--secondary-background-darker);
+    border-radius: 100%;
+    margin-bottom: 30px;
+    background-color: white;
+}
+
+.user-modal_logout {
+    height: 30px;
+    width: 115px;
+    background-color: hsl(359, 87%, 60%);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin: 15px 20px;
+    font-size: 14px;
+}
+
+.user-modal_info {
+    background-color: var(--accent);
+    margin: 0px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 10px;
+
+}
+
+.user-modal_info-name {
+    color: var(--light-accent);
+    font-size: 14px;
+}
