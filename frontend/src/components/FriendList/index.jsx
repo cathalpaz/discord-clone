@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/FriendList.css";
 import { fetchFriends } from "../../store/session";
 
-function FriendList({ isLoaded }) {
+function FriendList({ isLoaded, selectedTab}) {
   const sessionUser = useSelector((state) => state.session.user);
   const friendStore = useSelector((state) => state.session.friends)
   const [selectedNavItem, setSelectedNavItem] = useState("online");
@@ -17,6 +17,8 @@ function FriendList({ isLoaded }) {
     dispatch(fetchFriends())
   }, [dispatch]);
 
+  console.log('friendstore', friendStore)
+
 
   const searchMessages = (event) => {
     setSearchQuery(event.target.value);
@@ -26,10 +28,10 @@ function FriendList({ isLoaded }) {
     if (selectedNavItem === "online") {
         return (
         <div className="content-online">
-            <h2>Online</h2>
+            <h2>{selectedTab}</h2>
             {friendStore &&
             friendStore.map((friend) => (
-                <div key={friend.id}>{friend.username}
+                <div key={friend.id}>{friend.user_from}
                 </div>
             ))}
         </div>
@@ -37,12 +39,12 @@ function FriendList({ isLoaded }) {
     } else if (selectedNavItem === "all") {
         return (
         <div className="content-all">
-            <h2>All Friends</h2>
+            <h2>{selectedTab}</h2>
             {friendStore &&
             friendStore.map((friend) => (
                 <div key={friend.id}>
                 <p>{friend.id}</p>
-                <p>{friend.username}</p>
+                <p>{friend.user_from}</p>
                 </div>
             ))}
         </div>
