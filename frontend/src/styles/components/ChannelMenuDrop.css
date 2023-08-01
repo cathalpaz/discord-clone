@@ -42,7 +42,7 @@
 }
 
 .channel-menu-option-delete {
-    color:#DA373C;
+    color: var(--delete);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,7 +52,7 @@
 }
 
 .channel-menu-option-delete:hover {
-    background-color: #DA373C;
+    background-color: var(--delete);
     color: var(--white);
 }
 
