@@ -1,6 +1,7 @@
 import os
 import boto3
 from werkzeug.utils import secure_filename
+from datetime import datetime
 
 # TODO raise an error if file does not validate
 
@@ -27,11 +28,13 @@ class S3Helper:
 
         return True, "File is valid."
 
-    def upload_file(self, file, file_name):
+    def upload_file(self, file, file_name, user_id):
         valid, message = self.validate_file(file)
+        date = datetime.utcnow()
+        new_file_name = f"{user_id}.{date}.{file_name}"
         if valid:
-            self.s3.upload_fileobj(file, self.bucket, file_name)
-            file_url = f"https://{self.bucket}.s3.amazonaws.com/{file_name}"
+            self.s3.upload_fileobj(file, self.bucket, new_file_name)
+            file_url = f"https://{self.bucket}.s3.amazonaws.com/{new_file_name}"
             return True, file_url
         else:
             return False, message
