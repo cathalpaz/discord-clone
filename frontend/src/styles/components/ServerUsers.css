@@ -1,0 +1,16 @@
+.server-users-list-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+}
+
+.server-users-list__header {
+    width: 100%;
+    display: flex;
+}
+.server-users-list__users {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}

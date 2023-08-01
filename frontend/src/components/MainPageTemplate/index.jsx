@@ -13,6 +13,7 @@ import { thunkGetServerInfo } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
 import { ChannelHeader } from "../Channel/ChannelHeader";
+import { ServerUsersList } from "../server/ServerUsersList";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -91,7 +92,9 @@ function MainPageTemplate({ leftTab, rightTab }) {
           </div>
           <div className='main-page-container__item main-page-container__item--5'></div>
           <div className='main-page-container__item main-page-container__item--6'></div>
-          <div className='main-page-container__item main-page-container__item--7'></div>
+          <div className='main-page-container__item main-page-container__item--7'>
+            <ServerUsersList />
+          </div>
         </Route>
       </div>
     </>
