@@ -136,6 +136,14 @@
     transform:translatex(5.13rem) translatey(1.5rem);
 }
 
+.login-bottom {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32px;
+}
+
+
 @media (min-width: 1790px) {
     #root .login-background1{
         display: none;
