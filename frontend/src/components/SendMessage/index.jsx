@@ -10,9 +10,11 @@ export default function SendMessage() {
 
     return (
         <div className='send-message-container'>
-            <input className="send-message-input" type="textbox" placeholder={`Message #${singleServer.channels[channelId]?.name != undefined ? singleServer.channels[channelId].name : ""}`} value={message} onChange={(e) => setMessage(e.target.value)}>
+            {singleServer.channels[channelId]?.name != undefined ? (
+                <input className="send-message-input" type="textbox" placeholder={ `Message #${singleServer.channels[channelId].name}`} value={message} onChange={(e) => setMessage(e.target.value)}>
 
-            </input>
+                </input>
+            ) : null}
         </div>
     )
 }
