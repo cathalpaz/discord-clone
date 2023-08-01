@@ -32,6 +32,12 @@ export default function ChannelBrowser() {
     return null;
   }
 
+  const handleEdit = () => {
+    alert('edit here!')
+  }
+  const handleDelete = () => {
+    alert('delete here!')
+  }
 
   return (
     <div className='dm-list-container'>
@@ -43,7 +49,7 @@ export default function ChannelBrowser() {
           ): null}
         </div>
         {server.channels.orderedChannelsList.map((channel) => (
-          <>
+          <div className="channel-row">
             <span
               className={`${selectedChannel === channel.id && "highlight"}`}
               onClick={() => {
@@ -57,8 +63,14 @@ export default function ChannelBrowser() {
                 ""
               )}
               {channel.name}
+              {selectedChannel === channel.id ? (
+                <div>
+                  <i class="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
+                  <i class="fa-solid fa-trash" onClick={handleDelete}></i>
+                </div>
+              ) : null}
             </span>
-          </>
+          </div>
         ))}
       </div>
       <UserProfile />
