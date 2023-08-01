@@ -78,7 +78,7 @@
 .login-form > button {
     height: 2.7rem;
     background-color: var(--primary);
-    color: #FFFFFF;
+    color: var(--white);
     font-size: 16px;
     font-family: ggsans;
     font-weight: 500;

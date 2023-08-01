@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import "../../styles/LandingPage.css";
 import { useSelector } from "react-redux";
+import Footer from "../Footer";
 
 export default () => {
   const history = useHistory()
@@ -16,14 +17,6 @@ export default () => {
 
   const sendToLanding = () => {
     history.push("/")
-  }
-
-  const sendToTop = () => {
-    window.scrollTo({top:0, behavior:"smooth"})
-  }
-
-  const sendToRegister = () => {
-    history.push("/register")
   }
 
   const sendToApp = () => {
@@ -184,7 +177,7 @@ export default () => {
           Download for Windows
         </button>
       </div>
-      <div className='body-fifth-block-container'>
+      {/* <div className='body-fifth-block-container'>
         <div className='body-fifth-block-sub-container'>
           <div className='body-fifth-block-techologies'>
             <p className='body-fifth-block-language'>
@@ -289,7 +282,8 @@ export default () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
+      <Footer />
       <div>
       </div>
     </div>

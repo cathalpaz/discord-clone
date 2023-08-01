@@ -4,11 +4,12 @@
   --secondary-background-darker: #242728;
   --accent: #36393e;
   --light-accent: #949BA4;
-  --primary: #7289da;
+  --primary: #5865f2;
   --light-background: #fafafa;
   --text-color: #fafafa;
   --secondary: #57f287;
   --errors: #F23F42;
+  --white: #FFFFFF;
 }
 
 /* TODO adjust these properly */

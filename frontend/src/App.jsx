@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import MainPageTemplate from "./components/MainPageTemplate";
 import { MainLoader } from "./components/Loading/MainLoader";
 import { DmListContainer } from "./components/MainPageTemplate/DmListContainer";
+import NotFoundPage from "./components/NotFoundPage";
 import FriendList from "./components/FriendList";
 import ChannelBrowser from "./components/ChannelList/ChannelBrowser";
 
@@ -44,6 +45,9 @@ function App() {
           </Route>
           <Route path='/register'>
             <SignupFormPage />
+          </Route>
+          <Route>
+            <NotFoundPage />
           </Route>
         </Switch>
       )}
