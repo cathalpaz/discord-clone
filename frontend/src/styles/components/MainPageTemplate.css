@@ -7,7 +7,7 @@
     width: 100vw;
     height: 100vh;
     /* border: 2px solid red; */
-    grid-template-rows: .3fr 7fr .5fr;
+    grid-template-rows: .27fr 7fr .5fr;
     grid-template-columns: 72px 240px 1fr 232px;
 }
 
@@ -38,7 +38,7 @@
     grid-row: 1/2;
     background-color: var(--background);
     /* border: 1px solid pink; */
-    border-bottom: 2px solid var(--secondary-background);
+    border-bottom: 1px solid var(--secondary-background-darker);
 }
 
 .main-page-container__item--4 {
