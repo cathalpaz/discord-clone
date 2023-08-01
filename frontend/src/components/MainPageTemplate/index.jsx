@@ -4,14 +4,10 @@ import {
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
 import ServerList from "../ServerList";
-import "../../styles/components/MainPageTemplate.css";
-import FriendList from "../FriendList";
-import { DmListContainer } from "./DmListContainer";
 import { thunkGetServerInfo } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
+import "../../styles/components/MainPageTemplate.css";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -56,12 +52,8 @@ function MainPageTemplate({ leftTab, rightTab }) {
         <div className='server-list-container'>
           <ServerList />
         </div>
-        {/* <div className='dm-list-container'>
-          <div className='dm-list-header'>asd</div>
-        </div> */}
         {leftTab}
         <div className='general-view-container'>
-          <div className='general-view-header'></div>
           {rightTab}
         </div>
       </div>
