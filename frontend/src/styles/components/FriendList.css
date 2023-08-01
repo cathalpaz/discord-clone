@@ -61,17 +61,13 @@
   background-color: transparent;
 }
 
-.nav-button:hover {
+.nav-button.online-friend:hover {
   background-color: #424549;
   padding: 8px 14px;
 }
 
 .add-friend {
-  background-color: #43b581;
-}
-
-.add-friend:hover {
-  background-color: #43b581;
+  background-color: #2DC770;
 }
 
 .active {
@@ -79,14 +75,21 @@
   padding: 8px 14px;
 }
 
+
+/* the search bar needs to auto adjust with screen width.
+dont know how to do that. -zach */
 .search-input-bar {
   width: 91.5%;
+  min-width: 300px;
+  width: 600px;
+  max-width: 100%;
   height: 2.15rem;
   border-top-left-radius: .3rem;
   border-bottom-left-radius: .3rem;
   background-color: var(--secondary-background-darker);
   border: 0;
   padding-left: .6rem;
+  margin-left:35px;
   font-size: 15px;
   color: var(--white)
 }
@@ -114,4 +117,17 @@
 .content-all {
 padding-left: 20px;
 padding-top: 20px
+}
+
+.heading-class {
+  font-size: 20px;
+}
+
+.friend-list {
+  display: flex;
+}
+
+.active.nav-button.add-friend {
+  color: #2DC770;
+  background-color: transparent;
 }
