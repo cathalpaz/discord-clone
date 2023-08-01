@@ -29,9 +29,7 @@ export default function ChannelBrowser() {
     return null;
   }
 
-  const createChannel = () => {
 
-  };
   return (
     <div className='dm-list-container'>
       <div className='channel-list-container'>

@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { useModal } from '../../context/Modal'
+import { useHistory } from 'react-router-dom'
+import { thunkCreateChannel } from '../../store/singleServer'
+import { useDispatch } from 'react-redux'
 import '../../styles/components/CreateChannelModal.css'
 
 function CreateChannelModal({ serverId }) {
+  const dispatch = useDispatch()
+  const history = useHistory()
   console.log(serverId)
   const { closeModal } = useModal()
 
@@ -12,7 +17,24 @@ function CreateChannelModal({ serverId }) {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
+    const channel = {
+      server_id: serverId,
+      type: 'text',
+      name
+    }
+    
+    const data = await dispatch(thunkCreateChannel(serverId, channel))
+    if (data.errors) {
+      console.log('data', data)
+      console.log('errors', data.errors)
+      setErrors(data.errors)
+    } else {
+      closeModal()
+      history.push(`/${serverId}/${data.id}`)
+    }
   }
+
+
 
   return (
     <div className='create-channel_modal'>
