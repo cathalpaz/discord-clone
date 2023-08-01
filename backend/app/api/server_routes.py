@@ -111,7 +111,7 @@ def create_server():
         }
         if file:
             filename = secure_filename(file.filename)
-            success, file_url = s3.upload_file(file, filename)
+            success, file_url = s3.upload_file(file, filename, current_user.id)
             server_data["avatar"] = file_url
 
             if not success:
@@ -159,7 +159,7 @@ def update_server(server):
         if form.file.data != None:
             file = form.file.data
             filename = secure_filename(file.filename)
-            success, file_url = s3.upload_file(file, filename)
+            success, file_url = s3.upload_file(file, filename, current_user.id)
             if success:
                 setattr(server, 'avatar', file_url)
         db.session.commit()
