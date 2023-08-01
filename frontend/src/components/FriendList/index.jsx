@@ -6,6 +6,7 @@ import { fetchFriends } from "../../store/session";
 
 function FriendList({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const friendStore = useSelector((state) => state.session.friends)
   const [selectedNavItem, setSelectedNavItem] = useState("online");
   const [searchQuery, setSearchQuery] = useState("");
   const [onlineFriends, setOnlineFriends] = useState([]);
@@ -14,7 +15,7 @@ function FriendList({ isLoaded }) {
 
   useEffect(() => {
     dispatch(fetchFriends())
-}, [dispatch]);
+  }, [dispatch]);
 
   const navbarItem = (navItem) => {
     setSelectedNavItem(navItem);
@@ -29,8 +30,8 @@ function FriendList({ isLoaded }) {
       return (
         <div className="content-online">
           <h2>Online</h2>
-          {onlineFriends &&
-            onlineFriends.map((friend) => (
+          {friendStore &&
+            friendStore.map((friend) => (
               <div key={friend.id}>{friend.username}</div>
             ))}
         </div>
@@ -39,8 +40,8 @@ function FriendList({ isLoaded }) {
       return (
         <div className="content-all">
           <h2>All Friends</h2>
-          {allFriends &&
-            allFriends.map((friend) => (
+          {friendStore &&
+            friendStore.map((friend) => (
               <div key={friend.id}>
                 <p>{friend.username}</p>
               </div>
