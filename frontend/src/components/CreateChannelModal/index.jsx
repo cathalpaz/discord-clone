@@ -19,15 +19,21 @@ function CreateChannelModal({ serverId }) {
       <form onSubmit={handleSubmit}>
         <div className='create-channel_modal-title'>
           <div className='create-channel-modal-title-top'>
-            <h2>Create Channel</h2>
+            <span>Create Channel</span>
             <i className="fa-solid fa-xmark" onClick={closeModal} ></i>
           </div>
           <p>in Text Channels</p>
         </div>
         <div className='create-channel_modal-type'>
-          <h4>CHANNEL TYPE</h4>
-          <div>
-            <label>Text</label>
+          <h4 className='create-channel_names'>CHANNEL TYPE</h4>
+          <div className='create-channel_types'>
+            <label>
+              <i class="fa-solid fa-hashtag create-channel_icon"></i>
+              <div className='create-channel_types-text'>
+                <span>Text</span>
+                <p>Send messages, images, GIFs, emojis, opinions, and puns</p>
+              </div>
+            </label>
             <input
               name='type'
               type='radio'
@@ -36,8 +42,14 @@ function CreateChannelModal({ serverId }) {
               onChange={e => setType(e.target.value)}
               />
           </div>
-          <div>
-            <label>Voice</label>
+          <div className='create-channel_types'>
+          <label>
+              <i class="fa-solid fa-volume-high create-channel_icon" ></i>
+              <div className='create-channel_types-text'>
+                <span>Voice</span>
+                <p>Hang out together with voice, video, and screen share</p>
+              </div>
+            </label>
             <input
               name='type'
               type='radio'
@@ -48,17 +60,22 @@ function CreateChannelModal({ serverId }) {
           </div>
         </div>
         <div className='create-channel_modal-name'>
-          <label>CHANNEL NAME</label>
+          <label className='create-channel_names' htmlFor='name-input'>CHANNEL NAME</label>
           <input
+            id='name-input'
             type='text'
             placeholder='new-channel'
             value={name}
             onChange={e => setName(e.target.value)}
             />
+            <div className='create-channel_hashtag'>#</div>
         </div>
         <div className='create-channel_modal-footer'>
-          <button onClick={closeModal}>Cancel</button>
-          <button disabled={(name.length < 1)}>Create Channel</button>
+          <div className='create-channel_footer-btns'>
+            <button onClick={closeModal} className='create-cancel_btn'>Cancel</button>
+            <button disabled={(name.length < 1)} className='create-channel_btn'>Create Channel</button>
+
+          </div>
         </div>
 
       </form>
