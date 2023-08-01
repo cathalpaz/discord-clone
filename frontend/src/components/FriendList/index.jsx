@@ -12,6 +12,17 @@ function FriendList({ selectedTab }) {
     const [allFriends, setAllFriends] = useState([]);
     const [isAddingFriend, setIsAddingFriend] = useState(false);
     const dispatch = useDispatch();
+    const [hoverStates, setHoverStates] = useState({});
+
+
+    //hovering a name shows the usersid
+    const handleFriendHover = (friendId, isHovering) => {
+    setHoverStates((prevState) => ({
+        ...prevState,
+        [friendId]: isHovering,
+    }));
+    };
+
 
     useEffect(() => {
         dispatch(fetchFriends());
@@ -34,12 +45,16 @@ function FriendList({ selectedTab }) {
           return (
               <div className="content-online">
                   <h2 className={headingClassName}>{selectedTab}</h2>
-                  {friendStore &&
+                                    {friendStore &&
                     friendStore.map((friend) => (
-                        <div key={friend.id}>
+                        <div
+                        key={friend.id}
+                        onMouseEnter={() => handleFriendHover(friend.id, true)}
+                        onMouseLeave={() => handleFriendHover(friend.id, false)}
+                        >
                         <img src={friend.user.avatar} alt="" />
                         <p>{friend.user.username}</p>
-                        <p>#{friend.id}</p>
+                        {hoverStates[friend.id] && <p>#{friend.id}</p>}
                         </div>
                     ))}
               </div>
@@ -48,14 +63,18 @@ function FriendList({ selectedTab }) {
           return (
               <div className="content-all">
                   <h2 className={headingClassName}>{selectedTab}</h2>
-                  {friendStore &&
-                      friendStore.map((friend) => (
-                          <div key={friend.id}>
-                              <img src={friend.user.avatar} alt="" />
-                              <p>{friend.user.username}</p>
-                              <p>#{friend.id}</p>
-                          </div>
-                      ))}
+                                        {friendStore &&
+                        friendStore.map((friend) => (
+                            <div
+                            key={friend.id}
+                            onMouseEnter={() => handleFriendHover(friend.id, true)}
+                            onMouseLeave={() => handleFriendHover(friend.id, false)}
+                            >
+                            <img src={friend.user.avatar} alt="" />
+                            <p>{friend.user.username}</p>
+                            {hoverStates[friend.id] && <p>#{friend.id}</p>}
+                            </div>
+                        ))}
               </div>
           );
       } else if (selectedTab === "Add") {
