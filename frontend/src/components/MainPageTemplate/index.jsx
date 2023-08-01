@@ -15,6 +15,7 @@ import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
 import SendMessage from "../SendMessage";
 import { ChannelHeader } from "../Channel/ChannelHeader";
 import { ServerUsersList } from "../server/ServerUsersList";
+import UserProfile from "../UserProfile";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -68,6 +69,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
           <div className='main-page-container__item main-page-container__item--3'></div>
           <div className='main-page-container__item main-page-container__item--4'>
             {leftTab}
+            <UserProfile />
           </div>
           <div className='main-page-container__item main-page-container__item--5'></div>
           <div className='main-page-container__item main-page-container__item--6'></div>

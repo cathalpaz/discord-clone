@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import { useEffect, useState } from "react"
 import { logout } from "../../store/session"
 import { useModal } from "../../context/Modal"
 import { useHistory } from 'react-router-dom'
@@ -8,7 +9,10 @@ function UserModal() {
     const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+    const [color, setColor] = useState(user ? user.banner_color : '')
     const { closeModal } = useModal()
+
+    console.log(user)
 
     const handleLogout = () => {
         dispatch(logout())
@@ -16,14 +20,27 @@ function UserModal() {
         history.push('/')
     }
 
+    useEffect(() => {
+        user.banner_color = color
+    }, [color])
+
+
     return (
         <div className='user-modal'>
-            <div className="user-modal_banner" />
+            <div style={{backgroundColor: user.banner_color}} className="user-modal_banner" />
             <div className="user-modal_top">
                 <div className="user-modal_title">
                     <img className="user-modal_avatar" src={user.avatar} /> {user.username}
                 </div>
-                <button onClick={handleLogout} className="user-modal_logout">Logout</button>
+                <form>
+                    <input className='user-modal_color'
+                        type="color"
+                        name="color"
+                        id="color"
+                        value={color}
+                        onChange={e => setColor(e.target.value)}
+                        />
+                </form>
             </div>
             <div className="user-modal_info">
                 <div>
@@ -39,6 +56,7 @@ function UserModal() {
                     <div>{user.birthday}</div>
                 </div>
             </div>
+            <button onClick={handleLogout} className="user-modal_logout">Logout</button>
         </div>
     )
 }

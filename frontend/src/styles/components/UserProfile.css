@@ -1,15 +1,25 @@
-.user_profile-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 8px;
+.user_prof-container {
+    width: 240px;
+    position: fixed;
+    bottom: 0;
+    padding: 8px;
     background-color: var(--secondary-background-darker);
+    display: flex;
+    justify-content: space-between;
 }
 
-.user_profile-info {
+.user_prof-info {
     display: flex;
+    gap: 0.5rem;
+    color: var(--light-accent);
+}
+
+.user_prof-settings > button {
+    background: none;
+    border: none;
+    color: var(--light-accent);
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .user-modal {
@@ -21,12 +31,14 @@
     color: var(--white);
     border-radius: 10px;
     margin: -10px;
-    padding-bottom: 20px;
+}
+
+.user-modal_color {
+    margin-right: 10px;
 }
 
 .user-modal_banner {
     height: 80px;
-    background-color: var(--primary);
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -55,13 +67,15 @@
 }
 
 .user-modal_logout {
-    height: 25px;
+    height: 30px;
     width: 115px;
     background-color: hsl(359, 87%, 60%);
     border: none;
     border-radius: 5px;
-    color: var(--white);
+    color: white;
     cursor: pointer;
+    margin: 15px 20px;
+    font-size: 14px;
 }
 
 .user-modal_info {
