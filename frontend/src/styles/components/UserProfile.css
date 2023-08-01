@@ -1,0 +1,13 @@
+.user_profile-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 8px;
+    gap: 5rem;
+}
+
+.user_profile-info {
+    display: flex;
+}
