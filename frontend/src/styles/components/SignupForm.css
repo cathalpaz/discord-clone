@@ -29,12 +29,12 @@
     border: 0;
     border-radius: .2rem;
     margin-bottom: 1rem;
-    color: #FFFFFF;
-    caret-color: #FFFFFF;
+    color: var(--white);
+    caret-color: var(--white);
 }
 
 .signup-form > input:focus {
-    caret-color: #FFFFFF;
+    caret-color: var(--white);
 }
 
 .signup-form > label {
@@ -63,7 +63,7 @@
     margin-bottom: 1rem;
     width: 95%;
     margin-top: 0.4rem;
-    color: #FFFFFF;
+    color: var(--white);
 }
 
 .signup-form-pronouns > input {
@@ -127,7 +127,7 @@
     margin-bottom: 1rem;
     width: 30%;
     margin-top: 0.4rem;
-    color: #FFFFFF;
+    color: var(--white);
 }
 
 .signup-errors {

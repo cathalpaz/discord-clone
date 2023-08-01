@@ -40,7 +40,7 @@
 
 .channel-menu-option:hover {
     background-color: var(--primary);
-    color: #FFFFFF;
+    color: var(--white);
 }
 
 .channel-menu-option-delete {
@@ -55,7 +55,7 @@
 
 .channel-menu-option-delete:hover {
     background-color: #DA373C;
-    color: #FFFFFF;
+    color: var(--white);
 }
 
 .channel-menu-container {
