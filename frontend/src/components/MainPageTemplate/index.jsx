@@ -23,6 +23,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
   const { serverId, channelId } = useParams();
   const [oldServerId, setOldServerId] = useState(serverId);
+  const [selectedState, setSelectedState] = useState("")
   const dispatch = useDispatch();
   const loc = location.pathname.split("/").filter((el) => el !== "");
   const singleServerId = useSelector((state) => state.singleServer.id);
@@ -30,8 +31,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
   useEffect(() => {
     // TODO clean this up
     (async () => {
-      console.log("THIS IS RUNNING");
-      console.log(oldServerId, serverId);
       if (
         location.pathname.split("/").filter((el) => el !== "").length == 2 &&
         serverId !== oldServerId
@@ -51,10 +50,19 @@ function MainPageTemplate({ leftTab, rightTab }) {
     })();
   }, [dispatch]);
 
+
+  let selected = document.querySelector(".active")
+  useEffect(() => {
+    selected = document.querySelector(".active")
+  }, []);
+
+
   //   TODO again not a good way of doing this. Come back to this.... or else
   if (serverId && loc.length == 2 && !singleServerId) {
     return <MainLoader />;
   }
+
+  console.log(selected)
 
   return (
     <>
@@ -69,14 +77,14 @@ function MainPageTemplate({ leftTab, rightTab }) {
             </div> */}
           </div>
           <div className='main-page-container__item main-page-container__item--3'>
-            <FriendBar/>
+            <FriendBar selectedTab={selectedState} setSelectedTab={setSelectedState}/>
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
             {leftTab}
             <UserProfile />
           </div>
           <div className='main-page-container__item main-page-container__item--5'>
-            <FriendList />
+            <FriendList  selectedTab={selectedState}/>
           </div>
           <div className='main-page-container__item main-page-container__item--6'></div>
           <div className='main-page-container__item main-page-container__item--7'></div>

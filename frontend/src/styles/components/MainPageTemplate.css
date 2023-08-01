@@ -6,7 +6,7 @@
     'servers general-list send-message userlist'; */
     width: 100vw;
     height: 100vh;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     grid-template-rows: .3fr 7fr .5fr;
     grid-template-columns: 72px 240px 1fr 232px;
 }

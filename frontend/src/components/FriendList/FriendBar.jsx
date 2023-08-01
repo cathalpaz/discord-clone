@@ -1,12 +1,10 @@
-import React, { useState, useEffect }  from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect }  from 'react'
 
-export default function FriendBar() {
-    const navbarItem = (navItem) => {
-        setSelectedNavItem(navItem);
-      };
-    const [selectedNavItem, setSelectedNavItem] = useState("online");
-    const [searchQuery, setSearchQuery] = useState("");
+export default function FriendBar({ selectedTab, setSelectedTab }) {
+
+    useEffect(() => {
+        setSelectedTab("Online")
+    },[setSelectedTab])
 
   return (
     <div className="friends-bar">
@@ -20,31 +18,31 @@ export default function FriendBar() {
         <div className="text-bar">
             <button
               className={
-                selectedNavItem === "online"
+                selectedTab === "Online"
                   ? "active nav-button online-friend"
                   : "nav-button online-friend"
               }
-              onClick={() => navbarItem("online")}
+              onClick={() => setSelectedTab("Online")}
             >
               Online
             </button>
             <button
               className={
-                selectedNavItem === "all"
+                selectedTab === "All"
                   ? "active nav-button online-friend"
                   : "nav-button online-friend"
               }
-              onClick={() => navbarItem("all")}
+              onClick={() => setSelectedTab("All")}
             >
               All
             </button>
             <button
               className={
-                selectedNavItem === "add"
+                selectedTab === "Add"
                   ? "active nav-button add-friend"
                   : "nav-button add-friend"
               }
-              onClick={() => navbarItem("add")}
+              onClick={() => setSelectedTab("Add")}
             >
               Add Friend
             </button>
