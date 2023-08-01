@@ -1,0 +1,23 @@
+.send-message-input {
+    background-color: var(--message);
+    width: 100%;
+    margin: 1rem 0px;
+    margin-bottom: 1.4rem;
+    border: 0;
+    border-radius: .5rem;
+    color: var(--white);
+    padding-left: 3.4rem;
+    font-family: ggsans;
+    font-size: 16px;
+}
+
+.send-message-input:focus {
+    outline: none;
+}
+
+.send-message-container {
+    display: flex;
+    height: 100%;
+    margin: 0px 1rem;
+    margin-right: 1.3rem;
+}

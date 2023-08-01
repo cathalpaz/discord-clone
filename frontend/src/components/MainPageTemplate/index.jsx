@@ -12,6 +12,7 @@ import "../../styles/components/MainPageTemplate.css";
 import { thunkGetServerInfo } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
+import SendMessage from "../SendMessage";
 import { ChannelHeader } from "../Channel/ChannelHeader";
 import { ServerUsersList } from "../server/ServerUsersList";
 
