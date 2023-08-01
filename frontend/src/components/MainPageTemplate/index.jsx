@@ -94,7 +94,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
 
           </div>
           <div className="main-page-container__item main-page-container__item--6">
-
+            <SendMessage />
           </div>
           <div className="main-page-container__item main-page-container__item--7">
 
