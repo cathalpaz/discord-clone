@@ -32,7 +32,8 @@ function FriendList({ isLoaded }) {
           <h2>Online</h2>
           {friendStore &&
             friendStore.map((friend) => (
-              <div key={friend.id}>{friend.username}</div>
+              <div key={friend.id}>{friend.username}
+              </div>
             ))}
         </div>
       );
@@ -43,6 +44,7 @@ function FriendList({ isLoaded }) {
           {friendStore &&
             friendStore.map((friend) => (
               <div key={friend.id}>
+                <p>{friend.id}</p>
                 <p>{friend.username}</p>
               </div>
             ))}
