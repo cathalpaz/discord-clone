@@ -1,0 +1,46 @@
+.delete-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 1rem;
+    border: 5px solid black;
+    border-radius: .5rem;
+    background-color: var(--background);
+}
+
+.delete-modal-container > button {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    width: 20rem;
+    border: 2.5px solid black;
+    box-shadow: 2px 2px black;
+    color: white;
+    height: 2.5rem;
+    margin-top: .5rem;
+}
+
+.delete-modal-button-yes {
+    background-color: var(--delete);
+}
+
+.delete-modal-button-yes:hover {
+    background-color: var(--delete-dark);
+    cursor: pointer;
+}
+.delete-modal-button-no {
+    background-color: rgb(102,102,102)
+}
+
+.delete-modal-button-no:hover {
+    background-color: rgb(145, 145, 145);
+    cursor: pointer;
+}
+
+.delete-modal-container > h2 {
+    margin: 0px;
+    margin-bottom: .5rem;
+    font-size: 28px;
+}
+
+.delete-modal-container > p {
+    font-weight: 500;
+}

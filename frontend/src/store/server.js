@@ -1,3 +1,5 @@
+import { actionTypes } from "./actionTypes";
+
 // constants
 const GET_SERVERS = "server/GET_SERVERS";
 const CREATE_SERVER = "server/CREATE_SERVER";
@@ -69,6 +71,12 @@ export default function serverReducer(state = initialState, action) {
       orderedServers.push(action.server.id);
       newState.orderedServers = orderedServers;
       return newState;
+    }
+    case actionTypes.DELETE_SERVER: {
+      const newState = { ...state }
+      delete newState[action.payload.serverId]
+      newState.orderedServers = newState.orderedServers.filter((id) => id !== action.payload.serverId)
+      return newState
     }
     default:
       return state;

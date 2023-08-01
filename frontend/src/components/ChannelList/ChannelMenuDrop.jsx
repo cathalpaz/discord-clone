@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
+import OpenModalSpan from "../OpenModalSpan";
+import DeleteModal from "../DeleteModal";
 import "../../styles/components/ChannelMenuDrop.css"
 
 function ChannelMenuDrop({ user }) {
@@ -23,8 +25,10 @@ function ChannelMenuDrop({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
+      if (ulRef.current) {
+        if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+        }
       }
     };
 
@@ -34,7 +38,7 @@ function ChannelMenuDrop({ user }) {
   }, [showMenu]);
 
   const ulClassName = "channel-menu-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+
 
   return (
     <>
@@ -46,7 +50,9 @@ function ChannelMenuDrop({ user }) {
               <p className="channel-menu-option">Edit Server Profile<i class="fa-solid fa-pencil"></i></p>
               <p className="channel-menu-option">Create a Channel<i class="fa-solid fa-circle-plus"></i></p>
               <p className="channel-menu-border"></p>
-              <p className="channel-menu-option-delete">Delete Server<i class="fa-solid fa-trash-can"></i></p>
+              <span>
+                <OpenModalSpan className={"channel-menu-option-delete"} modalComponent={<DeleteModal type={"server"}/>} buttonText={"Delete Server"}/>
+              </span>
           </div>
         ) : (
           <>
