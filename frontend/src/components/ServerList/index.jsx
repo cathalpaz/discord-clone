@@ -28,7 +28,6 @@ function ServerList() {
 
   return (
     <>
-
       <div className='serverlist-container'>
         <div onClick={sendToMain} className='serverlist-friend-button'>
           <i className='fa-brands fa-discord fa-lg'></i>

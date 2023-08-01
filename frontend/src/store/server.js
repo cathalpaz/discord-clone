@@ -28,11 +28,10 @@ export const thunkGetAllServers = () => async (dispatch) => {
   }
 };
 
-export const thunkCreateServer = (server) => async (dispatch) => {
+export const thunkCreateServer = (serverForm) => async (dispatch) => {
   const res = await fetch("/api/servers/new", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(server),
+    body: serverForm,
   });
   if (res.ok) {
     const data = await res.json();
