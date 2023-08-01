@@ -12,6 +12,7 @@ import { DmListContainer } from "./components/MainPageTemplate/DmListContainer";
 import NotFoundPage from "./components/NotFoundPage";
 import FriendList from "./components/FriendList";
 import ChannelBrowser from "./components/ChannelList/ChannelBrowser";
+import Chat from "./components/WebSocket";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route path='/register'>
             <SignupFormPage />
+          </Route>
+          <Route path="/websocket">
+            <Chat />
           </Route>
           <Route>
             <NotFoundPage />
