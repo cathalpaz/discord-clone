@@ -14,6 +14,7 @@ import { DmListContainer } from "./DmListContainer";
 import { thunkGetServerInfo } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
+import SendMessage from "../SendMessage";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -104,7 +105,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
 
           </div>
           <div className="main-page-container__item main-page-container__item--6">
-
+            <SendMessage />
           </div>
           <div className="main-page-container__item main-page-container__item--7">
 
