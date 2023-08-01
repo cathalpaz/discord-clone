@@ -6,6 +6,12 @@
   font-family: ggsans;
 }
 
+.general-view-header {
+  padding: 0px 8px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
 .divider {
   height: 24px;
   width: 1px;
@@ -57,8 +63,9 @@
   cursor: pointer;
   transition: background-color 0.3s;
   border-radius: 5px;
-  padding: 8px 14px;
+  padding: 2px 8px;
   background-color: transparent;
+  font-size: 16px;
 }
 
 .nav-button.online-friend:hover {
@@ -67,12 +74,13 @@
 }
 
 .add-friend {
-  background-color: #2DC770;
+  background-color: #248046;
 }
 
 .active {
   background-color: #424549;
-  padding: 8px 14px;
+  padding: 2px 8px;
+  margin: 0px 8px;
 }
 
 
