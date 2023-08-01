@@ -36,7 +36,9 @@
 .main-page-container__item--3 {
     grid-column: 3/5;
     grid-row: 1/2;
-    border: 1px solid pink;
+    background-color: var(--background);
+    /* border: 1px solid pink; */
+    border-bottom: 2px solid var(--secondary-background);
 }
 
 .main-page-container__item--4 {
@@ -49,7 +51,7 @@
 .main-page-container__item--5 {
     grid-column: 3/4;
     grid-row: 2/3;
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
 }
 
 .main-page-container__item--6 {

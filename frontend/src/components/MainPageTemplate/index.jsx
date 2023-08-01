@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import {
   useLocation,
   useParams,
-  Route
+  Route,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import ServerList from "../ServerList";
 import "../../styles/components/MainPageTemplate.css";
-import FriendList from "../FriendList";
-import { DmListContainer } from "./DmListContainer";
 import { thunkGetServerInfo } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
+import { ChannelHeader } from "../Channel/ChannelHeader";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -55,60 +54,44 @@ function MainPageTemplate({ leftTab, rightTab }) {
   return (
     <>
       <div className='main-page-container'>
-        <Route path="/@">
-          <div className="main-page-container__item main-page-container__item--1">
+        <Route path='/@'>
+          <div className='main-page-container__item main-page-container__item--1'>
             <ServerList />
           </div>
-          <div className="main-page-container__item main-page-container__item--2">
+          <div className='main-page-container__item main-page-container__item--2'>
             {/* <div className='dm-list-header'>
               <ChannelMenuDrop />
             </div> */}
           </div>
-          <div className="main-page-container__item main-page-container__item--3">
-
+          <div className='main-page-container__item main-page-container__item--3'></div>
+          <div className='main-page-container__item main-page-container__item--4'>
+            {leftTab}
           </div>
-          <div className="main-page-container__item main-page-container__item--4">
-          {leftTab}
-
-          </div>
-          <div className="main-page-container__item main-page-container__item--5">
-
-          </div>
-          <div className="main-page-container__item main-page-container__item--6">
-
-          </div>
-          <div className="main-page-container__item main-page-container__item--7">
-
-          </div>
+          <div className='main-page-container__item main-page-container__item--5'></div>
+          <div className='main-page-container__item main-page-container__item--6'></div>
+          <div className='main-page-container__item main-page-container__item--7'></div>
           {/* <div className='general-view-container'> */}
-            {/* {rightTab} */}
+          {/* {rightTab} */}
           {/* </div> */}
         </Route>
-        <Route path="/:serverId/:channelId">
-        <div className="main-page-container__item main-page-container__item--1">
+        <Route path='/:serverId/:channelId'>
+          <div className='main-page-container__item main-page-container__item--1'>
             <ServerList />
           </div>
-          <div className="main-page-container__item main-page-container__item--2">
+          <div className='main-page-container__item main-page-container__item--2'>
             <div className='dm-list-header'>
               <ChannelMenuDrop />
             </div>
           </div>
-          <div className="main-page-container__item main-page-container__item--3">
-
+          <div className='main-page-container__item main-page-container__item--3'>
+            <ChannelHeader />
           </div>
-          <div className="main-page-container__item main-page-container__item--4">
-          {leftTab}
-
+          <div className='main-page-container__item main-page-container__item--4'>
+            {leftTab}
           </div>
-          <div className="main-page-container__item main-page-container__item--5">
-
-          </div>
-          <div className="main-page-container__item main-page-container__item--6">
-
-          </div>
-          <div className="main-page-container__item main-page-container__item--7">
-
-          </div>
+          <div className='main-page-container__item main-page-container__item--5'></div>
+          <div className='main-page-container__item main-page-container__item--6'></div>
+          <div className='main-page-container__item main-page-container__item--7'></div>
         </Route>
       </div>
     </>

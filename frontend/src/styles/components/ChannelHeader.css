@@ -1,0 +1,13 @@
+.channel-header-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+.channel-header__title {
+    font-size: 1.3rem;
+}
+
+i.channel-header__title__icon {
+    color: var(--secondary-accent);
+}
