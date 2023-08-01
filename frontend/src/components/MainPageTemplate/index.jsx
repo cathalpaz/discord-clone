@@ -92,7 +92,9 @@ function MainPageTemplate({ leftTab, rightTab }) {
             {leftTab}
           </div>
           <div className='main-page-container__item main-page-container__item--5'></div>
-          <div className='main-page-container__item main-page-container__item--6'></div>
+          <div className='main-page-container__item main-page-container__item--6'>
+            <SendMessage />
+          </div>
           <div className='main-page-container__item main-page-container__item--7'>
             <ServerUsersList />
           </div>
