@@ -10,6 +10,7 @@ import { updateSelectedChannelId } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import OpenModalButton from "../OpenModalButton";
 import CreateChannelModal from '../CreateChannelModal';
+import UserProfile from '../UserProfile'
 
 export default function ChannelBrowser() {
   const serverStore = useSelector((state) => state.servers.orderedServers);
@@ -60,6 +61,7 @@ export default function ChannelBrowser() {
           </>
         ))}
       </div>
+      <UserProfile />
     </div>
   );
 }

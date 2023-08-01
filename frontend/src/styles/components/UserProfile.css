@@ -2,10 +2,12 @@
     width: 240px;
     position: fixed;
     bottom: 0;
-    padding: 8px;
-    background-color: var(--secondary-background-darker);
+    padding: 8px 12px;
+    background-color: #232428;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 50px;
 }
 
 .user_prof-info {
@@ -49,6 +51,10 @@
     justify-content: space-between;
     height: 50px;
     padding: 0px 10px;
+}
+
+.user-modal_top > form > input {
+    cursor: pointer;
 }
 
 .user-modal_title {
