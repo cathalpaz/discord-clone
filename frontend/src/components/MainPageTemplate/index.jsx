@@ -15,6 +15,8 @@ import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
 import SendMessage from "../SendMessage";
 import { ChannelHeader } from "../Channel/ChannelHeader";
 import { ServerUsersList } from "../server/ServerUsersList";
+import FriendBar from "../FriendList/FriendBar";
+import FriendList from "../FriendList";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -65,11 +67,15 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <ChannelMenuDrop />
             </div> */}
           </div>
-          <div className='main-page-container__item main-page-container__item--3'></div>
+          <div className='main-page-container__item main-page-container__item--3'>
+            <FriendBar/>
+          </div>
           <div className='main-page-container__item main-page-container__item--4'>
             {leftTab}
           </div>
-          <div className='main-page-container__item main-page-container__item--5'></div>
+          <div className='main-page-container__item main-page-container__item--5'>
+            <FriendList />
+          </div>
           <div className='main-page-container__item main-page-container__item--6'></div>
           <div className='main-page-container__item main-page-container__item--7'></div>
           {/* <div className='general-view-container'> */}

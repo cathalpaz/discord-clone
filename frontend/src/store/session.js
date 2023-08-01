@@ -96,13 +96,30 @@ export const signUp =
     }
   };
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case actionTypes.SET_SESSION:
-      return { user: action.payload };
-    case actionTypes.REMOVE_SESSION:
-      return { user: null };
-    default:
-      return state;
+  export const fetchFriends = () => async (dispatch) => {
+    try {
+      const response = await fetch("/api/@me/friends");
+      if (response.ok) {
+        const data = await response.json();
+        const friends = data.friends;
+        dispatch(setFriends(friends));
+      } else {
+        throw new Error("Failed to fetch friends data");
+      }
+    } catch (error) {
+
+    }
+  };
+
+  export default function reducer(state = initialState, action) {
+    switch (action.type) {
+      case actionTypes.SET_SESSION:
+        return { ...state, user: action.payload };
+      case actionTypes.REMOVE_SESSION:
+        return { ...state, user: null };
+      case actionTypes.SET_FRIENDS:
+        return { ...state, friends: action.payload };
+      default:
+        return state;
+    }
   }
-}
