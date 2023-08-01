@@ -32,10 +32,6 @@ export default function ChannelBrowser() {
   };
   return (
     <div className='dm-list-container'>
-      <div className='dm-list-header'>
-        <p>{server?.name}</p>
-        <ChannelMenuDrop />
-      </div>
       <div className='channel-list-container'>
         <div className='channel-list-textchannels'>
           <p>TEXT CHANNELS</p>{" "}

@@ -12,7 +12,7 @@ export default () => {
   }
 
   const sendToMain = () => {
-    history.push("/main")
+    history.push("/@")
   }
 
   const sendToLanding = () => {

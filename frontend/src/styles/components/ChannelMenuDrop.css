@@ -4,13 +4,14 @@
 
 .channel-menu-button{
     color: #CDCDD0;
+    padding-right: .3rem;
 }
 
 .channel-menu-dropdown {
     position: absolute;
     background-color: var(--secondary-background-darker);
     margin-top: 16rem;
-    margin-left: 0.6rem;
+    margin-left: -0.4rem;
     width: 13.76rem;
     height: 12rem;
     list-style-type: none;
@@ -67,4 +68,24 @@
     margin-top: .25rem;
     margin-bottom: .25rem;
     margin-left: .25rem;
+}
+
+.dm-list-header {
+    padding: 0.75rem 1rem;
+    background-color: var(--secondary-background);
+    border-bottom: 1px solid var(--secondary-background-darker);
+    font-family: ggsans;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dm-list-header:hover {
+    background-color: var(--accent);
+    cursor: pointer;
+}
+
+.dm-list-header > p {
+    font-weight: 600;
+    font-size: 17px;
 }

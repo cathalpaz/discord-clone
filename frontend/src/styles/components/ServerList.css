@@ -56,32 +56,7 @@
     border-radius: 1rem;
 }
 
-
-.dm-list-header {
-    width: 100%;
-    padding:  1rem 0rem;
-    background-color: var(--secondary-background);
-    border-bottom: 1px solid var(--background);
-    font-family: ggsans;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.dm-list-header:hover {
-    background-color: var(--accent);
-    cursor: pointer;
-}
-
-.dm-list-header > p {
-    padding-left: 1rem;
-    font-weight: 600;
-    font-size: 17px;
-    padding-bottom: 0.1rem;
-}
-
 .general-view-header {
-    position: fixed;
     width: 100%;
     height: 3.05rem;
     background-color: #2B2D31;
