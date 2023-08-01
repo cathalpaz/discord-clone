@@ -56,15 +56,16 @@
     border-radius: 1rem;
 }
 
+
 .dm-list-header {
-    position: fixed;
-    width: 15rem;
-    height: 3.05rem;
+    width: 100%;
+    padding:  1rem 0rem;
     background-color: var(--secondary-background);
     border-bottom: 1px solid var(--background);
     font-family: ggsans;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .dm-list-header:hover {

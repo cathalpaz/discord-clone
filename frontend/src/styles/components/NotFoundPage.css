@@ -1,0 +1,73 @@
+.nav-bar-container {
+    color: var(--secondary-background-darker);
+    font-family: ggsans;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    margin-top: 1.3rem;
+    gap: 2.6rem;
+}
+
+.nav-bar-logo {
+    font-family: ginto;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.nav-bar-links {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+.nav-bar-main-button {
+    border: 0;
+    border-radius: 2.5rem;
+    height: 2.35rem;
+    font-size: 13px;
+    width: 7rem;
+    margin-left: 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.nav-bar-login-button {
+    border: 0;
+    border-radius: 2.5rem;
+    height: 2.35rem;
+    font-size: 13px;
+    width: 7rem;
+    margin-left: 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+
+.not-found-body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.not-found-body-container > img {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-items: center;
+}
+
+.not-found-body-container > h1 {
+    color: var(--primary);
+    font-family: ginto;
+}
+
+.not-found-body-container > p {
+    width: 40rem;
+    margin-top: 1rem;
+    font-size: 18px;
+    line-height: 1.8rem;
+    margin-bottom: 3rem;
+}

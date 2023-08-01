@@ -11,7 +11,7 @@
     border-bottom-color: #515151 !important;
     border-bottom-width: 1px !important;
     border-width: 0px;
-    border-color: #ffffff;
+    border-color: var(--white);
     border-style: solid;
     border-bottom-style: solid;
   }

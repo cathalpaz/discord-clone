@@ -14,6 +14,9 @@ export default function ChannelBrowser() {
   const { serverId, channelId } = useParams();
   const dispatch = useDispatch();
   const server = useSelector((state) => state.servers[serverId]);
+  const selectedChannel = useSelector(
+    (state) => state.singleServer.selectedChannelId
+  );
   const history = useHistory();
 
   useEffect(() => {
@@ -30,8 +33,8 @@ export default function ChannelBrowser() {
   return (
     <div className='dm-list-container'>
       <div className='dm-list-header'>
-        <ChannelMenuDrop />
         <p>{server?.name}</p>
+        <ChannelMenuDrop />
       </div>
       <div className='channel-list-container'>
         <div className='channel-list-textchannels'>
@@ -44,13 +47,14 @@ export default function ChannelBrowser() {
         {server.channels.map((channel) => (
           <>
             <span
+              className={`${selectedChannel === channel.id && "highlight"}`}
               onClick={() => {
                 dispatch(updateSelectedChannelId(channel.id));
                 history.push(`/${serverId}/${channel.id}`);
               }}
             >
               {channel.type == "text" ? (
-                <i class='fa-solid fa-hashtag fa-md'></i>
+                <i className={`fa - solid fa-hashtag fa-md`}></i>
               ) : (
                 ""
               )}

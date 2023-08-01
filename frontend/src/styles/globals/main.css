@@ -9,4 +9,6 @@
 
 body {
     font-family: ggsans;
+    width: 100%;
+    overflow: hidden;
 }

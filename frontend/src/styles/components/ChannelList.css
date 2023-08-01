@@ -1,3 +1,11 @@
+.dm-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    
+}
+
 .channel-list-container {
     display: flex;
     flex-direction: column;
@@ -15,6 +23,12 @@
     border-radius: 0.2rem;
     padding-left: 0.65rem;
 }
+
+.channel-list-container > span.highlight {
+    color: var(--light-background);
+    background-color: var(--background);
+}
+
 
 .channel-list-container > span:hover {
     background-color: var(--primary-background);
