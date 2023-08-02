@@ -43,7 +43,7 @@ class Server(db.Model):
             'channels': [channel.to_dict() for channel in self.channels],
             'owner': self.owner.to_dict(),
             'server_profiles': [server_profile.to_dict() for server_profile in self.server_profiles],
-            'users': [user.to_dict() for user in self.users],
+            'users': [user.to_dict_extra() for user in self.users],
             'public': self.public
         }
 

@@ -1,0 +1,202 @@
+.update-modal-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    /* grid-template-rows: .27fr 7fr .5fr; */
+    grid-template-columns: 1.19fr 740px 1fr;
+}
+
+.update-modal-menu-options-container {
+    grid-column: 1/1;
+    background-color: var(--secondary-background);
+    height: 100%;
+    padding-top: 3.75rem;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
+.update-modal-display {
+    grid-column: 2/2;
+    background-color: var(--background);
+    height: 100%;
+    padding: 0px 2.5rem;
+    padding-top: 3.75rem;
+}
+
+.update-modal-esc-container {
+    grid-column: 3/3;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.3rem;
+}
+
+.update-modal-esc-button {
+    color: var(--text-color-accent);
+    font-size: 38px;
+    width: fit-content;
+}
+
+.update-modal-esc-button:hover {
+    cursor: pointer;
+    color: var(--text-coolor);
+}
+
+.update-modal-display-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-modal-avatar-container {
+    display: flex;
+    margin-top: 1.15rem;
+    margin-left: 0.8rem;
+    gap: 1.7rem;
+}
+
+.update-modal-avatar-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.update-modal-avatar-picture > img {
+    width: 100px;
+    height: 100px;
+    border-radius: 4rem;
+    box-shadow: 0px .5rem 20px rgba(0,0,0,.6);
+}
+
+.update-modal-avatar-button > button {
+    height: 2.38rem;
+    width: 7.25rem;
+    background-color: var(--background);
+    color: var(--white);
+    border: 1px solid var(--gray-button-accent);
+    border-radius: .2rem;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    margin-top: 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: ggsans;
+}
+
+.update-modal-avatar-button > button:hover {
+    background-color: var(--gray-button-accent);
+    cursor: pointer;
+}
+
+.update-modal-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-modal-headers {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    color: var(--text-color-accent);
+    margin-top: 1.2rem;
+    margin-bottom: .5rem;
+}
+
+.update-modal-name > input {
+    background-color: var(--secondary-background-darker);
+    border-radius: .2rem;
+    font-size: 16px;
+    border: 0;
+    width: 320px;
+    height: 2.5rem;
+    color: var(--light-background);
+    padding-left: .6rem;
+}
+
+.update-modal-name > input::placeholder {
+    color: var(--light-background);
+    font-family: ggsans;
+    font-size: 16px;
+}
+
+.update-modal-border {
+    border-bottom: 1px solid var(--gray-button-accent);
+    margin: 2.5rem 0px;
+}
+
+.update-modal-submit-button {
+    background-color: var(--save-button);
+    border: 0;
+    border-radius: .2rem;
+    color: var(--white);
+    height: 32px;
+    width: 115px;
+    font-family: ggsans;
+    font-weight: 500;
+    margin-right: .7rem;
+}
+
+.update-modal-submit-button:hover {
+    cursor: pointer;
+    background-color: var(--save-button-accent);
+}
+
+.update-modal-reset-button {
+    background-color: var(--secondary-background);
+    border: 0;
+    border-radius: .2rem;
+    color: var(--white);
+    height: 32px;
+    width: 115px;
+    font-family: ggsans;
+    font-weight: 500;
+}
+
+.update-modal-reset-button:hover {
+    cursor: pointer;
+    background-color: var(--secondary-background-darker);
+}
+
+.update-modal-submit-button-container {
+    background-color: black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    height: 3rem;
+    border-radius: .5rem;
+    margin-top: 5rem;
+}
+
+.update-modal-menu-options {
+    width: 192px;
+}
+
+.update-modal-menu-options-choice {
+    padding-left: .8rem;
+    margin: .5rem 0px;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.update-modal-menu-options-choice:hover {
+    cursor: pointer;
+    border-radius: .2rem;
+    background-color: var(--background);
+}
+
+.update-modal-privacy-select{
+    background-color: var(--secondary-background-darker);
+    color: var(--light-background);
+    border: 0;
+    height: 2rem;
+    width: 5rem;
+    font-family: ggsans;
+}
+
+.update-modal-servername-error {
+    margin-top: .4rem;
+    font-weight: 600;
+    color: var(--errors);
+}

@@ -4,15 +4,15 @@ import "../../styles/components/FriendList.css";
 import { fetchFriends } from "../../store/session";
 
 function FriendList({ selectedTab }) {
-    const sessionUser = useSelector((state) => state.session.user);
-    const friendStore = useSelector((state) => state.session.friends);
-    const [selectedNavItem, setSelectedNavItem] = useState("online");
-    const [searchQuery, setSearchQuery] = useState("");
-    const [onlineFriends, setOnlineFriends] = useState([]);
-    const [allFriends, setAllFriends] = useState([]);
-    const [isAddingFriend, setIsAddingFriend] = useState(false);
-    const dispatch = useDispatch();
-    const [hoverStates, setHoverStates] = useState({});
+  const sessionUser = useSelector((state) => state.session.user);
+  const friendStore = useSelector((state) => state.session.friends);
+  const [selectedNavItem, setSelectedNavItem] = useState("online");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [onlineFriends, setOnlineFriends] = useState([]);
+  const [allFriends, setAllFriends] = useState([]);
+  const [isAddingFriend, setIsAddingFriend] = useState(false);
+  const dispatch = useDispatch();
+  const [hoverStates, setHoverStates] = useState({});
 
 
     //hovering a name shows the usersid
@@ -24,21 +24,32 @@ function FriendList({ selectedTab }) {
     };
 
 
-    useEffect(() => {
-        dispatch(fetchFriends());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchFriends());
+  }, [dispatch]);
 
-    const searchMessages = (event) => {
-        setSearchQuery(event.target.value);
-    };
-
-    //this is so we can style the "Online" & "All" text.
-    const headingClassName = "heading-class"
-
-    //make friends list go away if not on correct tab
-    const handleAddFriendClick = () => {
-      setIsAddingFriend(!isAddingFriend);
+  const searchMessages = (event) => {
+    setSearchQuery(event.target.value);
   };
+
+  //this is so we can style the "Online" & "All" text.
+  const headingClassName = "heading-class";
+
+  //make friends list go away if not on correct tab
+  const handleAddFriendClick = () => {
+    setIsAddingFriend(!isAddingFriend);
+  };
+  console.log(searchQuery);
+
+  let filteredFriends = [];
+
+  if (friendStore?.length) {
+    filteredFriends = friendStore.filter((friend) =>
+      friend.user.username.includes(searchQuery)
+    );
+  }
+
+  console.log(filteredFriends);
 
     const renderContent = () => {
       if (selectedTab === "Online") {
@@ -89,23 +100,23 @@ function FriendList({ selectedTab }) {
   };
 
   return (
-      <div className="discord">
-          <div className="search-container">
-              <div className="search-input-container">
-                  <input
-                      type="text"
-                      placeholder="Search"
-                      value={searchQuery}
-                      onChange={searchMessages}
-                      className="search-input-bar"
-                  />
-                  <i className="fa-solid fa-magnifying-glass search-icon"></i>
-              </div>
-          </div>
-          <div className="friend-list">
-              <div className="content-container">{renderContent()}</div>
-          </div>
+    <div className='discord'>
+      <div className='search-container'>
+        <div className='search-input-container'>
+          <input
+            type='text'
+            placeholder='Search'
+            value={searchQuery}
+            onChange={searchMessages}
+            className='search-input-bar'
+          />
+          <i className='fa-solid fa-magnifying-glass search-icon'></i>
+        </div>
       </div>
+      <div className='friend-list'>
+        <div className='content-container'>{renderContent()}</div>
+      </div>
+    </div>
   );
 }
 
