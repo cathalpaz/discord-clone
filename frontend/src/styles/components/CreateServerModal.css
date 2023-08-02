@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 1.5rem;
+    /* padding: 1.5rem; */
     border-radius: inherit;
 }
 .server_form__file-input {
@@ -23,6 +23,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.5rem;
 }
 .server_form__file-upload-btn {
     padding: 20px;
@@ -58,6 +59,7 @@
     text-align: center;
     color: #36393e;
     margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .server_form-title > span {
@@ -70,6 +72,7 @@
     font-size: 12px;
     font-weight: bold;
     color: #36393e;
+    padding: 0 1.5rem;
 }
 
 .server_form input {
@@ -87,6 +90,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #f2f3f5;
+    padding: 16px 1.5rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .server_form-btns button {
@@ -101,4 +108,12 @@
 
 .server_form-btns p {
     cursor: pointer;
+}
+.server_form-btns p:hover {
+    text-decoration: underline;
+}
+
+.errors {
+    margin-top: 5px;
+    color: red;
 }

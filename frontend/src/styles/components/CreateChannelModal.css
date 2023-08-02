@@ -1,8 +1,9 @@
 .create-channel_modal {
     background-color: var(--background);
-    border-radius: 15px;
+    border-radius: 0.5rem;
     width: 460px;
     color: var(--light-accent);
+
 }
 
 
@@ -103,7 +104,7 @@
 
 #name-input {
     padding-left: 30px;
-    width: 368px;
+    width: 100%;
     position: relative;
 }
 
@@ -113,6 +114,8 @@
     height: 70px;
     display: flex;
     justify-content: flex-end;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 
 .create-channel_footer-btns {
@@ -140,8 +143,4 @@
     color: var(--white);
     border-radius: 3px;
     cursor: pointer;
-}
-
-.create-channel_btn:disabled {
-    color: var(--message);
 }

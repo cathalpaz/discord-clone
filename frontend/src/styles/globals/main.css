@@ -13,3 +13,13 @@ body {
     height: 100%;
     overflow: hidden;
 }
+
+
+button.primary {
+    background-color: var(--primary);
+}
+button.bg {
+    background-color: var(--background);
+    padding: 5px 20px;
+    color: var(--white)
+}

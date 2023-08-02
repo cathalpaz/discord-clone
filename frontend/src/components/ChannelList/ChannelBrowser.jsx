@@ -64,7 +64,7 @@ export default function ChannelBrowser() {
 
 
   const handleDelete = () => {
-    setModalContent(<DeleteModal type='channel' />)
+    setModalContent(<DeleteModal type='channel' cId ={selectedChannel} />)
   }
 
   useEffect(() => {

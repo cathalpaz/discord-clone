@@ -137,8 +137,27 @@
     border-radius: 10px;
 
 }
+.form__group {
+    display: flex;
+    justify-content: space-between;
+}
+.form__group input {
+    border: none;
+    border-radius: 5px;
+    padding: 1px 2px;
+}
 
 .user-modal_info-name {
     color: var(--light-accent);
     font-size: 14px;
+}
+.user-modal__btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button[disabled] {
+    filter: brightness(50%);
+    cursor: not-allowed;
 }

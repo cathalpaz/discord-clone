@@ -27,6 +27,13 @@ export const editChannel = (channel) => {
   }
 }
 
+export const deleteChannel = (channelId) => {
+  return {
+    type: actionTypes.DELETE_CHANNEL,
+    channelId
+  }
+}
+
 export const updateSelectedChannelId = (id) => ({
   type: actionTypes.UPDATE_CHANNEL_ID,
   payload: id,
@@ -96,6 +103,19 @@ export const thunkEditChannel = (channel) => async(dispatch) => {
   }
 }
 
+export const thunkDeleteChannel = (channelId) => async(dispatch) => {
+  const res = await fetch(`/api/channels/${channelId}`, {
+    method: 'DELETE',
+  })
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(deleteChannel(data))
+  } else {
+    const errorData = await res.json();
+    return errorData;
+  }
+}
+
 export const thunkDeleteSingleServer = (serverId) => async (dispatch) => {
   try {
     const res = await fetch(`/api/servers/${serverId}`, {
@@ -116,7 +136,7 @@ export const thunkUpdateSingleServer = (serverId, serverForm) => async (dispatch
   try {
     const res = await fetch(`/api/servers/${serverId}`, {
       method: "PUT",
-      body: JSON.stringify(serverForm)
+      body: serverForm
     })
     if (res.ok) {
       const data = await res.json()
@@ -167,12 +187,23 @@ export const singleServerReducer = (state = initialState, action) => {
       newState.channels[channel.id] = channel
       return newState
     }
+    case actionTypes.DELETE_CHANNEL: {
+      const newState = {...state}
+      delete newState.channels[action.channelId]
+      const newOrdered = newState.channels.orderedChannelsList.filter(n => n !== action.channelId)
+      newState.channels.orderedChannelsList = newOrdered
+      return newState
+    }
     case actionTypes.DELETE_SERVER: {
       return initialState;
     }
     case actionTypes.UPDATE_SERVER: {
-      console.log('initialstate', initialState)
-      console.log('action', action)
+      const newState = {...state}
+      console.log('newstate', newState)
+      newState["name"] = action.payload.server.name
+      newState["public"] = action.payload.server.public
+      newState["avatar"] = action.payload.server.avatar
+      return newState
     }
     default: {
       return state;

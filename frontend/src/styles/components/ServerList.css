@@ -48,6 +48,7 @@
     font-size: 30px;
     transition-duration: .15s;
     transition-timing-function: ease-out;
+    cursor: pointer;
 }
 
 .serverlist-add-server > button:hover {

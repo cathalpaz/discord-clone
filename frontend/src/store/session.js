@@ -6,6 +6,10 @@ const setUser = (user) => ({
   type: actionTypes.SET_SESSION,
   payload: user,
 });
+const updateUser = (user) => ({
+  type: actionTypes.UPDATE_USER,
+  payload: user,
+});
 
 const removeUser = () => ({
   type: actionTypes.REMOVE_SESSION,
@@ -55,6 +59,24 @@ export const login = (credentials, password) => async (dispatch) => {
     }
   } else {
     return ["An error occurred. Please try again."];
+  }
+};
+
+export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/users/${userId}`, {
+      method: "PUT",
+      body: userFormData,
+    });
+    if (res.ok) {
+      const data = await res.json();
+      console.log("this is the data", data);
+      dispatch(updateUser(data));
+      return data;
+    }
+  } catch (err) {
+    console.log("there was an error", err);
+    return err;
   }
 };
 
@@ -111,6 +133,13 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: null };
     case actionTypes.SET_FRIENDS:
       return { ...state, friends: action.payload };
+    case actionTypes.UPDATE_USER: {
+      const newState = structuredClone(state);
+      console.log(action.payload);
+      const user = action.payload;
+      newState.user = { ...newState.user, ...user };
+      return newState;
+    }
     default:
       return state;
   }
