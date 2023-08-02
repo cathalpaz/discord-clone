@@ -17,14 +17,15 @@ function OpenModalSpan({
   };
 
   const icon = () => {
-    if (className == "channel-menu-option") {
+    if (className == "channel-menu-option channel-menu-option__edit") {
       return <i class="fa-solid fa-circle-plus"></i>
     } else if (className == "channel-menu-option-delete" ){
-
       return <i class="fa-solid fa-trash-can"></i>
+    } else if ( className == "channel-menu-option channel-menu-option__create" ) {
+      return <i class="fa-solid fa-pencil"></i>
     }
   }
-  
+
   return (
     <span className={className} onClick={onClick}>{buttonText} {icon()}</span>
   );

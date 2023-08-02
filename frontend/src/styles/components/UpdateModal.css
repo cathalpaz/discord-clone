@@ -1,0 +1,100 @@
+.update-modal-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+
+}
+
+.update-modal-menu-options {
+    background-color: var(--secondary-background);
+    height: 100%;
+    min-width: 37.5%;
+    padding-top: 4rem;
+}
+
+.update-modal-display {
+    background-color: var(--background);
+    height: 100%;
+    width: 815px;
+    padding: 0px 2.75rem;
+    padding-top: 4rem;
+}
+
+.update-modal-esc-container {
+    background-color: var(--background);
+    width: 30.7%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.75rem;
+}
+
+.update-modal-esc-button {
+    color: var(--light-background);
+    font-size: 38px;
+    width: fit-content;
+}
+
+.update-modal-esc-button:hover {
+    cursor: pointer;
+    color: var(--text-coolor);
+}
+
+.update-modal-display-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-modal-avatar {
+    display: flex;
+    align-items: flex-end;
+    margin: 1.5rem 0.8rem;
+    gap: 2.1rem;
+}
+
+.update-modal-avatar > img {
+    width: 108px;
+    height: 108px;
+    border-radius: 4rem;
+    box-shadow: 0px .5rem 20px rgba(0,0,0,.6);
+}
+
+.update-modal-avatar > button {
+    height: 2.6rem;
+    width: 7.9rem;
+    background-color: var(--background);
+    color: var(--white);
+    border: 1px solid var(--gray-button);
+    border-radius: .2rem;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    margin-bottom: .45rem;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: ggsans;
+}
+
+.update-modal-avatar > button:hover {
+    background-color: var(--gray-button);
+    cursor: pointer;
+}
+
+.update-modal-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-modal-name > p {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    color: var(--light-background);
+    margin-top: 1.8rem;
+    margin-bottom: .6rem;
+}
+
+.update-modal-name > input {
+    background-color: var(--secondary-background-darker);
+    border-radius: .2rem;
+    border: 0;
+    width: 320px;
+}

@@ -1,12 +1,12 @@
 :root {
   --background: #32353a;
-  --secondary-background: #292d2f;
+  --secondary-background: #2B2D31;
   --secondary-background-darker: #1E1F22;
   --accent: #36393e;
   --light-accent: #949BA4;
   --primary: #5865f2;
   --primary-accent: #7983F5;
-  --light-background: #fafafa;
+  --light-background: #DBDEE1;
   --text-color: #fafafa;
   --secondary: #57f287;
   --errors: #F23F42;
@@ -16,6 +16,7 @@
   --secondary-accent: #757983;
   --message: #3a3b3e;
   --login-and-logout-link: #00A8FC;
+  --gray-button: #4E5058;
 }
 
 /* TODO adjust these properly */
