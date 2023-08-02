@@ -43,7 +43,7 @@
   flex-direction: row;
   align-items: center;
   text-decoration: none;
-  color: white;
+  color: var(--white);
 }
 
 .text-bar {
@@ -51,14 +51,14 @@
   flex-direction: row;
   font-family: ggsans;
   text-decoration: none;
-  color: white;
+  color: var(--white);
   list-style-type: none;
   justify-content: space-between;
 }
 
 .nav-button {
   margin: 5px;
-  color: white;
+  color: var(--white);
   border: none;
   text-decoration: none;
   cursor: pointer;

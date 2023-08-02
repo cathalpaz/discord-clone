@@ -35,6 +35,11 @@ const deleteSingleServer = (serverId) => ({
   payload: serverId,
 });
 
+const updateSingleServer = (serverId) => ({
+  type: actionTypes.UPDATE_SERVER,
+  payload: serverId,
+});
+
 export const thunkGetServerInfo = (serverId) => async (dispatch) => {
   try {
     const res = await fetch(`/api/servers/${serverId}`);
@@ -81,6 +86,23 @@ export const thunkDeleteSingleServer = (serverId) => async (dispatch) => {
   }
 };
 
+export const thunkUpdateSingleServer = (serverId, serverForm) => async (dispatch) => {
+  console.log('serverid', serverId)
+  console.log('serverform', serverForm)
+  try {
+    const res = await fetch(`/api/servers/${serverId}`, {
+      method: "PUT",
+      body: JSON.stringify(serverForm)
+    })
+    if (res.ok) {
+      const data = await res.json()
+      dispatch(updateSingleServer(data))
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const singleServerReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_CHANNEL_ID: {
@@ -114,6 +136,10 @@ export const singleServerReducer = (state = initialState, action) => {
     }
     case actionTypes.DELETE_SERVER: {
       return initialState;
+    }
+    case actionTypes.UPDATE_SERVER: {
+      console.log('initialstate', initialState)
+      console.log('action', action)
     }
     default: {
       return state;

@@ -112,7 +112,7 @@
     border: 5px solid var(--secondary-background-darker);
     border-radius: 100%;
     margin-bottom: 30px;
-    background-color: white;
+    background-color: var(--white);
 }
 
 .user-modal_logout {
@@ -121,7 +121,7 @@
     background-color: hsl(359, 87%, 60%);
     border: none;
     border-radius: 5px;
-    color: white;
+    color: var(--white);
     cursor: pointer;
     margin: 15px 20px;
     font-size: 14px;

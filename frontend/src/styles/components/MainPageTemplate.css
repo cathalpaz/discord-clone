@@ -1,12 +1,7 @@
 .main-page-container {
     display: grid;
-    /* grid-template-areas:
-    'servers server-header main-header main-header'
-    'servers general-list main-messages userlist'
-    'servers general-list send-message userlist'; */
     width: 100vw;
     height: 100vh;
-    /* border: 2px solid red; */
     grid-template-rows: .27fr 7fr .5fr;
     grid-template-columns: 72px 240px 1fr 232px;
 }
