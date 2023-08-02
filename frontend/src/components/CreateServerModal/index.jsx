@@ -19,7 +19,6 @@ function CreateServerModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newServerForm = new FormData();
     newServerForm.append("name", name);
     newServerForm.append("owner_id", user.id);
@@ -88,10 +87,10 @@ function CreateServerModal() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <p className='errors'>{errors.name}</p>
+          <p className='errors'>{errors}</p>
         </label>
         <div className='server_form-btns'>
-          <p>Back</p>
+          <p onClick={() => closeModal()}>Back</p>
           <button type='submit'>Create</button>
         </div>
       </form>
