@@ -6,6 +6,7 @@ import { signUp } from "../../store/session";
 import { thunkGetAllServers } from "../../store/server";
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
+import SearchServers from '../SearchServers'
 import "../../styles/components/ServerList.css";
 
 function ServerList() {
@@ -25,6 +26,11 @@ function ServerList() {
   const sendToMain = () => {
     history.push("/@");
   };
+
+  const sendToDiscover = () => {
+    history.push('/discovery')
+  }
+
 
   return (
     <>
@@ -58,6 +64,11 @@ function ServerList() {
               modalComponent={<CreateServerModal />}
               buttonText={"+"}
             />
+          </span>
+          <span className='serverlist-add-server'>
+
+              <i className="fa-solid fa-compass" onClick={sendToDiscover}></i>
+
           </span>
         </div>
       </div>
