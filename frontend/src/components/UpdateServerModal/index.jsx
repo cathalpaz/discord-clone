@@ -1,15 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useModal } from "../../context/Modal";
-import "../../styles/components/UpdateModal.css";
+import "../../styles/components/UpdateServerModal.css";
 import { thunkUpdateSingleServer } from "../../store/singleServer";
-import { UploadIcon } from "../Icons/UploadIcon";
 
-function UpdateModal({ type }) {
+function UpdateServerModal({ type }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
-  const { serverId, channelId } = useParams();
   const [privacy, setPrivacy] = useState("");
   const [serverName, setServerName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -48,7 +45,7 @@ function UpdateModal({ type }) {
       fileRef.current.click();
     }
   };
-  console.log(avatar);
+
   return (
     <div className="update-modal-container">
       <div className="update-modal-menu-options-container">
@@ -177,4 +174,4 @@ function UpdateModal({ type }) {
   );
 }
 
-export default UpdateModal;
+export default UpdateServerModal;
