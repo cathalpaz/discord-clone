@@ -1,5 +1,11 @@
 
 export default function AddFriend({ selectedTab, setSelectedTab }) {
+
+    useEffect(() => {
+        setSelectedTab("Add");
+    }, [setSelectedTab]);
+
+
     return (
       <div className="content-add">
         <div>Add Friend</div>

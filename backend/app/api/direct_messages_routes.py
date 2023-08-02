@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, make_response
 from flask_login import current_user, login_required
 from ..models import db, DirectMessage, User, Friend
 from sqlalchemy import or_, and_
@@ -32,8 +32,6 @@ def single_direct_message(id):
     return {'message': dm.to_dict()}
 
 # GET all friends
-
-
 @direct_messages_routes.route('/friends')
 @login_required
 def all_friends():
@@ -46,6 +44,24 @@ def all_friends():
                for friend in get_friends if friend.status == 'ACCEPTED']
     return {'friends': friends}
 
+# Send a friend request
+@direct_messages_routes.route('/friends/<int:id>/send-request', methods=['POST'])
+@login_required
+def send_friend_request(id):
+    existing_request = Friend.query.filter(
+        ((Friend.user_to == current_user.id) & (Friend.user_from == id)) |
+        ((Friend.user_to == id) & (Friend.user_from == current_user.id))
+    ).first()
+
+    if existing_request:
+        raise ForbiddenError("Friend request already sent")
+
+    new_friend_request = Friend(user_to=id, user_from=current_user.id, status="PENDING")
+    db.session.add(new_friend_request)
+    db.session.commit()
+
+    response_message = "Friend request has been sent"
+    return make_response(response_message, 200)
 
 # GET DMS from a specific friend
 @direct_messages_routes.route('/friends/<int:id>')
