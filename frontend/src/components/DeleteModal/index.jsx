@@ -24,16 +24,20 @@ function DeleteModal({ type }) {
     }
   }
 
-  if (type === "server") {
-    word = "Server";
-  } else if (type === "channel") {
-    word = "Channel";
+  if (type === 'channel') {
+    word = '#'
   }
+
+  // if (type === "server") {
+  //   word = "Server";
+  // } else if (type === "channel") {
+  //   word = "Channel";
+  // }
 
   return (
     <div className="delete-modal-container">
-      <h2>Confirm Delete</h2>
-      <p>Are you sure you want to remove this {word.toLowerCase()}?</p>
+      <h2>Delete Channel</h2>
+      <p>Are you sure you want to delete {word}?</p>
       <button
         className="delete-modal-button-yes"
         onClick={() => handleSubmit()}
