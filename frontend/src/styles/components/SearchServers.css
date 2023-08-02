@@ -97,6 +97,7 @@
     width: 450px;
     height: 35px;
     outline: none;
+    border: none;
 }
 
 .fa-magnifying-glass {

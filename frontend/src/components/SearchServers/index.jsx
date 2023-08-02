@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import ServerList from "../ServerList";
 import DirectMessageSearch from "../DirectMessage/DirectMessageSearch";
@@ -7,8 +7,17 @@ import UserProfile from '../UserProfile';
 import DirectMessage from '../DirectMessage';
 import FriendList from '../FriendList';
 import '../../styles/components/SearchServers.css'
+import { thunkGetPublicServers } from '../../store/server';
 
 function SearchServers() {
+  const dispatch = useDispatch()
+  const pubServers = useSelector(state => state.servers.publicServers)
+  const servers = useSelector(state => state.servers)
+
+
+  useEffect(() => {
+    dispatch(thunkGetPublicServers());
+  }, [dispatch]);
 
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState('')
@@ -46,6 +55,11 @@ function SearchServers() {
                   />
                 <i class="fa-solid fa-magnifying-glass"></i>
               </div>
+            </div>
+            <div className='search_channels-display'>
+                {pubServers.map((id) => (
+                  <div>{servers[id].name}</div>
+                ))}
             </div>
           </div>
     </div>
