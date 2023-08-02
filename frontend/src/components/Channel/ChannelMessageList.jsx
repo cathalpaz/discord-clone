@@ -1,9 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 import "../../styles/components/ChannelMessageList.css";
 import { ChannelMessage } from "./ChannelMessage";
-export function ChannelMessageList() {
+import { updateChannelMessages } from "../../store/singleServer";
+export function ChannelMessageList({ socket }) {
+  if (!socket) return false;
+  const { channelId, serverId } = useParams();
   const users = useSelector((state) => state.singleServer?.users);
+  const channel = useSelector(
+    (state) => state.singleServer?.channels[channelId]
+  );
+  const server = useSelector((state) => state.singleServer);
   const messages = useSelector((state) => {
     if (state.singleServer.selectedChannelId) {
       if (state.singleServer.channels[state.singleServer.selectedChannelId])
@@ -13,6 +22,17 @@ export function ChannelMessageList() {
     }
     return [];
   });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    socket.on(`server-channel-messages-${serverId}`, (data) => {
+      console.log("THIS IS THE MESSAGE", data);
+      dispatch(updateChannelMessages(data));
+    });
+    return () => {
+      socket.off(`server-channel-messages-${serverId}`);
+    };
+  }, [serverId]);
   console.log("these are the messages", messages);
   return (
     <div className='channel-message-list__container'>

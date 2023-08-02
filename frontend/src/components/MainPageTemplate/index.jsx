@@ -22,6 +22,7 @@ import ChannelBrowser from "../ChannelList/ChannelBrowser";
 import { ChannelMessageList } from "../Channel/ChannelMessageList";
 import DirectMessage from "../DirectMessage";
 import DirectMessageSearch from "../DirectMessage/DirectMessageSearch";
+import { io } from "socket.io-client";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -31,6 +32,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
   const dispatch = useDispatch();
   const loc = location.pathname.split("/").filter((el) => el !== "");
   const singleServerId = useSelector((state) => state.singleServer.id);
+  const [socketInstance, setSocketInstance] = useState(null);
 
   useEffect(() => {
     // TODO clean this up
@@ -51,6 +53,13 @@ function MainPageTemplate({ leftTab, rightTab }) {
         await dispatch(thunkGetServerInfo(serverId));
         setOldServerId(serverId);
       }
+      setSocketInstance(
+        io("localhost:5000/", {
+          cors: {
+            origin: "*",
+          },
+        })
+      );
     })();
   }, [dispatch]);
 
@@ -105,13 +114,13 @@ function MainPageTemplate({ leftTab, rightTab }) {
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
             <UserProfile />
-            <ChannelBrowser />
+            <ChannelBrowser socket={socketInstance} />
           </div>
           <div className='main-page-container__item main-page-container__item--5'>
-            <ChannelMessageList />
+            <ChannelMessageList socket={socketInstance} />
           </div>
           <div className='main-page-container__item main-page-container__item--6'>
-            <SendMessage />
+            <SendMessage socket={socketInstance} />
           </div>
           <div className='main-page-container__item main-page-container__item--7'>
             <ServerUsersList />

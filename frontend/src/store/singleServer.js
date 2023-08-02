@@ -23,16 +23,16 @@ export const addChannel = (channel) => {
 export const editChannel = (channel) => {
   return {
     type: actionTypes.EDIT_CHANNEL,
-    channel
-  }
-}
+    channel,
+  };
+};
 
 export const deleteChannel = (channelId) => {
   return {
     type: actionTypes.DELETE_CHANNEL,
-    channelId
-  }
-}
+    channelId,
+  };
+};
 
 export const updateSelectedChannelId = (id) => ({
   type: actionTypes.UPDATE_CHANNEL_ID,
@@ -52,6 +52,11 @@ const deleteSingleServer = (serverId) => ({
 const updateSingleServer = (serverId) => ({
   type: actionTypes.UPDATE_SERVER,
   payload: serverId,
+});
+
+export const updateChannelMessages = (data) => ({
+  type: actionTypes.SEND_CHANNEL_MESSAGE,
+  payload: data,
 });
 
 export const thunkGetServerInfo = (serverId) => async (dispatch) => {
@@ -86,35 +91,35 @@ export const thunkCreateChannel = (serverId, channel) => async (dispatch) => {
   }
 };
 
-export const thunkEditChannel = (channel) => async(dispatch) => {
+export const thunkEditChannel = (channel) => async (dispatch) => {
   const res = await fetch(`/api/channels/${channel.id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(channel)
-  })
+    body: JSON.stringify(channel),
+  });
   if (res.ok) {
-    const data = await res.json()
-    dispatch(editChannel(data))
+    const data = await res.json();
+    dispatch(editChannel(data));
     dispatch(updateSelectedChannelId(data.id));
-    return data
+    return data;
   } else {
     const errorData = await res.json();
     return errorData;
   }
-}
+};
 
-export const thunkDeleteChannel = (channelId) => async(dispatch) => {
+export const thunkDeleteChannel = (channelId) => async (dispatch) => {
   const res = await fetch(`/api/channels/${channelId}`, {
-    method: 'DELETE',
-  })
+    method: "DELETE",
+  });
   if (res.ok) {
-    const data = await res.json()
-    dispatch(deleteChannel(data))
+    const data = await res.json();
+    dispatch(deleteChannel(data));
   } else {
     const errorData = await res.json();
     return errorData;
   }
-}
+};
 
 export const thunkDeleteSingleServer = (serverId) => async (dispatch) => {
   try {
@@ -130,22 +135,23 @@ export const thunkDeleteSingleServer = (serverId) => async (dispatch) => {
   }
 };
 
-export const thunkUpdateSingleServer = (serverId, serverForm) => async (dispatch) => {
-  console.log('serverid', serverId)
-  console.log('serverform', serverForm)
-  try {
-    const res = await fetch(`/api/servers/${serverId}`, {
-      method: "PUT",
-      body: serverForm
-    })
-    if (res.ok) {
-      const data = await res.json()
-      dispatch(updateSingleServer(data))
+export const thunkUpdateSingleServer =
+  (serverId, serverForm) => async (dispatch) => {
+    console.log("serverid", serverId);
+    console.log("serverform", serverForm);
+    try {
+      const res = await fetch(`/api/servers/${serverId}`, {
+        method: "PUT",
+        body: serverForm,
+      });
+      if (res.ok) {
+        const data = await res.json();
+        dispatch(updateSingleServer(data));
+      }
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
-  }
-};
+  };
 
 export const singleServerReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -181,29 +187,43 @@ export const singleServerReducer = (state = initialState, action) => {
     case actionTypes.EDIT_CHANNEL: {
       // const newState = {...state}
       // newState.channels = {...newState.channels, orderedChannelsList: ... }
-      const newState = structuredClone(state)
-      const { channel } = action.channel
-      console.log('1111', action.channel.channel);
-      newState.channels[channel.id] = channel
-      return newState
+      const newState = structuredClone(state);
+      const { channel } = action.channel;
+      console.log("1111", action.channel.channel);
+      newState.channels[channel.id] = channel;
+      return newState;
     }
     case actionTypes.DELETE_CHANNEL: {
-      const newState = {...state}
-      delete newState.channels[action.channelId]
-      const newOrdered = newState.channels.orderedChannelsList.filter(n => n !== action.channelId)
-      newState.channels.orderedChannelsList = newOrdered
-      return newState
+      const newState = { ...state };
+      delete newState.channels[action.channelId];
+      const newOrdered = newState.channels.orderedChannelsList.filter(
+        (n) => n !== action.channelId
+      );
+      newState.channels.orderedChannelsList = newOrdered;
+      return newState;
     }
     case actionTypes.DELETE_SERVER: {
       return initialState;
     }
     case actionTypes.UPDATE_SERVER: {
-      const newState = {...state}
-      console.log('newstate', newState)
-      newState["name"] = action.payload.server.name
-      newState["public"] = action.payload.server.public
-      newState["avatar"] = action.payload.server.avatar
-      return newState
+      const newState = { ...state };
+      console.log("newstate", newState);
+      newState["name"] = action.payload.server.name;
+      newState["public"] = action.payload.server.public;
+      newState["avatar"] = action.payload.server.avatar;
+      return newState;
+    }
+    case actionTypes.SEND_CHANNEL_MESSAGE: {
+      const newState = structuredClone(state);
+      const { channel_id } = action.payload;
+      if (newState.channels[channel_id]) {
+        const oldMessages = newState.channels[channel_id].messages;
+        newState.channels[channel_id].messages = [
+          ...oldMessages,
+          { ...action.payload },
+        ];
+      }
+      return newState;
     }
     default: {
       return state;
