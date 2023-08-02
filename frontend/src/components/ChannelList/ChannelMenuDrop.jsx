@@ -16,7 +16,7 @@ function ChannelMenuDrop({ user }) {
   const server = useSelector((state) => state.servers[serverId]);
   const sessionUser = useSelector((state) => state.session.user)
   const ulRef = useRef();
-
+  console.log('server', server)
 
   const openMenu = () => {
     if (showMenu) return;
@@ -50,7 +50,8 @@ function ChannelMenuDrop({ user }) {
   return (
     <>
       <p>{server?.name}</p>
-      {showMenu ? <i onClick={openMenu} class="fa-solid fa-xmark channel-menu-button"></i> : <i onClick={openMenu} class="fa-solid fa-angle-down channel-menu-button fa-sm"></i> }
+      { server?.owner_id === sessionUser.id ? showMenu ? <i onClick={openMenu} class="fa-solid fa-xmark channel-menu-button"></i> : <i onClick={openMenu} class="fa-solid fa-angle-down channel-menu-button fa-sm"></i>
+        : ""}
       <ul className={ulClassName} ref={ulRef}>
         {sessionUser ? (
           <div className="channel-menu-container">

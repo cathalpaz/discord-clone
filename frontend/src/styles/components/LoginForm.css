@@ -88,8 +88,7 @@
 }
 
 .login-form > button:hover {
-    background-color: var(--primary);
-    filter: saturate(300%);
+    background-color: var(--primary-accent);
     cursor: pointer;
 }
 
