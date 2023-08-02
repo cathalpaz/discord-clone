@@ -21,7 +21,23 @@
     -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
 .server-users-list__users::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and other Webkit browsers */
+    width: 5px;
+}
+
+.server-users-list__users::-webkit-scrollbar-track {
+    background: var(--secondary-background); 
+}
+
+.server-users-list__users::-webkit-scrollbar-thumb {
+    background: var(--secondary-background);
+}
+
+.server-users-list__users:hover::-webkit-scrollbar-thumb {
+    background: var(--secondary-background-darker);
+}
+
+.server-users-list__users:hover::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 .server-user__container {
     display: flex;
