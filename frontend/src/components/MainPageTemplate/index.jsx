@@ -18,12 +18,13 @@ import { ServerUsersList } from "../server/ServerUsersList";
 import FriendBar from "../FriendList/FriendBar";
 import FriendList from "../FriendList";
 import UserProfile from "../UserProfile";
+import ChannelBrowser from "../ChannelList/ChannelBrowser";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
   const { serverId, channelId } = useParams();
   const [oldServerId, setOldServerId] = useState(serverId);
-  const [selectedState, setSelectedState] = useState("")
+  const [selectedState, setSelectedState] = useState("");
   const dispatch = useDispatch();
   const loc = location.pathname.split("/").filter((el) => el !== "");
   const singleServerId = useSelector((state) => state.singleServer.id);
@@ -52,16 +53,15 @@ function MainPageTemplate({ leftTab, rightTab }) {
 
   useEffect(() => {
     if (singleServerId == null) {
-      console.log("USEEFFECT IS RUNNING!")
-      setOldServerId(null)
+      console.log("USEEFFECT IS RUNNING!");
+      setOldServerId(null);
     }
-  }, [singleServerId])
+  }, [singleServerId]);
 
   //   TODO again not a good way of doing this. Come back to this.... or else
   if (serverId && loc.length == 2 && !singleServerId) {
     return <MainLoader />;
   }
-
 
   return (
     <>
@@ -76,14 +76,16 @@ function MainPageTemplate({ leftTab, rightTab }) {
             </div> */}
           </div>
           <div className='main-page-container__item main-page-container__item--3'>
-            <FriendBar selectedTab={selectedState} setSelectedTab={setSelectedState}/>
+            <FriendBar
+              selectedTab={selectedState}
+              setSelectedTab={setSelectedState}
+            />
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
-            {leftTab}
             <UserProfile />
           </div>
           <div className='main-page-container__item main-page-container__item--5'>
-            <FriendList  selectedTab={selectedState}/>
+            <FriendList selectedTab={selectedState} />
           </div>
           <div className='main-page-container__item main-page-container__item--6'></div>
           <div className='main-page-container__item main-page-container__item--7'></div>
@@ -104,7 +106,8 @@ function MainPageTemplate({ leftTab, rightTab }) {
             <ChannelHeader />
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
-            {leftTab}
+            <UserProfile />
+            <ChannelBrowser />
           </div>
           <div className='main-page-container__item main-page-container__item--5'></div>
           <div className='main-page-container__item main-page-container__item--6'>

@@ -109,6 +109,7 @@ dont know how to do that. -zach */
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  padding-bottom: 15px;
 }
 
 .search-icon {
