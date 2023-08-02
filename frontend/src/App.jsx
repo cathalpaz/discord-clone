@@ -28,8 +28,11 @@ function App() {
           <Route exact path='/'>
             <LandingPage />
           </Route>
-          <Route path='/:serverId/:channelId'>
-            {/* <ChannelList /> */}
+          <Route exact path='/@/:directMessageId'>
+            <MainPageTemplate
+            />
+          </Route>
+          <Route exact path='/:serverId/:channelId'>
             <MainPageTemplate
               leftTab={<ChannelBrowser />}
               rightTab={<ChannelList />}
@@ -37,8 +40,6 @@ function App() {
           </Route>
           <Route path='/@'>
             <MainPageTemplate
-              // leftTab={<DmListContainer />}
-              // rightTab={<FriendList />}
             />
           </Route>
           <Route path='/login'>
