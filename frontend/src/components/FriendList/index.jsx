@@ -25,9 +25,12 @@ function FriendList({ selectedTab }) {
     }));
   };
 
-  const filteredFriends = friendStore.filter((friend) =>
+  let filteredFriends = []
+    if (friendStore) {
+      filteredFriends = friendStore.filter((friend) =>
     friend.user.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    );
+    }
 
   const renderContent = () => {
     if (selectedTab === "Online") {
