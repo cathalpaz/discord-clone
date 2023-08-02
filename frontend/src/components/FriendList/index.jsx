@@ -35,12 +35,13 @@ function FriendList({ selectedTab }) {
               <div className="content-online">
                   <h2 className={headingClassName}>{selectedTab}</h2>
                   {friendStore &&
-                      friendStore.map((friend) => (
-                          <div key={friend.id}>
-                              {friend.user_from}
-                              <p>{friend.user.username}</p>
-                          </div>
-                      ))}
+                    friendStore.map((friend) => (
+                        <div key={friend.id}>
+                        <img src={friend.user.avatar} alt="" />
+                        <p>{friend.user.username}</p>
+                        <p>#{friend.id}</p>
+                        </div>
+                    ))}
               </div>
           );
       } else if (selectedTab === "All") {
@@ -50,8 +51,9 @@ function FriendList({ selectedTab }) {
                   {friendStore &&
                       friendStore.map((friend) => (
                           <div key={friend.id}>
-                              <p>{friend.id}</p>
+                              <img src={friend.user.avatar} alt="" />
                               <p>{friend.user.username}</p>
+                              <p>#{friend.id}</p>
                           </div>
                       ))}
               </div>

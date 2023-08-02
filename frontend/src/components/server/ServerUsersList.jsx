@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 
 import "../../styles/components/ServerUsers.css";
+import { ServerUser } from "./ServerUser";
 
 export function ServerUsersList() {
   const serverUsers = useSelector((state) => state.singleServer?.users);
@@ -13,7 +14,11 @@ export function ServerUsersList() {
         </header>
         <div className='server-users-list__users'>
           {serverUsers.map((user) => {
-            return <div> {user.username}</div>;
+            return (
+              <>
+                <ServerUser user={user} />
+              </>
+            );
           })}
         </div>
       </div>

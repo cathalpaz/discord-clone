@@ -9,8 +9,11 @@ import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import OpenModalButton from "../OpenModalButton";
-import CreateChannelModal from '../CreateChannelModal';
-import UserProfile from '../UserProfile'
+import CreateChannelModal from "../CreateChannelModal";
+import UserProfile from "../UserProfile";
+import DeleteModal from "../DeleteModal";
+import { useModal } from "../../context/Modal";
+import { thunkEditChannel } from "../../store/singleServer";
 
 export default function ChannelBrowser() {
   const history = useHistory();
@@ -19,38 +22,42 @@ export default function ChannelBrowser() {
   const dispatch = useDispatch();
   const server = useSelector((state) => state.singleServer);
   const user = useSelector((state) => state.session.user);
-  const thisChannel = server.channels[channelId]
+  const channels = useSelector((state) => state.singleServer?.channels);
+  const { setModalContent } = useModal()
 
   const selectedChannel = useSelector(
     (state) => state.singleServer.selectedChannelId
     );
 
-
+  const thisChannel = channels[selectedChannel]
     useEffect(() => {
     dispatch(thunkGetAllServers);
   }, [dispatch]);
 
+  console.log("channels", channels);
+  console.log(selectedChannel);
+
   if (!server) {
     return null;
   }
+
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(thisChannel.name)
   const [errors, setErrors] = useState({})
 
   const handleEdit = (e) => {
     e.stopPropagation()
-    console.log('hi')
     setIsEditing(true)
   }
-  console.log(isEditing)
-  const handleSaveClick = () => {
-    console.log('hi')
+
+  const handleSaveClick = (e) => {
     setIsEditing(false);
     setName(thisChannel.name)
     setErrors({})
   };
+
   const handleDelete = () => {
-    alert('delete here!')
+    setModalContent(<DeleteModal type='channel' />)
   }
 
   useEffect(() => {
@@ -59,11 +66,32 @@ export default function ChannelBrowser() {
 
   const checkErrors = () => {
     const errors = {};
-
     if (name.length < 2)
-      errors.name = "Name must be at least 2 characters";
-
+      errors.name = "Name too short!";
     setErrors(errors);
+  }
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+    if (e.key === 'Escape') {
+      handleSaveClick();
+    }
+  };
+  const handleSubmit = async(e) => {
+    console.log('1231231231231', name)
+    const editedChannel = {
+      id: thisChannel.id,
+      name,
+      type: 'text'
+    }
+    console.log('yooo', editedChannel)
+    const data = await thunkEditChannel(editedChannel)
+    if (data.errors) {
+      setErrors(data.errors)
+    } else {
+      setIsEditing(false)
+    }
   }
 
   return (
@@ -72,35 +100,40 @@ export default function ChannelBrowser() {
         <div className='channel-list-textchannels'>
           <p>TEXT CHANNELS</p>{" "}
           {server.owner_id == user.id ? (
-            <OpenModalButton className='channel-list-add' modalComponent={<CreateChannelModal serverId={serverId} />} buttonText={<i className='fa-solid fa-plus'></i>}/>
-          ): null}
+            <OpenModalButton
+              className='channel-list-add'
+              modalComponent={<CreateChannelModal serverId={serverId} />}
+              buttonText={<i className='fa-solid fa-plus'></i>}
+            />
+          ) : null}
         </div>
-        {server.channels.orderedChannelsList.map((channel) => (
+        {channels.orderedChannelsList.map((cId) => (
           <div className="channel-row">
             <span
-              className={`${selectedChannel === channel.id && "highlight"}`}
+              className={`${selectedChannel === cId && "highlight"}`}
               onClick={() => {
-                dispatch(updateSelectedChannelId(channel.id));
-                history.push(`/${serverId}/${channel.id}`);
+                dispatch(updateSelectedChannelId(cId));
+                history.push(`/${serverId}/${cId}`);
               }}
             >
-              {channel.type == "text" ? (
+              {channels[cId]?.type == "text" ? (
                 <i className={`fa - solid fa-hashtag fa-md`}></i>
               ) : (
                 ""
               )}
-              {isEditing ? (
+
+              {selectedChannel === cId && isEditing ? (
                   <input
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
                   onBlur={handleSaveClick}
-                  autoFocus
+                  onKeyDown={handleKeyPress}
                 />
                 ) : (
                   <>
-                    {channel.name}
-                    {selectedChannel === channel.id ? (
+                    {channels[cId].name}
+                    {selectedChannel === cId? (
                       <div>
                         <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
                         <i className="fa-solid fa-trash" onClick={handleDelete}></i>

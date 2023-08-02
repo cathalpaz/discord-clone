@@ -22,6 +22,26 @@
     width: 26rem;
     gap: .4rem;
 }
+.file__input {
+   display: none; 
+}
+.file__input-btn {
+    border-radius: 50px;
+    width: 100px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.avatar__preview {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+.avatar__preview  > img{ 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .signup-form > input {
     height: 2.5rem;

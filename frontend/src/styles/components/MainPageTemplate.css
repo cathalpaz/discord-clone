@@ -63,7 +63,8 @@
 .main-page-container__item--7 {
     grid-column: 4/5;
     grid-row: 2/4;
-    border: 1px solid red;
+    border-left: 2px solid var(--accent);
+    background-color: var(--secondary-background);
 }
 
 

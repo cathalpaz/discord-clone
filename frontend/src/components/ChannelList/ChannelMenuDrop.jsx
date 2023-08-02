@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
+import OpenModalSpan from "../OpenModalSpan";
+import DeleteModal from "../DeleteModal";
 import "../../styles/components/ChannelMenuDrop.css"
+import CreateChannelModal from "../CreateChannelModal";
 
 function ChannelMenuDrop({ user }) {
   const dispatch = useDispatch();
@@ -19,12 +22,19 @@ function ChannelMenuDrop({ user }) {
     setShowMenu(true);
   };
 
+  const closeMenu = (e) => {
+    setShowMenu(false);
+  };
+
+
   useEffect(() => {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
+      if (ulRef.current) {
+        if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+        }
       }
     };
 
@@ -34,7 +44,7 @@ function ChannelMenuDrop({ user }) {
   }, [showMenu]);
 
   const ulClassName = "channel-menu-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+
 
   return (
     <>
@@ -44,9 +54,13 @@ function ChannelMenuDrop({ user }) {
         {sessionUser ? (
           <div className="channel-menu-container">
               <p className="channel-menu-option">Edit Server Profile<i class="fa-solid fa-pencil"></i></p>
-              <p className="channel-menu-option">Create a Channel<i class="fa-solid fa-circle-plus"></i></p>
+              <span onClick={closeMenu}>
+                <OpenModalSpan className={"channel-menu-option"} modalComponent={<CreateChannelModal />} buttonText={"Create a server"}/>
+              </span>
               <p className="channel-menu-border"></p>
-              <p className="channel-menu-option-delete">Delete Server<i class="fa-solid fa-trash-can"></i></p>
+              <span onClick={closeMenu}>
+                <OpenModalSpan className={"channel-menu-option-delete"} modalComponent={<DeleteModal type={"server"}/>} buttonText={"Delete Server"}/>
+              </span>
           </div>
         ) : (
           <>
