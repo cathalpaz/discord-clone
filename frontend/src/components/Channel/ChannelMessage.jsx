@@ -11,7 +11,7 @@ export function ChannelMessage({ message, user }) {
         <header className='channel-message__info__header'>
           <span>{user.username}</span>
           <span className='channel-message__info__header__date'>
-            {dayjs(message.created_at).format("DD/MM/YYYY hh:mm")}
+            {dayjs(message.created_at).format("DD/MM/YYYY hh:mm A")}
           </span>
         </header>
         <p className='channel-message__info__content'>{message.content}</p>
