@@ -24,3 +24,14 @@ class UserForm(FlaskForm):
     bio = StringField("Bio")
     pronouns = StringField("Pronouns", validators=[DataRequired()])
     file = FileField("Avatar")
+
+
+class UpdateUserForm(FlaskForm):
+    username = StringField("Username", validators=[
+        Length(min=4, max=50)])
+    email = EmailField("Email", validators=[])
+    birthday = StringField("Birthday", validators=[])
+    banner_color = StringField("Banner Color", validators=[])
+    bio = StringField("Bio")
+    pronouns = StringField("Pronouns", validators=[])
+    file = FileField("Avatar")
