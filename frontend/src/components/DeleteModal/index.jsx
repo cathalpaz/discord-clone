@@ -34,17 +34,19 @@ function DeleteModal({ type, cId }) {
 
   return (
     <div className="delete-modal-container">
-      <h2>Delete {type.charAt(0).toUpperCase() + type.slice(1)}</h2>
-      <p>Are you sure you want to delete <span>{word}</span>? This cannot be undone</p>
-      <button className="delete-modal-button-no" onClick={closeModal}>
-        Cancel
-      </button>
-      <button
-        className="delete-modal-button-yes"
-        onClick={() => handleSubmit()}
-      >
-        Delete {type.charAt(0).toUpperCase() + type.slice(1)}
-      </button>
+      <span>Delete {type.charAt(0).toUpperCase() + type.slice(1)}</span>
+      <p>Are you sure you want to delete <span>{word}</span>? This cannot be undone.</p>
+      <div className="delete-modal-footer">
+        <button className="delete-modal-button-no" onClick={closeModal}>
+          Cancel
+        </button>
+        <button
+          className="delete-modal-button-yes"
+          onClick={() => handleSubmit()}
+        >
+          Delete {type.charAt(0).toUpperCase() + type.slice(1)}
+        </button>
+      </div>
     </div>
   );
 }
