@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "../../styles/components/UpdateServerModal.css";
 import { thunkUpdateSingleServer } from "../../store/singleServer";
+import { thunkGetAllServers } from "../../store/server";
 
 function UpdateServerModal({ type }) {
   const { closeModal } = useModal();
@@ -11,22 +12,31 @@ function UpdateServerModal({ type }) {
   const [serverName, setServerName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const singleServerStore = useSelector((state) => state.singleServer);
   const fileRef = useRef();
-  console.log("the store", singleServerStore);
 
-  function handleSubmit() {
+  const handleSubmit = async () => {
     const errors = {};
+    setLoading(true)
+    setServerName("");
+    setAvatar("");
+    setPrivacy("");
     if (serverName.length > 50) {
       errors.serverName = "Server name cannot be more than 50 characters.";
     }
     if (Object.values(errors).length === 0) {
-      const serverForm = {
-        serverName,
-        privacy,
-        avatar
-      };
-      dispatch(thunkUpdateSingleServer(singleServerStore.id, serverForm))
+
+      const newServerForm = new FormData();
+      newServerForm.append("name", serverName);
+      newServerForm.append("public", privacy);
+      if (avatar) {
+        newServerForm.append("file", avatar);
+      }
+
+      await dispatch(thunkUpdateSingleServer(singleServerStore.id, newServerForm));
+      await dispatch(thunkGetAllServers());
+      setLoading(false)
     }
     setErrors(errors);
   }
@@ -119,7 +129,7 @@ function UpdateServerModal({ type }) {
                   setServerName(e.target.value);
                 }}
                 value={serverName}
-                placeholder={singleServerStore.name}
+                placeholder={singleServerStore.name + "'s server"}
               ></input>
               <p className="update-modal-servername-error">
                 {errors && errors.serverName}
@@ -150,9 +160,11 @@ function UpdateServerModal({ type }) {
           <button className="update-modal-reset-button" onClick={handleReset}>
             Reset
           </button>
-          <button className="update-modal-submit-button" onClick={handleSubmit}>
+          {loading ? <button className="update-modal-submit-button" disabled={true}>
+            <i class="fa-solid fa-spinner fa-spin-pulse" style={{color:"var(--white", fontSize:"22px"}}/>
+          </button> : <button className="update-modal-submit-button" onClick={handleSubmit}>
             Save Changes
-          </button>
+          </button>}
         </div>
       </div>
       <div className="update-modal-esc-container">

@@ -92,7 +92,7 @@ export const thunkUpdateSingleServer = (serverId, serverForm) => async (dispatch
   try {
     const res = await fetch(`/api/servers/${serverId}`, {
       method: "PUT",
-      body: JSON.stringify(serverForm)
+      body: serverForm
     })
     if (res.ok) {
       const data = await res.json()
@@ -138,8 +138,12 @@ export const singleServerReducer = (state = initialState, action) => {
       return initialState;
     }
     case actionTypes.UPDATE_SERVER: {
-      console.log('initialstate', initialState)
-      console.log('action', action)
+      const newState = {...state}
+      console.log('newstate', newState)
+      newState["name"] = action.payload.server.name
+      newState["public"] = action.payload.server.public
+      newState["avatar"] = action.payload.server.avatar
+      return newState
     }
     default: {
       return state;
