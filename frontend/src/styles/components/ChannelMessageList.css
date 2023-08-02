@@ -1,0 +1,39 @@
+.channel-message-list__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.channel-message__avatar-container {
+    width: 45px;
+    height: 45px
+}
+.channel-message__avatar-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+
+.channel-message__container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--accent);
+}
+.channel-message__info {
+    display: flex;
+    flex-direction: column;
+}
+.channel-message__info__header {
+    display: flex;
+    gap: 10px;
+    font-size: 1rem;
+}
+.channel-message__info__header__date {
+    color: var(--light-accent)
+}
+.channel-message__info__content {
+    font-size: 1.1rem;
+}
