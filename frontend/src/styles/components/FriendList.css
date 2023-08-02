@@ -87,12 +87,8 @@
 }
 
 
-/* the search bar needs to auto adjust with screen width.
-dont know how to do that. -zach */
 .search-input-bar {
-  width: 91.5%;
-  min-width: 300px;
-  width: 600px;
+  width: 94%;
   max-width: 100%;
   height: 2.15rem;
   border-top-left-radius: .3rem;
@@ -100,7 +96,7 @@ dont know how to do that. -zach */
   background-color: var(--secondary-background-darker);
   border: 0;
   padding-left: .6rem;
-  margin-left:35px;
+
   font-size: 15px;
   color: var(--white)
 }
@@ -142,7 +138,8 @@ padding-top: 20px
 
 
 .friend-list {
-  margin-left: 20px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 .friend-list .content-online div{

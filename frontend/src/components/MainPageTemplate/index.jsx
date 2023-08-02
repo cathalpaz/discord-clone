@@ -19,6 +19,8 @@ import FriendBar from "../FriendList/FriendBar";
 import FriendList from "../FriendList";
 import UserProfile from "../UserProfile";
 import ChannelBrowser from "../ChannelList/ChannelBrowser";
+import DirectMessage from "../DirectMessage";
+import DirectMessageSearch from "../DirectMessage/DirectMessageSearch";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -53,7 +55,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
 
   useEffect(() => {
     if (singleServerId == null) {
-      console.log("USEEFFECT IS RUNNING!");
       setOldServerId(null);
     }
   }, [singleServerId]);
@@ -71,9 +72,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
             <ServerList />
           </div>
           <div className='main-page-container__item main-page-container__item--2'>
-            {/* <div className='dm-list-header'>
-              <ChannelMenuDrop />
-            </div> */}
+            <DirectMessageSearch />
           </div>
           <div className='main-page-container__item main-page-container__item--3'>
             <FriendBar
@@ -83,15 +82,13 @@ function MainPageTemplate({ leftTab, rightTab }) {
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
             <UserProfile />
+            <DirectMessage />
           </div>
           <div className='main-page-container__item main-page-container__item--5'>
             <FriendList selectedTab={selectedState} />
           </div>
           <div className='main-page-container__item main-page-container__item--6'></div>
           <div className='main-page-container__item main-page-container__item--7'></div>
-          {/* <div className='general-view-container'> */}
-          {/* {rightTab} */}
-          {/* </div> */}
         </Route>
         <Route path='/:serverId/:channelId'>
           <div className='main-page-container__item main-page-container__item--1'>
