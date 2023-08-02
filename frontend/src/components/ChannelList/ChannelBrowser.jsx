@@ -68,7 +68,6 @@ export default function ChannelBrowser() {
           </>
         ))}
       </div>
-      <UserProfile />
     </div>
   );
 }

@@ -17,7 +17,7 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        return current_user.to_dict_extra()
     return {'errors': ['Unauthorized']}
 
 

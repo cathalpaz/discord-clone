@@ -45,6 +45,9 @@
     grid-column: 2/3;
     grid-row: 2/4;
     background-color: var(--secondary-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     /* border: 1px solid blue; */
 }
 
