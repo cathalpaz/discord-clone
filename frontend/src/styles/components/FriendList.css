@@ -105,6 +105,32 @@ dont know how to do that. -zach */
   color: var(--white)
 }
 
+/* Main page container  item */
+#root .main-page-container__item{
+ width:709px;
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Input */
+.discord input[type=text]{
+ margin-left:0px;
+ width:600px;
+ max-width:600px;
+}
+
+/* Content online */
+.friend-list .content-online{
+ padding-left:26px;
+ padding-right:44px;
+}
+
+/* Font Icon */
+.discord i{
+ min-width:21px;
+ width:21px;
+}
+
+
 .search-input-container {
   margin-top: 1rem;
   display: flex;
@@ -140,6 +166,9 @@ padding-top: 20px
   padding-bottom:15px;
  }
 
+.friend-list div i{
+ margin-left: auto;
+}
 
 .friend-list {
   margin-left: 20px;

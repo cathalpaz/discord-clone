@@ -25,12 +25,12 @@ function FriendList({ selectedTab }) {
     }));
   };
 
-  let filteredFriends = []
-    if (friendStore) {
-      filteredFriends = friendStore.filter((friend) =>
-    friend.user.username.toLowerCase().includes(searchQuery.toLowerCase())
+  let filteredFriends = [];
+  if (friendStore) {
+    filteredFriends = friendStore.filter((friend) =>
+      friend.user.username.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    }
+  }
 
   const renderContent = () => {
     if (selectedTab === "Online") {
@@ -46,6 +46,7 @@ function FriendList({ selectedTab }) {
               <img src={friend.user.avatar} alt="" />
               <p>{friend.user.username}</p>
               {hoverStates[friend.id] && <p>#{friend.id}</p>}
+              <i className="fas fa-message"></i> {/* Icon for Online tab */}
             </div>
           ))}
         </div>
@@ -63,7 +64,7 @@ function FriendList({ selectedTab }) {
               <img src={friend.user.avatar} alt="" />
               <p>{friend.user.username}</p>
               {hoverStates[friend.id] && <p>#{friend.id}</p>}
-              <i className="fa-solid fa-message"></i>
+              <i className="fas fa-message"></i> {/* Icon for All tab */}
             </div>
           ))}
         </div>
