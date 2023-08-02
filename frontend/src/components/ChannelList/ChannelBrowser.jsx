@@ -4,37 +4,17 @@ import {
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { useEffect, useState, useRef } from "react";
-import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
-import { MainLoader } from "../Loading/MainLoader";
 import OpenModalButton from "../OpenModalButton";
 import CreateChannelModal from "../CreateChannelModal";
-import UserProfile from "../UserProfile";
 import DeleteModal from "../DeleteModal";
 import { useModal } from "../../context/Modal";
 import { thunkEditChannel } from "../../store/singleServer";
 
 
-// function useOutsideAlerter(ref) {
-//   useEffect(() => {
-//     function handleClickOutside(e) {
-//       if (ref.current && !ref.current.contains(e.target)) {
-//         alert('you clicked outside!')
-//       }
-//     }
-//     document.addEventListener('mousedown', handleClickOutside)
-//     return () => {
-//       document.removeEventListener('mousedown', handleClickOutside)
-//     }
-//   }, [ref])
-// }
-
-
-
 export default function ChannelBrowser() {
   const history = useHistory();
-  const serverStore = useSelector((state) => state.servers.orderedServers);
   const { serverId, channelId } = useParams();
   const dispatch = useDispatch();
   const server = useSelector((state) => state.singleServer);
@@ -52,8 +32,6 @@ export default function ChannelBrowser() {
     dispatch(thunkGetAllServers);
   }, [dispatch]);
 
-  // console.log("channels", channels);
-  // console.log(selectedChannel);
 
   if (!server) {
     return null;
@@ -68,21 +46,7 @@ export default function ChannelBrowser() {
     setName(channels[cId].name)
     dispatch(updateSelectedChannelId(cId))
     setIsEditing(true)
-    // input.current.focus({ focusVisible: true });
   }
-
-
-
-
-  // const handleClickOff = (e) => {
-  //   if (input.current && !input.current.contains(e.target)) {
-  //     console.log('hello from blur')
-  //     setIsEditing(false);
-  //     setName(thisChannel.name)
-  //     setErrors({})
-
-  //   }
-  // };
 
   useEffect(() => {
     function handleClickOff(event) {
@@ -125,7 +89,6 @@ export default function ChannelBrowser() {
   const handleSubmit = async(e) => {
     checkErrors()
     if (Object.keys(errors).length) return;
-
     const editedChannel = {
       id: thisChannel.id,
       name,
@@ -169,6 +132,7 @@ export default function ChannelBrowser() {
 
               {selectedChannel === cId && isEditing ? (
                   <input
+                  className="edit-channel_input"
                   ref={input}
                   type="text"
                   value={name}

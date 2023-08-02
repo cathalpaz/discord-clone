@@ -76,3 +76,14 @@
     position: fixed;
     left: 245px;
 }
+
+.edit-channel_input {
+    border: none;
+    background-color: var(--secondary-background-darker);
+    color: white;
+    width: 190px;
+    height: 30px;
+    padding-left: 5px;
+    outline: none;
+    font-size: 14px;
+}
