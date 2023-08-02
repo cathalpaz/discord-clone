@@ -3,7 +3,7 @@ import {
   useParams,
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
@@ -24,7 +24,7 @@ export default function ChannelBrowser() {
   const user = useSelector((state) => state.session.user);
   const channels = useSelector((state) => state.singleServer?.channels);
   const { setModalContent } = useModal()
-  const editInput = useRef()
+
   const selectedChannel = useSelector(
     (state) => state.singleServer.selectedChannelId
     );
@@ -48,7 +48,7 @@ export default function ChannelBrowser() {
   const handleEdit = (e) => {
     e.stopPropagation()
     setIsEditing(true)
-    editInput.current.focus({ focusVisible: true });
+
   }
 
   const handleSaveClick = (e) => {
@@ -67,11 +67,11 @@ export default function ChannelBrowser() {
 
   const checkErrors = () => {
     const errors = {};
-    if (name.length < 2)
+    if (!name.length)
       errors.name = "Name too short!";
     setErrors(errors);
   }
-  const handleKeyPress = e => {
+  const handleKeyClick = e => {
     if (e.key === 'Enter') {
       handleSubmit();
     }
@@ -125,12 +125,11 @@ export default function ChannelBrowser() {
 
               {selectedChannel === cId && isEditing ? (
                   <input
-                  ref={editInput}
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
                   onBlur={handleSaveClick}
-                  onKeyDown={handleKeyPress}
+                  onKeyDown={handleKeyClick}
                 />
                 ) : (
                   <>
