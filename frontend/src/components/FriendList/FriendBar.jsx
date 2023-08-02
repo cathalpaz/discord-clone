@@ -10,7 +10,7 @@ export default function FriendBar({ selectedTab, setSelectedTab }) {
         <div className="friends-bar">
             <div className="general-view-header">
                 <div className="friends-h1">
-                    <i className="fa-solid fa-users"></i>
+                    <i className="fa-solid fa-users friends-h1-users"></i>
                     <h2 style={{ fontSize: "16px", fontWeight: "600" }}>Friends</h2>
                 </div>
                 <div className="divider"></div>

@@ -6,8 +6,10 @@ export function ChannelMessageList() {
   const users = useSelector((state) => state.singleServer?.users);
   const messages = useSelector((state) => {
     if (state.singleServer.selectedChannelId) {
-      return state.singleServer.channels[state.singleServer.selectedChannelId]
-        .messages;
+      if (state.singleServer.channels[state.singleServer.selectedChannelId])
+        return state.singleServer?.channels[
+          state.singleServer.selectedChannelId
+        ].messages;
     }
     return [];
   });

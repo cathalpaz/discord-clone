@@ -8,6 +8,11 @@ def seed_direct_messages():
         user_to_id = 2,
         content = 'Hello, how are you?'
     )
+    direct_message_5 = DirectMessage(
+        user_from_id = 1,
+        user_to_id = 3,
+        content = 'What are you doing later?'
+    )
     direct_message_2 = DirectMessage(
         user_from_id = 2,
         user_to_id = 1,
@@ -28,6 +33,7 @@ def seed_direct_messages():
     db.session.add(direct_message_2)
     db.session.add(direct_message_3)
     db.session.add(direct_message_4)
+    db.session.add(direct_message_5)
 
     db.session.commit()
 
