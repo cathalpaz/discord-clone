@@ -8,6 +8,7 @@
   --primary-accent: #7983F5;
   --light-background: #DBDEE1;
   --text-color: #fafafa;
+  --text-color-accent: #B5BAC1;
   --secondary: #57f287;
   --errors: #F23F42;
   --delete:#DA373C;
@@ -16,7 +17,9 @@
   --secondary-accent: #757983;
   --message: #3a3b3e;
   --login-and-logout-link: #00A8FC;
-  --gray-button: #4E5058;
+  --gray-button-accent: #4E5058;
+  --save-button: #248046;
+  --save-button-accent: #1A6334;
 }
 
 /* TODO adjust these properly */
