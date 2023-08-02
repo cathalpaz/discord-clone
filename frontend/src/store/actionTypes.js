@@ -8,7 +8,7 @@ const UPDATE_SERVER = "singleServer/updateSingleServer";
 const EDIT_CHANNEL = "singleServer/editChannel";
 const SET_FRIENDS = "session/setFriends";
 const UPDATE_USER = "session/updateUserData";
-const DELETE_CHANNEL = "singleServer/deleteChannel"
+const DELETE_CHANNEL = "singleServer/deleteChannel";
 
 export const actionTypes = {
   SET_SESSION,
@@ -20,6 +20,6 @@ export const actionTypes = {
   EDIT_CHANNEL,
   DELETE_SERVER,
   UPDATE_SERVER,
-  UPDATE_USER,,
-  DELETE_CHANNEL
+  UPDATE_USER,
+  DELETE_CHANNEL,
 };
