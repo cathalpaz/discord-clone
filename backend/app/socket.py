@@ -1,6 +1,7 @@
 import os
-from .models import DirectMessage, ChannelMessage, Channel, db
+from .models import DirectMessage, ChannelMessage, Channel, db, User
 from flask_socketio import SocketIO, emit, send
+from datetime import datetime
 
 
 if os.environ.get("FLASK_ENV") == "production":
@@ -44,6 +45,10 @@ def handle_channel_message(data):
     channel = Channel.query.get(data['channel_id'])
     if not channel:
         return
+    # set user status
+    user = User.query.get(data['user']['id'])
+    if user:
+        user.last_seen = datetime.utcnow()
     new_channel_message = ChannelMessage(
         content=data['message'], user_id=data['user']['id'])
     channel.channel_messages.append(new_channel_message)

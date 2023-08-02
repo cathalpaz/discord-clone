@@ -3,6 +3,7 @@ export function ServerUser({ user }) {
     <div className='server-user__container'>
       <div className='server-user__img'>
         <img src={user.avatar} alt='' />
+        <div className='server-user__status'></div>
       </div>
       <div className='server-user__username'>
         <p>{user.username}</p>
