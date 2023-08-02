@@ -46,7 +46,14 @@ function FriendList({ selectedTab }) {
               <img src={friend.user.avatar} alt="" />
               <p>{friend.user.username}</p>
               {hoverStates[friend.id] && <p>#{friend.id}</p>}
-              <i className="fas fa-message"></i> {/* Icon for Online tab */}
+              <div className="icons-container">
+                <div className="messages">
+                <i className="fas fa-message"></i>
+                </div>
+                <div className="dots">
+                <i className="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -64,7 +71,14 @@ function FriendList({ selectedTab }) {
               <img src={friend.user.avatar} alt="" />
               <p>{friend.user.username}</p>
               {hoverStates[friend.id] && <p>#{friend.id}</p>}
-              <i className="fas fa-message"></i> {/* Icon for All tab */}
+              <div className="icons-container">
+                <div className="messages">
+                <i className="fas fa-message"></i>
+                </div>
+                <div className="dots">
+                <i className="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+              </div>
             </div>
           ))}
         </div>

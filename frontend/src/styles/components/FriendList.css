@@ -140,6 +140,11 @@ padding-top: 20px
   padding-bottom:15px;
  }
 
+ .icons-container {
+  display: flex;
+  align-items: center;
+}
+
 
 .friend-list {
   margin-left: 20px;
