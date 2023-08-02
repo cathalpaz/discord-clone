@@ -1,0 +1,29 @@
+.direct-message-search-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--secondary-background-darker);
+}
+
+.direct-message-search-input-bar {
+    background-color: var(--secondary-background-darker);
+    border: 0;
+    color: var(--white);
+    margin: .5rem;
+    border-radius: .3rem;
+    height: 57.15%;
+    width: 92%;
+    padding-left: .4rem;
+}
+
+.direct-message-search-input-bar::placeholder {
+    color: var(--light-accent);
+    font-weight: 500;
+    font-family: ggsans;
+    font-size: 14px;
+}
+
+.direct-message-search-input-bar:focus {
+    outline: none;
+}

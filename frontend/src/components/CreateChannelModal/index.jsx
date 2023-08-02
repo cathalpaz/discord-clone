@@ -87,6 +87,8 @@ function CreateChannelModal({ serverId }) {
             placeholder='new-channel'
             value={name}
             onChange={e => setName(e.target.value)}
+            minLength={1}
+            maxLength={18}
             />
             <div className='create-channel_hashtag'>#</div>
         </div>

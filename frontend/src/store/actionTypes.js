@@ -9,6 +9,7 @@ const EDIT_CHANNEL = "singleServer/editChannel";
 const SET_FRIENDS = "session/setFriends";
 const UPDATE_USER = "session/updateUserData";
 const DELETE_CHANNEL = "singleServer/deleteChannel";
+const GET_ALL_DIRECT_MESSAGE = "directMessages/getAllDirectMessages"
 
 export const actionTypes = {
   SET_SESSION,
@@ -22,4 +23,5 @@ export const actionTypes = {
   UPDATE_SERVER,
   UPDATE_USER,
   DELETE_CHANNEL,
+  GET_ALL_DIRECT_MESSAGE,
 };
