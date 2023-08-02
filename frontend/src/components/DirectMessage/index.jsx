@@ -11,11 +11,11 @@ export default function DirectMessage({searchString}) {
   const history = useHistory()
   const dispatch = useDispatch()
   const ownerMessage = [], friendMessage = []
+
   useEffect(() => {
     dispatch(thunkGetAllDirectMessages());
   }, [dispatch]);
 
-  console.log('searchString IN DM', searchString)
   directMessageId.map((id) => {
     if (directMessageStore[id].user_from_id == sessionUser.id) {
         ownerMessage.push(directMessageStore[id])
@@ -24,11 +24,12 @@ export default function DirectMessage({searchString}) {
     }
   })
 
-  console.log("ownerMessage", ownerMessage)
-  console.log('friendMessage', friendMessage)
-
   const sendToMain = () => {
     history.push("/@")
+  }
+
+  const sendToDM = (message) => {
+    history.push(`/@/${message.id}`)
   }
 
   return (
@@ -44,7 +45,7 @@ export default function DirectMessage({searchString}) {
             <p style={{fontSize:"12px", fontWeight:"600", color:"var(--secondary-accent)", marginLeft:".5rem", marginBottom:".5rem"}}>DIRECT MESSAGES</p>
             {ownerMessage.filter(message => message.user_to.username.toLowerCase().includes(searchString.toLowerCase())).map(message => (
                 <>
-                    <div  className='direct-message-container'>
+                    <div onClick={() => sendToDM(message)} className='direct-message-container'>
                         <img className="direct-message __image" src={message.user_to.avatar}></img>
                         <p>{message.user_to.username}</p>
                     </div>
