@@ -19,6 +19,7 @@ import FriendBar from "../FriendList/FriendBar";
 import FriendList from "../FriendList";
 import UserProfile from "../UserProfile";
 import ChannelBrowser from "../ChannelList/ChannelBrowser";
+import { ChannelMessageList } from "../Channel/ChannelMessageList";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -109,7 +110,9 @@ function MainPageTemplate({ leftTab, rightTab }) {
             <UserProfile />
             <ChannelBrowser />
           </div>
-          <div className='main-page-container__item main-page-container__item--5'></div>
+          <div className='main-page-container__item main-page-container__item--5'>
+            <ChannelMessageList />
+          </div>
           <div className='main-page-container__item main-page-container__item--6'>
             <SendMessage />
           </div>
