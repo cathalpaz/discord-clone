@@ -9,8 +9,8 @@ import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import OpenModalButton from "../OpenModalButton";
-import CreateChannelModal from '../CreateChannelModal';
-import UserProfile from '../UserProfile'
+import CreateChannelModal from "../CreateChannelModal";
+import UserProfile from "../UserProfile";
 
 export default function ChannelBrowser() {
   const serverStore = useSelector((state) => state.servers.orderedServers);
@@ -18,6 +18,7 @@ export default function ChannelBrowser() {
   const dispatch = useDispatch();
   const server = useSelector((state) => state.singleServer);
   const user = useSelector((state) => state.session.user);
+  const channels = useSelector((state) => state.singleServer?.channels);
 
   const selectedChannel = useSelector(
     (state) => state.singleServer.selectedChannelId
@@ -28,10 +29,12 @@ export default function ChannelBrowser() {
     dispatch(thunkGetAllServers);
   }, [dispatch]);
 
+  console.log("channels", channels);
+  console.log(selectedChannel);
+
   if (!server) {
     return null;
   }
-
 
   return (
     <div className='dm-list-container'>
@@ -39,24 +42,28 @@ export default function ChannelBrowser() {
         <div className='channel-list-textchannels'>
           <p>TEXT CHANNELS</p>{" "}
           {server.owner_id == user.id ? (
-            <OpenModalButton className='channel-list-add' modalComponent={<CreateChannelModal serverId={serverId} />} buttonText={<i className='fa-solid fa-plus'></i>}/>
-          ): null}
+            <OpenModalButton
+              className='channel-list-add'
+              modalComponent={<CreateChannelModal serverId={serverId} />}
+              buttonText={<i className='fa-solid fa-plus'></i>}
+            />
+          ) : null}
         </div>
-        {server.channels.orderedChannelsList.map((channel) => (
+        {channels.orderedChannelsList.map((cId) => (
           <>
             <span
-              className={`${selectedChannel === channel.id && "highlight"}`}
+              className={`${selectedChannel === cId && "highlight"}`}
               onClick={() => {
-                dispatch(updateSelectedChannelId(channel.id));
-                history.push(`/${serverId}/${channel.id}`);
+                dispatch(updateSelectedChannelId(cId));
+                history.push(`/${serverId}/${cId}`);
               }}
             >
-              {channel.type == "text" ? (
+              {channels[cId]?.type == "text" ? (
                 <i className={`fa - solid fa-hashtag fa-md`}></i>
               ) : (
                 ""
               )}
-              {channel.name}
+              {channels[cId].name}
             </span>
           </>
         ))}
