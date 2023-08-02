@@ -22,6 +22,11 @@ function ChannelMenuDrop({ user }) {
     setShowMenu(true);
   };
 
+  const closeMenu = (e) => {
+    setShowMenu(false);
+  };
+
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -49,11 +54,11 @@ function ChannelMenuDrop({ user }) {
         {sessionUser ? (
           <div className="channel-menu-container">
               <p className="channel-menu-option">Edit Server Profile<i class="fa-solid fa-pencil"></i></p>
-              <span>
+              <span onClick={closeMenu}>
                 <OpenModalSpan className={"channel-menu-option"} modalComponent={<CreateChannelModal />} buttonText={"Create a server"}/>
               </span>
               <p className="channel-menu-border"></p>
-              <span>
+              <span onClick={closeMenu}>
                 <OpenModalSpan className={"channel-menu-option-delete"} modalComponent={<DeleteModal type={"server"}/>} buttonText={"Delete Server"}/>
               </span>
           </div>
