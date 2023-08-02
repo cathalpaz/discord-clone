@@ -1,0 +1,16 @@
+.direct-message-header-container {
+    display: flex;
+    align-items: center;
+    margin: .62rem 1rem;
+}
+
+.direct-message-header-container > img {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 4rem;
+}
+
+.direct-message-header-container > p {
+    font-weight: 600;
+    padding-left: .5rem;
+}

@@ -1,26 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
-
 import "../../styles/components/ChannelMessageList.css";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { DirectMessage } from "./DirectMessage";
+
 export function DirectMessageList() {
-  const users = useSelector((state) => state.singleServer?.users);
+  const users = useSelector((state) => state.session.user);
+  const { directMessageId } = useParams()
+  
   const messages = useSelector((state) => {
-    if (state.singleServer.selectedChannelId) {
-      if (state.singleServer.channels[state.singleServer.selectedChannelId])
-        return state.singleServer?.channels[
-          state.singleServer.selectedChannelId
-        ].messages;
+    if (state.directMessages[directMessageId]) {
+      return state.directMessages?.[directMessageId]
     }
-    return [];
   });
-  console.log("these are the messages", messages);
+
   return (
-    <div className='channel-message-list__container'>
-      {users &&
-        messages.map((msg, i) => {
-          const user = users.find((usr) => usr.id == msg.user_id);
-          return <DirectMessage key={i} message={msg} user={user} />;
-        })}
-    </div>
+    <>
+      { messages &&
+        <div className='channel-message-list__container'>
+          {users &&
+              <DirectMessage message={messages} />
+            }
+        </div>
+      }
+    </>
+
   );
 }
