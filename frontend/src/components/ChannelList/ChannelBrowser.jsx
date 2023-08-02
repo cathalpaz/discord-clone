@@ -3,7 +3,7 @@ import {
   useParams,
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
@@ -24,7 +24,7 @@ export default function ChannelBrowser() {
   const user = useSelector((state) => state.session.user);
   const channels = useSelector((state) => state.singleServer?.channels);
   const { setModalContent } = useModal()
-
+  const editInput = useRef()
   const selectedChannel = useSelector(
     (state) => state.singleServer.selectedChannelId
     );
@@ -42,12 +42,13 @@ export default function ChannelBrowser() {
   }
 
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(thisChannel.name)
+  const [name, setName] = useState(thisChannel ? thisChannel.name : '')
   const [errors, setErrors] = useState({})
 
   const handleEdit = (e) => {
     e.stopPropagation()
     setIsEditing(true)
+    editInput.current.focus({ focusVisible: true });
   }
 
   const handleSaveClick = (e) => {
@@ -86,7 +87,7 @@ export default function ChannelBrowser() {
       type: 'text'
     }
     console.log('yooo', editedChannel)
-    const data = await thunkEditChannel(editedChannel)
+    const data = await dispatch(thunkEditChannel(editedChannel))
     if (data.errors) {
       setErrors(data.errors)
     } else {
@@ -124,6 +125,7 @@ export default function ChannelBrowser() {
 
               {selectedChannel === cId && isEditing ? (
                   <input
+                  ref={editInput}
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
@@ -135,8 +137,12 @@ export default function ChannelBrowser() {
                     {channels[cId].name}
                     {selectedChannel === cId? (
                       <div>
-                        <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
-                        <i className="fa-solid fa-trash" onClick={handleDelete}></i>
+                        {server.owner_id === user.id ? (
+                          <>
+                            <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
+                            <i className="fa-solid fa-trash" onClick={handleDelete}></i>
+                          </>
+                        ) : null}
                       </div>
                     ) : null}
                   </>

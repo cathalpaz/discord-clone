@@ -83,6 +83,7 @@ export const thunkEditChannel = (channel) => async(dispatch) => {
   if (res.ok) {
     const data = await res.json()
     dispatch(editChannel(data))
+    dispatch(updateSelectedChannelId(data.id));
     return data
   } else {
     const errorData = await res.json();
@@ -137,8 +138,9 @@ export const singleServerReducer = (state = initialState, action) => {
     }
     case actionTypes.EDIT_CHANNEL: {
       const newState = {...state}
+      console.log('123', action.channel);
       newState.channels[action.channel.id] = action.channel
-      console.log('hi', newState);
+      console.log('hi', newState.channels);
       return newState
     }
     case actionTypes.DELETE_SERVER: {
