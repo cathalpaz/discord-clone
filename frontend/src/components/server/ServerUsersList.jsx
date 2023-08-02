@@ -14,7 +14,11 @@ export function ServerUsersList() {
         </header>
         <div className='server-users-list__users'>
           {serverUsers.map((user) => {
-            return <ServerUser user={user} />;
+            return (
+              <>
+                <ServerUser user={user} />
+              </>
+            );
           })}
         </div>
       </div>

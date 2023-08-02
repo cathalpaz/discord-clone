@@ -3,6 +3,8 @@
     flex-direction: column;
     padding: 10px 15px;
     gap: 20px;
+    width: 100%;
+    height: 100%;
 }
 
 .server-users-list__header {
@@ -13,8 +15,14 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
-
+.server-users-list__users::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and other Webkit browsers */
+}
 .server-user__container {
     display: flex;
     align-items: center;
