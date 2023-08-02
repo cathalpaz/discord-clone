@@ -5,7 +5,7 @@
     color: var(--light-accent);
 }
 
-.channel-list-container > span {
+.channel-row > span {
     margin-left: 0.5rem;
     height: 2rem;
     width: 93%;
@@ -16,13 +16,13 @@
     padding-left: 0.65rem;
 }
 
-.channel-list-container > span.highlight {
+.channel-row > span.highlight {
     color: var(--light-background);
     background-color: var(--background);
 }
 
 
-.channel-list-container > span:hover {
+.channel-row > span:hover {
     background-color: var(--primary-background);
     color: var(--text-color);
 }
@@ -60,4 +60,31 @@
 .channel-list-textchannels > button:hover {
     color: var(--light-background);
     cursor: pointer;
+}
+
+.channel-row {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.channel-row > span > div{
+    display: flex;
+    gap: 0.5rem;
+    font-size: 11px;
+    margin-left: 20px;
+    /* justify-content: flex-end; */
+    position: fixed;
+    left: 245px;
+}
+
+.edit-channel_input {
+    border: none;
+    background-color: var(--secondary-background-darker);
+    color: white;
+    width: 190px;
+    height: 30px;
+    padding-left: 5px;
+    outline: none;
+    font-size: 14px;
 }

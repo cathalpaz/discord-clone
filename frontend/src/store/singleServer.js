@@ -20,6 +20,13 @@ export const addChannel = (channel) => {
   };
 };
 
+export const editChannel = (channel) => {
+  return {
+    type: actionTypes.EDIT_CHANNEL,
+    channel
+  }
+}
+
 export const updateSelectedChannelId = (id) => ({
   type: actionTypes.UPDATE_CHANNEL_ID,
   payload: id,
@@ -71,6 +78,23 @@ export const thunkCreateChannel = (serverId, channel) => async (dispatch) => {
     return errorData;
   }
 };
+
+export const thunkEditChannel = (channel) => async(dispatch) => {
+  const res = await fetch(`/api/channels/${channel.id}`, {
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(channel)
+  })
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(editChannel(data))
+    dispatch(updateSelectedChannelId(data.id));
+    return data
+  } else {
+    const errorData = await res.json();
+    return errorData;
+  }
+}
 
 export const thunkDeleteSingleServer = (serverId) => async (dispatch) => {
   try {
@@ -133,6 +157,15 @@ export const singleServerReducer = (state = initialState, action) => {
       ];
 
       return newState;
+    }
+    case actionTypes.EDIT_CHANNEL: {
+      // const newState = {...state}
+      // newState.channels = {...newState.channels, orderedChannelsList: ... }
+      const newState = structuredClone(state)
+      const { channel } = action.channel
+      console.log('1111', action.channel.channel);
+      newState.channels[channel.id] = channel
+      return newState
     }
     case actionTypes.DELETE_SERVER: {
       return initialState;

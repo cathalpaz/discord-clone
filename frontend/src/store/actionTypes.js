@@ -6,6 +6,7 @@ const SET_FRIENDS = "session/setFriends"
 const ADD_CHANNEL = "singleServer/addChannel"
 const DELETE_SERVER = "singleServer/deleteSingleServer"
 const UPDATE_SERVER = "singleServer/updateSingleServer"
+const EDIT_CHANNEL = "singleServer/editChannel"
 
 export const actionTypes = {
   SET_SESSION,
@@ -14,6 +15,7 @@ export const actionTypes = {
   SET_SERVER_INFO,
   SET_FRIENDS,
   ADD_CHANNEL,
+  EDIT_CHANNEL,
   DELETE_SERVER,
   UPDATE_SERVER
 };
