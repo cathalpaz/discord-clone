@@ -26,6 +26,7 @@ import DirectMessageSearch from "../DirectMessage/DirectMessageSearch";
 import { DirectMessageList } from "../DirectMessage/DirectMessageList";
 import DirectMessageHeader from "../DirectMessage/DirectMessageHeader";
 import DirectMessageSendMessage from "../DirectMessage/DirectMessageSendMessage";
+import { io } from "socket.io-client";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -36,6 +37,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
   const dispatch = useDispatch();
   const loc = location.pathname.split("/").filter((el) => el !== "");
   const singleServerId = useSelector((state) => state.singleServer.id);
+  const [socketInstance, setSocketInstance] = useState(null);
 
   useEffect(() => {
     // TODO clean this up
@@ -56,6 +58,13 @@ function MainPageTemplate({ leftTab, rightTab }) {
         await dispatch(thunkGetServerInfo(serverId));
         setOldServerId(serverId);
       }
+      setSocketInstance(
+        io("localhost:5000/", {
+          cors: {
+            origin: "*",
+          },
+        })
+      );
     })();
   }, [dispatch]);
 
@@ -66,7 +75,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
   }, [singleServerId]);
 
   //   TODO again not a good way of doing this. Come back to this.... or else
-  if (serverId && loc.length == 2 && !singleServerId && loc.length == 2 ) {
+  if (serverId && loc.length == 2 && !singleServerId) {
     return <MainLoader />;
   }
 
@@ -118,35 +127,35 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <DirectMessageSendMessage />
             </div>
             <div className='main-page-container__item main-page-container__item--7'>
-              {/* <ServerUsersList /> */}
+
             </div>
             </Route>
-            <Route exact path='/:serverId/:channelId'>
-              <div className='main-page-container__item main-page-container__item--1'>
-                <ServerList />
+          <Route path='/:serverId/:channelId'>
+            <div className='main-page-container__item main-page-container__item--1'>
+              <ServerList />
+            </div>
+            <div className='main-page-container__item main-page-container__item--2'>
+              <div className='dm-list-header'>
+                <ChannelMenuDrop />
               </div>
-              <div className='main-page-container__item main-page-container__item--2'>
-                <div className='dm-list-header'>
-                  <ChannelMenuDrop />
-                </div>
-              </div>
-              <div className='main-page-container__item main-page-container__item--3'>
-                <ChannelHeader />
-              </div>
-              <div className='main-page-container__item main-page-container__item--4'>
-                <UserProfile />
-                <ChannelBrowser />
-              </div>
-              <div className='main-page-container__item main-page-container__item--5'>
-                <ChannelMessageList />
-              </div>
-              <div className='main-page-container__item main-page-container__item--6'>
-                <SendMessage />
-              </div>
-              <div className='main-page-container__item main-page-container__item--7'>
-                <ServerUsersList />
-              </div>
-            </Route>
+            </div>
+            <div className='main-page-container__item main-page-container__item--3'>
+              <ChannelHeader />
+            </div>
+            <div className='main-page-container__item main-page-container__item--4'>
+              <UserProfile />
+              <ChannelBrowser socket={socketInstance} />
+            </div>
+            <div className='main-page-container__item main-page-container__item--5'>
+              <ChannelMessageList socket={socketInstance} />
+            </div>
+            <div className='main-page-container__item main-page-container__item--6'>
+              <SendMessage socket={socketInstance} />
+            </div>
+            <div className='main-page-container__item main-page-container__item--7'>
+              <ServerUsersList />
+            </div>
+          </Route>
 
         </Switch>
       </div>
