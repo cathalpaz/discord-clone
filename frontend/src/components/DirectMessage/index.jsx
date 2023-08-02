@@ -44,7 +44,7 @@ export default function DirectMessage({searchString}) {
             <p style={{fontSize:"12px", fontWeight:"600", color:"var(--secondary-accent)", marginLeft:".5rem", marginBottom:".5rem"}}>DIRECT MESSAGES</p>
             {ownerMessage.filter(message => message.user_to.username.toLowerCase().includes(searchString.toLowerCase())).map(message => (
                 <>
-                    <div className='direct-message-container'>
+                    <div  className='direct-message-container'>
                         <img className="direct-message __image" src={message.user_to.avatar}></img>
                         <p>{message.user_to.username}</p>
                     </div>
