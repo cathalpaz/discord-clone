@@ -27,6 +27,7 @@ class User(db.Model, UserMixin):
     avatar = db.Column(db.String(
         255), default="https://discord-clone-a-a.s3.us-west-1.amazonaws.com/default-user.jpg")
     updated_at = db.Column(DateTime, default=datetime.utcnow())
+    last_seen = db.Column(DateTime, default=datetime.utcnow())
 
     # relationships
     servers = db.relationship(
