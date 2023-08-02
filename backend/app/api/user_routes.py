@@ -48,13 +48,14 @@ def update_user(id):
             if field != 'csrf_token' and field != 'file':
                 if form.data[field] != None:
                     setattr(user, field, form.data[field])
-    file = form.file.data
-    if file != None:
-        filename = secure_filename(file.filename)
-        success, file_url = s3.upload_file(file, filename, user.id)
-        if not success:
-            return {"errors": {"avatar": file_url}}
-        setattr(user, 'avatar', file_url)
+        file = form.file.data
+        if file != None:
+            filename = secure_filename(file.filename)
+            success, file_url = s3.upload_file(file, filename, user.id)
+            if not success:
+                return {"errors": {"avatar": file_url}}
+            setattr(user, 'avatar', file_url)
         db.session.commit()
         return user.to_dict_extra()
+    print(form.errors)
     return {"errors", validation_errors_to_error_messages(form.errors)}, 400
