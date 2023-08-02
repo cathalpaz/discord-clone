@@ -8,19 +8,36 @@ import DirectMessage from '../DirectMessage';
 import FriendList from '../FriendList';
 import '../../styles/components/SearchServers.css'
 import { thunkGetPublicServers } from '../../store/server';
+import SearchServerCard from './SearchServerCard';
 
 function SearchServers() {
   const dispatch = useDispatch()
   const pubServers = useSelector(state => state.servers.publicServers)
   const servers = useSelector(state => state.servers)
 
+  const [search, setSearch] = useState('')
+
+  const allPubs = {}
+  pubServers.map(id => allPubs[id] = servers[id])
+  const realServers = Object.values(allPubs)
+
+  const [filtered, setFiltered] = useState(realServers)
 
   useEffect(() => {
-    dispatch(thunkGetPublicServers());
-  }, [dispatch]);
+    (async () => {
+        const res = await dispatch(thunkGetPublicServers());
+        setFiltered(Object.values(res.servers))
+    })()
+  }, [dispatch])
 
-  const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState('')
+  useEffect(() => {
+      setFiltered(
+          realServers.filter(server => {
+              return server.name.toLowerCase().startsWith(search.toLowerCase())
+          })
+      )
+  },[search])
+
 
   return (
     <div className='main-page-container-search'>
@@ -56,9 +73,11 @@ function SearchServers() {
                 <i class="fa-solid fa-magnifying-glass"></i>
               </div>
             </div>
+            <h3 className='search_channels-title'>Featured Communities</h3>
             <div className='search_channels-display'>
-                {pubServers.map((id) => (
-                  <div>{servers[id].name}</div>
+                {filtered.map((server) => (
+                  // <div>{servers[id].name}</div>
+                  <SearchServerCard server={server} />
                 ))}
             </div>
           </div>
