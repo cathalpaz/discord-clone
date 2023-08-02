@@ -7,8 +7,8 @@
     border-radius: .3rem;
     background-color: #313338;
     width: 30rem;
-    max-height: 50rem;
-    margin-top: 19.85rem;
+    max-height: 54rem;
+    margin-top: 13.85rem;
     box-shadow: 0px 2px 15px rgba(0,0,0,.2);
     display: flex;
     flex-direction: column;
@@ -23,13 +23,12 @@
     gap: .4rem;
 }
 .file__input {
-   display: none; 
+   display: none;
 }
 .file__input-btn {
-    border-radius: 50px;
-    width: 100px;
-    height: 200px;
-    margin: 0 auto;
+    width: 102px;
+    height: 40px;
+    margin: 0.4rem auto;
 }
 
 .avatar__preview {
@@ -37,15 +36,17 @@
     height: 100px;
     margin: 0 auto;
 }
-.avatar__preview  > img{ 
-    width: 100%;
-    height: 100%;
+.avatar__preview  > img{
+    width: 90%;
+    height: 90%;
+    border-radius: 5rem;
+    margin-top: 0.5rem;
     object-fit: cover;
 }
 
 .signup-form > input {
     height: 2.5rem;
-    background-color: #1E1F22;
+    background-color: var(--secondary-background-darker);
     border: 0;
     border-radius: .2rem;
     margin-bottom: 1rem;
@@ -65,7 +66,7 @@
 
 .signup-form-footer {
     display: flex;
-    justify-content: space-between;
+    gap:2.5rem;
     font-size: 12px;
     font-weight: 600;
     color: #B5BAC1
@@ -75,10 +76,22 @@
     margin-bottom: 1rem;
 }
 
+.signup-form-pronouns {
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+}
+
+.signup-form-avatar {
+    display: flex;
+    width: 100px;
+    flex-direction: column;
+    margin-right: 0.5rem;
+}
+
 .signup-form-banner-color > input, .signup-form-pronouns > input {
     height: 2.5rem;
-    background-color: #1E1F22;
-    border: 0;
+    background-color: var(--secondary-background-darker);
     border-radius: .2rem;
     margin-bottom: 1rem;
     width: 95%;
@@ -91,14 +104,15 @@
 }
 
 .signup-form > button {
-    background-color: #5865F2;
-    color: white;
+    background-color: var(--primary);
+    color: var(--white);
     font-family: ggsans;
     border: 0;
     border-radius: .2rem;
     font-size: 16px;
     font-weight: 00;
     height: 2.6rem;
+    margin-top: 1.5rem;
 }
 
 .signup-form > button:hover {
@@ -107,9 +121,9 @@
 }
 
 .signup-already-have-account {
-    margin-top:.7rem;
-    margin-bottom: 1rem;
-    color:#00A8FC;
+    margin-top: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: var(--login-and-logout-link);
     transition-duration: .2s;
 }
 
@@ -141,7 +155,7 @@
 
 .signup-birthday-select-container > select {
     height: 2.5rem;
-    background-color: #1E1F22;
+    background-color: var(--secondary-background-darker);
     border: 0;
     border-radius: .2rem;
     margin-bottom: 1rem;
@@ -151,5 +165,5 @@
 }
 
 .signup-errors {
-    color:#F23F42
+    color: var(--errors);
 }

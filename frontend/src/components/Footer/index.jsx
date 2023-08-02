@@ -25,7 +25,6 @@ export default function Footer() {
             <p className="body-fifth-block-techologies-header">Used Technologies: </p>
             <i
               className='fa-brands fa-react fa-xl'
-              style={{ color: "#ffffff" }}
             ></i>
               <img
                 className='fa-redux'
@@ -33,11 +32,9 @@ export default function Footer() {
               ></img>
             <i
               className='fa-brands fa-python fa-2xl'
-              style={{ color: "#ffffff" }}
             ></i>
             <i
               className='fa-brands fa-aws fa-xl'
-              style={{ color: "#ffffff" }}
             ></i>
             <img
               className="fa-flask"
@@ -61,7 +58,6 @@ export default function Footer() {
             </img>
             <i
               className='fa-brands fa-node-js fa-2xl'
-              style={{ color: "#ffffff" }}
             ></i>
           </div>
           <div className='body-fifth-block-cathal'>

@@ -36,6 +36,7 @@
     font-weight: 600;
     display: flex;
     justify-content: space-between;
+    height: 18px;
 }
 
 .channel-list-textchannels > p:hover {

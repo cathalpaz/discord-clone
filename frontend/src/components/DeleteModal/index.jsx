@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { thunkDeleteSingleServer } from "../../store/singleServer";
 import "../../styles/components/DeleteModal.css";
 
-function DeleteModal({ type, event }) {
+function DeleteModal({ type }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const history = useHistory()

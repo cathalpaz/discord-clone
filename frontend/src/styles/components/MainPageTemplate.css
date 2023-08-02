@@ -1,12 +1,7 @@
 .main-page-container {
     display: grid;
-    /* grid-template-areas:
-    'servers server-header main-header main-header'
-    'servers general-list main-messages userlist'
-    'servers general-list send-message userlist'; */
     width: 100vw;
     height: 100vh;
-    /* border: 2px solid red; */
     grid-template-rows: .27fr 7fr .5fr;
     grid-template-columns: 72px 240px 1fr 232px;
 }
@@ -45,6 +40,9 @@
     grid-column: 2/3;
     grid-row: 2/4;
     background-color: var(--secondary-background);
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
     /* border: 1px solid blue; */
 }
 
@@ -63,7 +61,8 @@
 .main-page-container__item--7 {
     grid-column: 4/5;
     grid-row: 2/4;
-    border: 1px solid red;
+    border-left: 2px solid var(--accent);
+    background-color: var(--secondary-background);
 }
 
 

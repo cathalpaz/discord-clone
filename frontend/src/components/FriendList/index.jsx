@@ -1,5 +1,3 @@
-// FriendList.js
-
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/FriendList.css";
@@ -35,10 +33,21 @@ function FriendList({ selectedTab }) {
   //this is so we can style the "Online" & "All" text.
   const headingClassName = "heading-class";
 
-  //make friends list go away if not on the correct tab
+  //make friends list go away if not on correct tab
   const handleAddFriendClick = () => {
     setIsAddingFriend(!isAddingFriend);
   };
+  console.log(searchQuery);
+
+  let filteredFriends = [];
+
+  if (friendStore?.length) {
+    filteredFriends = friendStore.filter((friend) =>
+      friend.user.username.includes(searchQuery)
+    );
+  }
+
+  console.log(filteredFriends);
 
   const renderContent = () => {
     if (selectedTab === "Online") {
@@ -51,12 +60,10 @@ function FriendList({ selectedTab }) {
                 key={friend.id}
                 onMouseEnter={() => handleFriendHover(friend.id, true)}
                 onMouseLeave={() => handleFriendHover(friend.id, false)}
-                className="friend-container" // Add the friend-container class here
               >
                 <img src={friend.user.avatar} alt="" />
                 <p>{friend.user.username}</p>
                 {hoverStates[friend.id] && <p>#{friend.id}</p>}
-                <i className="fa-solid fa-message"></i>
               </div>
             ))}
         </div>

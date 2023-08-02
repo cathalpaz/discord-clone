@@ -1,5 +1,5 @@
 .user_prof-container {
-    width: 240px;
+    /* width: 240px;
     position: fixed;
     bottom: 0;
     padding: 8px 12px;
@@ -7,14 +7,57 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 50px; */
+    margin-top: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-background-darker);
+    padding: 10px 15px;
 }
 
 .user_prof-info {
     display: flex;
-    gap: 0.5rem;
+    gap: 10px;
     color: var(--light-accent);
+    align-items: center;
+    color: var(--white);
 }
+.user_prof-img-container {
+    width: 35px;
+    height: 35px;
+    position: relative;
+}
+.user_prof-img-container img  {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    object-fit: cover;
+
+}
+/* messy but working... */
+.online-status {
+    height: 16px;
+    width: 16px;
+    border-radius: 50px;
+    background-color: var(--secondary-background-darker);
+    position: absolute;
+    left: 68%;
+    bottom: 1px;
+    transform: translateY(10%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.green-circle {
+    width: 10px;
+    height: 10px;
+    background-color: var(--secondary);
+    border-radius: 50px;
+}
+
 
 .user_prof-settings > button {
     background: none;
@@ -69,7 +112,7 @@
     border: 5px solid var(--secondary-background-darker);
     border-radius: 100%;
     margin-bottom: 30px;
-    background-color: white;
+    background-color: var(--white);
 }
 
 .user-modal_logout {
@@ -78,7 +121,7 @@
     background-color: hsl(359, 87%, 60%);
     border: none;
     border-radius: 5px;
-    color: white;
+    color: var(--white);
     cursor: pointer;
     margin: 15px 20px;
     font-size: 14px;

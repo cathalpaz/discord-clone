@@ -31,7 +31,7 @@ function SignupFormPage() {
     years.push(i);
   }
 
-  if (sessionUser) return <Redirect to='/' />;
+  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,15 +110,15 @@ function SignupFormPage() {
   return (
     <>
       <img
-        className='login-background1'
-        src='/images/login_background1.JPG'
+        className="login-background1"
+        src="/images/login_background1.JPG"
       ></img>
       <img
-        className='login-background2'
-        src='/images/login_background2.JPG'
+        className="login-background2"
+        src="/images/login_background2.JPG"
       ></img>
-      <div className='signup-container'>
-        <div className='signup-form-container'>
+      <div className="signup-container">
+        <div className="signup-form-container">
           <h2
             style={{
               fontWeight: "600",
@@ -129,8 +129,8 @@ function SignupFormPage() {
           >
             Create an account
           </h2>
-          <form onSubmit={handleSubmit} className='signup-form'>
-            <ul className='signup-server-errors'>
+          <form onSubmit={handleSubmit} className="signup-form">
+            <ul className="signup-server-errors">
               {serverError.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
@@ -150,11 +150,11 @@ function SignupFormPage() {
             </label>
             <label>
               {errors.email && (
-                <p className='signup-errors -email'>{errors.email}</p>
+                <p className="signup-errors -email">{errors.email}</p>
               )}
             </label>
             <input
-              type='text'
+              type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -174,11 +174,11 @@ function SignupFormPage() {
             </label>
             <label>
               {errors.username && (
-                <p className='signup-errors -username'>{errors.username}</p>
+                <p className="signup-errors -username">{errors.username}</p>
               )}
             </label>
             <input
-              type='text'
+              type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -198,11 +198,11 @@ function SignupFormPage() {
             </label>
             <label>
               {errors.password && (
-                <p className='signup-errors -password'>{errors.password}</p>
+                <p className="signup-errors -password">{errors.password}</p>
               )}
             </label>
             <input
-              type='password'
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -222,40 +222,18 @@ function SignupFormPage() {
             </label>
             <label>
               {errors.confirmpassword && (
-                <p className='signup-errors -confirmpassword'>
+                <p className="signup-errors -confirmpassword">
                   {errors.confirmpassword}
                 </p>
               )}
             </label>
             <input
-              type='password'
+              type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <label>Avatar: </label>
-            {!avatar ? (
-              <button className='file__input-btn' onClick={handleImageUpload}>
-                <UploadIcon />
-              </button>
-            ) : (
-              <div className='avatar__preview'>
-                <img src={URL.createObjectURL(avatar)} />
-              </div>
-            )}
-            <input
-              type='file'
-              ref={fileRef}
-              className='file__input'
-              onChange={(e) => {
-                if (e.target.files[0]) {
-                  const file = e.target.files[0];
-                  if (file.type.substring("image/")) {
-                    setAvatar(file);
-                  }
-                }
-              }}
-            />
+
             <label>
               DATE OF BIRTH (MM/DD/YYYY){" "}
               <label
@@ -271,17 +249,17 @@ function SignupFormPage() {
             </label>
             <label>
               {errors.birthday && (
-                <p className='signup-errors -birthday'>{errors.birthday}</p>
+                <p className="signup-errors -birthday">{errors.birthday}</p>
               )}
             </label>
-            <div className='signup-birthday-select-container'>
+            <div className="signup-birthday-select-container">
               <select
-                name='birthday-month'
+                name="birthday-month"
                 onChange={(e) => setBirthdayMonth(e.target.value)}
                 value={birthdayMonth}
                 required
               >
-                <option value='' disabled>
+                <option value="" disabled>
                   Select a month...
                 </option>
                 <option>1</option>
@@ -298,12 +276,12 @@ function SignupFormPage() {
                 <option>12</option>
               </select>
               <select
-                name='birthday-day'
+                name="birthday-day"
                 onChange={(e) => setBirthdayDay(e.target.value)}
                 value={birthdayDay}
                 required
               >
-                <option value='' disabled>
+                <option value="" disabled>
                   Select a day...
                 </option>
                 <option>1</option>
@@ -339,12 +317,12 @@ function SignupFormPage() {
                 <option>31</option>
               </select>
               <select
-                name='birthday-year'
+                name="birthday-year"
                 onChange={(e) => setBirthdayYear(e.target.value)}
                 value={birthdayYear}
                 required
               >
-                <option value='' disabled>
+                <option value="" disabled>
                   Select a year...
                 </option>
                 {years.map((year) => (
@@ -353,8 +331,46 @@ function SignupFormPage() {
               </select>
             </div>
 
-            <div className='signup-form-footer'>
-              <div className='signup-form-banner-color'>
+            <div className="signup-form-footer">
+              <div className="signup-form-avatar">
+
+              <label>
+                AVATAR{" "}
+                <label
+                  style={{
+                    fontSize: "12px",
+                    color: "#F23F42",
+                    paddingLeft: ".1rem",
+                  }}
+                >
+                  {" "}
+                  *
+                </label>{" "}
+              </label>
+              {!avatar ? (
+                <button className="file__input-btn" onClick={handleImageUpload}>
+                  <UploadIcon />
+                </button>
+              ) : (
+                <div className="avatar__preview">
+                  <img src={URL.createObjectURL(avatar)} />
+                </div>
+              )}
+              <input
+                type="file"
+                ref={fileRef}
+                className="file__input"
+                onChange={(e) => {
+                  if (e.target.files[0]) {
+                    const file = e.target.files[0];
+                    if (file.type.substring("image/")) {
+                      setAvatar(file);
+                    }
+                  }
+                }}
+              />
+              </div>
+              <div className="signup-form-banner-color">
                 <label>
                   BANNER COLOR{" "}
                   <label
@@ -370,18 +386,18 @@ function SignupFormPage() {
                 </label>
                 <label>
                   {errors.color && (
-                    <p className='signup-errors -color'>{errors.color}</p>
+                    <p className="signup-errors -color">{errors.color}</p>
                   )}
                 </label>
                 <input
-                  type='color'
+                  type="color"
                   value={color}
                   onChange={(e) => setColor(e.target.value)}
                   required
                 />
                 {}
               </div>
-              <div className='signup-form-pronouns'>
+              <div className="signup-form-pronouns">
                 <label>
                   PRONOUN{" "}
                   <label
@@ -397,20 +413,20 @@ function SignupFormPage() {
                 </label>
                 <label>
                   {errors.pronoun && (
-                    <p className='signup-errors -pronoun'>{errors.pronoun}</p>
+                    <p className="signup-errors -pronoun">{errors.pronoun}</p>
                   )}
                 </label>
                 <input
-                  type='pronoun'
+                  type="pronoun"
                   value={pronoun}
                   onChange={(e) => setPronoun(e.target.value)}
                   required
                 />
               </div>
             </div>
-            <button type='submit'>Continue</button>
+            <button type="submit">Continue</button>
           </form>
-          <span onClick={sentToLogin} className='signup-already-have-account'>
+          <span onClick={sentToLogin} className="signup-already-have-account">
             Already have an account?
           </span>
         </div>
