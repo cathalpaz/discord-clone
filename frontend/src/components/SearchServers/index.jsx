@@ -10,7 +10,9 @@ import '../../styles/components/SearchServers.css'
 
 function SearchServers() {
 
-  const [selectedState, setSelectedState] = useState("");
+  const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState('')
+
   return (
     <div className='main-page-container-search'>
       <div className='main-page-container__item-search main-page-container__item--1-search'>
@@ -31,7 +33,20 @@ function SearchServers() {
             </div>
           </div>
           <div className='main-page-container__item-search main-page-container__item--5-search'>
-            MAIN CONTAINER
+            <div className='search_header'>
+              {/* <img src={"/images/search_image.svg"}></img> */}
+              <span>Find your community on Slacord</span>
+              <p>From gaming, to music, to learning, there's a place for you.</p>
+              <div className='search_bar'>
+                <input
+                  className='search_input'
+                  placeholder='Explore communities'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  />
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+            </div>
           </div>
     </div>
   )
