@@ -13,7 +13,7 @@
     width: 20rem;
     border: 2.5px solid black;
     box-shadow: 2px 2px black;
-    color: white;
+    color: var(--white);
     height: 2.5rem;
     margin-top: .5rem;
 }

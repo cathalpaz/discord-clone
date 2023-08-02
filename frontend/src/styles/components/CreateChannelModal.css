@@ -125,7 +125,7 @@
 .create-cancel_btn {
     border: none;
     background: none;
-    color: white;
+    color: var(--white);
 }
 
 .create-cancel_btn:hover {
@@ -137,7 +137,7 @@
     background-color: var(--primary);
     border: none;
     padding: 10px 16px;
-    color: white;
+    color: var(--white);
     border-radius: 3px;
     cursor: pointer;
 }
