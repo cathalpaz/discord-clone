@@ -37,3 +37,7 @@
 .channel-message__info__content {
     font-size: 1.1rem;
 }
+.channel-message__info__header__edited {
+    color: var(--light-accent);
+    font-size: .8rem;
+}
