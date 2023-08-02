@@ -2,8 +2,14 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/DirectMessageSearch.css";
-export default function DirectMessageSearch() {
+
+export default function DirectMessageSearch({ searchString, setSearchString }) {
     const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+        setSearchString(searchQuery);
+
+    }, [setSearchString, searchQuery]);
 
     const searchDirectMessages = (event) => {
         setSearchQuery(event.target.value);
