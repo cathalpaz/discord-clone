@@ -28,6 +28,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
   const { serverId, channelId } = useParams();
   const [oldServerId, setOldServerId] = useState(serverId);
   const [selectedState, setSelectedState] = useState("");
+  const [directMessageSearch, setdirectMessageSearch] = useState("");
   const dispatch = useDispatch();
   const loc = location.pathname.split("/").filter((el) => el !== "");
   const singleServerId = useSelector((state) => state.singleServer.id);
@@ -73,7 +74,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
             <ServerList />
           </div>
           <div className='main-page-container__item main-page-container__item--2'>
-            <DirectMessageSearch />
+            <DirectMessageSearch searchString={directMessageSearch} setSearchString={setdirectMessageSearch}/>
           </div>
           <div className='main-page-container__item main-page-container__item--3'>
             <FriendBar
@@ -83,7 +84,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
             <UserProfile />
-            <DirectMessage />
+            <DirectMessage searchString={directMessageSearch}/>
           </div>
           <div className='main-page-container__item main-page-container__item--5'>
             <FriendList selectedTab={selectedState} />
