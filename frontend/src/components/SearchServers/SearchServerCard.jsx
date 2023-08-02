@@ -1,7 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 function SearchServerCard({ server }) {
-  
+    const serversStore = useSelector((state) => state.servers);
+    const myServerIds = useSelector((state) => state.servers.orderedServers);
+
+    console.log('123', serversStore)
 //   console.log(server)
   if (!server) {
     return null
@@ -14,7 +18,12 @@ function SearchServerCard({ server }) {
         <div className='card-name'>{server.name}</div>
         <div className='card-footer'>
             <div>{server.users.length} members</div>
-            <span>Join Server</span>
+            {myServerIds.includes(server.id) ? (
+                <span className='joined-btn'>Joined</span>
+            ) : (
+                <span className='join-btn'>Join Server</span>
+            )}
+
         </div>
     </div>
   )

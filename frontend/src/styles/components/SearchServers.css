@@ -164,13 +164,20 @@
     padding: 5px 15px 10px 15px;
 }
 
-.card-footer > span {
+.join-btn {
     background-color: green;
     padding: 4px 8px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.card-footer > span:hover {
+.join-btn:hover {
     background-color: rgb(0, 156, 0);
+}
+
+.joined-btn {
+    background-color: gray;
+    border-radius: 5px;
+    padding: 4px 8px;
+    cursor: default;
 }

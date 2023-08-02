@@ -93,9 +93,8 @@ export default function serverReducer(state = initialState, action) {
       const pubServers = action.servers.servers;
       const publicServers = [...state.publicServers]
       for (let server of pubServers) {
-        if (!newState[server.id]) {
-          publicServers.push(server.id)
-        }
+        publicServers.push(server.id)
+
         newState[server.id] = server
       }
       newState.publicServers = publicServers
