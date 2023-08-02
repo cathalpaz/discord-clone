@@ -3,7 +3,7 @@ import {
   useParams,
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ChannelMenuDrop from "./ChannelMenuDrop";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
@@ -15,6 +15,23 @@ import DeleteModal from "../DeleteModal";
 import { useModal } from "../../context/Modal";
 import { thunkEditChannel } from "../../store/singleServer";
 
+
+// function useOutsideAlerter(ref) {
+//   useEffect(() => {
+//     function handleClickOutside(e) {
+//       if (ref.current && !ref.current.contains(e.target)) {
+//         alert('you clicked outside!')
+//       }
+//     }
+//     document.addEventListener('mousedown', handleClickOutside)
+//     return () => {
+//       document.removeEventListener('mousedown', handleClickOutside)
+//     }
+//   }, [ref])
+// }
+
+
+
 export default function ChannelBrowser() {
   const history = useHistory();
   const serverStore = useSelector((state) => state.servers.orderedServers);
@@ -24,6 +41,7 @@ export default function ChannelBrowser() {
   const user = useSelector((state) => state.session.user);
   const channels = useSelector((state) => state.singleServer?.channels);
   const { setModalContent } = useModal()
+  const input = useRef(null)
 
   const selectedChannel = useSelector(
     (state) => state.singleServer.selectedChannelId
@@ -34,8 +52,8 @@ export default function ChannelBrowser() {
     dispatch(thunkGetAllServers);
   }, [dispatch]);
 
-  console.log("channels", channels);
-  console.log(selectedChannel);
+  // console.log("channels", channels);
+  // console.log(selectedChannel);
 
   if (!server) {
     return null;
@@ -45,17 +63,41 @@ export default function ChannelBrowser() {
   const [name, setName] = useState(thisChannel ? thisChannel.name : '')
   const [errors, setErrors] = useState({})
 
-  const handleEdit = (e) => {
+  const handleEdit = (e, cId) => {
     e.stopPropagation()
+    setName(channels[cId].name)
+    dispatch(updateSelectedChannelId(cId))
     setIsEditing(true)
-
+    // input.current.focus({ focusVisible: true });
   }
 
-  const handleSaveClick = (e) => {
-    setIsEditing(false);
-    setName(thisChannel.name)
-    setErrors({})
-  };
+
+
+
+  // const handleClickOff = (e) => {
+  //   if (input.current && !input.current.contains(e.target)) {
+  //     console.log('hello from blur')
+  //     setIsEditing(false);
+  //     setName(thisChannel.name)
+  //     setErrors({})
+
+  //   }
+  // };
+
+  useEffect(() => {
+    function handleClickOff(event) {
+      if (input.current && !input.current.contains(event.target)) {
+        setIsEditing(false)
+        setName(thisChannel.name)
+        setErrors({})
+      }
+    }
+    document.addEventListener('mousedown', handleClickOff)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOff)
+    }
+  }, [input])
+
 
   const handleDelete = () => {
     setModalContent(<DeleteModal type='channel' />)
@@ -71,22 +113,24 @@ export default function ChannelBrowser() {
       errors.name = "Name too short!";
     setErrors(errors);
   }
+
   const handleKeyClick = e => {
     if (e.key === 'Enter') {
       handleSubmit();
     }
     if (e.key === 'Escape') {
-      handleSaveClick();
+      handleClickOff();
     }
   };
   const handleSubmit = async(e) => {
-    console.log('1231231231231', name)
+    checkErrors()
+    if (Object.keys(errors).length) return;
+
     const editedChannel = {
       id: thisChannel.id,
       name,
       type: 'text'
     }
-    console.log('yooo', editedChannel)
     const data = await dispatch(thunkEditChannel(editedChannel))
     if (data.errors) {
       setErrors(data.errors)
@@ -125,10 +169,11 @@ export default function ChannelBrowser() {
 
               {selectedChannel === cId && isEditing ? (
                   <input
+                  ref={input}
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  onBlur={handleSaveClick}
+                  // onBlur={handleClickOff}
                   onKeyDown={handleKeyClick}
                 />
                 ) : (
@@ -138,7 +183,7 @@ export default function ChannelBrowser() {
                       <div>
                         {server.owner_id === user.id ? (
                           <>
-                            <i className="fa-solid fa-pen-to-square" onClick={handleEdit}></i>
+                            <i className="fa-solid fa-pen-to-square" onClick={(e) => handleEdit(e, cId)}></i>
                             <i className="fa-solid fa-trash" onClick={handleDelete}></i>
                           </>
                         ) : null}

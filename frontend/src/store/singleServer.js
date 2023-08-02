@@ -137,10 +137,12 @@ export const singleServerReducer = (state = initialState, action) => {
       return newState;
     }
     case actionTypes.EDIT_CHANNEL: {
-      const newState = {...state}
-      console.log('123', action.channel);
-      newState.channels[action.channel.id] = action.channel
-      console.log('hi', newState.channels);
+      // const newState = {...state}
+      // newState.channels = {...newState.channels, orderedChannelsList: ... }
+      const newState = structuredClone(state)
+      const { channel } = action.channel
+      console.log('1111', action.channel.channel);
+      newState.channels[channel.id] = channel
       return newState
     }
     case actionTypes.DELETE_SERVER: {
