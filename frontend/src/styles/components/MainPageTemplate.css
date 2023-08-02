@@ -46,7 +46,7 @@
     grid-row: 2/4;
     background-color: var(--secondary-background);
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
     /* border: 1px solid blue; */
 }

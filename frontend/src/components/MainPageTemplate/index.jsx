@@ -82,7 +82,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
             />
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
-            {leftTab}
             <UserProfile />
           </div>
           <div className='main-page-container__item main-page-container__item--5'>
@@ -107,8 +106,8 @@ function MainPageTemplate({ leftTab, rightTab }) {
             <ChannelHeader />
           </div>
           <div className='main-page-container__item main-page-container__item--4'>
-            <ChannelBrowser />
             <UserProfile />
+            <ChannelBrowser />
           </div>
           <div className='main-page-container__item main-page-container__item--5'></div>
           <div className='main-page-container__item main-page-container__item--6'>
