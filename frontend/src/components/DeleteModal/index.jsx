@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useModal } from "../../context/Modal";
 import { thunkDeleteSingleServer } from "../../store/singleServer";
+import { thunkDeleteChannel } from "../../store/singleServer";
 import "../../styles/components/DeleteModal.css";
 
-function DeleteModal({ type }) {
+function DeleteModal({ type, cId }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const history = useHistory()
@@ -18,34 +19,31 @@ function DeleteModal({ type }) {
       closeModal();
       history.push("/@")
     } else if (type === "channel") {
-      // dispatch(thunkDeleteGroup(Object.values(groupStore)[0].id));
+      dispatch(thunkDeleteChannel(cId))
       closeModal();
-      // window.location.href = "/groups";
+      window.location.reload();
+      history.push(`/${state.singleServer.id}/${state.singleServer.channels.orderedChannelsList[0]}`)
     }
   }
 
   if (type === 'channel') {
-    word = '#'
+    word = '#' + state.singleServer.channels[cId].name
+  } else {
+    word = state.singleServer.name
   }
-
-  // if (type === "server") {
-  //   word = "Server";
-  // } else if (type === "channel") {
-  //   word = "Channel";
-  // }
 
   return (
     <div className="delete-modal-container">
-      <h2>Delete Channel</h2>
-      <p>Are you sure you want to delete {word}?</p>
+      <h2>Delete {type.charAt(0).toUpperCase() + type.slice(1)}</h2>
+      <p>Are you sure you want to delete <span>{word}</span>? This cannot be undone</p>
+      <button className="delete-modal-button-no" onClick={closeModal}>
+        Cancel
+      </button>
       <button
         className="delete-modal-button-yes"
         onClick={() => handleSubmit()}
       >
-        Yes (Delete {word})
-      </button>
-      <button className="delete-modal-button-no" onClick={closeModal}>
-        No (Keep {word})
+        Delete {type.charAt(0).toUpperCase() + type.slice(1)}
       </button>
     </div>
   );
