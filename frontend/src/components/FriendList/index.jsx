@@ -7,6 +7,7 @@ function FriendList({ selectedTab }) {
   const sessionUser = useSelector((state) => state.session.user);
   const friendStore = useSelector((state) => state.session.friends);
   const [searchQuery, setSearchQuery] = useState("");
+  const [addFriend, setAddFriend] = useState("");
   const dispatch = useDispatch();
   const [hoverStates, setHoverStates] = useState({});
 
@@ -25,12 +26,12 @@ function FriendList({ selectedTab }) {
     }));
   };
 
-  let filteredFriends = []
-    if (friendStore) {
-      filteredFriends = friendStore.filter((friend) =>
-    friend.user.username.toLowerCase().includes(searchQuery.toLowerCase())
+  let filteredFriends = [];
+  if (friendStore) {
+    filteredFriends = friendStore.filter((friend) =>
+      friend.user.username.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    }
+  }
 
   const renderContent = () => {
     if (selectedTab === "Online") {
@@ -46,6 +47,14 @@ function FriendList({ selectedTab }) {
               <img src={friend.user.avatar} alt="" />
               <p>{friend.user.username}</p>
               {hoverStates[friend.id] && <p>#{friend.id}</p>}
+              <div className="icons-container">
+                <div className="messages">
+                  <i className="fas fa-message"></i>
+                </div>
+                <div className="dots">
+                  <i className="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -63,7 +72,14 @@ function FriendList({ selectedTab }) {
               <img src={friend.user.avatar} alt="" />
               <p>{friend.user.username}</p>
               {hoverStates[friend.id] && <p>#{friend.id}</p>}
-              <i className="fa-solid fa-message"></i>
+              <div className="icons-container">
+                <div className="messages">
+                  <i className="fas fa-message"></i>
+                </div>
+                <div className="dots">
+                  <i className="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -71,28 +87,48 @@ function FriendList({ selectedTab }) {
     } else if (selectedTab === "Add") {
       return (
         <div className="content-add">
-          <div>Add Friend</div>
-          <div>You can add friends with their Discord username</div>
+          <div className="Add-Friend">ADD FRIEND</div>
+          <div className="Add-Desc">You can add friends with their Discord username</div>
+          <input
+              type="text"
+              placeholder="You can add friends with their Discord username."
+              value={searchQuery}
+              onChange={searchMessages}
+              className="add-a-friend-bar"
+            />
+            <button
+            className="send-request"
+            >Send Friend Request</button>
         </div>
       );
     }
     return null;
   };
 
+  const renderSearchBar = () => {
+    if (selectedTab === "Add") {
+      return null;
+    } else {
+      return (
+        <div className="search-container">
+          <div className="search-input-container">
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={searchMessages}
+              className="search-input-bar"
+            />
+            <i className="fa-solid fa-magnifying-glass search-icon"></i>
+          </div>
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="discord">
-      <div className="search-container">
-        <div className="search-input-container">
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={searchMessages}
-            className="search-input-bar"
-          />
-          <i className="fa-solid fa-magnifying-glass search-icon"></i>
-        </div>
-      </div>
+      {renderSearchBar()} {/* Render the search bar conditionally */}
       <div className="friend-list">
         <div className="content-container">{renderContent()}</div>
       </div>
