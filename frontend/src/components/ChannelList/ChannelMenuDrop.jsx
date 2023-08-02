@@ -59,7 +59,7 @@ function ChannelMenuDrop({ user }) {
                 <OpenModalSpan className={"channel-menu-option channel-menu-option__edit"} modalComponent={<UpdateServerModal />} buttonText={"Edit Server Profile"}/>
               </span>
               <span onClick={closeMenu}>
-                <OpenModalSpan className={"channel-menu-option channel-menu-option__create"} modalComponent={<CreateChannelModal />} buttonText={"Create a server"}/>
+                <OpenModalSpan className={"channel-menu-option channel-menu-option__create"} modalComponent={<CreateChannelModal serverId={server.id} />} buttonText={"Create a channel"}/>
               </span>
               <p className="channel-menu-border"></p>
               <span onClick={closeMenu}>

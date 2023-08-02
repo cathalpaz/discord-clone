@@ -8,7 +8,6 @@ import '../../styles/components/CreateChannelModal.css'
 function CreateChannelModal({ serverId }) {
   const dispatch = useDispatch()
   const history = useHistory()
-  console.log(serverId)
   const { closeModal } = useModal()
 
   const [type, setType] = useState('text')
@@ -22,7 +21,6 @@ function CreateChannelModal({ serverId }) {
       type: 'text',
       name
     }
-    
     const data = await dispatch(thunkCreateChannel(serverId, channel))
     if (data.errors) {
       console.log('data', data)
