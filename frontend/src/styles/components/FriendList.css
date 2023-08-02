@@ -239,3 +239,33 @@ padding-top: 20px
   font-weight:600;
   font-size:18px;
  }
+ /* Icons container */
+.friend-list div .icons-container{
+  border-top-style:none;
+  height:24px;
+ }
+
+ /* Messages */
+ .friend-list div .messages{
+  border-top-style:none;
+ }
+
+ /* Dots */
+ .friend-list div .dots{
+  border-top-style:none;
+ }
+
+ .loner-wumpus {
+  display: flex;
+  flex-direction: column;
+  margin-top: 400px;
+  transform:scale(5);
+}
+
+.loner-wumpus-text {
+  font-weight: 100;
+  margin-top: 120px;
+  text-align:center;
+  font-weight:300;
+  color:#a0a0a0;
+}
