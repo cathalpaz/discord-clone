@@ -71,7 +71,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
         setOldServerId(serverId);
       }
       setSocketInstance(
-        io("localhost:5000/", {
+        io(import.meta.VITE_APP_WS_URL || "localhost:5000/", {
           cors: {
             origin: "*",
           },
@@ -192,7 +192,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <ServerUsersList />
             </div>
           </Route>
-
         </Switch>
       </div>
     </>
