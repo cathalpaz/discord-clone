@@ -159,10 +159,10 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <DirectMessage searchString={directMessageSearch} />
             </div>
             <div className='main-page-container__item main-page-container__item--5'>
-              <DirectMessageList />
+              <DirectMessageList socket={socketInstance} />
             </div>
             <div className='main-page-container__item main-page-container__item--6'>
-              <DirectMessageSendMessage />
+              <DirectMessageSendMessage socket={socketInstance} />
             </div>
             <div className='main-page-container__item main-page-container__item--7'></div>
           </Route>

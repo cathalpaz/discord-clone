@@ -1,19 +1,46 @@
-import React, { useState }  from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "../../styles/components/SendMessage.css";
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { thunkSendDirectMessage } from "../../store/directMessages";
 
-export default function DirectMessageSendMessage() {
+export default function DirectMessageSendMessage({ socket }) {
+  if (!socket) return false;
   const { directMessageId } = useParams();
-  const directMessageStore = useSelector(state => state.directMessages?.[directMessageId]);
+  const otherUser = useSelector(
+    (state) => state.directMessages.users[directMessageId]
+  );
+  if (!otherUser) return false;
   const [message, setMessage] = useState("");
-    console.log(directMessageStore)
+  const dispatch = useDispatch();
+
+  const handleSendMessage = async () => {
+    const res = await dispatch(
+      thunkSendDirectMessage(directMessageId, {
+        content: message,
+      })
+    );
+    console.log("this is the res", res);
+    if (res) {
+      socket.emit("dm-sent", res);
+    }
+    setMessage("");
+  };
 
   return (
     <div className='send-message-container'>
-
-        <input className="send-message-input" type="textbox" placeholder={ `Message @${directMessageStore?.user_to.username}`} value={message} onChange={(e) => setMessage(e.target.value)}></input>
-
+      <input
+        className='send-message-input'
+        type='textbox'
+        placeholder={`Message @${otherUser.username}`}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSendMessage();
+          }
+        }}
+      ></input>
     </div>
-  )
+  );
 }

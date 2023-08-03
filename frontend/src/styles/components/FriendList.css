@@ -114,18 +114,66 @@
   padding-bottom: 15px;
 }
 
+.Add-Input {
+  display: flex;
+  align-items: center;
+}
+
+.send-request {
+  background-color: var(--primary);
+  border: 0;
+  color: var(--white);
+  height: 2rem;
+  border-radius: .2rem;
+  margin-right: .5rem;
+  font-family: ggsans;
+  font-weight: 500;
+  width: 10rem;
+  transition-duration: .1s;
+  transition-timing-function: ease-in;
+}
+
+.send-request:hover {
+  cursor: pointer;
+  background-color: var(--primary-accent);
+}
+
+.send-request:active {
+  background-color: var(--primary);
+}
+
+.Add-button-container {
+  background-color: var(--secondary-background-darker);
+  margin-top: 1.05rem;
+  height: 3.15rem;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+  border-top: 1px solid var(--black);
+  border-right: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+}
 .add-a-friend-bar {
-  width: 94%;
-  max-width: 100%;
-  height: 2.15rem;
-  border-top-left-radius: .3rem;
-  border-bottom-left-radius: .3rem;
+  width: 92%;
+  height: 3.15rem;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
   background-color: var(--secondary-background-darker);
   border: 0;
   padding-left: .6rem;
-
   font-size: 15px;
-  color: var(--white)
+  color: var(--white);
+  font-family: ggsans;
+  margin-left: .3rem;
+  margin-top: 1.05rem;
+  border-top: 1px solid var(--black);
+  border-left: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+}
+
+.add-a-friend-bar:focus{
+  outline: none;
 }
 
 .search-icon {
@@ -195,24 +243,10 @@ padding-top: 20px
   border-radius: 20px;
  }
 
-.friend-list div{
-  min-width:0px;
-  padding-left:0px;
-  border-top-style:solid;
-  border-top-color:#474747;
-  border-top-width:2px;
- }
 
  .discord .friend-list .content-container{
  border-top-style:none;
 }
-
-
-.friend-list .content-add div{
- border-style:none;
- border-top-style:none;
-}
-
 
 .friend-list div .icons-container{
  margin-left:200px;
@@ -220,22 +254,18 @@ padding-top: 20px
 }
 
 
-.friend-list input[type=text]{
-  padding-top:0px;
-  margin-top:28px;
+ .Add-Desc{
+   margin-top:9px;
+   font-size: 14px;
+   color: var(--text-color-accent);
+   padding-left: 5px;
  }
 
-
- .friend-list .Add-Desc{
-  padding-top:0px;
-  margin-top:12px;
-  color:#b2b2b2;
- }
-
- .friend-list .Add-Friend{
-  margin-top:27px;
-  font-weight:600;
-  font-size:18px;
+ .Add-Friend{
+   margin-top: 18px;
+   font-weight: 600;
+   font-size: 16px;
+   padding-left: 5px;
  }
 
 .friend-list div .icons-container{

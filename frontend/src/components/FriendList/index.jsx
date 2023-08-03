@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/FriendList.css";
-import { fetchFriends } from "../../store/session";
+import { fetchFriends, thunkSendFriendRequest } from "../../store/session";
 
 function FriendList({ selectedTab }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -25,6 +25,10 @@ function FriendList({ selectedTab }) {
       [friendId]: isHovering,
     }));
   };
+
+  const sendFriendRequest = () => {
+    dispatch(thunkSendFriendRequest(searchQuery))
+  }
 
   //add friend button to direct you to Add tab
   const handleAddFriendClick = () => {
@@ -124,22 +128,32 @@ function FriendList({ selectedTab }) {
           <div className="Add-Desc">
             You can add friends with their Discord username
           </div>
+          <div className="Add-Input">
           <input
-            type="text"
-            placeholder="You can add friends with their Discord username."
-            value={searchQuery}
-            onChange={searchMessages}
-            className="add-a-friend-bar"
-          />
-          <button className="send-request">Send Friend Request</button>
-          <div className="loner-wumpus">
+              type="text"
+              placeholder="You can add friends with their Discord username."
+              value={searchQuery}
+              onChange={searchMessages}
+              className="add-a-friend-bar"
+            />
+            <div className="Add-button-container">
+              <button
+              onClick={sendFriendRequest}
+              className="send-request"
+              >Send Friend Request
+              </button>
+
+            </div>
+
+          </div>
+            <div className="loner-wumpus">
             <img src="../../../public/images/wumpus-add-friend.svg" alt="" />
-          </div>
-          <div>
-            <p className="loner-wumpus-text">
-              Wumpus is waiting on friends. You don't have to though!
-            </p>
-          </div>
+            </div>
+            <div>
+              <p className="loner-wumpus-text">
+                Wumpus is waiting on friends. You don't have to though!
+                </p>
+            </div>
         </div>
       );
     } else if (selectedTab === "Pending") {
