@@ -298,10 +298,36 @@ padding-top: 20px
 
 /* no friends is for the All page */
 
-.no-friends-txt {
 
+.no-friends-txt {
+  text-align:center;
+  font-weight:300;
+  color:#a0a0a0;
 }
 
 .no-friends {
+  background-size: 100% 100%;
+  width: 376px;
+  height: 162px;
+}
 
+/* button to add friends on "all" page */
+.send-request-all {
+  cursor: pointer;
+  border-top-style:none;
+  background-color: rgb(63, 72, 171);
+  align-items: center;
+  color: white;
+  width: 98px;
+  height: 38px;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.send-request-all:hover {
+  transition-duration: 0.17s, 0.17s;
+  background-color: rgb(52, 60, 144);
 }

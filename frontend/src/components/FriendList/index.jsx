@@ -84,14 +84,14 @@ function FriendList({ selectedTab }) {
       );
     } else if (selectedTab === "All") {
       return (
-        <div className="content-all">
+        <div className="empty-block">
           <h2 className="heading-class">{selectedTab}</h2>
           {filteredFriends.length === 0 ? (
-                        <div className="content-add">
+                        <div>
                         <p className="no-friends-txt">Wumpus is waiting on friends. You don't have to though!</p>
                         <img className="no-friends" src="../../../public/images/NoFriends.svg" alt="" />
                         <div>
-                          <button className="send-request" onClick={handleAddFriendClick}>
+                          <button className="send-request-all" onClick={handleAddFriendClick}>
                             Add Friend
                           </button>
                         </div>
