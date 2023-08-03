@@ -1,6 +1,5 @@
 body {
-    margin: 0 auto;
-    color: var(--white)
+    color: var(--white);
 }
 
 .heading-background-container {
@@ -13,6 +12,17 @@ body {
     align-items: center;
     overflow: hidden;
     z-index: 1;
+}
+
+.landing-page-scroll-container {
+    overflow-y: scroll;
+    height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.landing-page-scroll-container::-webkit-scrollbar {
+    display: none;
 }
 
 .background-picture {
