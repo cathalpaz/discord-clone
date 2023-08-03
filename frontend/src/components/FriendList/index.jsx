@@ -84,6 +84,31 @@ function FriendList({ selectedTab }) {
           ))}
         </div>
       );
+    } else if (selectedTab === "") {
+      return (
+        <div className="content-all">
+          <h2 className="heading-class">{selectedTab}</h2>
+          {filteredFriends.map((friend) => (
+            <div
+              key={friend.id}
+              onMouseEnter={() => handleFriendHover(friend.id, true)}
+              onMouseLeave={() => handleFriendHover(friend.id, false)}
+            >
+              <img src={friend.user.avatar} alt="" />
+              <p>{friend.user.username}</p>
+              {hoverStates[friend.id] && <p>#{friend.id}</p>}
+              <div className="icons-container">
+                <div className="messages">
+                  <i className="fas fa-message"></i>
+                </div>
+                <div className="dots">
+                  <i className="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
     } else if (selectedTab === "Add") {
       return (
         <div className="content-add">
@@ -114,7 +139,7 @@ function FriendList({ selectedTab }) {
   };
 
   const renderSearchBar = () => {
-    if (selectedTab === "Add") {
+    if (selectedTab === "Add" || selectedTab === "All" || selectedTab === "Pending") {
       return null;
     } else {
       return (
