@@ -1,3 +1,5 @@
 .update-message__container {
-    color: black;
+    color: white;
+    background: var(--background);
+    width: 500px;
 }
