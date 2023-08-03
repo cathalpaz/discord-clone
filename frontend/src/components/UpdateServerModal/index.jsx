@@ -68,7 +68,7 @@ function UpdateServerModal({ type }) {
               paddingLeft: ".8rem",
             }}
           >
-            {singleServerStore.name.toUpperCase()}'S SERVER
+            {singleServerStore.name.toUpperCase()}
           </p>
           <p className="update-modal-menu-options-choice">Overview</p>
         </div>
@@ -129,7 +129,7 @@ function UpdateServerModal({ type }) {
                   setServerName(e.target.value);
                 }}
                 value={serverName}
-                placeholder={singleServerStore.name + "'s server"}
+                placeholder={singleServerStore.name}
               ></input>
               <p className="update-modal-servername-error">
                 {errors && errors.serverName}
