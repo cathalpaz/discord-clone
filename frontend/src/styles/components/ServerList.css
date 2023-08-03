@@ -17,6 +17,44 @@
     cursor: pointer;
 }
 
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 5px); /* Position just above the container */
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  padding: 6px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px; /* Half of the width of the arrow */
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
 .serverlist-friend-button > i {
     font-size: 1.4rem;
 }
