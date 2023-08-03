@@ -11,11 +11,11 @@ export function DirectMessage({ messageId, usrId }) {
   return (
     <div className='channel-message__container'>
       <div className='channel-message__avatar-container'>
-        <img src={message.user_to?.avatar || ""} alt='' />
+        <img src={message.user_from?.avatar || ""} alt='' />
       </div>
       <div className='channel-message__info'>
         <header className='channel-message__info__header'>
-          <span>{message.user_to.username}</span>
+          <span>{message.user_from.username}</span>
           <span className='channel-message__info__header__date'>
             {dayjs(message.created_at).format("DD/MM/YYYY hh:mm A")}
           </span>
