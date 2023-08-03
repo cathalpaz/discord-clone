@@ -64,7 +64,8 @@ CORS(app)
 
 @app.before_request
 def set_user_activity():
-    if current_user:
+    print("this is the current_user", current_user)
+    if current_user != None and hasattr(current_user, 'id'):
         user = User.query.get(current_user.id)
         if user:
             user.last_seen = datetime.utcnow()

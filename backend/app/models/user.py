@@ -55,6 +55,13 @@ class User(db.Model, UserMixin):
     def pronoun(self):
         return self.pronoun
 
+    def is_online(self):
+        if self.last_seen is None:
+            return 'offline'
+        now = datetime.utcnow()
+        elapsed = now - self.last_seen
+        return 'online' if elapsed.total_seconds() < 300 else 'offline'
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -71,7 +78,8 @@ class User(db.Model, UserMixin):
             'banner_color': self.banner_color,
             'avatar': self.avatar,
             'bio': self.bio,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'status': self.is_online()
         }
 
     def to_dict_servers(self):

@@ -59,6 +59,11 @@ export const updateChannelMessages = (data) => ({
   payload: data,
 });
 
+export const updateUserStatus = (data) => ({
+  type: actionTypes.UPDATE_USER_STATUS,
+  payload: data,
+});
+
 export const thunkGetServerInfo = (serverId) => async (dispatch) => {
   try {
     const res = await fetch(`/api/servers/${serverId}`);
@@ -222,6 +227,17 @@ export const singleServerReducer = (state = initialState, action) => {
           ...oldMessages,
           { ...action.payload },
         ];
+      }
+      return newState;
+    }
+    case actionTypes.UPDATE_USER_STATUS: {
+      const newState = structuredClone(state);
+      const { user_id, status } = action.payload;
+      if (newState.users.length) {
+        const usr = newState.users.find((user) => user.id == user_id);
+        if (usr) {
+          usr.status = status;
+        }
       }
       return newState;
     }

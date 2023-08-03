@@ -81,6 +81,13 @@
     border-radius: 50px;
 
 }
+.server-user__status--offline {
+    width: 10px;
+    height: 10px;
+    background-color: var(--gray-button-accent);
+    border-radius: 50px;
+
+}
 
 
 

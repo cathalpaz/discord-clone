@@ -2,6 +2,7 @@ import os
 from .models import DirectMessage, ChannelMessage, Channel, db, User
 from flask_socketio import SocketIO, emit, send
 from datetime import datetime
+from flask_login import current_user
 
 
 if os.environ.get("FLASK_ENV") == "production":
@@ -20,6 +21,19 @@ socketio = SocketIO(cors_allowed_origins=origins)
 @socketio.on("connect")
 def connection(data):
     print("User connected!")
+    print("THIS IS THE DATA", data)
+
+
+# TODO not very secure way to do this, fix it if you got the time
+@socketio.on("user_connected")
+def user_connected(user_id):
+    user = User.query.get(user_id)
+    if user:
+        user.last_seen = datetime.utcnow()
+        emit("user_status", {
+            'user_id': user.id,
+            'status': 'online'
+        }, broadcast=True)
 
 
 @socketio.on("chat")

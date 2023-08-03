@@ -10,7 +10,7 @@ import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import ServerList from "../ServerList";
 import "../../styles/components/MainPageTemplate.css";
-import { thunkGetServerInfo } from "../../store/singleServer";
+import { thunkGetServerInfo, updateUserStatus } from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
 import SendMessage from "../SendMessage";
@@ -30,6 +30,7 @@ import { io } from "socket.io-client";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
+  const user = useSelector((state) => state.session.user);
   const { serverId, channelId, directMessageId } = useParams();
   const [oldServerId, setOldServerId] = useState(serverId);
   const [selectedState, setSelectedState] = useState("");
@@ -38,6 +39,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
   const loc = location.pathname.split("/").filter((el) => el !== "");
   const singleServerId = useSelector((state) => state.singleServer.id);
   const [socketInstance, setSocketInstance] = useState(null);
+  const server = useSelector((state) => state.singleServer);
 
   useEffect(() => {
     // TODO clean this up
@@ -69,6 +71,26 @@ function MainPageTemplate({ leftTab, rightTab }) {
   }, [dispatch]);
 
   useEffect(() => {
+    // TODO impelement away status here
+    if (socketInstance) {
+      socketInstance.on("connect", () => {
+        if (user) {
+          socketInstance.emit("user_connected", user.id);
+          socketInstance.on("user_status", (other_user) => {
+            if (user) {
+              if (other_user.user_id != user.id) {
+                // set online status of user in servers
+                console.log("SDKLFJKLSDJFLKSDJKLFJKSDJF");
+                dispatch(updateUserStatus(other_user));
+              }
+            }
+          });
+        }
+      });
+    }
+  }, [socketInstance]);
+
+  useEffect(() => {
     if (singleServerId == null) {
       setOldServerId(null);
     }
@@ -88,7 +110,10 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <ServerList />
             </div>
             <div className='main-page-container__item main-page-container__item--2'>
-              <DirectMessageSearch searchString={directMessageSearch} setSearchString={setdirectMessageSearch}/>
+              <DirectMessageSearch
+                searchString={directMessageSearch}
+                setSearchString={setdirectMessageSearch}
+              />
             </div>
             <div className='main-page-container__item main-page-container__item--3'>
               <FriendBar
@@ -98,7 +123,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
             </div>
             <div className='main-page-container__item main-page-container__item--4'>
               <UserProfile />
-              <DirectMessage searchString={directMessageSearch}/>
+              <DirectMessage searchString={directMessageSearch} />
             </div>
             <div className='main-page-container__item main-page-container__item--5'>
               <FriendList selectedTab={selectedState} />
@@ -111,14 +136,17 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <ServerList />
             </div>
             <div className='main-page-container__item main-page-container__item--2'>
-              <DirectMessageSearch searchString={directMessageSearch} setSearchString={setdirectMessageSearch}/>
+              <DirectMessageSearch
+                searchString={directMessageSearch}
+                setSearchString={setdirectMessageSearch}
+              />
             </div>
             <div className='main-page-container__item main-page-container__item--3'>
               <DirectMessageHeader />
             </div>
             <div className='main-page-container__item main-page-container__item--4'>
               <UserProfile />
-              <DirectMessage searchString={directMessageSearch}/>
+              <DirectMessage searchString={directMessageSearch} />
             </div>
             <div className='main-page-container__item main-page-container__item--5'>
               <DirectMessageList />
@@ -126,10 +154,8 @@ function MainPageTemplate({ leftTab, rightTab }) {
             <div className='main-page-container__item main-page-container__item--6'>
               <DirectMessageSendMessage />
             </div>
-            <div className='main-page-container__item main-page-container__item--7'>
-
-            </div>
-            </Route>
+            <div className='main-page-container__item main-page-container__item--7'></div>
+          </Route>
           <Route path='/:serverId/:channelId'>
             <div className='main-page-container__item main-page-container__item--1'>
               <ServerList />
@@ -156,7 +182,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <ServerUsersList />
             </div>
           </Route>
-
         </Switch>
       </div>
     </>
