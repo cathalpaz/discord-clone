@@ -142,7 +142,7 @@ function FriendList({ selectedTab }) {
   };
 
   const renderSearchBar = () => {
-    if (selectedTab === "Add") {
+    if (selectedTab === "Add" || selectedTab === "Pending") {
       return null;
     } else {
       return (
@@ -161,6 +161,7 @@ function FriendList({ selectedTab }) {
       );
     }
   };
+
 
   return (
     <div className="discord">
