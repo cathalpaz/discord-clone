@@ -17,14 +17,19 @@
     cursor: pointer;
 }
 
-.tooltip-container {
+
+
+
+
+
+/* .tooltip-container {
   position: relative;
   display: inline-block;
 }
 
 .tooltip {
   position: absolute;
-  bottom: calc(100% + 5px); /* Position just above the container */
+  bottom: calc(100% + 5px);
   left: 50%;
   top: 50px;
   transform: translateX(-50%);
@@ -42,7 +47,7 @@
   position: absolute;
   bottom: 100%;
   left: 50%;
-  margin-left: -5px; /* Half of the width of the arrow */
+  margin-left: -5px;
   border-width: 5px;
   border-style: solid;
   border-color: transparent transparent #333 transparent;
@@ -51,7 +56,7 @@
 .tooltip-container:hover .tooltip {
   visibility: visible;
   opacity: 1;
-}
+} */
 
 
 
@@ -62,7 +67,14 @@
 .serverlist-icon {
     border-radius: 2rem;
     transition-duration: .1s;
+    /* position: relative;
+    transition-property: border-radius;
+    transition-duration: 0.3s;
+    transition-delay: 0s;
+    aspect-ratio: 1; */
 }
+
+
 
 .serverlist-icon:hover {
     border-radius: 1rem;
@@ -122,4 +134,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.serverlist-add-server {
+    position: relative;
+
+}
+
+.tooltip {
+    /* visibility: hidden; */
+    position: absolute;
+    left: calc(100% + 2px);
+    top: 10%;
+    z-index: 9999;
+    background-color: black;
+}
+
+
+.serverlist-add-server:hover .tooltip {
+    /* visibility: visible; */
 }

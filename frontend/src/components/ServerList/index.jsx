@@ -54,21 +54,22 @@ function ServerList() {
               <img
                 style={{ width: "3rem", height: "3rem" }}
                 onClick={() => openServer(serversStore[id])}
-                className='serverlist-icon .tooltip-container'
+                className='serverlist-icon'
+
                 src={serversStore[id].avatar}
               ></img>
-              <div className="tooltip">{serversStore[id].name}</div>
+
             </>
           ))}
-          <span className='serverlist-add-server .tooltip-container'>
-            <div className="tooltip">Add a server</div>
+          <span className='serverlist-add-server tooltip-container'>
+            {/* <div className="tooltip">Add a server</div> */}
             <OpenModalButton
               modalComponent={<CreateServerModal />}
               buttonText={"+"}
             />
           </span>
           <span className='serverlist-add-server'>
-
+              <div className="tooltip">Discover Servers</div>
               <i className="fa-solid fa-compass serverlist-add-server-icon" onClick={sendToDiscover}></i>
 
           </span>
