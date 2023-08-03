@@ -247,6 +247,10 @@ export const singleServerReducer = (state = initialState, action) => {
       }
       return newState;
     }
+    case actionTypes.REMOVE_SESSION: {
+      const newState = initialState
+      return newState
+    }
     default: {
       return state;
     }

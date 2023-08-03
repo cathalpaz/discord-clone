@@ -120,13 +120,21 @@
 .user-modal_logout {
     height: 30px;
     width: 115px;
-    background-color: hsl(359, 87%, 60%);
+    background-color: var(--delete);
     border: none;
     border-radius: 5px;
     color: var(--white);
     cursor: pointer;
     margin: 15px 20px;
     font-size: 14px;
+}
+
+.user-modal_logout:hover {
+    background-color: var(--delete-dark);
+}
+
+.primary:hover {
+    background-color: var(--primary-accent);
 }
 
 .user-modal_info {
