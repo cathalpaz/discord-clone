@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..models import Server, db, Channel
+from ..models import Server, db, Channel, users_servers
 from ..models.user import User
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
@@ -39,9 +39,13 @@ def all_user_servers():
 def server_info(id):
     user = User.query.filter(User.id == current_user.id).first()
     server = Server.query.filter(Server.id == id).first()
+
+    if server.public:
+        return {"server": server.to_dict()}
     if not server:
         not_found_error = NotFoundError("Server Not Found")
         return not_found_error.error_json()
+
     for serv in user.servers:
         if serv.id == server.id:
             return {"server": server.to_dict()}
@@ -166,3 +170,13 @@ def update_server(server):
         return {"server": server.to_dict()}
     print(form.errors)
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+
+
+# JOIN server
+@servers_routes.route("/<int:id>/join")
+@login_required
+def join_server(id):
+    server = Server.query.get(id)
+    server.users.append(current_user)
+    db.session.commit()
+    return {'message': "Joined!"}

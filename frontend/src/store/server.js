@@ -2,6 +2,7 @@ import { actionTypes } from "./actionTypes";
 
 // constants
 const GET_SERVERS = "server/GET_SERVERS";
+const GET_PUBLIC_SERVERS = "server/GET_PUBLIC"
 const CREATE_SERVER = "server/CREATE_SERVER";
 
 // regular action creator
@@ -11,6 +12,13 @@ const getServers = (servers) => {
     servers,
   };
 };
+
+const getPublicServers = (servers) => {
+  return {
+    type: GET_PUBLIC_SERVERS,
+    servers
+  }
+}
 
 const createServer = (server) => {
   return {
@@ -30,6 +38,20 @@ export const thunkGetAllServers = () => async (dispatch) => {
   }
 };
 
+export const thunkGetPublicServers = () => async(dispatch) => {
+  const res = await fetch(`/api/servers`);
+  if (res.ok) {
+    const data = await res.json()
+    dispatch(getPublicServers(data))
+    return data
+  } else {
+    const errorData = await res.json();
+    console.log('error?');
+    return errorData;
+  }
+}
+
+
 export const thunkCreateServer = (serverForm) => async (dispatch) => {
   const res = await fetch("/api/servers/new", {
     method: "POST",
@@ -48,6 +70,7 @@ export const thunkCreateServer = (serverForm) => async (dispatch) => {
 
 const initialState = {
   orderedServers: [],
+  publicServers: []
 };
 
 export default function serverReducer(state = initialState, action) {
@@ -64,6 +87,18 @@ export default function serverReducer(state = initialState, action) {
       }
       newState.orderedServers = orderedServers;
       return newState;
+    }
+    case GET_PUBLIC_SERVERS: {
+      const newState = {...state}
+      const pubServers = action.servers.servers;
+      const publicServers = [...state.publicServers]
+      for (let server of pubServers) {
+        publicServers.push(server.id)
+
+        newState[server.id] = server
+      }
+      newState.publicServers = publicServers
+      return newState
     }
     case CREATE_SERVER: {
       const newState = { ...state };

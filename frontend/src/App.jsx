@@ -13,6 +13,7 @@ import NotFoundPage from "./components/NotFoundPage";
 import FriendList from "./components/FriendList";
 import ChannelBrowser from "./components/ChannelList/ChannelBrowser";
 import Chat from "./components/WebSocket";
+import SearchServers from "./components/SearchServers";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route path="/websocket">
             <Chat />
+          </Route>
+          <Route path="/discovery">
+            <SearchServers />
           </Route>
           <Route>
             <NotFoundPage />
