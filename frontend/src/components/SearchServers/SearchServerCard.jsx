@@ -2,11 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 
 function SearchServerCard({ server }) {
-    const serversStore = useSelector((state) => state.servers);
-    const myServerIds = useSelector((state) => state.servers.orderedServers);
+  const myServerIds = useSelector((state) => state.servers.orderedServers);
 
-    console.log('123', serversStore)
-//   console.log(server)
   if (!server) {
     return null
   }
