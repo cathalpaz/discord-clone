@@ -32,7 +32,7 @@ function FriendList({ selectedTab }) {
 
   //add friend button to direct you to Add tab
   const handleAddFriendClick = () => {
-    setSelectedTab("Add");
+    setSelectedTab(Add);
   };
 
 
