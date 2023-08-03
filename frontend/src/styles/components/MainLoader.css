@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--background);
+    background-color: rgb(36,38,44)
 }
 .loading-container__content > i {
     animation: spinner .5s ease-out  infinite;
