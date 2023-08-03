@@ -38,6 +38,16 @@ export default function FriendBar({ selectedTab, setSelectedTab }) {
                         </button>
                         <button
                             className={
+                                selectedTab === "Pending"
+                                    ? "active nav-button pending-friend"
+                                    : "nav-button pending-friend"
+                            }
+                            onClick={() => setSelectedTab("Pending")}
+                        >
+                            Pending
+                        </button>
+                        <button
+                            className={
                                 selectedTab === "Add"
                                     ? "active nav-button add-friend"
                                     : "nav-button add-friend"
