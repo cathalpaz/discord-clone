@@ -18,7 +18,6 @@
     grid-column: 1/2;
     grid-row: 1/4;
     background-color: var(--secondary-background-darker);
-    overflow-y: scroll;
 }
 
 .main-page-container__item--2 {

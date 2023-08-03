@@ -70,7 +70,6 @@ export default function ChannelBrowser({ socket }) {
           const updatedChannelNotifications = { ...prevChannelNotifications };
 
           if (updatedChannelNotifications[+data.channel_id]) {
-            console.log("this if block is running");
             updatedChannelNotifications[data.channel_id].count += 1;
           } else {
             updatedChannelNotifications[data.channel_id] = { count: 1 };

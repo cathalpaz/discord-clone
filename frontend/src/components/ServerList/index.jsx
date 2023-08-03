@@ -6,8 +6,9 @@ import { signUp } from "../../store/session";
 import { thunkGetAllServers } from "../../store/server";
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
-import SearchServers from '../SearchServers'
+import SearchServers from "../SearchServers";
 import "../../styles/components/ServerList.css";
+import { Server } from "./Server";
 
 function ServerList() {
   const serversStore = useSelector((state) => state.servers);
@@ -28,9 +29,8 @@ function ServerList() {
   };
 
   const sendToDiscover = () => {
-    history.push('/discovery')
-  }
-
+    history.push("/discovery");
+  };
 
   return (
     <>
@@ -51,26 +51,28 @@ function ServerList() {
         <div className='serverlist-main-list'>
           {serverIds.map((id) => (
             <>
-              <img
+              <Server serverId={id} onClick={openServer} />
+              {/* <img
                 style={{ width: "3rem", height: "3rem" }}
                 onClick={() => openServer(serversStore[id])}
                 className='serverlist-icon .tooltip-container'
                 src={serversStore[id].avatar}
               ></img>
-              <div className="tooltip">{serversStore[id].name}</div>
+              <div className="tooltip">{serversStore[id].name}</div> */}
             </>
           ))}
           <span className='serverlist-add-server .tooltip-container'>
-            <div className="tooltip">Add a server</div>
+            <div className='tooltip'>Add a server</div>
             <OpenModalButton
               modalComponent={<CreateServerModal />}
               buttonText={"+"}
             />
           </span>
           <span className='serverlist-add-server'>
-
-              <i className="fa-solid fa-compass serverlist-add-server-icon" onClick={sendToDiscover}></i>
-
+            <i
+              className='fa-solid fa-compass serverlist-add-server-icon'
+              onClick={sendToDiscover}
+            ></i>
           </span>
         </div>
       </div>
