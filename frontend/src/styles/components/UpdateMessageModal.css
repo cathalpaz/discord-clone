@@ -2,4 +2,51 @@
     color: white;
     background: var(--background);
     width: 500px;
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 8px;
+}
+
+.update-message__title {
+    font-size: 22px;
+    margin-bottom: 8px;
+    padding: 16px 16px 0 16px;
+}
+
+.update-message__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0 16px 0 16px;
+    margin-bottom: 15px;
+}
+
+.update-message__content > input {
+    height: 40px;
+    background-color: var(--secondary-background-darker);
+    color: var(--light-accent);
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+    outline: none;
+}
+
+.update-message__btns {
+    background-color: var(--secondary-background);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.save-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
 }

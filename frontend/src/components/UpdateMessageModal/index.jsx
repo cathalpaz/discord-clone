@@ -15,25 +15,26 @@ function UpdateMessageModal({ message }) {
   const updateMessage = (e) => {
     e.preventDefault()
     // handle socket stuff here
+    message.updated = True
     console.log('SUBMITTED')
     closeModal()
   }
-
+  console.log(message)
   return (
     <div className='update-message__container'>
-      <div>Update message</div>
-      <label>
+      <span className='update-message__title'>Update message</span>
+      <label className='update-message__content'>
         Message:
-        <textarea
+        <input
           onKeyDown={handleEnter}
           value={newMessage}
-          onChange={(e) => e.target.value}
+          onChange={(e) => setNewMessage(e.target.value)}
           >
-        </textarea>
+        </input>
       </label>
       <div className='update-message__btns'>
-        <button onClick={closeModal}>Cancel</button>
-        <button>Save</button>
+        <button onClick={closeModal} className='delete-modal-button-no'>Cancel</button>
+        <button className='save-btn'>Save</button>
       </div>
     </div>
   )
