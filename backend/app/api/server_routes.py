@@ -179,4 +179,4 @@ def join_server(id):
     server = Server.query.get(id)
     server.users.append(current_user)
     db.session.commit()
-    return 'joined'
+    return {'message': "Joined!"}
