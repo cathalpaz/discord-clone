@@ -22,9 +22,17 @@ socketio = SocketIO(cors_allowed_origins=origins)
 def connection(data):
     print("User connected!")
     print("THIS IS THE DATA", data)
+# TODO needs error handling
 
+
+@socketio.on("dm-sent")
+def handle_dm(dm):
+    print("DM RECEIVED", dm)
+    emit(f"user-dm-{dm['message']['user_to_id']}", dm, broadcast=True)
 
 # TODO not very secure way to do this, fix it if you got the time
+
+
 @socketio.on("user_connected")
 def user_connected(user_id):
     user = User.query.get(user_id)

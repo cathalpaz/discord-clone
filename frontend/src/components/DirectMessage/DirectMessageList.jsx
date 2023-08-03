@@ -1,28 +1,46 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import "../../styles/components/ChannelMessageList.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { DirectMessage } from "./DirectMessage";
+import { addDm } from "../../store/directMessages";
 
-export function DirectMessageList() {
-  const users = useSelector((state) => state.session.user);
-  const { directMessageId } = useParams()
-  
+export function DirectMessageList({ socket }) {
+  if (!socket) return false;
+  const user = useSelector((state) => state.session.user);
+  const { directMessageId } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    socket.on(`user-dm-${user.id}`, (dm) => {
+      console.log("THIS IS THE DM", dm);
+      dispatch(addDm(dm));
+    });
+    return () => {
+      socket.off(`user-id-${user.id}`);
+    };
+  }, []);
+
   const messages = useSelector((state) => {
     if (state.directMessages[directMessageId]) {
-      return state.directMessages?.[directMessageId]
+      return state.directMessages?.[directMessageId];
     }
   });
 
+  const newMessagesIds = useSelector(
+    (state) => state.directMessages.users[directMessageId].orderedMessages
+  );
+
   return (
     <>
-      { messages &&
+      {/* {newMessagesIds && (
         <div className='channel-message-list__container'>
-          {users &&
-              <DirectMessage message={messages} />
-            }
+          {user && <DirectMessage messageId={newMessagesIds} />}
         </div>
-      }
+      )} */}
+      {newMessagesIds.map((mId) => (
+        <DirectMessage messageId={mId} usrId={directMessageId} />
+      ))}
     </>
-
   );
 }

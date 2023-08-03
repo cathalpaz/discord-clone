@@ -10,39 +10,133 @@ const initialState = {
   // created_at: null,
   // updated_at: null
   orderedDirectMessages: [],
+  users: {
+    orderedUsers: [],
+  },
 };
 
-const getAllDirectMessages = (dms) => ({
+const getAllDirectMessages = (dms, userId) => ({
   type: actionTypes.GET_ALL_DIRECT_MESSAGE,
-  payload: dms,
+  payload: {
+    dms,
+    userId,
+  },
 });
 
-export const thunkGetAllDirectMessages = () => async (dispatch) => {
-  try {
-    const res = await fetch(`/api/@me`);
-    if (res.ok) {
-      const data = await res.json();
-      dispatch(getAllDirectMessages(data));
-      return data;
+export const addDm = (dm) => ({
+  type: actionTypes.ADD_DM_MESSAGE,
+  payload: dm,
+});
+const createDirectMessage = (data) => ({
+  type: actionTypes.SEND_DM_MESSAGE,
+  payload: data,
+});
+
+export const thunkGetAllDirectMessages =
+  (currentUserId) => async (dispatch) => {
+    try {
+      const res = await fetch(`/api/@me`);
+      if (res.ok) {
+        const data = await res.json();
+        dispatch(getAllDirectMessages(data, currentUserId));
+        return data;
+      }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error)
-  }
-};
+  };
+
+export const thunkSendDirectMessage =
+  (userId, messageData) => async (dispatch) => {
+    try {
+      const res = await fetch(`/api/@me/${userId}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(messageData),
+        method: "POST",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        console.log("THIS IS THE DATA", data);
+        dispatch(createDirectMessage({ ...data, userId }));
+        return { ...data, userId };
+      }
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  };
 
 export const directMessagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_ALL_DIRECT_MESSAGE: {
-      const newState = { ...state }
-      const messages = action.payload.messages;
-      const orderedDirectMessages = [...state.orderedDirectMessages]
+      const newState = structuredClone(state);
+      const userId = action.payload.userId;
+      console.log("THIS IS THE ACTION PAYLOAD", action.payload);
+      console.log("THIS IS THE USER ID ", userId);
+      const messages = action.payload.dms.messages;
+      const orderedDirectMessages = [...state.orderedDirectMessages];
+
       for (let message of messages) {
-        if (!newState[message.id]) {
-          orderedDirectMessages.push(message.id)
+        let otherUserId;
+        if (message.user_from_id != userId) otherUserId = message.user_from_id;
+        else otherUserId = message.user_to_id;
+        if (!newState.users[otherUserId]) {
+          newState.users[otherUserId] = {
+            [message.id]: {
+              ...message,
+            },
+            orderedMessages: [message.id],
+          };
+          newState.users.orderedUsers.push(otherUserId);
+          if (!newState.users[otherUserId].username) {
+            newState.users[otherUserId].username =
+              message.user_from_id == otherUserId
+                ? message.user_from.username
+                : message.user_to.username;
+            // TODO FIX THIS
+            newState.users[otherUserId].avatar = message.user_to.avatar;
+          }
+        } else {
+          if (!newState.users[otherUserId][message.id]) {
+            newState.users[otherUserId][message.id] = { ...message };
+            newState.users[otherUserId].orderedMessages.push(message.id);
+          }
+          newState.users[otherUserId].orderedMessages.sort((a, b) => {
+            const dateA = new Date(newState.users[otherUserId][a].created_at);
+            const dateB = new Date(newState.users[otherUserId][b].created_at);
+            return dateA - dateB;
+          });
         }
-        newState[message.id] = message
       }
-      newState.orderedDirectMessages = orderedDirectMessages
+      return newState;
+    }
+
+    case actionTypes.SEND_DM_MESSAGE: {
+      const newState = structuredClone(state);
+      const { userId, message } = action.payload;
+      console.log("this is the payload", action.payload);
+      console.log("THIS IS THE USERID", userId);
+      if (newState.users[userId]) {
+        console.log("THIS IF IS RUNNING");
+        newState.users[userId][message.id] = {
+          ...message,
+        };
+        newState.users[userId].orderedMessages.push(message.id);
+      }
+      return newState;
+    }
+    case actionTypes.ADD_DM_MESSAGE: {
+      const newState = structuredClone(state);
+      const { message } = action.payload;
+
+      if (newState.users[message.user_from_id]) {
+        newState.users[message.user_from.id][message.id] = {
+          ...message,
+        };
+        newState.users[message.user_from_id].orderedMessages.push(message.id);
+      }
       return newState;
     }
     default: {
