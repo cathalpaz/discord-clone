@@ -54,12 +54,14 @@ function ServerList() {
               <img
                 style={{ width: "3rem", height: "3rem" }}
                 onClick={() => openServer(serversStore[id])}
-                className='serverlist-icon'
+                className='serverlist-icon .tooltip-container'
                 src={serversStore[id].avatar}
               ></img>
+              <div className="tooltip">{serversStore[id].name}</div>
             </>
           ))}
-          <span className='serverlist-add-server'>
+          <span className='serverlist-add-server .tooltip-container'>
+            <div className="tooltip">Add a server</div>
             <OpenModalButton
               modalComponent={<CreateServerModal />}
               buttonText={"+"}
