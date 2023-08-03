@@ -12,6 +12,7 @@ const DELETE_CHANNEL = "singleServer/deleteChannel";
 const GET_ALL_DIRECT_MESSAGE = "directMessages/getAllDirectMessages";
 const SEND_CHANNEL_MESSAGE = "singleServer/addChannelMessage";
 const UPDATE_USER_STATUS = "singleServer/updateUserStatus";
+const SEND_FRIEND_REQUEST = "session/sendFriendRequest"
 
 export const actionTypes = {
   SET_SESSION,
@@ -28,4 +29,5 @@ export const actionTypes = {
   GET_ALL_DIRECT_MESSAGE,
   SEND_CHANNEL_MESSAGE,
   UPDATE_USER_STATUS,
+  SEND_FRIEND_REQUEST,
 };
