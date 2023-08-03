@@ -132,6 +132,19 @@
 .search-servers-server-list {
     width: 72px;
     background-color: var(--secondary-background-darker);
+    overflow-y: scroll;
+}
+
+.search-servers-server-list::-webkit-scrollbar {
+    display: none;
+}
+
+.search-server-main-container {
+    overflow-y: scroll;
+}
+
+.search-server-main-container::-webkit-scrollbar {
+    overflow-y: scroll;
 }
 
 .search-servers-option-container {
