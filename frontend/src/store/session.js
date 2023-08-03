@@ -20,6 +20,12 @@ const setFriends = (friends) => ({
   payload: friends,
 });
 
+const sendFriendRequest = (friendId) => ({
+  type: actionTypes.SEND_FRIEND_REQUEST,
+  payload: friendId,
+});
+
+
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
     headers: {
@@ -72,6 +78,24 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
       const data = await res.json();
       console.log("this is the data", data);
       dispatch(updateUser(data));
+      return data;
+    }
+  } catch (err) {
+    console.log("there was an error", err);
+    return err;
+  }
+};
+
+export const thunkSendFriendRequest = (userId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/@me/friends/${userId}/send-request`, {
+      method: "POST",
+      body: JSON.stringify(userId),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      console.log("this is the data", data);
+      dispatch(sendFriendRequest(data));
       return data;
     }
   } catch (err) {
@@ -135,10 +159,14 @@ export default function reducer(state = initialState, action) {
       return { ...state, friends: action.payload };
     case actionTypes.UPDATE_USER: {
       const newState = structuredClone(state);
-      console.log(action.payload);
       const user = action.payload;
       newState.user = { ...newState.user, ...user };
       return newState;
+    }
+    case actionTypes.SEND_FRIEND_REQUEST: {
+      const newState = {...state}
+      console.log('state', state)
+      console.log('action', action)
     }
     default:
       return state;
