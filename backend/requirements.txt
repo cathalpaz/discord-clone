@@ -36,4 +36,4 @@ dnspython==1.16.0
 bidict==0.22.1
 python-socketio==5.8.0
 python-engineio==4.5.1
-gevent==23.7.0
+gevent==22.10.2
