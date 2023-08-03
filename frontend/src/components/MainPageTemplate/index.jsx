@@ -71,7 +71,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
         setOldServerId(serverId);
       }
       setSocketInstance(
-        io(import.meta.VITE_APP_WS_URL || "localhost:5000/", {
+        io(import.meta.env.VITE_APP_WS_URL || "localhost:5000/", {
           cors: {
             origin: "*",
           },
