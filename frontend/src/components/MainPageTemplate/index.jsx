@@ -31,6 +31,9 @@ import { DirectMessageList } from "../DirectMessage/DirectMessageList";
 import DirectMessageHeader from "../DirectMessage/DirectMessageHeader";
 import DirectMessageSendMessage from "../DirectMessage/DirectMessageSendMessage";
 import { io } from "socket.io-client";
+import SearchServerHeader from "../SearchServers/SearchServerHeader";
+import SearchServerList from "../SearchServers/SearchServerList";
+import SearchServers from "../SearchServers";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -112,6 +115,28 @@ function MainPageTemplate({ leftTab, rightTab }) {
     <>
       <div className='main-page-container'>
         <Switch>
+        {/* <Route exact path='/discovery'>
+            <div className='main-page-container__item main-page-container__item--1'>
+              <ServerList />
+            </div>
+            <div className='main-page-container__item main-page-container__item--2'>
+              <SearchServerHeader />
+            </div>
+            <div className='main-page-container__item main-page-container__item--3'>
+
+            </div>
+            <div className='main-page-container__item main-page-container__item--4'>
+              <UserProfile />
+              <SearchServerList />
+            </div>
+            <div className='main-page-container__item main-page-container__item--5'>
+              <SearchServers />
+            </div>
+            <div className='main-page-container__item main-page-container__item--6'>
+
+            </div>
+            <div className='main-page-container__item main-page-container__item--7'></div>
+          </Route> */}
           <Route exact path='/@'>
             <div className='main-page-container__item main-page-container__item--1'>
               <ServerList />
@@ -189,6 +214,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <ServerUsersList />
             </div>
           </Route>
+
         </Switch>
       </div>
     </>
