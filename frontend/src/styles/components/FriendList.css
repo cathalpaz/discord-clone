@@ -195,7 +195,7 @@ padding-top: 20px
  }
 
 
-/* Division for friends list */
+
 .friend-list div{
   min-width:0px;
   padding-left:0px;
@@ -208,7 +208,7 @@ padding-top: 20px
  border-top-style:none;
 }
 
-/* Division */
+
 .friend-list .content-add div{
  border-style:none;
  border-top-style:none;
@@ -220,22 +220,50 @@ padding-top: 20px
  margin-right:263px;
 }
 
-/* Input Add Friend */
+
 .friend-list input[type=text]{
   padding-top:0px;
   margin-top:28px;
  }
 
- /* Add  desc */
+
  .friend-list .Add-Desc{
   padding-top:0px;
   margin-top:12px;
   color:#b2b2b2;
  }
 
- /* Add  friend */
  .friend-list .Add-Friend{
   margin-top:27px;
   font-weight:600;
   font-size:18px;
  }
+
+.friend-list div .icons-container{
+  border-top-style:none;
+  height:24px;
+ }
+
+
+ .friend-list div .messages{
+  border-top-style:none;
+ }
+
+ .friend-list div .dots{
+  border-top-style:none;
+ }
+
+ .loner-wumpus {
+  display: flex;
+  flex-direction: column;
+  margin-top: 400px;
+  transform:scale(5);
+}
+
+.loner-wumpus-text {
+  font-weight: 100;
+  margin-top: 120px;
+  text-align:center;
+  font-weight:300;
+  color:#a0a0a0;
+}

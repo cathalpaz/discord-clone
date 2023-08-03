@@ -99,6 +99,14 @@ function FriendList({ selectedTab }) {
             <button
             className="send-request"
             >Send Friend Request</button>
+            <div className="loner-wumpus">
+            <img src="../../../public/images/wumpus-add-friend.svg" alt="" />
+            </div>
+            <div>
+              <p className="loner-wumpus-text">
+                Wumpus is waiting on friends. You don't have to though!
+                </p>
+            </div>
         </div>
       );
     }
