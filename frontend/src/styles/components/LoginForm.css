@@ -9,14 +9,16 @@
 
 .login-container-main {
     display: flex;
-    justify-content: center
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
 }
 
 .login-container {
     z-index: 2;
     width: 49rem;
     height: 25.5rem;
-    margin-top: 27.3rem;
     background-color: #313338;
     border-radius: 0.3rem;
     display: flex;
