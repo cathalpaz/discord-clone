@@ -8,13 +8,15 @@
     justify-content: space-between;
     align-items: center;
     height: 50px; */
-    margin-top: 100%;
-    width: 100%;
+    /* margin-top: 100%; */
+    /* width: 100%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--secondary-background-darker);
-    padding: 10px 15px;
+    background-color: var(--user-profile);
+    padding: 9px 0px;
+    padding-left: 9px;
+    padding-right: 15px;
 }
 
 .user_prof-info {

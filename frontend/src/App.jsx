@@ -39,6 +39,9 @@ function App() {
               rightTab={<ChannelList />}
             />
           </Route>
+          <Route path="/discovery">
+            <SearchServers />
+          </Route>
           <Route path='/@'>
             <MainPageTemplate
             />
@@ -51,9 +54,6 @@ function App() {
           </Route>
           <Route path="/websocket">
             <Chat />
-          </Route>
-          <Route path="/discovery">
-            <SearchServers />
           </Route>
           <Route>
             <NotFoundPage />

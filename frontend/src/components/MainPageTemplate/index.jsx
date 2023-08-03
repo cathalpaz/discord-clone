@@ -31,6 +31,9 @@ import { DirectMessageList } from "../DirectMessage/DirectMessageList";
 import DirectMessageHeader from "../DirectMessage/DirectMessageHeader";
 import DirectMessageSendMessage from "../DirectMessage/DirectMessageSendMessage";
 import { io } from "socket.io-client";
+import SearchServerHeader from "../SearchServers/SearchServerHeader";
+import SearchServerList from "../SearchServers/SearchServerList";
+import SearchServers from "../SearchServers";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -68,7 +71,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
         setOldServerId(serverId);
       }
       setSocketInstance(
-        io("localhost:5000/", {
+        io(import.meta.VITE_APP_WS_URL || "localhost:5000/", {
           cors: {
             origin: "*",
           },
