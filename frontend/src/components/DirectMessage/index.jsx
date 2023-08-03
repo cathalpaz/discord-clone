@@ -32,6 +32,10 @@ export default function DirectMessage({searchString}) {
     history.push(`/@/${message.id}`)
   }
 
+  const activeCheck = () => {
+
+  }
+
   return (
       <>
         <div>

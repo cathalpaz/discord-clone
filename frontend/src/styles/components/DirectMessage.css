@@ -4,8 +4,9 @@
     gap: .5rem;
     height: 2.6rem;
     margin: 0px .5rem;
-    /* margin-bottom: .2rem; */
     color: var(--secondary-accent);
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
 }
 
 .direct-message-container:hover {
@@ -28,6 +29,8 @@
     margin: .5rem .5rem;
     height: 2.5rem;
     color: var(--secondary-accent);
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
 }
 
 .direct-message-icon-friend:hover {
@@ -44,4 +47,5 @@
 
 .direct-message-icon-friend > span {
     margin-left: 1rem;
+    margin-top: 1px;
 }

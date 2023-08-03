@@ -34,11 +34,14 @@
     padding-left: .5rem;
     padding-right: .6rem;
     height: 2rem;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
 }
 
 .channel-menu-option:hover {
     background-color: var(--primary);
     color: var(--white);
+    border-radius: .2rem;
 }
 
 .channel-menu-option-delete {
@@ -49,11 +52,14 @@
     padding-left: .5rem;
     padding-right: .6rem;
     height: 2rem;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
 }
 
 .channel-menu-option-delete:hover {
     background-color: var(--delete);
     color: var(--white);
+    border-radius: .2rem;
 }
 
 .channel-menu-container {
