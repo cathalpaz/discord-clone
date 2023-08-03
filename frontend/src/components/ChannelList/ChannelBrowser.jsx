@@ -91,6 +91,12 @@ export default function ChannelBrowser({ socket }) {
     checkErrors();
   }, [name]);
 
+  useEffect(() => {
+    if (channelId != selectedChannel) {
+      dispatch(updateSelectedChannelId(channelId));
+    }
+  }, []);
+
   const checkErrors = () => {
     const errors = {};
     if (!name.length) errors.name = "Name too short!";
@@ -137,7 +143,7 @@ export default function ChannelBrowser({ socket }) {
         {channels.orderedChannelsList.map((cId) => (
           <div className='channel-row'>
             <span
-              className={`${selectedChannel === cId && "highlight"} ${
+              className={`${selectedChannel == cId && "highlight"} ${
                 channelNotifications[cId] && "notification"
               }`}
               onClick={() => {

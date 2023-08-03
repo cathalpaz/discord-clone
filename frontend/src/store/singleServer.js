@@ -64,20 +64,21 @@ export const updateUserStatus = (data) => ({
   payload: data,
 });
 
-export const thunkGetServerInfo = (serverId) => async (dispatch) => {
-  try {
-    const res = await fetch(`/api/servers/${serverId}`);
-    if (res.ok) {
-      const data = await res.json();
-      if (data.server.channels.length) {
-        dispatch(updateSelectedChannelId(data.server.channels[0].id));
+export const thunkGetServerInfo =
+  (serverId, selectedChannelId) => async (dispatch) => {
+    try {
+      const res = await fetch(`/api/servers/${serverId}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.server.channels.length && !selectedChannelId) {
+          dispatch(updateSelectedChannelId(data.server.channels[0].id));
+        }
+        dispatch(getSingleServer(data.server));
       }
-      dispatch(getSingleServer(data.server));
+    } catch (err) {
+      console.log(err);
     }
-  } catch (err) {
-    console.log(err);
-  }
-};
+  };
 
 export const thunkCreateChannel = (serverId, channel) => async (dispatch) => {
   const res = await fetch(`/api/servers/${serverId}/channels`, {

@@ -2,8 +2,6 @@ import dayjs from "dayjs";
 
 export function ChannelMessage({ message, user }) {
   if (!user) return false;
-  console.log("MESSAGE", message)
-  console.log("USER", user)
   return (
     <div className='channel-message__container'>
       <div className='channel-message__avatar-container'>

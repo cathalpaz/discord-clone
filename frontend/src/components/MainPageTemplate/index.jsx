@@ -10,7 +10,11 @@ import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import ServerList from "../ServerList";
 import "../../styles/components/MainPageTemplate.css";
-import { thunkGetServerInfo, updateUserStatus } from "../../store/singleServer";
+import {
+  thunkGetServerInfo,
+  updateSelectedChannelId,
+  updateUserStatus,
+} from "../../store/singleServer";
 import { MainLoader } from "../Loading/MainLoader";
 import ChannelMenuDrop from "../ChannelList/ChannelMenuDrop";
 import SendMessage from "../SendMessage";
@@ -40,6 +44,9 @@ function MainPageTemplate({ leftTab, rightTab }) {
   const singleServerId = useSelector((state) => state.singleServer.id);
   const [socketInstance, setSocketInstance] = useState(null);
   const server = useSelector((state) => state.singleServer);
+  const selectedChannelId = useSelector(
+    (state) => state.singleServer.selectedChannelId
+  );
 
   useEffect(() => {
     // TODO clean this up
