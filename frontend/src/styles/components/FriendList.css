@@ -252,11 +252,14 @@ padding-top: 20px
   border-top-style:none;
  }
 
+ /* Add friends page no online */
+
+
  .loner-wumpus {
   display: flex;
   flex-direction: column;
   margin-top: 400px;
-  transform:scale(5);
+  transform:scale(7);
 }
 
 .loner-wumpus-text {
@@ -265,4 +268,40 @@ padding-top: 20px
   text-align:center;
   font-weight:300;
   color:#a0a0a0;
+}
+
+/* Online page with no friends */
+
+.offline-wumpus-text {
+  text-align:center;
+  font-weight:300;
+  color:#a0a0a0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:110px;
+  margin-left:40px;
+  margin-top:620px;
+  margin-right:-50px;
+  transform:translatex(233px) translatey(-5px);
+}
+
+.offline-wumpus {
+  margin-left:80px;
+  height:55px;
+  width:97px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 400px;
+  transform:scale(9);
+}
+
+/* no friends is for the All page */
+
+.no-friends-txt {
+
+}
+
+.no-friends {
+
 }

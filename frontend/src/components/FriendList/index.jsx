@@ -53,10 +53,12 @@ function FriendList({ selectedTab }) {
         <div className="content-online">
           <h2 className="heading-class">{selectedTab}</h2>
           {filteredFriends.length === 0 ? (
+            // <div className="content-add">
             <div>
-              <p>No one's around to play with Wumpus.</p>
-              <img src="../../../public/images/NoOnline.svg" alt="" />
+              <p className="offline-wumpus-text">No one's around to play with Wumpus.</p>
+              <img className="offline-wumpus"src="../../../public/images/NoOnline.svg" alt="" />
             </div>
+            // </div>
           ) : (
             filteredFriends.map((friend) => (
               <div
@@ -85,9 +87,9 @@ function FriendList({ selectedTab }) {
         <div className="content-all">
           <h2 className="heading-class">{selectedTab}</h2>
           {filteredFriends.length === 0 ? (
-                        <div>
-                        <p>Wumpus is waiting on friends. You don't have to though!</p>
-                        <img src="../../../public/images/NoFriends.svg" alt="" />
+                        <div className="content-add">
+                        <p className="no-friends-txt">Wumpus is waiting on friends. You don't have to though!</p>
+                        <img className="no-friends" src="../../../public/images/NoFriends.svg" alt="" />
                         <div>
                           <button className="send-request" onClick={handleAddFriendClick}>
                             Add Friend
