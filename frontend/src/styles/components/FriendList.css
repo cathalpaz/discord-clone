@@ -282,11 +282,14 @@ padding-top: 20px
   border-top-style:none;
  }
 
+ /* Add friends page no online */
+
+
  .loner-wumpus {
   display: flex;
   flex-direction: column;
   margin-top: 400px;
-  transform:scale(5);
+  transform:scale(7);
 }
 
 .loner-wumpus-text {
@@ -295,4 +298,66 @@ padding-top: 20px
   text-align:center;
   font-weight:300;
   color:#a0a0a0;
+}
+
+/* Online page with no friends */
+
+.offline-wumpus-text {
+  text-align:center;
+  font-weight:300;
+  color:#a0a0a0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:110px;
+  margin-left:40px;
+  margin-top:620px;
+  margin-right:-50px;
+  transform:translatex(233px) translatey(-5px);
+}
+
+.offline-wumpus {
+  margin-left:80px;
+  height:55px;
+  width:97px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 400px;
+  transform:scale(9);
+}
+
+/* no friends is for the All page */
+
+
+.no-friends-txt {
+  text-align:center;
+  font-weight:300;
+  color:#a0a0a0;
+}
+
+.no-friends {
+  background-size: 100% 100%;
+  width: 376px;
+  height: 162px;
+}
+
+/* button to add friends on "all" page */
+.send-request-all {
+  cursor: pointer;
+  border-top-style:none;
+  background-color: rgb(63, 72, 171);
+  align-items: center;
+  color: white;
+  width: 98px;
+  height: 38px;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.send-request-all:hover {
+  transition-duration: 0.17s, 0.17s;
+  background-color: rgb(52, 60, 144);
 }
