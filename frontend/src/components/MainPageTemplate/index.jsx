@@ -115,28 +115,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
     <>
       <div className='main-page-container'>
         <Switch>
-        {/* <Route exact path='/discovery'>
-            <div className='main-page-container__item main-page-container__item--1'>
-              <ServerList />
-            </div>
-            <div className='main-page-container__item main-page-container__item--2'>
-              <SearchServerHeader />
-            </div>
-            <div className='main-page-container__item main-page-container__item--3'>
-
-            </div>
-            <div className='main-page-container__item main-page-container__item--4'>
-              <UserProfile />
-              <SearchServerList />
-            </div>
-            <div className='main-page-container__item main-page-container__item--5'>
-              <SearchServers />
-            </div>
-            <div className='main-page-container__item main-page-container__item--6'>
-
-            </div>
-            <div className='main-page-container__item main-page-container__item--7'></div>
-          </Route> */}
           <Route exact path='/@'>
             <div className='main-page-container__item main-page-container__item--1'>
               <ServerList />
