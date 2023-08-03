@@ -34,7 +34,7 @@ export function ChannelMessage({ message, user }) {
                     message={message}
                   />
                 }
-                buttonText={<i className="fa-solid fa-pen-to-square"></i>}
+                buttonText={<i className="fa-solid fa-pencil"></i>}
                 className={"update-conversation"}
               />
               <button className="delete-message-button" onClick={() => deleteChat(message.id)}>

@@ -25,11 +25,13 @@
 .channel-message__info {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 .channel-message__info__header {
     display: flex;
     gap: 10px;
     font-size: 1rem;
+    width: 100%;
 }
 .channel-message__info__header__date {
     color: var(--light-accent)
@@ -45,15 +47,29 @@
 
 .message-hidden {
     visibility: hidden;
-    padding-left: 100px;
+    display: flex;
+    padding-right: 5px;
+    gap: 0.5rem;
 }
 
 .channel-message__container:hover .message-hidden{
     visibility: visible;
+
+}
+
+.channel-message__container:hover {
+    background-color: var(--secondary-background);
+    border-radius: 8px;
+
 }
 
 .channel-message__info__header-container {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+}
+
+.message-hidden > button {
+    background: none;
+    border: none;
+    color: var(--light-accent);
+    cursor: pointer;
 }
