@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.serverlist-container::-webkit-scrollbar {
+    display: none;
+}
+
 .serverlist-friend-button {
     margin-top: .75rem;
     display: flex;
@@ -62,6 +66,7 @@
 .serverlist-icon {
     border-radius: 2rem;
     transition-duration: .1s;
+
 }
 
 .serverlist-icon:hover {
