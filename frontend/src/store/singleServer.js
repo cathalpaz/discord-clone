@@ -64,6 +64,11 @@ export const updateUserStatus = (data) => ({
   payload: data,
 });
 
+export const updateSingleChannelMessage = (data) => ({
+  type: actionTypes.EDIT_CHANNEL_MESSAGE,
+  payload: data,
+});
+
 export const thunkGetServerInfo =
   (serverId, selectedChannelId) => async (dispatch) => {
     try {

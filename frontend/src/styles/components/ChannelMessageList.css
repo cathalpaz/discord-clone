@@ -41,3 +41,19 @@
     color: var(--light-accent);
     font-size: .8rem;
 }
+
+
+.message-hidden {
+    visibility: hidden;
+    padding-left: 100px;
+}
+
+.channel-message__container:hover .message-hidden{
+    visibility: visible;
+}
+
+.channel-message__info__header-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
