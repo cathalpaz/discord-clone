@@ -5,6 +5,7 @@ import { fetchFriends } from "../../store/session";
 
 function FriendList({ selectedTab }) {
   const sessionUser = useSelector((state) => state.session.user);
+
   const friendStore = useSelector((state) => state.session.friends);
   const [searchQuery, setSearchQuery] = useState("");
   const [addFriend, setAddFriend] = useState("");
@@ -26,11 +27,14 @@ function FriendList({ selectedTab }) {
     }));
   };
 
-  let filteredFriends = [];
+  let filteredFriends = [], pendingFriends = [];
   if (friendStore) {
     filteredFriends = friendStore.filter((friend) =>
-      friend.user.username.toLowerCase().includes(searchQuery.toLowerCase())
+      friend.user.username.toLowerCase().includes(searchQuery.toLowerCase()) && friend.status == "ACCEPTED"
     );
+    pendingFriends = friendStore.filter((friend) =>
+      friend.user.username.toLowerCase().includes(searchQuery.toLowerCase()) && friend.status == "PENDING"
+    )
   }
 
   const renderContent = () => {
@@ -107,6 +111,31 @@ function FriendList({ selectedTab }) {
                 Wumpus is waiting on friends. You don't have to though!
                 </p>
             </div>
+        </div>
+      );
+    } else if (selectedTab === "Pending") {
+      return (
+        <div className="content-all">
+          <h2 className="heading-class">{selectedTab}</h2>
+          {pendingFriends.map((friend) => (
+            <div
+              key={friend.id}
+              onMouseEnter={() => handleFriendHover(friend.id, true)}
+              onMouseLeave={() => handleFriendHover(friend.id, false)}
+            >
+              <img src={friend.user.avatar} alt="" />
+              <p>{friend.user.username}</p>
+              {hoverStates[friend.id] && <p>#{friend.id}</p>}
+              <div className="icons-container">
+                <div className="messages">
+                  <i className="fas fa-message"></i>
+                </div>
+                <div className="dots">
+                  <i className="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       );
     }
