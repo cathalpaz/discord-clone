@@ -92,17 +92,22 @@
     align-items: center;
     background-color: #f2f3f5;
     padding: 16px 1.5rem;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .server_form-btns button {
-    background-color: #627bd4;
+    background-color: var(--primary);
     padding: 12px 20px;
     border: none;
     color: var(--white);
     font-weight: 600;
     border-radius: 4px;
+    cursor: pointer;
+}
+
+.server_form-btns button:hover {
+    background-color: var(--primary-accent);
     cursor: pointer;
 }
 

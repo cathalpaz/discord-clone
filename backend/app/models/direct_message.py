@@ -9,8 +9,10 @@ class DirectMessage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_from_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    user_to_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    user_from_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')), nullable=False)
+    user_to_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')), nullable=False)
     content = db.Column(db.String(2000), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -31,5 +33,5 @@ class DirectMessage(db.Model):
             'updated_at': self.updated_at,
             'updated': self.updated,
             'user_to': self.user_to.to_dict_extra(),
-            'user_from': self.user_from.to_dict()
+            'user_from': self.user_from.to_dict_extra()
         }

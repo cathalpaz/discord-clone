@@ -48,10 +48,14 @@
 }
 
 .delete-modal-button-yes {
-    background-color: red;
+    background-color: var(--delete);
     color: white;
     border: none;
     border-radius: 5px;
     padding: 8px 16px;
     cursor: pointer;
+}
+
+.delete-modal-button-yes:hover {
+    background-color: var(--delete-dark);
 }

@@ -41,9 +41,9 @@ def all_friends():
     )).all()
 
     friends = [friend.to_dict(current_user.id)
-               for friend in get_friends if friend.status == 'ACCEPTED']
-    return {'friends': friends}
+               for friend in get_friends if friend.status == 'ACCEPTED' or friend.status =='PENDING']
 
+    return {'friends': friends}
 # Send a friend request
 @direct_messages_routes.route('/friends/<int:id>/send-request', methods=['POST'])
 @login_required
