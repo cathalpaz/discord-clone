@@ -48,7 +48,7 @@
 .message-hidden {
     visibility: hidden;
     display: flex;
-    padding-right: 5px;
+    padding-right: 10px;
     gap: 0.5rem;
 }
 
