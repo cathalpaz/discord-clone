@@ -112,7 +112,7 @@
     background-image: url('../../../public/images/search_image.svg');
     background-size: cover;
     margin: 0 24px 0 24px;
-    height: 333px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -140,6 +140,7 @@
     height: 35px;
     outline: none;
     border: none;
+    border-radius: 5px;
 }
 
 .fa-magnifying-glass {
@@ -177,6 +178,12 @@
     flex-direction: column;
     align-self: center;
     margin-bottom: 20px;
+    height: 200px;
+    transition: transform 0.3s ease;
+}
+
+.server-card_container:hover {
+    transform: scale(1.03);
 }
 
 .card-image-banner {
@@ -203,7 +210,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 15px 10px 15px;
+    padding: 8px 15px 15px 15px;
+    font-size: 14px;
 }
 
 .join-btn {
