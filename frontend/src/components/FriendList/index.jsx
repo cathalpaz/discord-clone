@@ -5,7 +5,6 @@ import { fetchFriends } from "../../store/session";
 
 function FriendList({ selectedTab }) {
   const sessionUser = useSelector((state) => state.session.user);
-
   const friendStore = useSelector((state) => state.session.friends);
   const [searchQuery, setSearchQuery] = useState("");
   const [addFriend, setAddFriend] = useState("");
