@@ -67,7 +67,7 @@ function ServerList() {
           </span>
           <span className='serverlist-add-server'>
 
-              <i className="fa-solid fa-compass" onClick={sendToDiscover}></i>
+              <i className="fa-solid fa-compass serverlist-add-server-icon" onClick={sendToDiscover}></i>
 
           </span>
         </div>

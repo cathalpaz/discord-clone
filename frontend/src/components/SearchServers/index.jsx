@@ -51,11 +51,24 @@ function SearchServers() {
           </div>
           <div className='main-page-container__item-search main-page-container__item--4-search'>
             <UserProfile />
-            <div className='search_categories'>
-              <span>Home</span>
-              <span>Gaming</span>
-              <span>Coding</span>
-              <span>Music</span>
+            <div className='search_categories-container'>
+              <div className='search_categories'>
+                <i class="fa-solid fa-compass fa-lg search_categories-compass"></i>
+                <span>Home</span>
+              </div>
+              <div className='search_categories'>
+                <i class="fa-solid fa-gamepad fa-lg search_categories-gamepad"></i>
+                <span>Gaming</span>
+              </div>
+              <div className='search_categories'>
+                <i class="fa-solid fa-laptop-code fa-lg search_categories-laptop"></i>
+                <span>Coding</span>
+              </div>
+              <div className='search_categories'>
+                <i class="fa-solid fa-music fa-lg search_categories-music"></i>
+                <span>Music</span>
+              </div>
+
             </div>
           </div>
           <div className='main-page-container__item-search main-page-container__item--5-search'>

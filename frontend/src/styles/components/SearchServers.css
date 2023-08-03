@@ -9,10 +9,52 @@
     padding: 16px 0 0 16px;
 }
 
-.search_categories {
+.search_categories-container {
     display: flex;
     flex-direction: column;
-    padding: 16px 0 0 16px;
+    justify-content: center;
+    margin: 0px .5rem;
+    margin-top: .9rem;
+}
+
+.search_categories {
+    display: flex;
+    align-items: center;
+    height: 2.8rem;
+    color: var(--text-color-accent);
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+}
+
+.search_categories:hover {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--background);
+    border-radius: .3rem;
+}
+
+.search_categories > span {
+    font-weight: 500;
+}
+
+.search_categories-compass {
+    padding-left: .9rem;
+    padding-right: 1.1rem;
+}
+
+.search_categories-gamepad {
+    padding-left: .75rem;
+    padding-right: .9rem;
+}
+
+.search_categories-laptop {
+    padding-left: .75rem;
+    padding-right: .95rem;
+}
+
+.search_categories-music {
+    padding-left: .75rem;
+    padding-right: 1.25rem;
 }
 
 .main-page-container-search {
@@ -38,7 +80,7 @@
     grid-column: 2/3;
     grid-row: 1/2;
     background-color: var(--secondary-background);
-    /* border: 1px solid green; */
+
 }
 
 .main-page-container__item--3-search {
@@ -165,14 +207,14 @@
 }
 
 .join-btn {
-    background-color: green;
+    background-color: var(--save-button);
     padding: 4px 8px;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .join-btn:hover {
-    background-color: rgb(0, 156, 0);
+    background-color: var(--save-button-accent);
 }
 
 .joined-btn {
