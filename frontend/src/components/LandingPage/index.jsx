@@ -185,13 +185,10 @@ export default () => {
           </p>
 
 
-          <button className="body-fourth-block-button">
-            <i
-              className="fa-solid fa-download"
-              style={{ paddingRight: ".7rem" }}
-            ></i>
-            Download for Windows
-          </button>
+          <button onClick={sendToApp} className="body-fourth-block-button">
+        <i className="fa-solid fa-download" style={{ paddingRight: ".7rem" }}></i>
+        Download for Windows
+      </button>
         </div>
         <Footer />
       </div>
