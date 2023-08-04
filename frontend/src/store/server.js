@@ -4,6 +4,7 @@ import { actionTypes } from "./actionTypes";
 const GET_SERVERS = "server/GET_SERVERS";
 const GET_PUBLIC_SERVERS = "server/GET_PUBLIC"
 const CREATE_SERVER = "server/CREATE_SERVER";
+const REMOVE_SERVERS = "server/REMOVE_SERVERS"
 
 // regular action creator
 const getServers = (servers) => {
@@ -24,6 +25,13 @@ const createServer = (server) => {
   return {
     type: CREATE_SERVER,
     server,
+  };
+};
+
+export const removeServers = (server) => {
+  return {
+    type: REMOVE_SERVERS,
+    server
   };
 };
 
@@ -112,6 +120,10 @@ export default function serverReducer(state = initialState, action) {
       const newState = { ...state }
       delete newState[action.payload.serverId]
       newState.orderedServers = newState.orderedServers.filter((id) => id !== action.payload.serverId)
+      return newState
+    }
+    case actionTypes.REMOVE_SESSION: {
+      const newState = initialState
       return newState
     }
     default:

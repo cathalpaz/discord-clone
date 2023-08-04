@@ -1,4 +1,5 @@
 import { actionTypes } from "./actionTypes";
+import { removeServers } from "./server";
 
 const initialState = { user: null, friends: null };
 
