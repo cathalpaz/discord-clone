@@ -1,11 +1,22 @@
 import React from 'react'
 import { useModal } from '../../context/Modal'
+import { useDispatch } from 'react-redux';
+import { thunkGetAllServers } from '../../store/server';
+import { useHistory } from 'react-router-dom';
 
 function LeaveServerModal({ server }) {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const { closeModal } = useModal()
 
-  const handleLeave = () => {
-    console.log('left')
+  if (!server) return null;
+
+  const handleLeave = async() => {
+    const res = await fetch(`/api/servers/${server.id}/leave`)
+    const data = await res.json()
+    dispatch(thunkGetAllServers(data))
+    history.push('/@')
+    closeModal()
   }
 
 
