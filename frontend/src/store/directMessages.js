@@ -149,7 +149,7 @@ export const directMessagesReducer = (state = initialState, action) => {
           avatar: dmUser.avatar,
           orderedMessages: [],
         };
-        newState.users.orderedUsers.push(userId);
+        newState.users.orderedUsers.unshift(userId);
       }
       return newState;
     }
