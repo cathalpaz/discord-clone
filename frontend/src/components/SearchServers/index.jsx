@@ -65,7 +65,7 @@ function SearchServers() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <i class="fa-solid fa-magnifying-glass search_header-icon "></i>
+                <i className="fa-solid fa-magnifying-glass search_header-icon "></i>
               </div>
             </div>
           </div>

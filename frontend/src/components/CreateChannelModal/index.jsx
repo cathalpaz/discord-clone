@@ -43,7 +43,7 @@ function CreateChannelModal({ serverId }) {
           <h4 className='create-channel_names'>CHANNEL TYPE</h4>
           <div className='create-channel_types'>
             <label>
-              <i class="fa-solid fa-hashtag create-channel_icon"></i>
+              <i className="fa-solid fa-hashtag create-channel_icon"></i>
               <div className='create-channel_types-text'>
                 <span>Text</span>
                 <p>Send messages, images, GIFs, emojis, opinions, and puns</p>
@@ -59,7 +59,7 @@ function CreateChannelModal({ serverId }) {
           </div>
           <div className='create-channel_types'>
           <label>
-              <i class="fa-solid fa-volume-high create-channel_icon" ></i>
+              <i className="fa-solid fa-volume-high create-channel_icon" ></i>
               <div className='create-channel_types-text'>
                 <span>Voice</span>
                 <p>Hang out together with voice, video, and screen share</p>

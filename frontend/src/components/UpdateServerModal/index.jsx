@@ -160,7 +160,7 @@ function UpdateServerModal({ type }) {
             Reset
           </button>
           {loading ? <button className="update-modal-submit-button" disabled={true}>
-            <i class="fa-solid fa-spinner fa-spin-pulse" style={{color:"var(--white", fontSize:"22px"}}/>
+            <i className="fa-solid fa-spinner fa-spin-pulse" style={{color:"var(--white", fontSize:"22px"}}/>
           </button> : <button className="update-modal-submit-button" onClick={handleSubmit}>
             Save Changes
           </button>}

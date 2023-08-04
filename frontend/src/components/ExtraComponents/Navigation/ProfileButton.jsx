@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <i class="fa-solid fa-angle-down"></i>
+        <i className="fa-solid fa-angle-down"></i>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {sessionUser ? (

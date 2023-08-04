@@ -19,7 +19,7 @@ function ChannelList() {
     <>
       <div className='general-view-header'>
         <p>
-          <i class='fa-solid fa-hashtag fa-md'></i>
+          <i className='fa-solid fa-hashtag fa-md'></i>
           {channel && channel.name}
         </p>
       </div>

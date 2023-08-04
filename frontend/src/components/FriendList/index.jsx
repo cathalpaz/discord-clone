@@ -196,7 +196,7 @@ function FriendList({ selectedTab }) {
               onClick={sendToDiscovery}
               className="friend-list-discovery-button"
             >
-              <i class="fa-solid fa-compass friend-list-discovery-icon"></i>
+              <i className="fa-solid fa-compass friend-list-discovery-icon"></i>
               <p
                 style={{
                   fontWeight: "500",
@@ -212,7 +212,7 @@ function FriendList({ selectedTab }) {
                   marginLeft: "1.2rem",
                   fontSize: "18px",
                 }}
-                class="fa-solid fa-chevron-right"
+                className="fa-solid fa-chevron-right"
               ></i>
             </span>
           </div>
@@ -266,13 +266,13 @@ function FriendList({ selectedTab }) {
                       className="check"
                       onClick={() => pendingFriendRequest("yes", friend)}
                     >
-                      <i class="fa-solid fa-check fa-lg"></i>
+                      <i className="fa-solid fa-check fa-lg"></i>
                     </div>
                     <div
                       className="reject"
                       onClick={() => pendingFriendRequest("no")}
                     >
-                      <i class="fa-solid fa-xmark fa-lg"></i>
+                      <i className="fa-solid fa-xmark fa-lg"></i>
                     </div>
                   </div>
                 </div>

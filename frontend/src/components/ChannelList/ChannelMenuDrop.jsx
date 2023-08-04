@@ -50,24 +50,24 @@ function ChannelMenuDrop() {
         showMenu ? (
           <i
             onClick={openMenu}
-            class='fa-solid fa-xmark channel-menu-button'
+            className='fa-solid fa-xmark channel-menu-button'
           ></i>
         ) : (
           <i
             onClick={openMenu}
-            class='fa-solid fa-angle-down channel-menu-button fa-sm'
+            className='fa-solid fa-angle-down channel-menu-button fa-sm'
           ></i>
         )
       ) : (
         showMenu ? (
           <i
             onClick={openMenu}
-            class='fa-solid fa-xmark channel-menu-button'
+            className='fa-solid fa-xmark channel-menu-button'
           ></i>
         ) : (
           <i
             onClick={openMenu}
-            class='fa-solid fa-angle-down channel-menu-button fa-sm'
+            className='fa-solid fa-angle-down channel-menu-button fa-sm'
           ></i>
         )
       )}

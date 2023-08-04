@@ -39,13 +39,13 @@ function DevProfile({ dev }) {
             <div className='dev-modal__form__group'>
             <div className='dev-modal_info-name'>LINKEDIN</div>
             <a href={dev.linkedin}>
-                <i class="fa-brands fa-linkedin"></i>
+                <i className="fa-brands fa-linkedin"></i>
             </a>
             </div>
             <div className='dev-modal__form__group'>
             <div className='dev-modal_info-name'>GITHUB</div>
                 <a href={dev.github}>
-                    <i class="fa-brands fa-github"></i>
+                    <i className="fa-brands fa-github"></i>
                 </a>
             </div>
 

@@ -49,7 +49,7 @@ function Developers() {
                     <div className='user_prof-img-container'>
                         <img src={dev.pic} />
                         <div className='online-status'>
-                            <i class="fa-solid fa-crown"></i>
+                            <i className="fa-solid fa-crown"></i>
                         </div>
                     </div>
                     <span>{dev.name}</span>
