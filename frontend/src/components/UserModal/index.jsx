@@ -15,7 +15,7 @@ function UserModal() {
   const [email, setEmail] = useState(user?.email);
   const [editUsername, setEditUsername] = useState(false);
   const [editBirthday, setEditBirthday] = useState(false);
-  const [editEmail, setEditEmail] = useState(false);
+  // const [editEmail, setEditEmail] = useState(false);
   const { closeModal } = useModal();
 
   const handleLogout = () => {
@@ -31,7 +31,7 @@ function UserModal() {
   const handleSubmit = async () => {
     const formData = new FormData();
     if (username !== user.username) formData.append("username", username);
-    if (email !== user.email) formData.append("email", email);
+    // if (email !== user.email) formData.append("email", email);
     if (Array.from(formData.entries()).length) {
       const result = await dispatch(thunkUpdateUser(formData, user.id));
     }
@@ -72,7 +72,7 @@ function UserModal() {
               />
             )}
             <button
-              className='bg'
+              className='user-modal-edit_btn'
               onClick={(e) => {
                 e.preventDefault();
                 setEditUsername(!editUsername);
@@ -85,8 +85,8 @@ function UserModal() {
         <div className='user-modal__form__group'>
           <div className='user-modal_info-name'>EMAIL</div>
           <div className='form__group'>
-            {!editEmail ? (
-              <div>{email}</div>
+            <div>{user?.email}</div>
+            {/* {!editEmail ? (
             ) : (
               <input value={email} onChange={(e) => setEmail(e.target.value)} />
             )}
@@ -98,7 +98,7 @@ function UserModal() {
               }}
             >
               {editEmail ? "Confirm" : "Edit"}
-            </button>
+            </button> */}
           </div>
         </div>
         <div>
@@ -113,7 +113,7 @@ function UserModal() {
           Logout
         </button>
         <button
-          disabled={editUsername || editEmail}
+          disabled={editUsername}
           onClick={(e) => {
             e.preventDefault();
             handleSubmit();

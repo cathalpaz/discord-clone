@@ -27,7 +27,7 @@ function LoginFormPage() {
   }
 
   const demo1Login = (e) => {
-    dispatch(login('Demo', 'password'))
+    dispatch(login('demo@aa.io', 'password'))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
@@ -36,7 +36,7 @@ function LoginFormPage() {
       });
   }
   const demo2Login = (e) => {
-    dispatch(login('marnie', 'password'))
+    dispatch(login('marnie@aa.io', 'password'))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
