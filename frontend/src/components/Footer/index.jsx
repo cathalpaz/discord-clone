@@ -23,42 +23,43 @@ export default function Footer() {
               English, USA
             </p>
             <p className="body-fifth-block-techologies-header">Used Technologies: </p>
-            <i
-              className='fa-brands fa-react fa-xl'
-            ></i>
+            <div className='body-fifth-block-icons'>
+
+              <i className='fa-brands fa-react fa-xl'></i>
               <img
                 className='fa-redux'
                 src="/images/redux_icon.png"
               ></img>
-            <i
-              className='fa-brands fa-python fa-2xl'
-            ></i>
-            <i
-              className='fa-brands fa-aws fa-xl'
-            ></i>
-            <img
-              className="fa-flask"
-              src="/images/flask_icon.png"
-            >
-            </img>
-            <img
-              className="fa-sqlalchemy"
-              src="/images/sql_alchemy_icon.png"
-            >
-            </img>
-            <img
-              className="fa-vite"
-              src="/images/vite_icon.png"
-            >
-            </img>
-            <img
-              className="fa-socketio"
-              src="/images/socket_io_icon.png"
-            >
-            </img>
-            <i
-              className='fa-brands fa-node-js fa-2xl'
-            ></i>
+              <i
+                className='fa-brands fa-python fa-2xl'
+              ></i>
+              <i
+                className='fa-brands fa-aws fa-xl'
+              ></i>
+              <img
+                className="fa-flask"
+                src="/images/flask_icon.png"
+              >
+              </img>
+              <img
+                className="fa-vite"
+                src="/images/vite_icon.png"
+              >
+              </img>
+              <img
+                className="fa-socketio"
+                src="/images/socket_io_icon.png"
+              >
+              </img>
+              <i
+                className='fa-brands fa-node-js fa-2xl'
+              ></i>
+                            <img
+                className="fa-sqlalchemy"
+                src="/images/sql_alchemy_icon.png"
+              >
+              </img>
+            </div>
           </div>
           <div className='body-fifth-block-cathal'>
             <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>
