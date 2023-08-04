@@ -180,7 +180,7 @@ export default function ChannelBrowser({ socket }) {
                       {server.owner_id === user.id ? (
                         <>
                           <i
-                            className='fa-solid fa-pen-to-square'
+                            className='fa-solid fa-pencil'
                             onClick={(e) => handleEdit(e, cId)}
                           ></i>
                           <i

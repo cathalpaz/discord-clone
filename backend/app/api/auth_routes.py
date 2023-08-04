@@ -38,7 +38,7 @@ def login():
             User.username == credentials)).first()
         login_user(user)
         return user.to_dict_servers()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': 'Login or password is invalid.'}, 401
 
 
 @auth_routes.route('/logout')

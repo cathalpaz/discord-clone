@@ -54,6 +54,7 @@
     margin-bottom: 1rem;
     color: var(--white);
     caret-color: var(--white);
+    padding-left: 8px;
 }
 
 .signup-form > input:focus {

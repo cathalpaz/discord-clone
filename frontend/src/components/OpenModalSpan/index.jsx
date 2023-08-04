@@ -21,6 +21,8 @@ function OpenModalSpan({
       return <i className="fa-solid fa-circle-plus"></i>
     } else if (className == "channel-menu-option-delete" ){
       return <i className="fa-solid fa-trash-can"></i>
+    } else if ( className == "channel-leave") {
+      return <i class="fa-solid fa-right-from-bracket"></i>
     } else if ( className == "channel-menu-option channel-menu-option__create" ) {
       return <i className="fa-solid fa-pencil"></i>
     }
