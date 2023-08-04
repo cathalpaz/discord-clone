@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
@@ -9,12 +9,17 @@ import CreateServerModal from "../CreateServerModal";
 import SearchServers from "../SearchServers";
 import "../../styles/components/ServerList.css";
 import { Server } from "./Server";
+import { ServerToolTip } from "./ServerToolTip";
 
 function ServerList() {
   const serversStore = useSelector((state) => state.servers);
   const dispatch = useDispatch();
   const history = useHistory();
   const serverIds = useSelector((state) => state.servers.orderedServers);
+  const createServerRef = useRef();
+  const discoverServersRef = useRef();
+  const [createServerHover, setCreateServerHover] = useState(false);
+  const [discoverServersHover, setDiscoverServersHover] = useState(false);
 
   useEffect(() => {
     dispatch(thunkGetAllServers());
@@ -61,14 +66,38 @@ function ServerList() {
               <div className="tooltip">{serversStore[id].name}</div> */}
             </>
           ))}
-          <span className='serverlist-add-server .tooltip-container'>
+          <span
+            className='serverlist-add-server .tooltip-container'
+            ref={createServerRef}
+            style={{ position: "relative" }}
+            onMouseEnter={() => setCreateServerHover(true)}
+            onMouseLeave={() => setCreateServerHover(false)}
+          >
+            {createServerHover && (
+              <ServerToolTip
+                parentRef={createServerRef}
+                serverName={"Create server"}
+              />
+            )}
             <div className='tooltip'>Add a server</div>
             <OpenModalButton
               modalComponent={<CreateServerModal />}
               buttonText={"+"}
             />
           </span>
-          <span className='serverlist-add-server'>
+          <span
+            style={{ position: "relative" }}
+            className='serverlist-add-server'
+            ref={discoverServersRef}
+            onMouseEnter={() => setDiscoverServersHover(true)}
+            onMouseLeave={() => setDiscoverServersHover(false)}
+          >
+            {discoverServersHover && (
+              <ServerToolTip
+                parentRef={discoverServersRef}
+                serverName={"Discover servers"}
+              />
+            )}
             <i
               className='fa-solid fa-compass serverlist-add-server-icon'
               onClick={sendToDiscover}

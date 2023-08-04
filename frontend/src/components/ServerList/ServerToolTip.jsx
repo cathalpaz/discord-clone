@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ReactDom from "react-dom";
 
 export function ServerToolTip({ serverName, parentRef }) {
+  if (!parentRef.current) return false;
   const [style, setStyle] = useState({});
   useEffect(() => {
     const rect = parentRef.current.getBoundingClientRect();
