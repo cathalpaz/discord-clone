@@ -1,39 +1,27 @@
 import { actionTypes } from "./actionTypes";
 
-// constants
-const GET_SERVERS = "server/GET_SERVERS";
-const GET_PUBLIC_SERVERS = "server/GET_PUBLIC"
-const CREATE_SERVER = "server/CREATE_SERVER";
-const REMOVE_SERVERS = "server/REMOVE_SERVERS"
-
 // regular action creator
 const getServers = (servers) => {
   return {
-    type: GET_SERVERS,
+    type: actionTypes.GET_SERVERS,
     servers,
   };
 };
 
 const getPublicServers = (servers) => {
   return {
-    type: GET_PUBLIC_SERVERS,
+    type: actionTypes.GET_PUBLIC_SERVERS,
     servers
   }
 }
 
 const createServer = (server) => {
   return {
-    type: CREATE_SERVER,
+    type: actionTypes.CREATE_SERVER,
     server,
   };
 };
 
-export const removeServers = (server) => {
-  return {
-    type: REMOVE_SERVERS,
-    server
-  };
-};
 
 // thunk action creator
 export const thunkGetAllServers = () => async (dispatch) => {
@@ -54,7 +42,6 @@ export const thunkGetPublicServers = () => async(dispatch) => {
     return data
   } else {
     const errorData = await res.json();
-    console.log('error?');
     return errorData;
   }
 }
@@ -83,7 +70,7 @@ const initialState = {
 
 export default function serverReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_SERVERS: {
+    case actionTypes.GET_SERVERS: {
       const newState = { ...state };
       const servers = action.servers.servers;
       const orderedServers = [...state.orderedServers];
@@ -96,7 +83,7 @@ export default function serverReducer(state = initialState, action) {
       newState.orderedServers = orderedServers;
       return newState;
     }
-    case GET_PUBLIC_SERVERS: {
+    case actionTypes.GET_PUBLIC_SERVERS: {
       const newState = {...state}
       const pubServers = action.servers.servers;
       const publicServers = [...state.publicServers]
@@ -108,7 +95,7 @@ export default function serverReducer(state = initialState, action) {
       newState.publicServers = publicServers
       return newState
     }
-    case CREATE_SERVER: {
+    case actionTypes.CREATE_SERVER: {
       const newState = { ...state };
       newState[action.server.id] = action.server;
       const orderedServers = [...newState.orderedServers];
