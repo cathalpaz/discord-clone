@@ -3,6 +3,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     gap: 10px;
 }
 .channel-message__avatar-container {
@@ -72,4 +73,11 @@
     border: none;
     color: var(--light-accent);
     cursor: pointer;
+}
+
+
+.channel-message-list__container-title {
+    padding-left: 16px;
+    margin-bottom: 25px;
+    font-size: 40px;
 }

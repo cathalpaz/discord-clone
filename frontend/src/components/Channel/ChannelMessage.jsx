@@ -32,6 +32,7 @@ export function ChannelMessage({ message, user }) {
                 modalComponent={
                   <UpdateMessageModal
                     message={message}
+                    type={'channel'}
                   />
                 }
                 buttonText={<i className="fa-solid fa-pencil"></i>}

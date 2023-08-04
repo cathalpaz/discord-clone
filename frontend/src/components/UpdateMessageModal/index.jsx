@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useModal } from '../../context/Modal'
 import '../../styles/components/UpdateMessageModal.css'
 
-function UpdateMessageModal({ message }) {
+function UpdateMessageModal({ message, type }) {
   const { closeModal } = useModal()
   let [newMessage, setNewMessage] = useState(message.content)
 
@@ -15,6 +15,7 @@ function UpdateMessageModal({ message }) {
   const updateMessage = (e) => {
     e.preventDefault()
     // handle socket stuff here
+    
     message.updated = True
     console.log('SUBMITTED')
     closeModal()
