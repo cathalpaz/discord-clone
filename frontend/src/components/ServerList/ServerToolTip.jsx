@@ -17,6 +17,6 @@ export function ServerToolTip({ serverName, parentRef }) {
     <div style={style} className='server__img-tooltip'>
       {serverName}
     </div>,
-    document.getElementById("main")
+    document.getElementById("root")
   );
 }
