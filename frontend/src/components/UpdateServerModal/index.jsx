@@ -9,11 +9,11 @@ function UpdateServerModal({ type }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const [privacy, setPrivacy] = useState("");
-  const [serverName, setServerName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const singleServerStore = useSelector((state) => state.singleServer);
+  const [serverName, setServerName] = useState(singleServerStore.name);
   const fileRef = useRef();
 
   const handleSubmit = async () => {
