@@ -17,3 +17,16 @@
     border-radius: 6px;
     width: 200px;
 }
+
+.online-status > i {
+    color: gold;
+    font-size: 12px;
+}
+
+.dev-modal_info {
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
