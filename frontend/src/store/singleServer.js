@@ -280,7 +280,6 @@ export const singleServerReducer = (state = initialState, action) => {
       return newState;
     }
     case actionTypes.DELETE_CHANNEL_MESSAGE: {
-      console.log("DELETING FROM MESSAGES");
       const newState = structuredClone(state);
       const { messageId, channelId } = action.payload;
       newState.channels[channelId].messages = newState.channels[

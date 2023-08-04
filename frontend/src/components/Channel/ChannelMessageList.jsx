@@ -32,8 +32,6 @@ export function ChannelMessageList({ socket }) {
       dispatch(updateChannelMessages(data));
     });
     socket.on(`server-channel-messages-delete-${serverId}`, (data) => {
-      console.log("SDLKJFLKSDJFKLSLDKJFLKSDJFLKSDJFLKJ");
-      console.log("SDLKJFLKSDJFKLSLDKJFLKSDJFLKSDJFLKJ");
       const { messageId, channelId } = data;
       dispatch(deleteSingleChannelMessage(channelId, messageId));
     });
@@ -45,10 +43,10 @@ export function ChannelMessageList({ socket }) {
 
   return (
     <div className='channel-message-list__container'>
-      <h3 className='channel-message-list__container-title'>
-        Welcome to #{channel ? channel.name : ""}!
-      </h3>
       <div className='message__container'>
+        <h3 className='channel-message-list__container-title'>
+          Welcome to #{channel ? channel.name : ""}!
+        </h3>
         {users &&
           messages.map((msg, i) => {
             const user = users.find((usr) => usr.id == msg.user_id);
