@@ -17,6 +17,7 @@ function LeaveServerModal({ server }) {
     dispatch(thunkGetAllServers(data))
     history.push('/@')
     closeModal()
+    window.location.reload();
   }
 
 
