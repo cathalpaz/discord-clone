@@ -21,8 +21,8 @@ function DeleteModal({ type, cId }) {
     } else if (type === "channel") {
       dispatch(thunkDeleteChannel(cId))
       closeModal();
-      window.location.reload();
       history.push(`/${state.singleServer.id}/${state.singleServer.channels.orderedChannelsList[0]}`)
+      window.location.reload();
     }
   }
 
