@@ -10,7 +10,7 @@ function DevProfile({ dev }) {
   }, [color]);
 
   return (
-    <div className='user-modal'>
+    <div className='dev-modal'>
       <div
         style={{ backgroundColor: dev.bannerColor }}
         className='user-modal_banner'
@@ -32,17 +32,24 @@ function DevProfile({ dev }) {
         </form>
       </div>
       <div className='dev-modal_info'>
-        <div className='dev-modal__form__group'>
-          <div className='dev-modal_info-name'>LINKEDIN</div>
-            <a href={dev.linkedin}>
-             <i class="fa-brands fa-linkedin"></i>
-            </a>
+        <div className='dev-modal_about'>
+            <div className='dev-modal_info-name'>ABOUT</div>
+            <span>{dev.about}</span>
         </div>
-        <div className='dev-modal__form__group'>
-          <div className='dev-modal_info-name'>GITHUB</div>
-            <a href={dev.github}>
-                <i class="fa-brands fa-github"></i>
+        <div className='dev-modal_links'>
+            <div className='dev-modal__form__group'>
+            <div className='dev-modal_info-name'>LINKEDIN</div>
+            <a href={dev.linkedin}>
+                <i class="fa-brands fa-linkedin"></i>
             </a>
+            </div>
+            <div className='dev-modal__form__group'>
+            <div className='dev-modal_info-name'>GITHUB</div>
+                <a href={dev.github}>
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+
         </div>
 
       </div>

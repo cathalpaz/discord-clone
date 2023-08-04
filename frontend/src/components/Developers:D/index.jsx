@@ -12,21 +12,24 @@ function Developers() {
         linkedin: 'https://www.linkedin.com/in/cathal-paz-052239263/',
         github: 'https://github.com/cathalpaz',
         pic: 'https://tinyjpg.com/images/social/website.jpg',
-        bannerColor: '#808000'
+        bannerColor: '#808000',
+        about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
     {
         name: 'Jason',
         linkedin: 'https://www.linkedin.com/in/jason-murphy-3704ba1b8/',
         github: 'https://github.com/jmurphy1196',
         pic: 'https://tinyjpg.com/images/social/website.jpg',
-        bannerColor: '#00FFFF'
+        bannerColor: '#00FFFF',
+        about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
     {
         name: 'JP',
         linkedin: 'https://www.linkedin.com/in/jun-park-3b23b7285/',
         github: 'https://github.com/thejhp1',
         pic: 'https://tinyjpg.com/images/social/website.jpg',
-        bannerColor: '#00FFFF'
+        bannerColor: '#00FFFF',
+        about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
     {
         name: 'Zachary',
@@ -34,6 +37,7 @@ function Developers() {
         github: 'https://github.com/zachary5939',
         pic: 'https://tinyjpg.com/images/social/website.jpg',
         bannerColor: '#00FFFF',
+        about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
   ]
   return (
