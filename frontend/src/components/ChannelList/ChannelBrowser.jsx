@@ -173,9 +173,13 @@ export default function ChannelBrowser({ socket }) {
               ) : (
                 <>
                   {channels[cId].name}{" "}
-                  {channelNotifications[cId]
-                    ? "- " + channelNotifications[cId].count
-                    : ""}
+                  <span className='notification__count'>
+                    {channelNotifications[cId] && (
+                      <div>
+                        {Math.ceil(channelNotifications[cId].count / 2)}
+                      </div>
+                    )}
+                  </span>
                   {selectedChannel === cId ? (
                     <div>
                       {server.owner_id === user.id ? (

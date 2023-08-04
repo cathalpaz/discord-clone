@@ -95,3 +95,22 @@
 .notification {
     color: var(--white) !important;
 }
+
+.notification__count {
+    margin-left: 15px;
+    border-radius: 50px;
+    background-color: red;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+
+}
+.notification__count > div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1px 9px;
+}
