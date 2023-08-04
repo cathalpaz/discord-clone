@@ -10,10 +10,10 @@
 .channel-menu-dropdown {
     position: absolute;
     background-color: var(--secondary-background-darker);
-    margin-top: 16rem;
+    margin-top: 12rem;
     margin-left: -0.4rem;
     width: 13.76rem;
-    height: 12rem;
+    height: fit-content;
     list-style-type: none;
     border-radius: 0.2rem;
     box-shadow: 0px 8px 15px rgba(0,0,0,.2);
@@ -94,4 +94,20 @@
 .dm-list-header > p {
     font-weight: 600;
     font-size: 17px;
+}
+
+
+.channel-menu-dropdown_member {
+    position: absolute;
+    background-color: var(--secondary-background-darker);
+    margin-top: 6.5rem;
+    margin-left: -0.4rem;
+    width: 13.76rem;
+    height: fit-content;
+    list-style-type: none;
+    border-radius: 0.2rem;
+    box-shadow: 0px 8px 15px rgba(0,0,0,.2);
+    z-index: 10;
+    padding: 4px;
+    font-size: 14px;
 }
