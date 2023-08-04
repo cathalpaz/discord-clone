@@ -114,11 +114,7 @@
     cursor: default;
 }
 
-.login-errors {
-    position: absolute;
-}
-
-.login-errors li:nth-child(1){
+/* .login-errors li:nth-child(1){
     margin-right:.875rem;
     position:static;
     transform:translatex(8.8rem) translatey(-0.25rem);
@@ -136,13 +132,26 @@
     margin-bottom:1rem;
     min-height:2.38rem;
     transform:translatex(5.13rem) translatey(1.5rem);
-}
+} */
 
 .login-bottom {
     margin: 0;
     display: flex;
     justify-content: space-between;
     padding: 0 32px;
+}
+
+.login-label-errors {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.login-errors {
+    font-size: 0.8rem;
+    color: var(--errors);
+    font-style: italic;
+    font-size: 14px;
 }
 
 

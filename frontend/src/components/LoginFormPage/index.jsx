@@ -63,15 +63,15 @@ function LoginFormPage() {
                 <p style={{fontSize:"16px", marginBottom:"1.25rem", color:"#B5BAC1"}}>We're so excited to see you again!</p>
               </div>
               <form onSubmit={handleSubmit} className="login-form">
-                <ul className="login-errors">
-                  {console.log(errors)}
-                  {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                    ))}
-                </ul>
+
+              <div className="login-label-errors">
                 <label style={{fontSize:"12px", color:"#B5BAC1", fontWeight:"700", marginBottom:".5rem"}}>
                   EMAIL OR USERNAME  <label style={{fontSize:"12px", color:"#F23F42", paddingLeft:".2rem"}}> *</label>
                 </label>
+                {errors.length ? (
+                  <div className="login-errors">- {errors}</div>
+                ) : ''}
+              </div>
                 <input
                   type="text"
                   value={email}
