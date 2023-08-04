@@ -25,6 +25,15 @@ const sendFriendRequest = (friendId) => ({
   payload: friendId,
 });
 
+const acceptFriendRequest = (friendId) => ({
+  type: actionTypes.ACCEPT_FRIEND_REQUEST,
+  payload: friendId
+})
+
+const rejectFriendRequest = (friendId) => ({
+  type: actionTypes.REJECT_FRIEND_REQUEST,
+  payload: friendId
+})
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
@@ -104,6 +113,23 @@ export const thunkSendFriendRequest = (userId) => async (dispatch) => {
   }
 };
 
+export const thunkAcceptFriendRequest = (userId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/@me/friends/${userId}/accept-request`, {
+      method: "POST",
+      body: JSON.stringify(userId),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(acceptFriendRequest(data));
+      return data;
+    }
+  } catch (err) {
+    console.log("there was an error", err);
+    return err;
+  }
+};
+
 export const logout = () => async (dispatch) => {
   const response = await fetch("/api/auth/logout", {
     headers: {
@@ -165,8 +191,11 @@ export default function reducer(state = initialState, action) {
     }
     case actionTypes.SEND_FRIEND_REQUEST: {
       const newState = {...state}
-      console.log('state', state)
-      console.log('action', action)
+      return newState
+    }
+    case actionTypes.ACCEPT_FRIEND_REQUEST: {
+      const newState = {...state}
+      return newState
     }
     default:
       return state;

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/FriendList.css";
-import { fetchFriends, thunkSendFriendRequest } from "../../store/session";
+import { fetchFriends, thunkAcceptFriendRequest, thunkSendFriendRequest } from "../../store/session";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function FriendList({ selectedTab }) {
-  const sessionUser = useSelector((state) => state.session.user);
   const friendStore = useSelector((state) => state.session.friends);
   const [searchQuery, setSearchQuery] = useState("");
-  const [addFriend, setAddFriend] = useState("");
-  const dispatch = useDispatch();
   const [hoverStates, setHoverStates] = useState({});
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchFriends());
@@ -27,27 +27,34 @@ function FriendList({ selectedTab }) {
   };
 
   const sendFriendRequest = () => {
-    dispatch(thunkSendFriendRequest(searchQuery))
-  }
-
-  //add friend button to direct you to Add tab
-  const handleAddFriendClick = () => {
-    setSelectedTab("Add");
+    dispatch(thunkSendFriendRequest(searchQuery));
   };
 
+  const pendingFriendRequest = (answer, friend) => {
+    console.log(answer, friend)
+    if (answer == "yes") {
+      thunkAcceptFriendRequest(friend.id)
+    }
+  }
+
+  const sendToDiscovery = () => {
+    history.push("/discovery");
+  };
 
   let filteredFriends = [];
   let pendingFriends = [];
   if (friendStore) {
     filteredFriends = friendStore.filter(
       (friend) =>
-        friend.user.username.toLowerCase().includes(searchQuery.toLowerCase()) &&
-        friend.status === "ACCEPTED"
+        friend.user.username
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) && friend.status === "ACCEPTED"
     );
     pendingFriends = friendStore.filter(
       (friend) =>
-        friend.user.username.toLowerCase().includes(searchQuery.toLowerCase()) &&
-        friend.status === "PENDING"
+        friend.user.username
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) && friend.status === "PENDING"
     );
   }
 
@@ -55,70 +62,100 @@ function FriendList({ selectedTab }) {
     if (selectedTab === "Online") {
       return (
         <div className="content-online">
-          <h2 className="heading-class">{selectedTab}</h2>
-          {filteredFriends.length === 0 ? (
-            // <div className="content-add">
-            <div>
-              <p className="offline-wumpus-text">No one's around to play with Wumpus.</p>
-              <img className="offline-wumpus"src="../../../public/images/NoOnline.svg" alt="" />
-            </div>
-            // </div>
-          ) : (
-            filteredFriends.map((friend) => (
-              <div
-                key={friend.id}
-                onMouseEnter={() => handleFriendHover(friend.id, true)}
-                onMouseLeave={() => handleFriendHover(friend.id, false)}
-              >
-                <img src={friend.user.avatar} alt="" />
-                <p>{friend.user.username}</p>
-                {hoverStates[friend.id] && <p>#{friend.id}</p>}
-                <div className="icons-container">
-                  <div className="messages">
-                    <i className="fas fa-message"></i>
+          <h2 className="heading-class">
+            {filteredFriends.length === 0 ? "" : selectedTab.toUpperCase() + " -"}{" "}
+            {filteredFriends.length !== 0 ? filteredFriends.length : ""}
+          </h2>
+          <div className="friend-list-user-container">
+            {filteredFriends.length === 0 ? (
+              <div className="no-friend-container">
+                <img
+                  className="offline-wumpus"
+                  src={"/images/NoOnline.svg"}
+                  alt=""
+                />
+                <p className="no-friends-txt">
+                  No one's around to play with Wumpus.
+                </p>
+              </div>
+            ) : (
+              filteredFriends.map((friend) => (
+                <>
+                <div className="friend-list-heading-border"></div>
+
+                <div
+                  className="friend-list-user"
+                  key={friend.id}
+                  onMouseEnter={() => handleFriendHover(friend.id, true)}
+                  onMouseLeave={() => handleFriendHover(friend.id, false)}
+                >
+                  <div className="friend-list-user-info">
+                    <img src={friend.user.avatar} alt="" />
+                    <p style={{marginLeft:".5rem"}}>{friend.user.username}</p>
+                    {hoverStates[friend.id] && <p>#{friend.id}</p>}
                   </div>
-                  <div className="dots">
-                    <i className="fa-solid fa-ellipsis-vertical"></i>
+                  <div className="icons-container">
+                    <div className="messages">
+                      <i className="fas fa-message fa-lg"></i>
+                    </div>
+                    <div className="dots">
+                      <i className="fa-solid fa-ellipsis-vertical fa-lg"></i>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
+                </>
+
+              ))
+            )}
+          </div>
         </div>
       );
     } else if (selectedTab === "All") {
       return (
-        <div className="empty-block">
-          <h2 className="heading-class">{selectedTab}</h2>
+        <div className="content-online">
+          <h2 className="heading-class">
+            {filteredFriends.length === 0 ? "" : selectedTab.toUpperCase() + " -"}{" "}
+            {filteredFriends.length !== 0 ? filteredFriends.length : ""}
+          </h2>
           {filteredFriends.length === 0 ? (
-                        <div>
-                        <p className="no-friends-txt">Wumpus is waiting on friends. You don't have to though!</p>
-                        <img className="no-friends" src="../../../public/images/NoFriends.svg" alt="" />
-                        <div>
-                          <button className="send-request-all" onClick={handleAddFriendClick}>
-                            Add Friend
-                          </button>
-                        </div>
-                      </div>
+            <div className="no-friend-container">
+              <img
+                className="no-friends"
+                src={"/images/NoFriends.svg"}
+                alt=""
+              />
+              <p className="no-friends-txt">
+                Wumpus is waiting on friends. You don't have to though!
+              </p>
+              <div></div>
+            </div>
           ) : (
             filteredFriends.map((friend) => (
+              <>
+                              <div className="friend-list-heading-border"></div>
               <div
+                className="friend-list-user"
                 key={friend.id}
                 onMouseEnter={() => handleFriendHover(friend.id, true)}
                 onMouseLeave={() => handleFriendHover(friend.id, false)}
               >
+              <div className="friend-list-user-info">
                 <img src={friend.user.avatar} alt="" />
-                <p>{friend.user.username}</p>
+                <p  style={{marginLeft:".5rem"}}>{friend.user.username}</p>
                 {hoverStates[friend.id] && <p>#{friend.id}</p>}
-                <div className="icons-container">
-                  <div className="messages">
-                    <i className="fas fa-message"></i>
-                  </div>
-                  <div className="dots">
-                    <i className="fa-solid fa-ellipsis-vertical"></i>
-                  </div>
+              </div>
+              <div className="icons-container">
+                <div className="messages">
+                  <i className="fas fa-message fa-lg"></i>
+                </div>
+                <div className="dots">
+                  <i className="fa-solid fa-ellipsis-vertical fa-xl"></i>
                 </div>
               </div>
+              </div>
+
+
+              </>
             ))
           )}
         </div>
@@ -131,7 +168,7 @@ function FriendList({ selectedTab }) {
             You can add friends with their Discord username
           </div>
           <div className="Add-Input">
-          <input
+            <input
               type="text"
               placeholder="You can add friends with their Discord username."
               value={searchQuery}
@@ -139,53 +176,91 @@ function FriendList({ selectedTab }) {
               className="add-a-friend-bar"
             />
             <div className="Add-button-container">
-              <button
-              onClick={sendFriendRequest}
-              className="send-request"
-              >Send Friend Request
+              <button onClick={sendFriendRequest} className="send-request">
+                Send Friend Request
               </button>
-
             </div>
-
           </div>
+          <div className="friend-list-border"></div>
+          <div className="friend-list-discovery-container">
+            <div className="Add-Friend">OTHER PLACES TO MAKES FRIENDS</div>
+            <span
+              onClick={sendToDiscovery}
+              className="friend-list-discovery-button"
+            >
+              <i class="fa-solid fa-compass friend-list-discovery-icon"></i>
+              <p
+                style={{
+                  fontWeight: "500",
+                  color: "var(--light-accent)",
+                  marginLeft: ".5rem",
+                }}
+              >
+                Explore Discoverable Servers
+              </p>
+              <i
+                style={{
+                  color: "var(--light-accent)",
+                  marginLeft: "1.2rem",
+                  fontSize: "18px",
+                }}
+                class="fa-solid fa-chevron-right"
+              ></i>
+            </span>
+          </div>
+          <div className="no-friend-container">
             <div className="loner-wumpus">
-            <img src="../../../public/images/wumpus-add-friend.svg" alt="" />
+              <img src="../../../public/images/wumpus-add-friend.svg" alt="" />
             </div>
             <div>
               <p className="loner-wumpus-text">
                 Wumpus is waiting on friends. You don't have to though!
-                </p>
+              </p>
             </div>
+          </div>
         </div>
       );
     } else if (selectedTab === "Pending") {
       return (
         <div className="content-all">
-          <h2 className="heading-class">{selectedTab}</h2>
+          <h2 className="heading-class">
+            {pendingFriends.length === 0 ? "" : selectedTab.toUpperCase() + " -"}{" "}
+            {pendingFriends.length !== 0 ? pendingFriends.length : ""}
+          </h2>
           {pendingFriends.length === 0 ? (
-             <div>
-             <p>There are no pending friend requests. Here's Wumpus for now.</p>
-             <img src="../../../public/images/NoPending.svg" alt="" />
-           </div>
+            <div className="no-friend-container">
+              <img src="../../../public/images/NoPending.svg" alt="" />
+              <p className="no-friends-txt">
+                There are no pending friend requests. Here's Wumpus for now.
+              </p>
+            </div>
           ) : (
             pendingFriends.map((friend) => (
-              <div
-                key={friend.id}
-                onMouseEnter={() => handleFriendHover(friend.id, true)}
-                onMouseLeave={() => handleFriendHover(friend.id, false)}
-              >
-                <img src={friend.user.avatar} alt="" />
-                <p>{friend.user.username}</p>
-                {hoverStates[friend.id] && <p>#{friend.id}</p>}
-                <div className="icons-container">
-                  <div className="messages">
-                    <i className="fas fa-message"></i>
+              <>
+                <div className="friend-list-heading-border"></div>
+                <div
+                  className="friend-list-user"
+                  key={friend.id}
+                  onMouseEnter={() => handleFriendHover(friend.id, true)}
+                  onMouseLeave={() => handleFriendHover(friend.id, false)}
+                >
+                  <div className="friend-list-user-info">
+                    <img src={friend.user.avatar} alt="" />
+                    <p style={{marginLeft:".5rem"}}>{friend.user.username}</p>
+                    {hoverStates[friend.id] && <p>#{friend.id}</p>}
                   </div>
-                  <div className="dots">
-                    <i className="fa-solid fa-ellipsis-vertical"></i>
+                  <div className="icons-container">
+                    <div className="check" onClick={() => pendingFriendRequest("yes", friend)}>
+                      <i class="fa-solid fa-check fa-lg"></i>
+
+                    </div>
+                    <div className="reject" onClick={() => pendingFriendRequest("no")}>
+                      <i class="fa-solid fa-xmark fa-lg"></i>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+              </>
             ))
           )}
         </div>
