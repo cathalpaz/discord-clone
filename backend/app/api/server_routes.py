@@ -180,3 +180,13 @@ def join_server(id):
     server.users.append(current_user)
     db.session.commit()
     return {'message': "Joined!"}
+
+
+# LEAVE server
+@servers_routes.route("/<int:id>/leave")
+@login_required
+def leave_server(id):
+    server = Server.query.get(id)
+    server.users.remove(current_user)
+    db.session.commit()
+    return {'message': 'Left'}
