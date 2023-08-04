@@ -49,7 +49,8 @@
 .main-page-container__item--5 {
     grid-column: 3/4;
     grid-row: 2/3;
-    /* border: 1px solid orange; */
+    overflow-y: auto !important;
+
 }
 
 .main-page-container__item--6 {

@@ -37,12 +37,20 @@ export function ChannelMessageList({ socket }) {
   console.log("these are the messages", messages);
   return (
     <div className='channel-message-list__container'>
-      <h3 className="channel-message-list__container-title">Welcome to #{channel ? channel.name: ''}!</h3>
-      {users &&
-        messages.map((msg, i) => {
-          const user = users.find((usr) => usr.id == msg.user_id);
-          return <ChannelMessage key={i} message={msg} user={user} />;
-        })}
+      <h3 className='channel-message-list__container-title'>
+        Welcome to #{channel ? channel.name : ""}!
+      </h3>
+      <div className='message__container'>
+        {users &&
+          messages.map((msg, i) => {
+            const user = users.find((usr) => usr.id == msg.user_id);
+            return (
+              <>
+                <ChannelMessage key={i} message={msg} user={user} />
+              </>
+            );
+          })}
+      </div>
     </div>
   );
 }

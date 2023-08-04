@@ -75,9 +75,39 @@
     cursor: pointer;
 }
 
+.channel-message-list__container {
+    height: 100%;
+}
+
+.message__container {
+    overflow-y: scroll;
+}
 
 .channel-message-list__container-title {
     padding-left: 16px;
     margin-bottom: 25px;
     font-size: 40px;
+}
+
+.message__container::-webkit-scrollbar {
+    width: 0px;
+}
+.message__container:hover::-webkit-scrollbar {
+    width: 5px;
+}
+
+.message__container::-webkit-scrollbar-track {
+    background: var(--secondary-background); 
+}
+
+.message__container::-webkit-scrollbar-thumb {
+    background: var(--secondary-background);
+}
+
+.message__container:hover::-webkit-scrollbar-thumb {
+    background: var(--secondary-background-darker);
+}
+
+.message__container:hover::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
