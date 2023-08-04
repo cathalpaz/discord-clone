@@ -16,6 +16,11 @@ const EDIT_CHANNEL_MESSAGE = "singleServer/editChannelMessage";
 const SEND_DM_MESSAGE = "session/sendDmMessage";
 const ADD_DM_MESSAGE = "session/addDmMessage";
 const SEND_FRIEND_REQUEST = "session/sendFriendRequest"
+const GET_SERVERS = "server/GET_SERVERS";
+const GET_PUBLIC_SERVERS = "server/GET_PUBLIC"
+const CREATE_SERVER = "server/CREATE_SERVER";
+const ACCEPT_FRIEND_REQUEST = "session/acceptFriendRequest"
+const REJECT_FRIEND_REQUEST = "session/rejectFriendRequest"
 
 export const actionTypes = {
   SET_SESSION,
@@ -36,4 +41,9 @@ export const actionTypes = {
   SEND_DM_MESSAGE,
   ADD_DM_MESSAGE,
   SEND_FRIEND_REQUEST,
+  GET_SERVERS,
+  GET_PUBLIC_SERVERS,
+  CREATE_SERVER,
+  ACCEPT_FRIEND_REQUEST,
+  REJECT_FRIEND_REQUEST
 };

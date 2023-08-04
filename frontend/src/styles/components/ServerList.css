@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.serverlist-container::-webkit-scrollbar {
+    display: none;
+}
+
 .serverlist-friend-button {
     margin-top: .75rem;
     display: flex;
@@ -62,6 +66,7 @@
 .serverlist-icon {
     border-radius: 2rem;
     transition-duration: .1s;
+
 }
 
 .serverlist-icon:hover {
@@ -74,7 +79,31 @@
     flex-direction: column;
     align-items: center;
     gap: .6rem;
+    overflow-y: scroll;
+    height: 100vh;
+    padding-bottom: 100px;
+
 }
+/* /* scrollbar style */
+.serverlist-main-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* .serverlist-main-list::-webkit-scrollbar-track {
+    background: var(--secondary-background-darker); 
+}
+
+.serverlist-main-list::-webkit-scrollbar-thumb {
+    background: var(--secondary-background);
+}
+
+.serverlist-main-list:hover::-webkit-scrollbar-thumb {
+    background: var(--secondary-background-darker);
+}
+
+.serverlist-main-list:hover::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} */ 
 
 .serverlist-add-server > button {
     color: var(--secondary);
@@ -122,4 +151,41 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.server__img-container {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50px;
+    position: relative;
+}
+.server__container {
+    width: 3rem;
+    height: 3rem
+
+}
+
+.server__img-container img {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.server__img-tooltip {
+    width: 175px;
+    padding: 10px 10px;
+    height: 50px;
+    background-color: var(--black);
+    position: absolute;
+    left: 100%;
+    bottom: 2%;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-overflow: ellipsis;
+    border-radius: 10px;
+}
+.server__img-container:hover .server__img-tooltip {
+  display: flex;
+  animation: fade .3s ease forwards ;
 }

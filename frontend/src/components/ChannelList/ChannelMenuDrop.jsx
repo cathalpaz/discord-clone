@@ -8,6 +8,7 @@ import DeleteModal from "../DeleteModal";
 import "../../styles/components/ChannelMenuDrop.css";
 import CreateChannelModal from "../CreateChannelModal";
 import UpdateServerModal from "../UpdateServerModal";
+import LeaveServerModal from "../LeaveServerModal";
 
 function ChannelMenuDrop({ user }) {
   const dispatch = useDispatch();
@@ -61,10 +62,20 @@ function ChannelMenuDrop({ user }) {
           ></i>
         )
       ) : (
-        ""
+        showMenu ? (
+          <i
+            onClick={openMenu}
+            class='fa-solid fa-xmark channel-menu-button'
+          ></i>
+        ) : (
+          <i
+            onClick={openMenu}
+            class='fa-solid fa-angle-down channel-menu-button fa-sm'
+          ></i>
+        )
       )}
-      <ul className={ulClassName} ref={ulRef}>
-        {sessionUser ? (
+        {sessionUser?.id === server?.owner.id ? (
+        <ul className={ulClassName} ref={ulRef}>
           <div className='channel-menu-container'>
             <span onClick={closeMenu}>
               <OpenModalSpan
@@ -89,12 +100,18 @@ function ChannelMenuDrop({ user }) {
               />
             </span>
           </div>
+        </ul>
         ) : (
-          <>
-            <h1>wait you're not the user</h1>
-          </>
+          <ul ref={ulRef} className={showMenu ? "channel-menu-dropdown_member" : "channel-menu-dropdown_member hidden"}>
+            <span onClick={closeMenu} >
+              <OpenModalSpan
+                className={"channel-menu-option channel-menu-option-delete"}
+                modalComponent={<LeaveServerModal server={server}/>}
+                buttonText={"Leave Server"}
+              />
+              </span>
+          </ul>
         )}
-      </ul>
     </>
   );
 }

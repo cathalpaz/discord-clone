@@ -34,6 +34,7 @@ import { io } from "socket.io-client";
 import SearchServerHeader from "../SearchServers/SearchServerHeader";
 import SearchServerList from "../SearchServers/SearchServerList";
 import SearchServers from "../SearchServers";
+import Developers from "../Developers:D";
 
 function MainPageTemplate({ leftTab, rightTab }) {
   const location = useLocation();
@@ -113,7 +114,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
 
   return (
     <>
-      <div className='main-page-container'>
+      <div className='main-page-container' id='main'>
         <Switch>
           <Route exact path='/@'>
             <div className='main-page-container__item main-page-container__item--1'>
@@ -139,7 +140,9 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <FriendList selectedTab={selectedState} />
             </div>
             <div className='main-page-container__item main-page-container__item--6'></div>
-            <div className='main-page-container__item main-page-container__item--7'></div>
+            <div className='main-page-container__item main-page-container__item--7'>
+              <Developers />
+            </div>
           </Route>
           <Route path='/@/:directMessageId'>
             <div className='main-page-container__item main-page-container__item--1'>
