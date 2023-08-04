@@ -142,7 +142,8 @@
     margin: 0px 15px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    justify-content: center;
+    gap: 18px;
     padding: 15px;
     border-radius: 10px;
 
@@ -150,11 +151,17 @@
 .form__group {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .form__group input {
+    margin-top: 2px;
     border: none;
-    border-radius: 5px;
-    padding: 1px 2px;
+    border-radius: 2px;
+    padding: 4px 6px;
+    outline: none;
+    background-color: var(--secondary-background-darker);
+    color: white;
+    height: 25px;
 }
 
 .user-modal_info-name {
@@ -170,4 +177,18 @@
 button[disabled] {
     filter: brightness(50%);
     cursor: not-allowed;
+}
+
+.user-modal-edit_btn {
+    background-color: var(--primary);
+    border: none;
+    outline: none;
+    padding: 5px 16px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.user-modal-edit_btn:hover {
+    background-color: var(--primary-accent);
 }
