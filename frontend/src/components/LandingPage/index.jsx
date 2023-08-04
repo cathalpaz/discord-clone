@@ -85,13 +85,7 @@ export default () => {
               IMAGINE A PLACE...
             </h1>
             <p
-              style={{
-                fontSize: "20px",
-                marginTop: "2.45rem",
-                marginBottom: "0rem",
-                maxWidth: "40rem",
-                lineHeight: "2.04rem",
-              }}
+              className="heading-items-p"
             >
               ...where you can belong to a school club, a gaming group, or a
               worldwide art community. Where just you and a handful of friends
@@ -175,7 +169,7 @@ export default () => {
         </div>
         <div className="body-fourth-block-container">
           <h1>RELIABLE TECH FOR STAYING CLOSE</h1>
-          <p>
+          <p className="body-fourth-block-p">
             Low-latency voice and video feels like you're in the same room. Wave
             hello over video, watch friends stream their games, or gather up and
             have a drawing session with screen share.
@@ -184,21 +178,13 @@ export default () => {
             src={"/images/landing_body_img4.svg"}
             className="body-img4"
           ></img>
-          <img
-            src={"/images/landing_body_img5.svg"}
-            className="body-img5"
-          ></img>
           <p
-            style={{
-              fontFamily: "ggsans",
-              fontWeight: "600",
-              fontSize: "32px",
-              marginTop: "7rem",
-              marginBottom: "0px",
-            }}
+            className="body-img5"
           >
             Ready to start your journey?
           </p>
+
+
           <button className="body-fourth-block-button">
             <i
               className="fa-solid fa-download"
