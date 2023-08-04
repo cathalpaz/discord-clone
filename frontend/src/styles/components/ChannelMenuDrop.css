@@ -100,7 +100,7 @@
 .channel-menu-dropdown_member {
     position: absolute;
     background-color: var(--secondary-background-darker);
-    margin-top: 6rem;
+    margin-top: 6.5rem;
     margin-left: -0.4rem;
     width: 13.76rem;
     height: fit-content;

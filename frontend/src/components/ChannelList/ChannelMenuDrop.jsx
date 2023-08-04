@@ -110,7 +110,6 @@ function ChannelMenuDrop({ user }) {
                 buttonText={"Leave Server"}
               />
               </span>
-
           </ul>
         )}
     </>
