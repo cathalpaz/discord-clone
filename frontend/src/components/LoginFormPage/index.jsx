@@ -64,6 +64,7 @@ function LoginFormPage() {
               </div>
               <form onSubmit={handleSubmit} className="login-form">
                 <ul className="login-errors">
+                  {console.log(errors)}
                   {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                     ))}
