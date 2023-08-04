@@ -22,6 +22,7 @@ const CREATE_SERVER = "server/CREATE_SERVER";
 const ACCEPT_FRIEND_REQUEST = "session/acceptFriendRequest";
 const REJECT_FRIEND_REQUEST = "session/rejectFriendRequest";
 const DELETE_CHANNEL_MESSAGE = "singleServer/deleteChannelMessage";
+const ADD_DM_USER = "directMessages/addUser";
 
 export const actionTypes = {
   SET_SESSION,
@@ -48,4 +49,5 @@ export const actionTypes = {
   ACCEPT_FRIEND_REQUEST,
   REJECT_FRIEND_REQUEST,
   DELETE_CHANNEL_MESSAGE,
+  ADD_DM_USER,
 };

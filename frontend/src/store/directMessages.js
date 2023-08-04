@@ -23,6 +23,14 @@ const getAllDirectMessages = (dms, userId) => ({
   },
 });
 
+export const addDmUser = (userId, dmUser) => ({
+  type: actionTypes.ADD_DM_USER,
+  payload: {
+    userId,
+    dmUser,
+  },
+});
+
 export const addDm = (dm) => ({
   type: actionTypes.ADD_DM_MESSAGE,
   payload: dm,
@@ -41,9 +49,7 @@ export const thunkGetAllDirectMessages =
         dispatch(getAllDirectMessages(data, currentUserId));
         return data;
       }
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
 
 export const thunkSendDirectMessage =
@@ -133,9 +139,23 @@ export const directMessagesReducer = (state = initialState, action) => {
       }
       return newState;
     }
+    case actionTypes.ADD_DM_USER: {
+      const newState = structuredClone(state);
+      const { userId, dmUser } = action.payload;
+      console.log("THIS IS THE USERID ", userId);
+      if (!newState.users[userId]) {
+        newState.users[userId] = {
+          username: dmUser.username,
+          avatar: dmUser.avatar,
+          orderedMessages: [],
+        };
+        newState.users.orderedUsers.push(userId);
+      }
+      return newState;
+    }
     case actionTypes.REMOVE_SESSION: {
-      const newState = initialState
-      return newState
+      const newState = initialState;
+      return newState;
     }
     default: {
       return state;
