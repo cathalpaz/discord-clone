@@ -20,8 +20,6 @@ function UpdateMessageModal({ message, type, socket }) {
   const updateMessage = () => {
     // handle socket stuff here
     // message.updated = True
-    console.log("THIS IS THE SERVER_ID", serverId);
-    console.log("THIS IS THE MSG", message);
 
     socket.emit("channel_message", {
       new_message: {
@@ -54,7 +52,9 @@ function UpdateMessageModal({ message, type, socket }) {
         <button onClick={closeModal} className='delete-modal-button-no'>
           Cancel
         </button>
-        <button className='save-btn'>Save</button>
+        <button onClick={updateMessage} className='save-btn'>
+          Save
+        </button>
       </div>
     </div>
   );

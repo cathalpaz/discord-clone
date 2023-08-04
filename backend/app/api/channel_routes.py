@@ -134,7 +134,8 @@ def update_channel_message(id, message_id):
 @login_required
 def delete_channel_message(id, message_id):
     channel = Channel.query.get(id)
-    owned_servers = Server.query.filter(Server.owner_id == current_user.id).all()
+    owned_servers = Server.query.filter(
+        Server.owner_id == current_user.id).all()
     owned_servers_ids = [server.id for server in owned_servers]
     channel_message = ChannelMessage.query.get(message_id)
     if not channel:
@@ -143,7 +144,7 @@ def delete_channel_message(id, message_id):
     if not channel_message:
         not_found_error = NotFoundError("Channel Message not found")
         return not_found_error.error_json()
-    if channel_message.user_id != current_user.id or channel.server_id not in owned_servers_ids:
+    if channel_message.user_id != current_user.id and channel.server_id not in owned_servers_ids:
         forbidden_error = ForbiddenError(
             "You do not have permissions to delete this message")
         return forbidden_error.error_json()

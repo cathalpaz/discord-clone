@@ -69,6 +69,14 @@ export const updateSingleChannelMessage = (data) => ({
   payload: data,
 });
 
+export const deleteSingleChannelMessage = (channelId, messageId) => ({
+  type: actionTypes.DELETE_CHANNEL_MESSAGE,
+  payload: {
+    messageId,
+    channelId,
+  },
+});
+
 export const thunkGetServerInfo =
   (serverId, selectedChannelId) => async (dispatch) => {
     try {
@@ -81,6 +89,26 @@ export const thunkGetServerInfo =
         dispatch(getSingleServer(data.server));
       }
     } catch (err) {}
+  };
+
+export const thunkDeleteChannelMessage =
+  (channelId, messageId) => async (dispatch) => {
+    try {
+      const res = await fetch(
+        `/api/channels/${channelId}/messages/${messageId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        console.log("THIS IS THE DATA");
+        dispatch(deleteSingleChannelMessage(channelId, messageId));
+      }
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
   };
 
 export const thunkCreateChannel = (serverId, channel) => async (dispatch) => {
@@ -220,7 +248,6 @@ export const singleServerReducer = (state = initialState, action) => {
     }
     // TODO not a good way to do this, come back to this
     case actionTypes.SEND_CHANNEL_MESSAGE: {
-      console.log("THIS IS RUNNING!!!", action.payload);
       const newState = structuredClone(state);
       const { channel_id } = action.payload;
       if (newState.channels[channel_id]) {
@@ -250,6 +277,16 @@ export const singleServerReducer = (state = initialState, action) => {
           usr.status = status;
         }
       }
+      return newState;
+    }
+    case actionTypes.DELETE_CHANNEL_MESSAGE: {
+      console.log("DELETING FROM MESSAGES");
+      const newState = structuredClone(state);
+      const { messageId, channelId } = action.payload;
+      newState.channels[channelId].messages = newState.channels[
+        channelId
+      ].messages.filter((msg) => msg.id != messageId);
+
       return newState;
     }
     case actionTypes.REMOVE_SESSION: {

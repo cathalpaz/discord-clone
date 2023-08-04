@@ -3,7 +3,10 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "../../styles/components/ChannelMessageList.css";
 import { ChannelMessage } from "./ChannelMessage";
-import { updateChannelMessages } from "../../store/singleServer";
+import {
+  deleteSingleChannelMessage,
+  updateChannelMessages,
+} from "../../store/singleServer";
 export function ChannelMessageList({ socket }) {
   if (!socket) return false;
   const { channelId, serverId } = useParams();
@@ -28,8 +31,15 @@ export function ChannelMessageList({ socket }) {
     socket.on(`server-channel-messages-${serverId}`, (data) => {
       dispatch(updateChannelMessages(data));
     });
+    socket.on(`server-channel-messages-delete-${serverId}`, (data) => {
+      console.log("SDLKJFLKSDJFKLSLDKJFLKSDJFLKSDJFLKJ");
+      console.log("SDLKJFLKSDJFKLSLDKJFLKSDJFLKSDJFLKJ");
+      const { messageId, channelId } = data;
+      dispatch(deleteSingleChannelMessage(channelId, messageId));
+    });
     return () => {
       socket.off(`server-channel-messages-${serverId}`);
+      socket.off(`server-channel-messages-delete-${serverId}`);
     };
   }, [serverId]);
 

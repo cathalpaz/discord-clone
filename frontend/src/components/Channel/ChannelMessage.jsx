@@ -1,11 +1,25 @@
 import dayjs from "dayjs";
 import OpenModalButton from "../OpenModalButton";
 import UpdateMessageModal from "../UpdateMessageModal";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { thunkDeleteChannelMessage } from "../../store/singleServer";
 
 export function ChannelMessage({ message, user, socket }) {
   const currentUser = useSelector((state) => state.session.user);
+  const serverId = useSelector((state) => state.singleServer.id);
   if (!user) return false;
+  const dispatch = useDispatch();
+
+  const deleteChat = async () => {
+    const res = await dispatch(
+      thunkDeleteChannelMessage(message.channel_id, message.id)
+    );
+    socket.emit("server-channel-messages-delete", {
+      channel_id: message.channel_id,
+      message_id: message.id,
+      server_id: serverId,
+    });
+  };
 
   return (
     <div className='channel-message__container'>
@@ -38,10 +52,7 @@ export function ChannelMessage({ message, user, socket }) {
                 buttonText={<i className='fa-solid fa-pencil'></i>}
                 className={"update-conversation"}
               />
-              <button
-                className='delete-message-button'
-                onClick={() => deleteChat(message.id)}
-              >
+              <button className='delete-message-button' onClick={deleteChat}>
                 <i className='fa-solid fa-trash'></i>
               </button>
             </div>

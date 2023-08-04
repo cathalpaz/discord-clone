@@ -104,3 +104,14 @@ def handle_channel_message(data):
              "user_id": data['user']['id'],
              "channel_id": data['channel_id'],
          }, broadcast=True)
+
+
+@socketio.on("server-channel-messages-delete")
+def handle_delete_message(data):
+    message_id = data['message_id']
+    channel_id = data['channel_id']
+    server_id = data['server_id']
+    emit(f"server-channel-messages-delete-{server_id}", {
+        'messageId': message_id,
+        "channelId": channel_id
+    }, broadcast=True)
