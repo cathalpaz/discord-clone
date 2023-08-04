@@ -26,15 +26,17 @@ function SearchServerCard({ server }) {
         <div className='card-image-banner'>
             <img src={server.avatar} />
         </div>
-        <div className='card-name'>{server.name}</div>
-        <div className='card-footer'>
-            <div>{server.users.length} members</div>
-            {myServerIds.includes(server.id) ? (
-                <span className='joined-btn'>Joined</span>
-            ) : (
-                <span className='join-btn' onClick={handleJoin}>Join Server</span>
-            )}
+        <div className='card-info'>
+          <div className='card-name'>{server.name}</div>
+          <div className='card-footer'>
+              <div>{server.users.length} members</div>
+              {myServerIds.includes(server.id) ? (
+                  <span className='joined-btn'>Joined</span>
+              ) : (
+                  <span className='join-btn' onClick={handleJoin}>Join</span>
+              )}
 
+          </div>
         </div>
     </div>
   )
