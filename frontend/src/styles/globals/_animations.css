@@ -13,7 +13,7 @@
   opacity: 0;
  } 
  100% {
-  transform: translateX(10%);
+  transform: translateX(30%);
   opacity: 1;
  }
 }

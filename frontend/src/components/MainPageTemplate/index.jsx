@@ -113,7 +113,7 @@ function MainPageTemplate({ leftTab, rightTab }) {
 
   return (
     <>
-      <div className='main-page-container'>
+      <div className='main-page-container' id='main'>
         <Switch>
           <Route exact path='/@'>
             <div className='main-page-container__item main-page-container__item--1'>
