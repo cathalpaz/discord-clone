@@ -168,6 +168,7 @@ export default function ChannelBrowser({ socket }) {
                   onChange={(e) => setName(e.target.value)}
                   // onBlur={handleClickOff}
                   onKeyDown={handleKeyClick}
+                  maxLength={18}
                 />
               ) : (
                 <>
