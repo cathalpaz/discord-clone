@@ -42,7 +42,7 @@ function CreateServerModal() {
       fileRef.current.click();
     }
   };
-  
+
   return (
     <div className='create-server_form_container'>
       <form onSubmit={handleSubmit} className='server_form'>
@@ -84,6 +84,7 @@ function CreateServerModal() {
             type='text'
             value={name}
             onChange={(e) => setName(e.target.value)}
+            maxLength={20}
           />
           <p className='errors'>{errors}</p>
         </label>
