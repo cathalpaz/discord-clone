@@ -30,9 +30,13 @@ function FriendList({ selectedTab }) {
     dispatch(thunkSendFriendRequest(searchQuery));
   };
 
-  const sendToDiscovery = () => {
-    history.push("/discovery")
+  const pendingFriendRequest = (answer) => {
+    console.log(answer)
   }
+
+  const sendToDiscovery = () => {
+    history.push("/discovery");
+  };
 
   let filteredFriends = [];
   let pendingFriends = [];
@@ -57,45 +61,61 @@ function FriendList({ selectedTab }) {
       // setSearchQuery(n)
       return (
         <div className="content-online">
-          <h2 className="heading-class">{filteredFriends.length === 0 ? "" : selectedTab} {filteredFriends.length !== 0 ? filteredFriends.length : ""}</h2>
-          {filteredFriends.length === 0 ? (
-            <div className="no-friend-container">
-              <img
-                className="offline-wumpus"
-                src={"/images/NoOnline.svg"}
-                alt=""
-              />
-              <p className="no-friends-txt">
-                No one's around to play with Wumpus.
-              </p>
-            </div>
-          ) : (
-            filteredFriends.map((friend) => (
-              <div
-                key={friend.id}
-                onMouseEnter={() => handleFriendHover(friend.id, true)}
-                onMouseLeave={() => handleFriendHover(friend.id, false)}
-              >
-                <img src={friend.user.avatar} alt="" />
-                <p>{friend.user.username}</p>
-                {hoverStates[friend.id] && <p>#{friend.id}</p>}
-                <div className="icons-container">
-                  <div className="messages">
-                    <i className="fas fa-message"></i>
+          <h2 className="heading-class">
+            {filteredFriends.length === 0 ? "" : selectedTab.toUpperCase() + " -"}{" "}
+            {filteredFriends.length !== 0 ? filteredFriends.length : ""}
+          </h2>
+          <div className="friend-list-user-container">
+            {filteredFriends.length === 0 ? (
+              <div className="no-friend-container">
+                <img
+                  className="offline-wumpus"
+                  src={"/images/NoOnline.svg"}
+                  alt=""
+                />
+                <p className="no-friends-txt">
+                  No one's around to play with Wumpus.
+                </p>
+              </div>
+            ) : (
+              filteredFriends.map((friend) => (
+                <>
+                <div className="friend-list-heading-border"></div>
+
+                <div
+                  className="friend-list-user"
+                  key={friend.id}
+                  onMouseEnter={() => handleFriendHover(friend.id, true)}
+                  onMouseLeave={() => handleFriendHover(friend.id, false)}
+                >
+                  <div className="friend-list-user-info">
+                    <img src={friend.user.avatar} alt="" />
+                    <p style={{marginLeft:".5rem"}}>{friend.user.username}</p>
+                    {hoverStates[friend.id] && <p>#{friend.id}</p>}
                   </div>
-                  <div className="dots">
-                    <i className="fa-solid fa-ellipsis-vertical"></i>
+                  <div className="icons-container">
+                    <div className="messages">
+                      <i className="fas fa-message fa-lg"></i>
+                    </div>
+                    <div className="dots">
+                      <i className="fa-solid fa-ellipsis-vertical fa-lg"></i>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
+                </>
+
+              ))
+            )}
+          </div>
         </div>
       );
     } else if (selectedTab === "All") {
       return (
         <div className="content-online">
-          <h2 className="heading-class">{filteredFriends.length === 0 ? "" : selectedTab} {filteredFriends.length !== 0 ? filteredFriends.length : ""}</h2>
+          <h2 className="heading-class">
+            {filteredFriends.length === 0 ? "" : selectedTab.toUpperCase() + " -"}{" "}
+            {filteredFriends.length !== 0 ? filteredFriends.length : ""}
+          </h2>
           {filteredFriends.length === 0 ? (
             <div className="no-friend-container">
               <img
@@ -106,28 +126,35 @@ function FriendList({ selectedTab }) {
               <p className="no-friends-txt">
                 Wumpus is waiting on friends. You don't have to though!
               </p>
-              <div>
-              </div>
+              <div></div>
             </div>
           ) : (
             filteredFriends.map((friend) => (
+              <>
+                              <div className="friend-list-heading-border"></div>
               <div
+                className="friend-list-user"
                 key={friend.id}
                 onMouseEnter={() => handleFriendHover(friend.id, true)}
                 onMouseLeave={() => handleFriendHover(friend.id, false)}
               >
+              <div className="friend-list-user-info">
                 <img src={friend.user.avatar} alt="" />
-                <p>{friend.user.username}</p>
+                <p  style={{marginLeft:".5rem"}}>{friend.user.username}</p>
                 {hoverStates[friend.id] && <p>#{friend.id}</p>}
-                <div className="icons-container">
-                  <div className="messages">
-                    <i className="fas fa-message"></i>
-                  </div>
-                  <div className="dots">
-                    <i className="fa-solid fa-ellipsis-vertical"></i>
-                  </div>
+              </div>
+              <div className="icons-container">
+                <div className="messages">
+                  <i className="fas fa-message fa-lg"></i>
+                </div>
+                <div className="dots">
+                  <i className="fa-solid fa-ellipsis-vertical fa-xl"></i>
                 </div>
               </div>
+              </div>
+
+
+              </>
             ))
           )}
         </div>
@@ -155,13 +182,29 @@ function FriendList({ selectedTab }) {
           </div>
           <div className="friend-list-border"></div>
           <div className="friend-list-discovery-container">
-            <div className="Add-Friend">
-              OTHER PLACES TO MAKES FRIENDS
-            </div>
-            <span onClick={sendToDiscovery} className="friend-list-discovery-button">
+            <div className="Add-Friend">OTHER PLACES TO MAKES FRIENDS</div>
+            <span
+              onClick={sendToDiscovery}
+              className="friend-list-discovery-button"
+            >
               <i class="fa-solid fa-compass friend-list-discovery-icon"></i>
-              <p style={{fontWeight:"500", color:"var(--light-accent)", marginLeft:".5rem"}}>Explore Discoverable Servers</p>
-              <i style={{color:"var(--light-accent)", marginLeft:"1.2rem", fontSize:"18px"}}class="fa-solid fa-chevron-right"></i>
+              <p
+                style={{
+                  fontWeight: "500",
+                  color: "var(--light-accent)",
+                  marginLeft: ".5rem",
+                }}
+              >
+                Explore Discoverable Servers
+              </p>
+              <i
+                style={{
+                  color: "var(--light-accent)",
+                  marginLeft: "1.2rem",
+                  fontSize: "18px",
+                }}
+                class="fa-solid fa-chevron-right"
+              ></i>
             </span>
           </div>
           <div className="no-friend-container">
@@ -179,7 +222,10 @@ function FriendList({ selectedTab }) {
     } else if (selectedTab === "Pending") {
       return (
         <div className="content-all">
-          <h2 className="heading-class">{pendingFriends.length === 0 ? "" : selectedTab} {pendingFriends.length !== 0 ? pendingFriends.length : ""}</h2>
+          <h2 className="heading-class">
+            {pendingFriends.length === 0 ? "" : selectedTab.toUpperCase() + " -"}{" "}
+            {pendingFriends.length !== 0 ? pendingFriends.length : ""}
+          </h2>
           {pendingFriends.length === 0 ? (
             <div className="no-friend-container">
               <img src="../../../public/images/NoPending.svg" alt="" />
@@ -189,23 +235,31 @@ function FriendList({ selectedTab }) {
             </div>
           ) : (
             pendingFriends.map((friend) => (
-              <div
-                key={friend.id}
-                onMouseEnter={() => handleFriendHover(friend.id, true)}
-                onMouseLeave={() => handleFriendHover(friend.id, false)}
-              >
-                <img src={friend.user.avatar} alt="" />
-                <p>{friend.user.username}</p>
-                {hoverStates[friend.id] && <p>#{friend.id}</p>}
-                <div className="icons-container">
-                  <div className="messages">
-                    <i className="fas fa-message"></i>
+              <>
+                <div className="friend-list-heading-border"></div>
+                <div
+                  className="friend-list-user"
+                  key={friend.id}
+                  onMouseEnter={() => handleFriendHover(friend.id, true)}
+                  onMouseLeave={() => handleFriendHover(friend.id, false)}
+                >
+                  <div className="friend-list-user-info">
+                    <img src={friend.user.avatar} alt="" />
+                    <p style={{marginLeft:".5rem"}}>{friend.user.username}</p>
+                    {hoverStates[friend.id] && <p>#{friend.id}</p>}
                   </div>
-                  <div className="dots">
-                    <i className="fa-solid fa-ellipsis-vertical"></i>
+                  <div className="icons-container">
+                    <div className="check" onClick={() => pendingFriendRequest("yes")}>
+                      <i class="fa-solid fa-check fa-lg"></i>
+
+                    </div>
+                    <div className="reject" onClick={() => pendingFriendRequest("no")}>
+                      <i class="fa-solid fa-xmark fa-lg"></i>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+              </>
             ))
           )}
         </div>

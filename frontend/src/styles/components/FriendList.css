@@ -191,16 +191,6 @@
   font-size: 20px;
 }
 
-.friend-list h2{
-  font-size:13px;
-  padding-bottom:15px;
-}
-
-.icons-container {
-  display: flex;
-  align-items: center;
-}
-
 .friend-list {
   margin-left: 25px;
   margin-right: 25px;
@@ -215,12 +205,6 @@
   border-top-style:none;
 }
 
-.friend-list div .icons-container{
-  margin-left:200px;
-  margin-right:263px;
-}
-
-
 .Add-Desc{
   margin-top:9px;
   font-size: 14px;
@@ -234,21 +218,6 @@
   font-size: 16px;
   padding-left: 5px;
 }
-
-.friend-list div .icons-container{
-  border-top-style:none;
-  height:24px;
- }
-
-
-.friend-list div .messages{
-  border-top-style:none;
-}
-
-.friend-list div .dots{
-  border-top-style:none;
-}
-
 
 /* Online page with no friends */
 
@@ -306,7 +275,9 @@
   margin-top: 1.3rem;
   padding-left: .6rem;
   display: flex;
-  align-items: center
+  align-items: center;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
 }
 
 .friend-list-discovery-button:hover {
@@ -328,4 +299,81 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.friend-list-user-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-list-user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.friend-list-user-info {
+  display: flex;
+  align-items: center;
+  padding: .4rem .6rem;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+
+}
+
+.friend-list-user:hover {
+  background-color: var(--gray-button-accent);
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.friend-list-user-info > img {
+  width: 2.5rem;
+  border-radius: 5rem;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0px 1rem;
+}
+
+.friend-list-heading-border {
+  border-bottom: 1px solid var(--gray-button-accent);
+  margin: .4rem 0px;
+}
+
+.friend-list h2{
+  font-size:12px;
+  color: var(--light-accent);
+}
+
+.messages:hover {
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  color: var(--light-accent);
+}
+
+.dots {
+  font-size: 20px;
+
+}
+
+.dots:hover {
+  transition-duration: .2s;
+  transition-timing-function: ease-out;
+  color: var(--light-accent);
+}
+
+.check:hover {
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  color: var(--secondary);
+}
+
+.reject:hover {
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  color: var(--errors)
 }
