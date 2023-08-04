@@ -80,9 +80,7 @@ export const thunkGetServerInfo =
         }
         dispatch(getSingleServer(data.server));
       }
-    } catch (err) {
-
-    }
+    } catch (err) {}
   };
 
 export const thunkCreateChannel = (serverId, channel) => async (dispatch) => {
@@ -142,7 +140,7 @@ export const thunkDeleteSingleServer = (serverId) => async (dispatch) => {
       dispatch(deleteSingleServer(data));
     }
   } catch (err) {
-    return err
+    return err;
   }
 };
 
@@ -158,7 +156,7 @@ export const thunkUpdateSingleServer =
         dispatch(updateSingleServer(data));
       }
     } catch (err) {
-      return err
+      return err;
     }
   };
 
@@ -220,10 +218,21 @@ export const singleServerReducer = (state = initialState, action) => {
       newState["avatar"] = action.payload.server.avatar;
       return newState;
     }
+    // TODO not a good way to do this, come back to this
     case actionTypes.SEND_CHANNEL_MESSAGE: {
+      console.log("THIS IS RUNNING!!!", action.payload);
       const newState = structuredClone(state);
       const { channel_id } = action.payload;
       if (newState.channels[channel_id]) {
+        const oldMessageIdx = newState.channels[channel_id].messages.findIndex(
+          (msg) => msg.id == action.payload.id
+        );
+        if (oldMessageIdx !== -1) {
+          newState.channels[channel_id].messages[oldMessageIdx] = {
+            ...action.payload,
+          };
+          return newState;
+        }
         const oldMessages = newState.channels[channel_id].messages;
         newState.channels[channel_id].messages = [
           ...oldMessages,
@@ -244,8 +253,8 @@ export const singleServerReducer = (state = initialState, action) => {
       return newState;
     }
     case actionTypes.REMOVE_SESSION: {
-      const newState = initialState
-      return newState
+      const newState = initialState;
+      return newState;
     }
     default: {
       return state;

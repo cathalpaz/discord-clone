@@ -1,25 +1,43 @@
-import { useState } from 'react'
-import { useModal } from '../../context/Modal'
-import '../../styles/components/UpdateMessageModal.css'
+import { useState } from "react";
+import { useModal } from "../../context/Modal";
+import "../../styles/components/UpdateMessageModal.css";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-function UpdateMessageModal({ message, type }) {
-  const { closeModal } = useModal()
-  let [newMessage, setNewMessage] = useState(message.content)
+function UpdateMessageModal({ message, type, socket }) {
+  const { closeModal } = useModal();
+  if (!socket) return false;
+  const [newMessage, setNewMessage] = useState(message.content);
+  const user = useSelector((state) => state.session.user);
+  const serverId = useSelector((state) => state.singleServer.id);
 
   const handleEnter = (e) => {
-    if (e.key === 'Enter') {
-      updateMessage()
+    if (e.key === "Enter") {
+      updateMessage();
     }
-  }
+  };
 
-  const updateMessage = (e) => {
-    e.preventDefault()
-
+  const updateMessage = () => {
     // handle socket stuff here
-    message.updated = True
+    // message.updated = True
+    console.log("THIS IS THE SERVER_ID", serverId);
+    console.log("THIS IS THE MSG", message);
 
-    closeModal()
-  }
+    socket.emit("channel_message", {
+      new_message: {
+        ...message,
+        content: newMessage,
+      },
+      channel_id: message.channel_id,
+      user: {
+        id: user.id,
+        username: user.username,
+      },
+      server_id: serverId,
+    });
+
+    closeModal();
+  };
 
   return (
     <div className='update-message__container'>
@@ -30,15 +48,16 @@ function UpdateMessageModal({ message, type }) {
           onKeyDown={handleEnter}
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          >
-        </input>
+        />
       </label>
       <div className='update-message__btns'>
-        <button onClick={closeModal} className='delete-modal-button-no'>Cancel</button>
+        <button onClick={closeModal} className='delete-modal-button-no'>
+          Cancel
+        </button>
         <button className='save-btn'>Save</button>
       </div>
     </div>
-  )
+  );
 }
 
-export default UpdateMessageModal
+export default UpdateMessageModal;

@@ -1,19 +1,19 @@
 import dayjs from "dayjs";
-import OpenModalButton from '../OpenModalButton';
+import OpenModalButton from "../OpenModalButton";
 import UpdateMessageModal from "../UpdateMessageModal";
 import { useSelector } from "react-redux";
 
-export function ChannelMessage({ message, user }) {
+export function ChannelMessage({ message, user, socket }) {
   const currentUser = useSelector((state) => state.session.user);
   if (!user) return false;
-  
+
   return (
     <div className='channel-message__container'>
       <div className='channel-message__avatar-container'>
         <img src={user?.avatar || ""} alt='' />
       </div>
       <div className='channel-message__info'>
-        <header className="channel-message__info__header-container">
+        <header className='channel-message__info__header-container'>
           <div className='channel-message__info__header'>
             <span>{user.username}</span>
             <span className='channel-message__info__header__date'>
@@ -26,19 +26,23 @@ export function ChannelMessage({ message, user }) {
             )}
           </div>
           {currentUser.id === user.id ? (
-            <div className="message-hidden">
+            <div className='message-hidden'>
               <OpenModalButton
                 modalComponent={
                   <UpdateMessageModal
+                    socket={socket}
                     message={message}
-                    type={'channel'}
+                    type={"channel"}
                   />
                 }
-                buttonText={<i className="fa-solid fa-pencil"></i>}
+                buttonText={<i className='fa-solid fa-pencil'></i>}
                 className={"update-conversation"}
               />
-              <button className="delete-message-button" onClick={() => deleteChat(message.id)}>
-                <i className="fa-solid fa-trash"></i>
+              <button
+                className='delete-message-button'
+                onClick={() => deleteChat(message.id)}
+              >
+                <i className='fa-solid fa-trash'></i>
               </button>
             </div>
           ) : null}

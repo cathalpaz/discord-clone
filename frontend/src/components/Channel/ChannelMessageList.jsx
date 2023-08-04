@@ -44,7 +44,12 @@ export function ChannelMessageList({ socket }) {
             const user = users.find((usr) => usr.id == msg.user_id);
             return (
               <>
-                <ChannelMessage key={i} message={msg} user={user} />
+                <ChannelMessage
+                  key={i}
+                  message={msg}
+                  user={user}
+                  socket={socket}
+                />
               </>
             );
           })}

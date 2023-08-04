@@ -71,6 +71,20 @@ def handle_channel_message(data):
     user = User.query.get(data['user']['id'])
     if user:
         user.last_seen = datetime.utcnow()
+    if 'new_message' in data:
+        old_message = ChannelMessage.query.get(data['new_message']['id'])
+        old_message.content = data['new_message']['content']
+        old_message.updated = True
+        db.session.commit()
+        emit(f"server-channel-messages-{data['server_id']}", {
+            'content': data['new_message']['content'],
+             "created_at": f"{old_message.created_at}",
+             "user_id": data['user']['id'],
+             "channel_id": data['channel_id'],
+             "updated": True,
+             "id": f"{old_message.id}"
+             }, broadcast=True)
+        return
     new_channel_message = ChannelMessage(
         content=data['message'], user_id=data['user']['id'])
     channel.channel_messages.append(new_channel_message)
@@ -82,7 +96,8 @@ def handle_channel_message(data):
              "created_at": f"{new_channel_message.created_at}",
              "user_id": data['user']['id'],
              "channel_id": data['channel_id'],
-             "updated": False
+             "updated": False,
+             'id': f"{new_channel_message.id}"
          }, broadcast=True)
     emit(f"server-channel-messages-notifications-{data['server_id']}",
          {
