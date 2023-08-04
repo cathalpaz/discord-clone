@@ -17,7 +17,7 @@ function UserModal() {
   const [editBirthday, setEditBirthday] = useState(false);
   // const [editEmail, setEditEmail] = useState(false);
   const { closeModal } = useModal();
-
+  console.log(user)
   const handleLogout = () => {
     dispatch(logout());
     closeModal();
@@ -31,6 +31,7 @@ function UserModal() {
   const handleSubmit = async () => {
     const formData = new FormData();
     if (username !== user.username) formData.append("username", username);
+    if (color !== user.banner_color) formData.append("banner_color", color)
     // if (email !== user.email) formData.append("email", email);
     if (Array.from(formData.entries()).length) {
       const result = await dispatch(thunkUpdateUser(formData, user.id));
