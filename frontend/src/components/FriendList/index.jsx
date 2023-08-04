@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/FriendList.css";
-import { fetchFriends, thunkSendFriendRequest } from "../../store/session";
+import { fetchFriends, thunkAcceptFriendRequest, thunkSendFriendRequest } from "../../store/session";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function FriendList({ selectedTab }) {
@@ -30,8 +30,11 @@ function FriendList({ selectedTab }) {
     dispatch(thunkSendFriendRequest(searchQuery));
   };
 
-  const pendingFriendRequest = (answer) => {
-    console.log(answer)
+  const pendingFriendRequest = (answer, friend) => {
+    console.log(answer, friend)
+    if (answer == "yes") {
+      thunkAcceptFriendRequest(friend.id)
+    }
   }
 
   const sendToDiscovery = () => {
@@ -56,9 +59,7 @@ function FriendList({ selectedTab }) {
   }
 
   const renderContent = () => {
-    // setSearchQuery("")
     if (selectedTab === "Online") {
-      // setSearchQuery(n)
       return (
         <div className="content-online">
           <h2 className="heading-class">
@@ -249,7 +250,7 @@ function FriendList({ selectedTab }) {
                     {hoverStates[friend.id] && <p>#{friend.id}</p>}
                   </div>
                   <div className="icons-container">
-                    <div className="check" onClick={() => pendingFriendRequest("yes")}>
+                    <div className="check" onClick={() => pendingFriendRequest("yes", friend)}>
                       <i class="fa-solid fa-check fa-lg"></i>
 
                     </div>
