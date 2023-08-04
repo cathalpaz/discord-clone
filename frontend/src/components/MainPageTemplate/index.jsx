@@ -91,7 +91,6 @@ function MainPageTemplate({ leftTab, rightTab }) {
             if (user) {
               if (other_user.user_id != user.id) {
                 // set online status of user in servers
-                console.log("SDKLFJKLSDJFLKSDJKLFJKSDJF");
                 dispatch(updateUserStatus(other_user));
               }
             }

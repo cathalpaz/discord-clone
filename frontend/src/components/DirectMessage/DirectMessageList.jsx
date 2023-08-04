@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import "../../styles/components/ChannelMessageList.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { DirectMessage } from "./DirectMessage";
 import { addDm } from "../../store/directMessages";
+import "../../styles/components/ChannelMessageList.css";
 
 export function DirectMessageList({ socket }) {
   if (!socket) return false;
@@ -13,7 +13,6 @@ export function DirectMessageList({ socket }) {
 
   useEffect(() => {
     socket.on(`user-dm-${user.id}`, (dm) => {
-      console.log("THIS IS THE DM", dm);
       dispatch(addDm(dm));
     });
     return () => {

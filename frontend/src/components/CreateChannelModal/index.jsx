@@ -9,7 +9,6 @@ function CreateChannelModal({ serverId }) {
   const dispatch = useDispatch()
   const history = useHistory()
   const { closeModal } = useModal()
-
   const [type, setType] = useState('text')
   const [name, setName] = useState('')
   const [errors, setErrors] = useState([])
@@ -23,16 +22,12 @@ function CreateChannelModal({ serverId }) {
     }
     const data = await dispatch(thunkCreateChannel(serverId, channel))
     if (data.errors) {
-      console.log('data', data)
-      console.log('errors', data.errors)
       setErrors(data.errors)
     } else {
       closeModal()
       history.push(`/${serverId}/${data.id}`)
     }
   }
-
-
 
   return (
     <div className='create-channel_modal'>

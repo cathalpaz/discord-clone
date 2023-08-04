@@ -42,7 +42,7 @@ export const thunkGetAllDirectMessages =
         return data;
       }
     } catch (error) {
-      console.log(error);
+
     }
   };
 
@@ -58,12 +58,10 @@ export const thunkSendDirectMessage =
       });
       if (res.ok) {
         const data = await res.json();
-        console.log("THIS IS THE DATA", data);
         dispatch(createDirectMessage({ ...data, userId }));
         return { ...data, userId };
       }
     } catch (err) {
-      console.log(err);
       return err;
     }
   };
@@ -73,8 +71,6 @@ export const directMessagesReducer = (state = initialState, action) => {
     case actionTypes.GET_ALL_DIRECT_MESSAGE: {
       const newState = structuredClone(state);
       const userId = action.payload.userId;
-      console.log("THIS IS THE ACTION PAYLOAD", action.payload);
-      console.log("THIS IS THE USER ID ", userId);
       const messages = action.payload.dms.messages;
       const orderedDirectMessages = [...state.orderedDirectMessages];
 
@@ -116,10 +112,8 @@ export const directMessagesReducer = (state = initialState, action) => {
     case actionTypes.SEND_DM_MESSAGE: {
       const newState = structuredClone(state);
       const { userId, message } = action.payload;
-      console.log("this is the payload", action.payload);
-      console.log("THIS IS THE USERID", userId);
+
       if (newState.users[userId]) {
-        console.log("THIS IF IS RUNNING");
         newState.users[userId][message.id] = {
           ...message,
         };

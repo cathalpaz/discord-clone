@@ -17,7 +17,6 @@ export default function DirectMessage({ searchString }) {
     friendMessage = [];
 
   const dmUsers = useSelector((state) => state.directMessages.users);
-  console.log("THE DM USERS", dmUsers);
 
   useEffect(() => {
     dispatch(thunkGetAllDirectMessages(sessionUser.id));

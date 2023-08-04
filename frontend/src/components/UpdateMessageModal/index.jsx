@@ -14,13 +14,13 @@ function UpdateMessageModal({ message, type }) {
 
   const updateMessage = (e) => {
     e.preventDefault()
+
     // handle socket stuff here
-    
     message.updated = True
-    console.log('SUBMITTED')
+
     closeModal()
   }
-  console.log(message)
+
   return (
     <div className='update-message__container'>
       <span className='update-message__title'>Update message</span>

@@ -1,23 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
 import OpenModalSpan from "../OpenModalSpan";
 import DeleteModal from "../DeleteModal";
-import "../../styles/components/ChannelMenuDrop.css";
 import CreateChannelModal from "../CreateChannelModal";
 import UpdateServerModal from "../UpdateServerModal";
 import LeaveServerModal from "../LeaveServerModal";
+import "../../styles/components/ChannelMenuDrop.css";
 
-function ChannelMenuDrop({ user }) {
+function ChannelMenuDrop() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const { serverId, channelId } = useParams();
   const server = useSelector((state) => state.servers[serverId]);
   const sessionUser = useSelector((state) => state.session.user);
   const ulRef = useRef();
-  console.log("server", server);
 
   const openMenu = () => {
     if (showMenu) return;

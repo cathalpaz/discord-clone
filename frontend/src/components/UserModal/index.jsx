@@ -18,8 +18,6 @@ function UserModal() {
   const [editEmail, setEditEmail] = useState(false);
   const { closeModal } = useModal();
 
-  console.log(user);
-
   const handleLogout = () => {
     dispatch(logout());
     closeModal();

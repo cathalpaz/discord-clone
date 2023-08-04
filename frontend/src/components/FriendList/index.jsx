@@ -35,7 +35,6 @@ function FriendList({ selectedTab }) {
   };
 
   const pendingFriendRequest = (answer, friend) => {
-    console.log(answer, friend);
     if (answer == "yes") {
       thunkAcceptFriendRequest(friend.id);
     }

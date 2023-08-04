@@ -85,12 +85,12 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
     });
     if (res.ok) {
       const data = await res.json();
-      console.log("this is the data", data);
+
       dispatch(updateUser(data));
       return data;
     }
   } catch (err) {
-    console.log("there was an error", err);
+
     return err;
   }
 };
@@ -103,12 +103,12 @@ export const thunkSendFriendRequest = (userId) => async (dispatch) => {
     });
     if (res.ok) {
       const data = await res.json();
-      console.log("this is the data", data);
+
       dispatch(sendFriendRequest(data));
       return data;
     }
   } catch (err) {
-    console.log("there was an error", err);
+
     return err;
   }
 };
@@ -125,7 +125,7 @@ export const thunkAcceptFriendRequest = (userId) => async (dispatch) => {
       return data;
     }
   } catch (err) {
-    console.log("there was an error", err);
+
     return err;
   }
 };

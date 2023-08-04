@@ -31,7 +31,6 @@ function CreateServerModal() {
       setErrors(data.errors);
     } else {
       closeModal();
-      console.log("this is the data", data);
       // add push to new server link
       history.push(`/${data.id}/${data.channels[0].id}`);
     }
@@ -43,8 +42,7 @@ function CreateServerModal() {
       fileRef.current.click();
     }
   };
-
-  // console.log('hello')
+  
   return (
     <div className='create-server_form_container'>
       <form onSubmit={handleSubmit} className='server_form'>

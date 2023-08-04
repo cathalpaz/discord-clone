@@ -15,8 +15,6 @@ function LoginFormPage() {
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
-    console.log("this is email", email)
-    console.log('this is pw', password)
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {

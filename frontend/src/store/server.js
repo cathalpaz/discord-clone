@@ -58,7 +58,6 @@ export const thunkCreateServer = (serverForm) => async (dispatch) => {
     return data;
   } else {
     const errorData = await res.json();
-    console.log(errorData);
     return errorData;
   }
 };

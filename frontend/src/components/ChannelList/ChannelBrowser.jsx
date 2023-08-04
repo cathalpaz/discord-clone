@@ -65,7 +65,6 @@ export default function ChannelBrowser({ socket }) {
   useEffect(() => {
     socket.on(`server-channel-messages-notifications-${serverId}`, (data) => {
       if (data.channel_id != channelId && data.user_id != user.id) {
-        console.log("SEND NOTIFICATION");
         setChannelNotifications((prevChannelNotifications) => {
           const updatedChannelNotifications = { ...prevChannelNotifications };
 
@@ -80,7 +79,6 @@ export default function ChannelBrowser({ socket }) {
       }
     });
   }, [serverId]);
-  console.log("these are the notifications", channelNotifications);
 
   const handleDelete = () => {
     setModalContent(<DeleteModal type='channel' cId={selectedChannel} />);

@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 export function ChannelMessage({ message, user }) {
   const currentUser = useSelector((state) => state.session.user);
   if (!user) return false;
-  console.log('1', currentUser)
-  console.log('2', user)
+  
   return (
     <div className='channel-message__container'>
       <div className='channel-message__avatar-container'>

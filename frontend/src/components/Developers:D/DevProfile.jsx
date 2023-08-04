@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 function DevProfile({ dev }) {
-  console.log(dev)
   const [color, setColor] = useState(dev.bannerColor);
 
   useEffect(() => {

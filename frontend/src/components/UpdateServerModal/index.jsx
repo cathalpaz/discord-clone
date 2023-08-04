@@ -49,7 +49,6 @@ function UpdateServerModal({ type }) {
   };
 
   const changeImage = (e) => {
-    console.log("asd");
     e.preventDefault();
     if (fileRef.current) {
       fileRef.current.click();

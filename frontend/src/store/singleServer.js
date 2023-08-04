@@ -81,7 +81,7 @@ export const thunkGetServerInfo =
         dispatch(getSingleServer(data.server));
       }
     } catch (err) {
-      console.log(err);
+
     }
   };
 
@@ -142,14 +142,12 @@ export const thunkDeleteSingleServer = (serverId) => async (dispatch) => {
       dispatch(deleteSingleServer(data));
     }
   } catch (err) {
-    console.log(err);
+    return err
   }
 };
 
 export const thunkUpdateSingleServer =
   (serverId, serverForm) => async (dispatch) => {
-    console.log("serverid", serverId);
-    console.log("serverform", serverForm);
     try {
       const res = await fetch(`/api/servers/${serverId}`, {
         method: "PUT",
@@ -160,7 +158,7 @@ export const thunkUpdateSingleServer =
         dispatch(updateSingleServer(data));
       }
     } catch (err) {
-      console.log(err);
+      return err
     }
   };
 
@@ -200,7 +198,6 @@ export const singleServerReducer = (state = initialState, action) => {
       // newState.channels = {...newState.channels, orderedChannelsList: ... }
       const newState = structuredClone(state);
       const { channel } = action.channel;
-      console.log("1111", action.channel.channel);
       newState.channels[channel.id] = channel;
       return newState;
     }
@@ -218,7 +215,6 @@ export const singleServerReducer = (state = initialState, action) => {
     }
     case actionTypes.UPDATE_SERVER: {
       const newState = { ...state };
-      console.log("newstate", newState);
       newState["name"] = action.payload.server.name;
       newState["public"] = action.payload.server.public;
       newState["avatar"] = action.payload.server.avatar;

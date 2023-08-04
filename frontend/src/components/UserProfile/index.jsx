@@ -5,7 +5,6 @@ import "../../styles/components/UserProfile.css";
 
 function UserProfile() {
   const user = useSelector((state) => state.session.user);
-  console.log(user);
 
   return (
     <div className='user_prof-container'>

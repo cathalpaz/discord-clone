@@ -20,7 +20,6 @@ export default function DirectMessageSendMessage({ socket }) {
         content: message,
       })
     );
-    console.log("this is the res", res);
     if (res) {
       socket.emit("dm-sent", res);
     }
