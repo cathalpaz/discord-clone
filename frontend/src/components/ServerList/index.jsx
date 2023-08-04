@@ -18,8 +18,10 @@ function ServerList() {
   const serverIds = useSelector((state) => state.servers.orderedServers);
   const createServerRef = useRef();
   const discoverServersRef = useRef();
+  const dmRef = useRef();
   const [createServerHover, setCreateServerHover] = useState(false);
   const [discoverServersHover, setDiscoverServersHover] = useState(false);
+  const [dmHover, setDmHover] = useState(false);
 
   useEffect(() => {
     dispatch(thunkGetAllServers());
@@ -40,7 +42,17 @@ function ServerList() {
   return (
     <>
       <div className='serverlist-container'>
-        <div onClick={sendToMain} className='serverlist-friend-button'>
+        <div
+          onClick={sendToMain}
+          className='serverlist-friend-button'
+          style={{ position: "relative" }}
+          ref={dmRef}
+          onMouseEnter={() => setDmHover(true)}
+          onMouseLeave={() => setDmHover(false)}
+        >
+          {dmHover && (
+            <ServerToolTip serverName={"Direct Messages"} parentRef={dmRef} />
+          )}
           <i className='fa-brands fa-discord fa-lg'></i>
         </div>
         <div>
