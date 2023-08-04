@@ -90,7 +90,7 @@
 }
 
 /* .serverlist-main-list::-webkit-scrollbar-track {
-    background: var(--secondary-background-darker); 
+    background: var(--secondary-background-darker);
 }
 
 .serverlist-main-list::-webkit-scrollbar-thumb {
@@ -103,7 +103,7 @@
 
 .serverlist-main-list:hover::-webkit-scrollbar-thumb:hover {
     background: #555;
-} */ 
+} */
 
 .serverlist-add-server > button {
     color: var(--secondary);

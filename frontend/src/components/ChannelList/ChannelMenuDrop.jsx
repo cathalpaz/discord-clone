@@ -100,11 +100,12 @@ function ChannelMenuDrop() {
         </ul>
         ) : (
           <ul ref={ulRef} className={showMenu ? "channel-menu-dropdown_member" : "channel-menu-dropdown_member hidden"}>
-            <span onClick={closeMenu} >
+            <span onClick={closeMenu} className="leave-server">
               <OpenModalSpan
                 className={"channel-menu-option channel-menu-option-delete"}
                 modalComponent={<LeaveServerModal server={server}/>}
                 buttonText={"Leave Server"}
+
               />
               </span>
           </ul>
