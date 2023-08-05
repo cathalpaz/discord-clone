@@ -32,6 +32,8 @@ def single_direct_message(id):
     return {'message': dm.to_dict()}
 
 # GET all friends
+
+
 @direct_messages_routes.route('/friends')
 @login_required
 def all_friends():
@@ -41,29 +43,51 @@ def all_friends():
     )).all()
 
     friends = [friend.to_dict(current_user.id)
-               for friend in get_friends if friend.status == 'ACCEPTED' or friend.status =='PENDING']
+               for friend in get_friends if friend.status == 'ACCEPTED' or friend.status == 'PENDING']
 
     return {'friends': friends}
 # Send a friend request
-@direct_messages_routes.route('/friends/<int:id>/send-request', methods=['POST'])
+
+
+@direct_messages_routes.route('/friends/<username>/send-request', methods=['POST'])
 @login_required
-def send_friend_request(id):
+def send_friend_request(username):
+    other_user = User.query.filter(User.username == username).first()
+    if not other_user:
+        not_found_error = NotFoundError(f"{username} Not Found")
+        return not_found_error.error_json()
     existing_request = Friend.query.filter(
-        ((Friend.user_to == current_user.id) & (Friend.user_from == id)) |
-        ((Friend.user_to == id) & (Friend.user_from == current_user.id))
+        or_(
+            and_(
+                Friend.user_to == current_user.id,
+                Friend.user_from == other_user.id
+            ),
+            and_(
+                Friend.user_to == other_user.id,
+                Friend.user_from == current_user.id
+            )
+        )
     ).first()
+    # existing_request = Friend.query.filter(
+    #     ((Friend.user_to == current_user.id) & (Friend.user_from == id)) |
+    #     ((Friend.user_to == id) & (Friend.user_from == current_user.id))
+    # ).first()
 
     if existing_request:
-        raise ForbiddenError("Friend request already sent")
+        forbidden_error = ForbiddenError("Friend request already sent")
+        return forbidden_error.error_json()
 
-    new_friend_request = Friend(user_to=id, user_from=current_user.id, status="PENDING")
+    new_friend_request = Friend(
+        user_to=other_user.id, user_from=current_user.id, status="PENDING")
     db.session.add(new_friend_request)
     db.session.commit()
 
     response_message = "Friend request has been sent"
-    return make_response(response_message, 200)
+    return {"friend": new_friend_request.to_dict(current_user.id)}
 
 # Accept friend request
+
+
 @direct_messages_routes.route('/friends/<int:id>/accept-request', methods=['POST'])
 @login_required
 def acceptd_friend_request(id):
@@ -77,7 +101,8 @@ def acceptd_friend_request(id):
         pass
         # raise ForbiddenError("Friend request already sent")
 
-    new_friend_request = Friend(user_to=id, user_from=current_user.id, status="ACCEPTED")
+    new_friend_request = Friend(
+        user_to=id, user_from=current_user.id, status="ACCEPTED")
     # db.session.add(new_friend_request)
     # db.session.commit()
 
@@ -85,6 +110,8 @@ def acceptd_friend_request(id):
     return make_response(response_message, 200)
 
 # GET DMS from a specific friend
+
+
 @direct_messages_routes.route('/friends/<int:id>')
 @login_required
 def get_friend_messages(id):

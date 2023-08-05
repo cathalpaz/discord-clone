@@ -20,20 +20,22 @@ const setFriends = (friends) => ({
   payload: friends,
 });
 
-const sendFriendRequest = (friendId) => ({
+const sendFriendRequest = (friendRequest) => ({
   type: actionTypes.SEND_FRIEND_REQUEST,
-  payload: friendId,
+  payload: {
+    friendRequest,
+  },
 });
 
 const acceptFriendRequest = (friendId) => ({
   type: actionTypes.ACCEPT_FRIEND_REQUEST,
-  payload: friendId
-})
+  payload: friendId,
+});
 
 const rejectFriendRequest = (friendId) => ({
   type: actionTypes.REJECT_FRIEND_REQUEST,
-  payload: friendId
-})
+  payload: friendId,
+});
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
@@ -83,7 +85,7 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
       method: "PUT",
       body: userFormData,
     });
-    console.log('hi');
+    console.log("hi");
     if (res.ok) {
       const data = await res.json();
 
@@ -105,11 +107,10 @@ export const thunkSendFriendRequest = (userId) => async (dispatch) => {
     if (res.ok) {
       const data = await res.json();
 
-      dispatch(sendFriendRequest(data));
+      dispatch(sendFriendRequest(data.friend));
       return data;
     }
   } catch (err) {
-
     return err;
   }
 };
@@ -126,7 +127,6 @@ export const thunkAcceptFriendRequest = (userId) => async (dispatch) => {
       return data;
     }
   } catch (err) {
-
     return err;
   }
 };
@@ -191,12 +191,19 @@ export default function reducer(state = initialState, action) {
       return newState;
     }
     case actionTypes.SEND_FRIEND_REQUEST: {
-      const newState = {...state}
-      return newState
+      const newState = structuredClone(state);
+      const { friendRequest } = action.payload;
+      const existingFriend = newState.friends.find(
+        (friend) => friend.username == friendRequest.user.username
+      );
+      if (!existingFriend) {
+        newState.friends.push(friendRequest);
+      }
+      return newState;
     }
     case actionTypes.ACCEPT_FRIEND_REQUEST: {
-      const newState = {...state}
-      return newState
+      const newState = { ...state };
+      return newState;
     }
     default:
       return state;

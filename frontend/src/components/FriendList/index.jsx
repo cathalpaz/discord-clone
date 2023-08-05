@@ -31,8 +31,9 @@ function FriendList({ selectedTab }) {
     }));
   };
 
-  const sendFriendRequest = () => {
-    dispatch(thunkSendFriendRequest(searchQuery));
+  const sendFriendRequest = async () => {
+    const res = await dispatch(thunkSendFriendRequest(searchQuery));
+    console.log("THIS IS THE RES", res);
   };
 
   const pendingFriendRequest = (answer, friend) => {
