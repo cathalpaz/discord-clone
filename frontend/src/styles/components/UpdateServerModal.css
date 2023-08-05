@@ -200,3 +200,46 @@
     font-weight: 600;
     color: var(--errors);
 }
+
+
+@media (max-width: 768px) {
+    .update-modal-container {
+        grid-template-columns: 226px 480px 1fr;
+    }
+
+    .update-modal-esc-container {
+        padding-right: 1rem;
+    }
+
+    .update-modal-avatar-container {
+        margin-left: 0rem;
+    }
+
+    .update-modal-name > input {
+        width: 150px;
+    }
+}
+
+@media (min-width: 769px)
+    and (max-width: 1023px) {
+        .update-modal-container {
+            grid-template-columns: 226px 565px 1fr;
+        }
+
+        .update-modal-name > input {
+            width: 150px;
+        }
+    }
+
+@media (min-width: 1023px)
+    and (max-width: 1200px) {
+        .update-modal-container {
+            grid-template-columns: 226px 725px 1fr;
+        }
+        .update-modal-name {
+            padding-left: .5rem;
+        }
+        .update-modal-name > input {
+            width: 310px;
+        }
+    }

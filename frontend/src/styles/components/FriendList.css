@@ -377,3 +377,17 @@
   transition-timing-function: ease-in-out;
   color: var(--errors)
 }
+
+
+@media (min-width: 769px)
+    and (max-width: 1023px) {
+}
+
+@media (max-width: 768px) {
+   .text-bar {
+    gap: .5rem;
+   }
+   .text-bar > button {
+    padding: 0rem .7rem;
+   }
+}

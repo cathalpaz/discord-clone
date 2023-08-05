@@ -67,6 +67,8 @@ export default () => {
                     Login
                   </button>
                 )}
+               {<button onClick={() => alert("Mobile application coming soon! Please view the site on an iPad or computer for now.")}className='nav-bar-mobile-view'>Open Discord</button>}
+
               </div>
             </div>
           </div>

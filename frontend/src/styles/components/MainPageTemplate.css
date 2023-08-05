@@ -66,30 +66,23 @@
     background-color: var(--secondary-background);
 }
 
-
-/*
-/* .server-list-container {
-    grid-area: "servers";
-    border: 2px solid green;
-    background-color: var(--secondary-background-darker);
-    width: 4.5rem;
-    height: 100%;
-    overflow-y: scroll;
+@media (min-width: 769px)
+    and (max-width: 1023px) {
+        .main-page-container {
+            grid-template-columns: 72px 240px 1fr 145px;
+        }
 }
 
-.server-list-container::-webkit-scrollbar {
-    display: none;
+@media (max-width: 768px) {
+    .main-page-container__item--5 {
+        grid-column: 3/5;
+    }
+
+    .main-page-container__item--6{
+        grid-column: 3/5;
+    }
+
+    .main-page-container__item--7 {
+        display: none;
+    }
 }
-
-.dm-list-container {
-    background-color: var(--secondary-background);
-    /* width: 15rem; */
-    /* height: 100; */
-/* } */
-
-
-/* .general-view-container {
-    background-color: var(--background); */
-    /* height: 100; */
-    /* width: 100%; */
-/* } */

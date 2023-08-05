@@ -17,7 +17,6 @@
     border-radius: 6px;
     width: 200px;
     transition: transform 0.2s ease;
-
 }
 
 .dev_prof-container:hover {
@@ -87,4 +86,17 @@
 
 .dev-modal_about > div {
     padding-bottom: 5px;
+}
+
+@media (min-width: 769px)
+    and (max-width: 1023px) {
+        .dev_prof-container {
+            width: 110px;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .dev-container > h3 {
+            margin-left: 1.5rem;
+        }
 }

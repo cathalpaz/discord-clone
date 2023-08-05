@@ -85,3 +85,64 @@
     line-height: 1.8rem;
     margin-bottom: 3rem;
 }
+
+.nav-bar-mobile-view {
+    display: none;
+    border: 0;
+    border-radius: 2.5rem;
+    height: 2.35rem;
+    font-size: 13px;
+    width: 7rem;
+    margin-left: 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .nav-bar-links {
+        display: none;
+    }
+    .nav-bar-container {
+        gap: 28rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .not-found-body-container > img {
+        height: 10rem;
+    }
+
+    .not-found-body-container > h1 {
+        width: 20rem;
+    }
+
+    .not-found-body-container > p {
+        width: 20rem;
+        text-align: center;
+    }
+
+    .not-found-body-container {
+        margin-left: 2rem;
+        width: 20rem;
+    }
+
+    .nav-bar-links {
+        display: none;
+    }
+
+    .nav-bar-container {
+        gap: 6rem;
+    }
+
+    .nav-bar-mobile-view {
+        display: block;
+    }
+
+    .nav-bar-main-button {
+        display: none;
+    }
+
+    .nav-bar-login-button {
+        display: none;
+    }
+}

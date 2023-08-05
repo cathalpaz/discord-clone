@@ -19,7 +19,7 @@ function NotFoundPage() {
   const sendToLanding = () => {
     history.push("/")
   }
-
+  console.log(window.outerWidth == 375)
   return (
     <>
         <div className='nav-bar-container'>
@@ -47,6 +47,7 @@ function NotFoundPage() {
             </div>
             <div className='nav-bar-login'>
               {sessionUser ? <button className="nav-bar-main-button" onClick={sendToMain}>Open Discord</button> : <button className="nav-bar-login-button" onClick={sendToLogin}>Login</button>}
+              {<button onClick={() => alert("Mobile application coming soon! Please view the site on an iPad or computer for now.")}className='nav-bar-mobile-view'>Open Discord</button>}
             </div>
         </div>
         <div className='not-found-body-container'>
