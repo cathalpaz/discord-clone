@@ -17,7 +17,7 @@ function UserModal() {
   const [editBirthday, setEditBirthday] = useState(false);
   // const [editEmail, setEditEmail] = useState(false);
   const { closeModal } = useModal();
-  console.log(user)
+  console.log(user);
   const handleLogout = () => {
     dispatch(logout());
     closeModal();
@@ -32,23 +32,19 @@ function UserModal() {
     // console.log(user)
     const formData = new FormData();
 
-    if (username !== user.username) formData.append("username", username);
+    formData.append("username", username);
     formData.append("banner_color", color);
-    console.log('here' , formData)
     // if (email !== user.email) formData.append("email", email);
     if (Array.from(formData.entries()).length) {
-      console.log('change', formData)
+      console.log("change", formData);
       const result = await dispatch(thunkUpdateUser(formData, user.id));
-      closeModal()
+      closeModal();
     }
   };
 
   return (
     <div className='user-modal'>
-      <div
-        style={{ backgroundColor: color }}
-        className='user-modal_banner'
-      />
+      <div style={{ backgroundColor: color }} className='user-modal_banner' />
       <div className='user-modal_top'>
         <div className='user-modal_title'>
           <img className='user-modal_avatar' src={user.avatar} />{" "}

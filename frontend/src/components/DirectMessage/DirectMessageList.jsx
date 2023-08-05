@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { DirectMessage } from "./DirectMessage";
 import { addDm } from "../../store/directMessages";
 import "../../styles/components/ChannelMessageList.css";
+import { MainLoader } from "../Loading/MainLoader";
 
 export function DirectMessageList({ socket }) {
   if (!socket) return false;
@@ -29,7 +30,7 @@ export function DirectMessageList({ socket }) {
   const newMessagesIds = useSelector(
     (state) => state.directMessages.users[directMessageId]?.orderedMessages
   );
-  if (!newMessagesIds) return false;
+  if (!newMessagesIds) return <MainLoader />;
 
   return (
     <>
