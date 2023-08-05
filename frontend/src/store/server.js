@@ -74,7 +74,10 @@ export default function serverReducer(state = initialState, action) {
       for (let server of servers) {
         if (newState[server.id]) {
           if (newState[server.id].public === true) {
-            orderedServers.push(server.id);
+            const existing = orderedServers.find((serv) => serv == server.id);
+            if (!existing) {
+              orderedServers.push(server.id);
+            }
           }
         } else {
           orderedServers.push(server.id);
@@ -82,6 +85,7 @@ export default function serverReducer(state = initialState, action) {
         newState[server.id] = server;
       }
       newState.orderedServers = orderedServers;
+
       return newState;
     }
     case actionTypes.GET_PUBLIC_SERVERS: {
