@@ -83,6 +83,7 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
       method: "PUT",
       body: userFormData,
     });
+    console.log('hi');
     if (res.ok) {
       const data = await res.json();
 
@@ -90,7 +91,7 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
       return data;
     }
   } catch (err) {
-
+    console.log(err);
     return err;
   }
 };

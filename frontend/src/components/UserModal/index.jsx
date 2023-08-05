@@ -9,7 +9,7 @@ function UserModal() {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const [color, setColor] = useState(user ? user.banner_color : "");
+  const [color, setColor] = useState(user?.banner_color);
   const [username, setUsername] = useState(user?.username);
   const [birthday, setBirthday] = useState(user?.birthday);
   const [email, setEmail] = useState(user?.email);
@@ -29,19 +29,24 @@ function UserModal() {
   }, [color]);
 
   const handleSubmit = async () => {
+    // console.log(user)
     const formData = new FormData();
+
     if (username !== user.username) formData.append("username", username);
-    if (color !== user.banner_color) formData.append("banner_color", color)
+    formData.append("banner_color", color);
+    console.log('here' , formData)
     // if (email !== user.email) formData.append("email", email);
     if (Array.from(formData.entries()).length) {
+      console.log('change', formData)
       const result = await dispatch(thunkUpdateUser(formData, user.id));
+      closeModal()
     }
   };
 
   return (
     <div className='user-modal'>
       <div
-        style={{ backgroundColor: user.banner_color }}
+        style={{ backgroundColor: color }}
         className='user-modal_banner'
       />
       <div className='user-modal_top'>

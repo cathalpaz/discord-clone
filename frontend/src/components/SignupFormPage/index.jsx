@@ -399,7 +399,7 @@ function SignupFormPage() {
               </div>
               <div className="signup-form-pronouns">
                 <label>
-                  PRONOUN{" "}
+                  PRONOUNS{" "}
                   <label
                     style={{
                       fontSize: "12px",
