@@ -9,7 +9,7 @@ import {
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { addDmUser } from "../../store/directMessages";
 
-function FriendList({ selectedTab }) {
+function FriendList({ selectedTab, setSelectedTab }) {
   const friendStore = useSelector((state) => state.session.friends);
   const user = useSelector((state) => state.session.user);
   const [searchQuery, setSearchQuery] = useState("");
@@ -34,6 +34,10 @@ function FriendList({ selectedTab }) {
 
   const sendFriendRequest = async () => {
     const res = await dispatch(thunkSendFriendRequest(searchQuery));
+    if (res) {
+      setSearchQuery("");
+      setSelectedTab("Pending");
+    }
   };
 
   const pendingFriendRequest = async (answer, friend) => {

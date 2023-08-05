@@ -136,7 +136,10 @@ function MainPageTemplate({ leftTab, rightTab }) {
               <DirectMessage searchString={directMessageSearch} />
             </div>
             <div className='main-page-container__item main-page-container__item--5'>
-              <FriendList selectedTab={selectedState} />
+              <FriendList
+                selectedTab={selectedState}
+                setSelectedTab={setSelectedState}
+              />
             </div>
             <div className='main-page-container__item main-page-container__item--6'></div>
             <div className='main-page-container__item main-page-container__item--7'>
