@@ -143,6 +143,7 @@ export const thunkAcceptFriendRequest = (username) => async (dispatch) => {
     });
     if (res.ok) {
       const data = await res.json();
+      console.log("this is the data");
       dispatch(acceptFriendRequest(data.friend));
       return data;
     }
@@ -223,8 +224,7 @@ export default function reducer(state = initialState, action) {
     }
     case actionTypes.ACCEPT_FRIEND_REQUEST: {
       const newState = structuredClone(state);
-      const { friendId } = action.payload;
-      console.log("THIS IS THE FRIEND", friend);
+      const { friend } = action.payload;
       const existingFriend = newState.friends.findIndex(
         (f) => f.user.username == friend.user.username
       );
