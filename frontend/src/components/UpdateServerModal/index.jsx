@@ -7,26 +7,26 @@ import { thunkGetAllServers } from "../../store/server";
 
 function UpdateServerModal({ type }) {
   const { closeModal } = useModal();
+  const singleServerStore = useSelector((state) => state.singleServer);
+  //short circ if no singleServer
+  if (!singleServerStore.id) return false;
   const dispatch = useDispatch();
   const [privacy, setPrivacy] = useState("");
   const [avatar, setAvatar] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const singleServerStore = useSelector((state) => state.singleServer);
   const [serverName, setServerName] = useState(singleServerStore.name);
   const fileRef = useRef();
 
   const handleSubmit = async () => {
     const errors = {};
-    setLoading(true)
-    setServerName("");
+    setLoading(true);
     setAvatar("");
     setPrivacy("");
     if (serverName.length > 50) {
       errors.serverName = "Server name cannot be more than 50 characters.";
     }
     if (Object.values(errors).length === 0) {
-
       const newServerForm = new FormData();
       newServerForm.append("name", serverName);
       newServerForm.append("public", privacy);
@@ -34,15 +34,18 @@ function UpdateServerModal({ type }) {
         newServerForm.append("file", avatar);
       }
 
-      await dispatch(thunkUpdateSingleServer(singleServerStore.id, newServerForm));
+      await dispatch(
+        thunkUpdateSingleServer(singleServerStore.id, newServerForm)
+      );
       await dispatch(thunkGetAllServers());
-      setLoading(false)
+      setLoading(false);
+      closeModal();
     }
     setErrors(errors);
-  }
+  };
 
   const handleReset = () => {
-    setAvatar("")
+    setAvatar("");
     setErrors({});
     setPrivacy("");
     setServerName("");
@@ -56,9 +59,9 @@ function UpdateServerModal({ type }) {
   };
 
   return (
-    <div className="update-modal-container">
-      <div className="update-modal-menu-options-container">
-        <div className="update-modal-menu-options">
+    <div className='update-modal-container'>
+      <div className='update-modal-menu-options-container'>
+        <div className='update-modal-menu-options'>
           <p
             style={{
               fontSize: "11px",
@@ -69,26 +72,29 @@ function UpdateServerModal({ type }) {
           >
             {singleServerStore.name.toUpperCase()}
           </p>
-          <p className="update-modal-menu-options-choice">Overview</p>
+          <p className='update-modal-menu-options-choice'>Overview</p>
         </div>
       </div>
-      <div className="update-modal-display">
-        <div className="update-modal-server-information">
+      <div className='update-modal-display'>
+        <div className='update-modal-server-information'>
           <p style={{ fontWeight: "500", fontSize: "20px" }}>Server Overview</p>
-          <div className="update-modal-display-info">
-            <div className="update-modal-avatar-container">
-              <div className="update-modal-avatar-picture">
+          <div className='update-modal-display-info'>
+            <div className='update-modal-avatar-container'>
+              <div className='update-modal-avatar-picture'>
                 {!avatar ? (
                   <img src={singleServerStore.avatar}></img>
                 ) : (
-                  <div style={{ border: "0px" }} className="update-modal-avatar-picture">
-                    <img src={URL.createObjectURL(avatar)} alt="" />
+                  <div
+                    style={{ border: "0px" }}
+                    className='update-modal-avatar-picture'
+                  >
+                    <img src={URL.createObjectURL(avatar)} alt='' />
                   </div>
                 )}
                 <input
-                  className="server_form__file-input"
+                  className='server_form__file-input'
                   ref={fileRef}
-                  type="file"
+                  type='file'
                   onChange={(e) => {
                     if (e.target.files[0]) {
                       const file = e.target.files[0];
@@ -108,7 +114,7 @@ function UpdateServerModal({ type }) {
                   Minimum Size: 128x128
                 </p>
               </div>
-              <div className="update-modal-avatar-button">
+              <div className='update-modal-avatar-button'>
                 <p
                   style={{
                     fontSize: "14px",
@@ -121,54 +127,63 @@ function UpdateServerModal({ type }) {
                 <button onClick={changeImage}>Upload Image</button>
               </div>
             </div>
-            <div className="update-modal-name">
-              <p className="update-modal-headers">SERVER NAME</p>
+            <div className='update-modal-name'>
+              <p className='update-modal-headers'>SERVER NAME</p>
               <input
                 onChange={(e) => {
                   setServerName(e.target.value);
                 }}
                 value={serverName}
-                placeholder={singleServerStore.name}
               ></input>
-              <p className="update-modal-servername-error">
+              <p className='update-modal-servername-error'>
                 {errors && errors.serverName}
               </p>
             </div>
           </div>
         </div>
-        <div className="update-modal-border"></div>
-        <div className="update-modal-privacy-container">
-          <p className="update-modal-headers">
+        <div className='update-modal-border'></div>
+        <div className='update-modal-privacy-container'>
+          <p className='update-modal-headers'>
             CHANGE THE PRIVACY OF YOUR CHANNEL
           </p>
           <select
-            name="privacy-selector"
-            className="update-modal-privacy-select"
+            name='privacy-selector'
+            className='update-modal-privacy-select'
             onChange={(e) => setPrivacy(e.target.value)}
             value={privacy}
             required
           >
-            <option value="" disabled>
+            <option value='' disabled>
               {singleServerStore.public ? "Public" : "Private"}
             </option>
             <option>Private</option>
             <option>Public</option>
           </select>
         </div>
-        <div className="update-modal-submit-button-container">
-          <button className="update-modal-reset-button" onClick={handleReset}>
+        <div className='update-modal-submit-button-container'>
+          <button className='update-modal-reset-button' onClick={handleReset}>
             Reset
           </button>
-          {loading ? <button className="update-modal-submit-button" disabled={true}>
-            <i className="fa-solid fa-spinner fa-spin-pulse" style={{color:"var(--white", fontSize:"22px"}}/>
-          </button> : <button className="update-modal-submit-button" onClick={handleSubmit}>
-            Save Changes
-          </button>}
+          {loading ? (
+            <button className='update-modal-submit-button' disabled={true}>
+              <i
+                className='fa-solid fa-spinner fa-spin-pulse'
+                style={{ color: "var(--white", fontSize: "22px" }}
+              />
+            </button>
+          ) : (
+            <button
+              className='update-modal-submit-button'
+              onClick={handleSubmit}
+            >
+              Save Changes
+            </button>
+          )}
         </div>
       </div>
-      <div className="update-modal-esc-container">
-        <div className="update-modal-esc-button">
-          <i className="fa-regular fa-circle-xmark" onClick={closeModal}></i>
+      <div className='update-modal-esc-container'>
+        <div className='update-modal-esc-button'>
+          <i className='fa-regular fa-circle-xmark' onClick={closeModal}></i>
           <p
             style={{
               paddingLeft: ".41rem",
