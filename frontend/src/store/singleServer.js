@@ -271,7 +271,7 @@ export const singleServerReducer = (state = initialState, action) => {
     case actionTypes.UPDATE_USER_STATUS: {
       const newState = structuredClone(state);
       const { user_id, status } = action.payload;
-      if (newState.users.length) {
+      if (newState.users) {
         const usr = newState.users.find((user) => user.id == user_id);
         if (usr) {
           usr.status = status;
