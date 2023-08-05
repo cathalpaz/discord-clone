@@ -36,7 +36,9 @@ const acceptFriendRequest = (friend) => ({
 
 const rejectFriendRequest = (friendId) => ({
   type: actionTypes.REJECT_FRIEND_REQUEST,
-  payload: friendId,
+  payload: {
+    friendId,
+  },
 });
 
 export const authenticate = () => async (dispatch) => {
@@ -100,11 +102,11 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
   }
 };
 
-export const thunkSendFriendRequest = (userId) => async (dispatch) => {
+export const thunkSendFriendRequest = (username) => async (dispatch) => {
   try {
-    const res = await fetch(`/api/@me/friends/${userId}/send-request`, {
+    const res = await fetch(`/api/@me/friends/${username}/send-request`, {
       method: "POST",
-      body: JSON.stringify(userId),
+      body: JSON.stringify(username),
     });
     if (res.ok) {
       const data = await res.json();
@@ -113,6 +115,23 @@ export const thunkSendFriendRequest = (userId) => async (dispatch) => {
       return data;
     }
   } catch (err) {
+    return err;
+  }
+};
+
+export const thunkRejectFriendRequest = (username) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/@me/friends/${username}/reject-request`, {
+      method: "POST",
+    });
+    if (res.ok) {
+      const data = await res.json();
+      console.log("THIS IS THEE DATA", data);
+      dispatch(rejectFriendRequest(data.friend));
+      return data;
+    }
+  } catch (err) {
+    console.log("there was an errork", err);
     return err;
   }
 };
@@ -204,7 +223,7 @@ export default function reducer(state = initialState, action) {
     }
     case actionTypes.ACCEPT_FRIEND_REQUEST: {
       const newState = structuredClone(state);
-      const { friend } = action.payload;
+      const { friendId } = action.payload;
       console.log("THIS IS THE FRIEND", friend);
       const existingFriend = newState.friends.findIndex(
         (f) => f.user.username == friend.user.username
@@ -212,6 +231,19 @@ export default function reducer(state = initialState, action) {
       if (existingFriend !== -1) {
         newState.friends[existingFriend] = friend;
       }
+      return newState;
+    }
+    case actionTypes.REJECT_FRIEND_REQUEST: {
+      const newState = structuredClone(state);
+      const { friendId } = action.payload;
+      console.log("this is the payload", action.payload);
+      console.log("this is the friend from the payload", friendId);
+      // Remove from friends list or just change status to rejected? Just gonna change to rejected right now
+      const pendingFriend = newState.friends.find((f) => f.id == friendId);
+      if (pendingFriend) {
+        pendingFriend.status = "REJECTED";
+      }
+      console.log("this is the pending friend now", pendingFriend);
       return newState;
     }
     default:

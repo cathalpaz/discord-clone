@@ -127,6 +127,37 @@ def acceptd_friend_request(username):
 
 # GET DMS from a specific friend
 
+# reject a friend request
+
+
+@direct_messages_routes.route('/friends/<username>/reject-request', methods=['POST'])
+@login_required
+def reject_friend_request(username):
+    other_user = User.query.filter(User.username == username).first()
+    if not other_user:
+        not_found_error = NotFoundError(f"{username} Not Found")
+        return not_found_error.error_json()
+    existing_request = Friend.query.filter(
+        or_(
+            and_(
+                Friend.user_to == current_user.id,
+                Friend.user_from == other_user.id
+            ),
+            and_(
+                Friend.user_to == other_user.id,
+                Friend.user_from == current_user.id
+            )
+        )
+    ).first()
+
+    print(existing_request)
+    if not existing_request:
+        not_found_error = NotFoundError("Friend request not found")
+        return not_found_error.error_json()
+    existing_request.status = 'REJECTED'
+    db.session.commit()
+    return {"friend": f"{existing_request.id}"}
+
 
 @direct_messages_routes.route('/friends/<int:id>')
 @login_required

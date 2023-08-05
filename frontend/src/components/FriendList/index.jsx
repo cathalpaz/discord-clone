@@ -4,6 +4,7 @@ import "../../styles/components/FriendList.css";
 import {
   fetchFriends,
   thunkAcceptFriendRequest,
+  thunkRejectFriendRequest,
   thunkSendFriendRequest,
 } from "../../store/session";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -41,9 +42,13 @@ function FriendList({ selectedTab, setSelectedTab }) {
   };
 
   const pendingFriendRequest = async (answer, friend) => {
-    if (answer == "yes") {
+    if (answer === "yes") {
       const res = await dispatch(
         thunkAcceptFriendRequest(friend.user.username)
+      );
+    } else if (answer === "no") {
+      const res = await dispatch(
+        thunkRejectFriendRequest(friend.user.username)
       );
     }
   };
@@ -284,7 +289,7 @@ function FriendList({ selectedTab, setSelectedTab }) {
                     )}
                     <div
                       className='reject'
-                      onClick={() => pendingFriendRequest("no")}
+                      onClick={() => pendingFriendRequest("no", friend)}
                     >
                       <i className='fa-solid fa-xmark fa-lg'></i>
                     </div>
