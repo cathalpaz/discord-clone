@@ -11,9 +11,9 @@ const getServers = (servers) => {
 const getPublicServers = (servers) => {
   return {
     type: actionTypes.GET_PUBLIC_SERVERS,
-    servers
-  }
-}
+    servers,
+  };
+};
 
 const createServer = (server) => {
   return {
@@ -21,7 +21,6 @@ const createServer = (server) => {
     server,
   };
 };
-
 
 // thunk action creator
 export const thunkGetAllServers = () => async (dispatch) => {
@@ -34,18 +33,17 @@ export const thunkGetAllServers = () => async (dispatch) => {
   }
 };
 
-export const thunkGetPublicServers = () => async(dispatch) => {
+export const thunkGetPublicServers = () => async (dispatch) => {
   const res = await fetch(`/api/servers`);
   if (res.ok) {
-    const data = await res.json()
-    dispatch(getPublicServers(data))
-    return data
+    const data = await res.json();
+    dispatch(getPublicServers(data));
+    return data;
   } else {
     const errorData = await res.json();
     return errorData;
   }
-}
-
+};
 
 export const thunkCreateServer = (serverForm) => async (dispatch) => {
   const res = await fetch("/api/servers/new", {
@@ -64,17 +62,21 @@ export const thunkCreateServer = (serverForm) => async (dispatch) => {
 
 const initialState = {
   orderedServers: [],
-  publicServers: []
+  publicServers: [],
 };
 
 export default function serverReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.GET_SERVERS: {
-      const newState = { ...state };
+      const newState = structuredClone(state);
       const servers = action.servers.servers;
       const orderedServers = [...state.orderedServers];
       for (let server of servers) {
-        if (!newState[server.id]) {
+        if (newState[server.id]) {
+          if (newState[server.id].public === true) {
+            orderedServers.push(server.id);
+          }
+        } else {
           orderedServers.push(server.id);
         }
         newState[server.id] = server;
@@ -83,16 +85,16 @@ export default function serverReducer(state = initialState, action) {
       return newState;
     }
     case actionTypes.GET_PUBLIC_SERVERS: {
-      const newState = {...state}
+      const newState = { ...state };
       const pubServers = action.servers.servers;
-      const publicServers = [...state.publicServers]
+      const publicServers = [...state.publicServers];
       for (let server of pubServers) {
-        publicServers.push(server.id)
+        publicServers.push(server.id);
 
-        newState[server.id] = server
+        newState[server.id] = server;
       }
-      newState.publicServers = publicServers
-      return newState
+      newState.publicServers = publicServers;
+      return newState;
     }
     case actionTypes.CREATE_SERVER: {
       const newState = { ...state };
@@ -103,14 +105,16 @@ export default function serverReducer(state = initialState, action) {
       return newState;
     }
     case actionTypes.DELETE_SERVER: {
-      const newState = { ...state }
-      delete newState[action.payload.serverId]
-      newState.orderedServers = newState.orderedServers.filter((id) => id !== action.payload.serverId)
-      return newState
+      const newState = { ...state };
+      delete newState[action.payload.serverId];
+      newState.orderedServers = newState.orderedServers.filter(
+        (id) => id !== action.payload.serverId
+      );
+      return newState;
     }
     case actionTypes.REMOVE_SESSION: {
-      const newState = initialState
-      return newState
+      const newState = initialState;
+      return newState;
     }
     default:
       return state;
