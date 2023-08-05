@@ -27,8 +27,9 @@ export function DirectMessageList({ socket }) {
   });
 
   const newMessagesIds = useSelector(
-    (state) => state.directMessages.users[directMessageId].orderedMessages
+    (state) => state.directMessages.users[directMessageId]?.orderedMessages
   );
+  if (!newMessagesIds) return false;
 
   return (
     <>
