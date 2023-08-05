@@ -23,6 +23,7 @@ export default () => {
     alert("Feature coming soon!");
   };
 
+  console.log(window.innerWidth >= 480)
   return (
     <div className="landing-page">
       <div className="landing-page-scroll-container">
@@ -91,7 +92,7 @@ export default () => {
                   className="fa-solid fa-download"
                   style={{ paddingRight: ".4rem" }}
                 ></i>{" "}
-                Download for Windows
+                Download for {window.innerWidth <= 480 ? "Phone" : "Windows"}
               </button>
               {sessionUser ? (
                 <button onClick={sendToMain} className="open-discord-button">
@@ -102,6 +103,9 @@ export default () => {
                   Open Slacord in your browser
                 </button>
               )}
+              {<button onClick={() => alert("Mobile application coming soon! Please view the site on an iPad or computer for now.")} className="open-discord-button-mobile-view">
+                  Open Slacord in your browser
+              </button>}
             </div>
           </div>
           <img src={"/images/landing_img2.svg"} className="left-picture" />

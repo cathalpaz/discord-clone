@@ -115,6 +115,23 @@ body {
     box-shadow: 0px 8px 15px rgba(0,0,0,.2);
 }
 
+.open-discord-button-mobile-view {
+    display: none;
+    color: var(--white);
+    background-color: #23272A;
+    border: 0;
+    border-radius: 1.75rem;
+    font-family: ggsans;
+    font-size: 20px;
+    font-weight: 500;
+    padding: .9rem 2rem;
+    margin-top: 1.5rem;
+    width: 19.85rem;
+    height: 3.5rem;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+}
+
 .heading-nav-container {
     font-family: ggsans;
     z-index: 7;
@@ -1185,6 +1202,14 @@ body {
         display: none;
     }
 
+    .open-discord-button-mobile-view {
+        display: block;
+    }
+
+    .open-discord-button {
+        display: none;
+    }
+
     .heading-nav-items {
         gap:4.4rem;
         margin-right: .3rem;
@@ -1309,7 +1334,6 @@ body {
         font-size: 16px;
         width: 20.5rem;
         line-height: 1.6rem;
-        /* margin-bottom: .2rem; */
     }
 
     .body-fourth-block-container {
