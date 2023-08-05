@@ -61,35 +61,43 @@ export default function Footer() {
               </img>
             </div>
           </div>
-          <div className='body-fifth-block-cathal'>
-            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>
-              Cathal Paz
-            </p>
-            <a href='https://github.com/cathalpaz' target="_blank">GitHub</a>
-            <a href='https://www.linkedin.com/in/cathal-paz-052239263/' target="_blank">LinkedIn</a>
+          <div className='body-fifth-block-main-developer-container'>
+
+          <div className='body-fifth-block-first-developer-container'>
+            <div className='body-fifth-block-cathal'>
+              <p style={{ color: "#5865F2", paddingBottom: "1rem", width:"5rem" }}>
+                Cathal Paz
+              </p>
+              <a href='https://github.com/cathalpaz' target="_blank">GitHub</a>
+              <a href='https://www.linkedin.com/in/cathal-paz-052239263/' target="_blank">LinkedIn</a>
+            </div>
+            <div className='body-fifth-block-jason'>
+              <p style={{ color: "#5865F2", paddingBottom: "1rem", width:"8rem" }}>Jason Murphy</p>
+              <a href='https://github.com/jmurphy1196' target="_blank">GitHub</a>
+              <a href='https://www.linkedin.com/in/jason-murphy-3704ba1b8/' target="_blank">
+                LinkedIn
+              </a>
+            </div>
           </div>
-          <div className='body-fifth-block-jason'>
-            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>Jason Murphy</p>
-            <a href='https://github.com/jmurphy1196' target="_blank">GitHub</a>
-            <a href='https://www.linkedin.com/in/jason-murphy-3704ba1b8/' target="_blank">
-              LinkedIn
-            </a>
+          <div className='body-fifth-block-second-developer-container'>
+            <div className='body-fifth-block-jp'>
+              <p style={{ color: "#5865F2", paddingBottom: "1rem", width:"8rem" }}>
+                Jun "JP" Park
+              </p>
+              <a href='https://github.com/thejhp1' target="_blank">GitHub</a>
+              <a href='https://www.linkedin.com/in/jun-park-3b23b7285/' target="_blank">LinkedIn</a>
+            </div>
+            <div className='body-fifth-block-zach'>
+              <p className='body-fifth-block-zach-name'>
+                Zachary Stallings
+              </p>
+              <a href='https://github.com/zachary5939' target="_blank">GitHub</a>
+              <a href='https://www.linkedin.com/in/zachary-stallings-11434b266/' target="_blank">
+                LinkedIn
+              </a>
+
           </div>
-          <div className='body-fifth-block-jp'>
-            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>
-              Jun "JP" Park
-            </p>
-            <a href='https://github.com/thejhp1' target="_blank">GitHub</a>
-            <a href='https://www.linkedin.com/in/jun-park-3b23b7285/' target="_blank">LinkedIn</a>
           </div>
-          <div className='body-fifth-block-zach'>
-            <p style={{ color: "#5865F2", paddingBottom: "1rem" }}>
-              Zachary Stallings
-            </p>
-            <a href='https://github.com/zachary5939' target="_blank">GitHub</a>
-            <a href='https://www.linkedin.com/in/zachary-stallings-11434b266/' target="_blank">
-              LinkedIn
-            </a>
           </div>
         </div>
         <div className='body-fifth-block-footer'>

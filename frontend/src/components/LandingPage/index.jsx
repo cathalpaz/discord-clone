@@ -71,17 +71,7 @@ export default () => {
             </div>
           </div>
           <div className="heading-items-container">
-            <h1
-              style={{
-                fontFamily: "ginto",
-                fontSize: "56px",
-                maxHeight: "7rem",
-                margin: "0px",
-                lineHeight: "3.3rem",
-                width: "39rem",
-                paddingRight: ".8rem",
-              }}
-            >
+            <h1 className="heading-items-title">
               IMAGINE A PLACE...
             </h1>
             <p
