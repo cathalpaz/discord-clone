@@ -21,12 +21,6 @@ export function DirectMessageList({ socket }) {
     };
   }, []);
 
-  const messages = useSelector((state) => {
-    if (state.directMessages[directMessageId]) {
-      return state.directMessages?.[directMessageId];
-    }
-  });
-
   const newMessagesIds = useSelector(
     (state) => state.directMessages.users[directMessageId]?.orderedMessages
   );

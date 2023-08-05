@@ -7,12 +7,12 @@ import { thunkSendDirectMessage } from "../../store/directMessages";
 export default function DirectMessageSendMessage({ socket }) {
   if (!socket) return false;
   const { directMessageId } = useParams();
+  const dispatch = useDispatch();
+  const [message, setMessage] = useState("");
   const otherUser = useSelector(
     (state) => state.directMessages.users[directMessageId]
   );
   if (!otherUser) return false;
-  const [message, setMessage] = useState("");
-  const dispatch = useDispatch();
 
   const handleSendMessage = async () => {
     const res = await dispatch(

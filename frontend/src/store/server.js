@@ -64,6 +64,7 @@ const initialState = {
   orderedServers: [],
   publicServers: [],
 };
+// TODO clean this monstrosity
 
 export default function serverReducer(state = initialState, action) {
   switch (action.type) {

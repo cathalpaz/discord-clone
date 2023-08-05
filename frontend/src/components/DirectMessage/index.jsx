@@ -13,14 +13,13 @@ export default function DirectMessage({ searchString }) {
   if (!sessionUser) return false;
   const history = useHistory();
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(thunkGetAllDirectMessages(sessionUser.id));
+  }, [dispatch]);
   const ownerMessage = [],
     friendMessage = [];
 
   const dmUsers = useSelector((state) => state.directMessages.users);
-
-  useEffect(() => {
-    dispatch(thunkGetAllDirectMessages(sessionUser.id));
-  }, [dispatch]);
 
   directMessageId.map((id) => {
     if (directMessageStore[id].user_from_id == sessionUser.id) {
