@@ -27,9 +27,11 @@ const sendFriendRequest = (friendRequest) => ({
   },
 });
 
-const acceptFriendRequest = (friendId) => ({
+const acceptFriendRequest = (friend) => ({
   type: actionTypes.ACCEPT_FRIEND_REQUEST,
-  payload: friendId,
+  payload: {
+    friend,
+  },
 });
 
 const rejectFriendRequest = (friendId) => ({
@@ -115,15 +117,14 @@ export const thunkSendFriendRequest = (userId) => async (dispatch) => {
   }
 };
 
-export const thunkAcceptFriendRequest = (userId) => async (dispatch) => {
+export const thunkAcceptFriendRequest = (username) => async (dispatch) => {
   try {
-    const res = await fetch(`/api/@me/friends/${userId}/accept-request`, {
+    const res = await fetch(`/api/@me/friends/${username}/accept-request`, {
       method: "POST",
-      body: JSON.stringify(userId),
     });
     if (res.ok) {
       const data = await res.json();
-      dispatch(acceptFriendRequest(data));
+      dispatch(acceptFriendRequest(data.friend));
       return data;
     }
   } catch (err) {
@@ -202,7 +203,15 @@ export default function reducer(state = initialState, action) {
       return newState;
     }
     case actionTypes.ACCEPT_FRIEND_REQUEST: {
-      const newState = { ...state };
+      const newState = structuredClone(state);
+      const { friend } = action.payload;
+      console.log("THIS IS THE FRIEND", friend);
+      const existingFriend = newState.friends.findIndex(
+        (f) => f.user.username == friend.user.username
+      );
+      if (existingFriend !== -1) {
+        newState.friends[existingFriend] = friend;
+      }
       return newState;
     }
     default:

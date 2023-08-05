@@ -11,6 +11,7 @@ import { addDmUser } from "../../store/directMessages";
 
 function FriendList({ selectedTab }) {
   const friendStore = useSelector((state) => state.session.friends);
+  const user = useSelector((state) => state.session.user);
   const [searchQuery, setSearchQuery] = useState("");
   const [hoverStates, setHoverStates] = useState({});
   const dispatch = useDispatch();
@@ -33,12 +34,13 @@ function FriendList({ selectedTab }) {
 
   const sendFriendRequest = async () => {
     const res = await dispatch(thunkSendFriendRequest(searchQuery));
-    console.log("THIS IS THE RES", res);
   };
 
-  const pendingFriendRequest = (answer, friend) => {
+  const pendingFriendRequest = async (answer, friend) => {
     if (answer == "yes") {
-      thunkAcceptFriendRequest(friend.id);
+      const res = await dispatch(
+        thunkAcceptFriendRequest(friend.user.username)
+      );
     }
   };
 
@@ -268,12 +270,14 @@ function FriendList({ selectedTab }) {
                     {hoverStates[friend.id] && <p>#{friend.id}</p>}
                   </div>
                   <div className='icons-container'>
-                    <div
-                      className='check'
-                      onClick={() => pendingFriendRequest("yes", friend)}
-                    >
-                      <i className='fa-solid fa-check fa-lg'></i>
-                    </div>
+                    {friend.user_from != user.id && (
+                      <div
+                        className='check'
+                        onClick={() => pendingFriendRequest("yes", friend)}
+                      >
+                        <i className='fa-solid fa-check fa-lg'></i>
+                      </div>
+                    )}
                     <div
                       className='reject'
                       onClick={() => pendingFriendRequest("no")}

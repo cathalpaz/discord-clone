@@ -88,26 +88,42 @@ def send_friend_request(username):
 # Accept friend request
 
 
-@direct_messages_routes.route('/friends/<int:id>/accept-request', methods=['POST'])
+@direct_messages_routes.route('/friends/<username>/accept-request', methods=['POST'])
 @login_required
-def acceptd_friend_request(id):
+def acceptd_friend_request(username):
+    other_user = User.query.filter(User.username == username).first()
+    if not other_user:
+        not_found_error = NotFoundError(f"{username} Not Found")
+        return not_found_error.error_json()
     existing_request = Friend.query.filter(
-        ((Friend.user_to == current_user.id) & (Friend.user_from == id)) |
-        ((Friend.user_to == id) & (Friend.user_from == current_user.id))
+        or_(
+            and_(
+                Friend.user_to == current_user.id,
+                Friend.user_from == other_user.id
+            ),
+            and_(
+                Friend.user_to == other_user.id,
+                Friend.user_from == current_user.id
+            )
+        )
     ).first()
 
     print(existing_request)
-    if existing_request:
-        pass
-        # raise ForbiddenError("Friend request already sent")
+    if not existing_request:
+        not_found_error = NotFoundError("Friend request not found")
+        return not_found_error.error_json()
+    existing_request.status = 'ACCEPTED'
+    db.session.commit()
+    return {"friend": existing_request.to_dict(current_user.id)}
+    # raise ForbiddenError("Friend request already sent")
 
-    new_friend_request = Friend(
-        user_to=id, user_from=current_user.id, status="ACCEPTED")
+    # new_friend_request = Friend(
+    #     user_to=id, user_from=current_user.id, status="ACCEPTED")
     # db.session.add(new_friend_request)
     # db.session.commit()
 
-    response_message = "Friend request has been sent"
-    return make_response(response_message, 200)
+    # response_message = "Friend request has been sent"
+    # return make_response(response_message, 200)
 
 # GET DMS from a specific friend
 
