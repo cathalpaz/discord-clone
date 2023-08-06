@@ -1,12 +1,21 @@
 import dayjs from "dayjs";
 import { useSelector } from "react-redux";
+import UpdateMessageModal from "../UpdateMessageModal";
+import OpenModalButton from "../OpenModalButton";
 
-export function DirectMessage({ messageId, usrId }) {
+export function DirectMessage({ messageId, usrId, socket }) {
+  const currentUser = useSelector((state) => state.session.user);
   const message = useSelector(
     (state) => state.directMessages.users[usrId][messageId]
   );
 
   if (!message) return false;
+
+  const deleteDM = () => {
+    console.log('hi')
+  }
+
+
 
   return (
     <div className="channel-message__container">
@@ -24,6 +33,24 @@ export function DirectMessage({ messageId, usrId }) {
               (edited)
             </span>
           )}
+          {/* {currentUser.id === message.user_from?.id ? (
+            <div className="message-hidden">
+              <OpenModalButton
+                modalComponent={
+                  <UpdateMessageModal
+                    // socket={socket}
+                    message={message}
+                    type={"channel"}
+                  />
+                }
+                buttonText={<i className="fa-solid fa-pencil"></i>}
+                className={"update-conversation"}
+              />
+              <button className="delete-message-button" onClick={deleteDM}>
+                <i className="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          ) : null} */}
         </header>
         <p className="channel-message__info__content">{message.content}</p>
       </div>

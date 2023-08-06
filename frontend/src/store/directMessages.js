@@ -33,6 +33,13 @@ const createDirectMessage = (data) => ({
   payload: data,
 });
 
+const editDirectMessage = (data) => {
+  return {
+    type: actionTypes.EDIT_DM,
+    payload: data
+  }
+}
+
 export const thunkGetAllDirectMessages =
   (currentUserId) => async (dispatch) => {
     try {
@@ -64,6 +71,8 @@ export const thunkSendDirectMessage =
       return err;
     }
   };
+
+// export const thunkEditDirectMessage = 
 
 export const directMessagesReducer = (state = initialState, action) => {
   switch (action.type) {
