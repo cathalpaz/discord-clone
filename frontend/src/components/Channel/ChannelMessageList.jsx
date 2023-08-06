@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "../../styles/components/ChannelMessageList.css";
 import { ChannelMessage } from "./ChannelMessage";
@@ -7,9 +7,11 @@ import {
   deleteSingleChannelMessage,
   updateChannelMessages,
 } from "../../store/singleServer";
+
 export function ChannelMessageList({ socket }) {
   const { channelId, serverId } = useParams();
   const user = useSelector((state) => state.session.user);
+  const messageContainerRef = useRef(null);
   useEffect(() => {
     if (!socket) return;
     socket.on(`server-channel-messages-${serverId}`, (data) => {
@@ -53,11 +55,21 @@ export function ChannelMessageList({ socket }) {
     return [];
   });
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
   if (!socket) return false;
 
   return (
     <div className='channel-message-list__container'>
-      <div className='message__container'>
+      <div
+        id='message-container'
+        className='message__container'
+        ref={messageContainerRef}
+      >
         <h3 className='channel-message-list__container-title'>
           Welcome to #{channel ? channel.name : ""}!
         </h3>
@@ -65,14 +77,12 @@ export function ChannelMessageList({ socket }) {
           messages.map((msg, i) => {
             const user = users.find((usr) => usr.id == msg.user_id);
             return (
-              <>
-                <ChannelMessage
-                  key={i}
-                  message={msg}
-                  user={user}
-                  socket={socket}
-                />
-              </>
+              <ChannelMessage
+                key={i}
+                message={msg}
+                user={user}
+                socket={socket}
+              />
             );
           })}
       </div>

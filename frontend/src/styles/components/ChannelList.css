@@ -121,3 +121,7 @@
     font-weight: 400;
 
 }
+
+.message__container {
+    scroll-behavior: smooth;
+}

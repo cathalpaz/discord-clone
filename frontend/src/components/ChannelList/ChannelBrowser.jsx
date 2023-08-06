@@ -161,7 +161,7 @@ export default function ChannelBrowser({ socket }) {
         </div>
 
         {channels.orderedChannelsList.map((cId) => (
-          <div className="channel-row">
+          <div key={cId} className='channel-row'>
             <span
               className={`${selectedChannel == cId && "highlight"} ${
                 channelNotifications[cId] && "notification"

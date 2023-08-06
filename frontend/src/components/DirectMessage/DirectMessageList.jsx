@@ -34,7 +34,7 @@ export function DirectMessageList({ socket }) {
         </div>
       )} */}
       {newMessagesIds.map((mId) => (
-        <DirectMessage messageId={mId} usrId={directMessageId} />
+        <DirectMessage key={mId} messageId={mId} usrId={directMessageId} />
       ))}
     </>
   );

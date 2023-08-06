@@ -49,6 +49,18 @@ export default function SendMessage({ socket }) {
     });
   }, [channelId]);
 
+  const handleSendMessage = () => {
+    socket.emit("channel_message", {
+      message,
+      channel_id: channelId,
+      user: {
+        id: user.id,
+        username: user.username,
+      },
+      server_id: serverId,
+    });
+    setMessage("");
+  };
   return (
     <div className='send-message-container'>
       {singleServer.channels[channelId]?.name != undefined ? (

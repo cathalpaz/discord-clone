@@ -80,8 +80,7 @@ function SearchServers() {
             <p className='search_channels-title'>Featured communities</p>
             <div className='search_channels-display'>
               {filtered.map((server) => (
-                // <div>{servers[id].name}</div>
-                <SearchServerCard server={server} />
+                <SearchServerCard key={server.id} server={server} />
               ))}
             </div>
           </div>
