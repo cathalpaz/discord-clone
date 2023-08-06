@@ -26,6 +26,7 @@ import DirectMessageHeader from "../DirectMessage/DirectMessageHeader";
 import DirectMessageSendMessage from "../DirectMessage/DirectMessageSendMessage";
 import { io } from "socket.io-client";
 import Developers from "../Developers:D";
+import DirectMessageUserSection from "../DirectMessage/DirectMessageUserSection";
 
 function MainPageTemplate() {
   const location = useLocation();
@@ -156,7 +157,9 @@ function MainPageTemplate() {
             <div className="main-page-container__item main-page-container__item--6">
               <DirectMessageSendMessage socket={socketInstance} />
             </div>
-            <div className="main-page-container__item main-page-container__item--7"></div>
+            <div className="main-page-container__item main-page-container__item--7">
+              <DirectMessageUserSection />
+            </div>
           </Route>
           <Route path="/:serverId/:channelId">
             <div className="main-page-container__item main-page-container__item--1">

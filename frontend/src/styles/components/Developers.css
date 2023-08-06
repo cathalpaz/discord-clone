@@ -17,13 +17,15 @@
     border-radius: 6px;
     width: 200px;
     transition: transform 0.2s ease;
+    cursor: default;
 }
 
 .dev_prof-container:hover {
     transform: scale(1.03);
 }
 
-.user_prof-settings {
+.user_prof-settings:hover {
+    text-decoration: underline;
     cursor: pointer;
 }
 

@@ -3,7 +3,7 @@
     width: 100vw;
     height: 100vh;
     grid-template-rows: .27fr 7fr .5fr;
-    grid-template-columns: 72px 240px 1fr 232px;
+    grid-template-columns: 72px 240px 1fr 300px;
 }
 
 .main-page-container__item {

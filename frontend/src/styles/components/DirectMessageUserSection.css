@@ -1,0 +1,61 @@
+.direct-message-user-container {
+    background-color: var(--user-profile);
+    height: 100%;
+}
+
+.direct-message-user-banner-container > img {
+    width: 5rem;
+    border-radius: 5rem;
+    margin-top: 7.5rem;
+    margin-left: 2rem;
+    position: fixed;
+    border: 7px solid var(--user-profile);
+}
+
+.direct-message-user-info-container {
+    background-color: var(--black);
+    margin: 4rem 1rem;
+    height: 20rem;
+    border-radius: .5rem;
+}
+
+.direct-message-user-info {
+    margin: 0px 1rem;
+}
+
+.direct-message-user-info p:nth-child(1) {
+    font-size: 20px;
+    font-weight: 500;
+    padding-top: 1rem;
+}
+
+.direct-message-user-info-divider {
+    border-bottom: 1px solid var(--background);
+    margin: 1rem 0px;
+}
+
+.direct-message-user-info p:nth-child(3) {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.direct-message-user-info p:nth-child(4) {
+    padding-top: .2rem;
+}
+
+.direct-message-user-info p:nth-child(6) {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.direct-message-user-info input:nth-child(7) {
+    background-color: var(--black);
+    border: 0;
+    font-family: ggsans;
+    font-size: 11px;
+    margin-top: .5rem;
+    margin-left: .2rem;
+    color: var(--white);
+    outline: none;
+}
+

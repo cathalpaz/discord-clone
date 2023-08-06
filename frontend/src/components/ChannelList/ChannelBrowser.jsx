@@ -244,7 +244,7 @@ export default function ChannelBrowser({ socket }) {
                             {server.owner_id == user.id ? (
                               <OpenModalSpan
                                 modalComponent={
-                                  <CreateChannelModal serverId={serverId} />
+                                  <DeleteModal type={"channel"} cId={cId} />
                                 }
                                 buttonText={
                                   <i
