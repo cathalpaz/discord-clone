@@ -15,6 +15,7 @@ export default function DirectMessageSendMessage({ socket }) {
   if (!otherUser) return false;
 
   const handleSendMessage = async () => {
+    setMessage("");
     const res = await dispatch(
       thunkSendDirectMessage(directMessageId, {
         content: message,
@@ -23,19 +24,18 @@ export default function DirectMessageSendMessage({ socket }) {
     if (res) {
       socket.emit("dm-sent", res);
     }
-    setMessage("");
   };
 
   return (
-    <div className="send-message-container">
+    <div className='send-message-container'>
       <input
-        className="send-message-input"
-        type="textbox"
+        className='send-message-input'
+        type='textbox'
         placeholder={`Message @${otherUser.username}`}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && message.trim() !== "") {
             handleSendMessage();
           }
         }}

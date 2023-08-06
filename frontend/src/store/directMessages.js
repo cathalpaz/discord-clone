@@ -74,7 +74,7 @@ export const directMessagesReducer = (state = initialState, action) => {
       const orderedDirectMessages = [...state.orderedDirectMessages];
 
       for (let message of messages) {
-        console.log('MESSAGE', message)
+        console.log("MESSAGE", message);
         let otherUserId;
         if (message.user_from_id != userId) otherUserId = message.user_from_id;
         else otherUserId = message.user_to_id;
@@ -94,7 +94,7 @@ export const directMessagesReducer = (state = initialState, action) => {
             // TODO FIX THIS
             newState.users[otherUserId].avatar = message.user_to.avatar;
             newState.users[otherUserId].banner = message.user_to.banner_color;
-            newState.users[otherUserId].created_at = message.user_to.created_at
+            newState.users[otherUserId].created_at = message.user_to.created_at;
           }
         } else {
           if (!newState.users[otherUserId][message.id]) {
@@ -131,7 +131,11 @@ export const directMessagesReducer = (state = initialState, action) => {
         newState.users[message.user_from.id][message.id] = {
           ...message,
         };
-        newState.users[message.user_from_id].orderedMessages.push(message.id);
+        const existingMessage = newState.users[
+          message.user_from_id
+        ].orderedMessages.find((m) => m == message.id);
+        if (!existingMessage)
+          newState.users[message.user_from_id].orderedMessages.push(message.id);
       }
       return newState;
     }

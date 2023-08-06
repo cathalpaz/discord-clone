@@ -14,12 +14,17 @@ export function DirectMessageList({ socket }) {
 
   useEffect(() => {
     socket.on(`user-dm-${user.id}`, (dm) => {
+      console.log("DM IS COMING IN");
       dispatch(addDm(dm));
     });
     return () => {
       socket.off(`user-id-${user.id}`);
     };
-  }, []);
+  }, [directMessageId]);
+
+  // useEffect(() => {
+
+  // }, [directMessageId])
 
   const newMessagesIds = useSelector(
     (state) => state.directMessages.users[directMessageId]?.orderedMessages
