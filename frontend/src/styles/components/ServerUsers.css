@@ -87,3 +87,14 @@
     border-radius: 50px;
 
 }
+
+.server-user__username {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.server-user__username > i {
+    font-size: 14px;
+    color: gold;
+}

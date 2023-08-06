@@ -1,4 +1,7 @@
-export function ServerUser({ user }) {
+import { useSelector } from "react-redux";
+
+export function ServerUser({ user, server }) {
+  const currentUser = useSelector((state) => state.session.user);
   return (
     <div className="server-user__container">
       <div className="server-user__img">
@@ -13,6 +16,9 @@ export function ServerUser({ user }) {
       </div>
       <div className="server-user__username">
         <p>{user.username}</p>
+        {user?.id === server?.owner_id ? (
+          <i className="fa-solid fa-crown"></i>
+        ) : null}
       </div>
     </div>
   );
