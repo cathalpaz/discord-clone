@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { DirectMessage } from "./DirectMessage";
 import { addDm } from "../../store/directMessages";
@@ -7,14 +7,16 @@ import "../../styles/components/ChannelMessageList.css";
 import { MainLoader } from "../Loading/MainLoader";
 
 export function DirectMessageList({ socket }) {
-  if (!socket) return false;
   const user = useSelector((state) => state.session.user);
   const { directMessageId } = useParams();
   const dispatch = useDispatch();
-
+  const messageContainerRef = useRef(null);
+  const newMessagesIds = useSelector(
+    (state) => state.directMessages.users[directMessageId]?.orderedMessages
+  );
   useEffect(() => {
+    if (!socket) return;
     socket.on(`user-dm-${user.id}`, (dm) => {
-      console.log("DM IS COMING IN");
       dispatch(addDm(dm));
     });
     return () => {
@@ -22,13 +24,12 @@ export function DirectMessageList({ socket }) {
     };
   }, [directMessageId]);
 
+  if (!socket) return false;
+
   // useEffect(() => {
 
   // }, [directMessageId])
 
-  const newMessagesIds = useSelector(
-    (state) => state.directMessages.users[directMessageId]?.orderedMessages
-  );
   if (!newMessagesIds) return <MainLoader />;
 
   return (
