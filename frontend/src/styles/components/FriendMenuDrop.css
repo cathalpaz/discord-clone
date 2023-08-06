@@ -1,0 +1,42 @@
+.friend-list-menu-dropdown {
+    position: absolute;
+    background-color: var(--secondary-background-darker);
+    margin-top: -2.4rem;
+    margin-left: 1.6rem;
+    width: 13.76rem;
+    height: fit-content;
+    list-style-type: none;
+    border-radius: 0.2rem;
+    box-shadow: 0px 8px 15px rgba(0,0,0,.2);
+    z-index: 10;
+}
+
+.friend-list-menu-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: .5rem;
+    padding-right: .6rem;
+    height: 3rem;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+}
+
+.delete-friend-container {
+    width: 15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--delete);
+    height: 2rem;
+    padding-left: .5rem;
+    padding-right: .6rem;
+}
+
+.delete-friend-container:hover {
+    background-color: var(--delete);
+    color: var(--white);
+    border-radius: .2rem;
+}

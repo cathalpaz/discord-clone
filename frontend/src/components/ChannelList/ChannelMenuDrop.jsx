@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import OpenModalSpan from "../OpenModalSpan";
 import DeleteModal from "../DeleteModal";
@@ -9,7 +9,6 @@ import LeaveServerModal from "../LeaveServerModal";
 import "../../styles/components/ChannelMenuDrop.css";
 
 function ChannelMenuDrop() {
-  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const { serverId, channelId } = useParams();
   const server = useSelector((state) => state.servers[serverId]);
@@ -50,30 +49,28 @@ function ChannelMenuDrop() {
         showMenu ? (
           <i
             onClick={openMenu}
-            className='fa-solid fa-xmark channel-menu-button'
+            className="fa-solid fa-xmark channel-menu-button"
           ></i>
         ) : (
           <i
             onClick={openMenu}
-            className='fa-solid fa-angle-down channel-menu-button fa-sm'
+            className="fa-solid fa-angle-down channel-menu-button fa-sm"
           ></i>
         )
+      ) : showMenu ? (
+        <i
+          onClick={openMenu}
+          className="fa-solid fa-xmark channel-menu-button"
+        ></i>
       ) : (
-        showMenu ? (
-          <i
-            onClick={openMenu}
-            className='fa-solid fa-xmark channel-menu-button'
-          ></i>
-        ) : (
-          <i
-            onClick={openMenu}
-            className='fa-solid fa-angle-down channel-menu-button fa-sm'
-          ></i>
-        )
+        <i
+          onClick={openMenu}
+          className="fa-solid fa-angle-down channel-menu-button fa-sm"
+        ></i>
       )}
-        {sessionUser?.id === server?.owner.id ? (
+      {sessionUser?.id === server?.owner.id ? (
         <ul className={ulClassName} ref={ulRef}>
-          <div className='channel-menu-container'>
+          <div className="channel-menu-container">
             <span onClick={closeMenu}>
               <OpenModalSpan
                 className={"channel-menu-option channel-menu-option__edit"}
@@ -88,7 +85,7 @@ function ChannelMenuDrop() {
                 buttonText={"Create a channel"}
               />
             </span>
-            <p className='channel-menu-border'></p>
+            <p className="channel-menu-border"></p>
             <span onClick={closeMenu}>
               <OpenModalSpan
                 className={"channel-menu-option-delete"}
@@ -98,18 +95,26 @@ function ChannelMenuDrop() {
             </span>
           </div>
         </ul>
-        ) : (
-          <ul ref={ulRef} className={showMenu ? "channel-menu-dropdown_member" : "channel-menu-dropdown_member hidden"}>
+      ) : (
+        <ul
+          ref={ulRef}
+          className={
+            showMenu
+              ? "channel-menu-dropdown_member"
+              : "channel-menu-dropdown_member hidden"
+          }
+        >
+          <div className="channel-menu-container">
             <span onClick={closeMenu} className="leave-server">
               <OpenModalSpan
                 className={"channel-leave"}
-                modalComponent={<LeaveServerModal server={server}/>}
+                modalComponent={<LeaveServerModal server={server} />}
                 buttonText={"Leave Server"}
-
               />
-              </span>
-          </ul>
-        )}
+            </span>
+          </div>
+        </ul>
+      )}
     </>
   );
 }

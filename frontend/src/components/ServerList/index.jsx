@@ -69,13 +69,6 @@ function ServerList() {
           {serverIds.map((id) => (
             <>
               <Server serverId={id} onClick={openServer} />
-              {/* <img
-                style={{ width: "3rem", height: "3rem" }}
-                onClick={() => openServer(serversStore[id])}
-                className='serverlist-icon .tooltip-container'
-                src={serversStore[id].avatar}
-              ></img>
-              <div className="tooltip">{serversStore[id].name}</div> */}
             </>
           ))}
           <span
