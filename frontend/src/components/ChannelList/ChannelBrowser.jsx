@@ -6,11 +6,12 @@ import {
 import { useEffect, useState, useRef } from "react";
 import { thunkGetAllServers } from "../../store/server";
 import { updateSelectedChannelId } from "../../store/singleServer";
-import OpenModalButton from "../OpenModalButton";
 import CreateChannelModal from "../CreateChannelModal";
 import DeleteModal from "../DeleteModal";
 import { useModal } from "../../context/Modal";
 import { thunkEditChannel } from "../../store/singleServer";
+import { CreateChannelToolTip } from "./CreateChannelToolTip";
+import OpenModalSpan from "../OpenModalSpan";
 
 export default function ChannelBrowser({ socket }) {
   if (!socket) return false;
@@ -23,6 +24,12 @@ export default function ChannelBrowser({ socket }) {
   const { setModalContent } = useModal();
   const input = useRef(null);
   const [channelNotifications, setChannelNotifications] = useState({});
+  const createChannelRef = useRef();
+  const [createChannelHover, setCreateChannelHover] = useState(false);
+  const editChannelRef = useRef();
+  const [editChannelHover, setEditChannelHover] = useState(false);
+  const deleteChannelRef = useRef();
+  const [deleteChannelHover, setDeleteChannelHover] = useState(false);
 
   const selectedChannel = useSelector(
     (state) => state.singleServer.selectedChannelId
@@ -81,7 +88,7 @@ export default function ChannelBrowser({ socket }) {
   }, [serverId]);
 
   const handleDelete = () => {
-    setModalContent(<DeleteModal type='channel' cId={selectedChannel} />);
+    setModalContent(<DeleteModal type="channel" cId={selectedChannel} />);
   };
 
   useEffect(() => {
@@ -125,20 +132,36 @@ export default function ChannelBrowser({ socket }) {
   };
 
   return (
-    <div className='dm-list-container'>
-      <div className='channel-list-container'>
-        <div className='channel-list-textchannels'>
+    <div className="dm-list-container">
+      <div className="channel-list-container">
+        <div className="channel-list-textchannels">
           <p>TEXT CHANNELS</p>{" "}
-          {server.owner_id == user.id ? (
-            <OpenModalButton
-              className='channel-list-add'
-              modalComponent={<CreateChannelModal serverId={serverId} />}
-              buttonText={<i className='fa-solid fa-plus'></i>}
-            />
-          ) : null}
+          <span
+            className="channel-list-create-channel-tooltip"
+            ref={createChannelRef}
+            style={{ position: "relative" }}
+            onMouseEnter={() => setCreateChannelHover(true)}
+            onMouseLeave={() => setCreateChannelHover(false)}
+          >
+            {server.owner_id == user.id ? (
+              <OpenModalSpan
+                modalComponent={<CreateChannelModal serverId={serverId} />}
+                buttonText={
+                  <i className="fa-solid fa-plus fa-lg create-channel-button"></i>
+                }
+              />
+            ) : null}
+            {createChannelHover && (
+              <CreateChannelToolTip
+                parentRef={createChannelRef}
+                serverName={"Create server"}
+              />
+            )}
+          </span>
         </div>
+
         {channels.orderedChannelsList.map((cId) => (
-          <div className='channel-row'>
+          <div className="channel-row">
             <span
               className={`${selectedChannel == cId && "highlight"} ${
                 channelNotifications[cId] && "notification"
@@ -161,19 +184,18 @@ export default function ChannelBrowser({ socket }) {
 
               {selectedChannel === cId && isEditing ? (
                 <input
-                  className='edit-channel_input'
+                  className="edit-channel_input"
                   ref={input}
-                  type='text'
+                  type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  // onBlur={handleClickOff}
                   onKeyDown={handleKeyClick}
                   maxLength={18}
                 />
               ) : (
                 <>
                   {channels[cId].name}{" "}
-                  <span className='notification__count'>
+                  <span className="notification__count">
                     {channelNotifications[cId] && (
                       <div>
                         {Math.ceil(channelNotifications[cId].count / 2)}
@@ -184,14 +206,61 @@ export default function ChannelBrowser({ socket }) {
                     <div>
                       {server.owner_id === user.id ? (
                         <>
-                          <i
-                            className='fa-solid fa-pencil'
-                            onClick={(e) => handleEdit(e, cId)}
-                          ></i>
-                          <i
-                            className='fa-solid fa-trash'
-                            onClick={handleDelete}
-                          ></i>
+                          <span
+                            className="channel-list-create-channel-tooltip"
+                            ref={editChannelRef}
+                            style={{ position: "relative" }}
+                            onMouseEnter={() => setEditChannelHover(true)}
+                            onMouseLeave={() => setEditChannelHover(false)}
+                          >
+                            {server.owner_id == user.id ? (
+                              <OpenModalSpan
+                                modalComponent={
+                                  <CreateChannelModal serverId={serverId} />
+                                }
+                                buttonText={
+                                  <i
+                                    className="fa-solid fa-pencil"
+                                    onClick={(e) => handleEdit(e, cId)}
+                                  ></i>
+                                }
+                              />
+                            ) : null}
+                            {editChannelHover && (
+                              <CreateChannelToolTip
+                                parentRef={editChannelRef}
+                                serverName={"Edit channel"}
+                              />
+                            )}
+                          </span>
+                          <span
+                            className="channel-list-create-channel-tooltip"
+                            ref={deleteChannelRef}
+                            style={{ position: "relative" }}
+                            onMouseEnter={() => setDeleteChannelHover(true)}
+                            onMouseLeave={() => setDeleteChannelHover(false)}
+                          >
+                            {server.owner_id == user.id ? (
+                              <OpenModalSpan
+                                modalComponent={
+                                  <CreateChannelModal serverId={serverId} />
+                                }
+                                buttonText={
+                                  <i
+                                  className="fa-solid fa-trash"
+                                  onClick={handleDelete}
+                                ></i>
+                                }
+                              />
+                            ) : null}
+                            {deleteChannelHover && (
+                              <CreateChannelToolTip
+                                parentRef={deleteChannelRef}
+                                serverName={"Delete channel"}
+                              />
+                            )}
+                          </span>
+
                         </>
                       ) : null}
                     </div>

@@ -185,7 +185,25 @@
     text-overflow: ellipsis;
     border-radius: 10px;
 }
+
+.channel-menu-tooltip {
+    width: 175px;
+    padding: 10px 10px;
+    height: 35px;
+    background-color: var(--black);
+    position: absolute;
+    left: 100%;
+    bottom: 2%;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-overflow: ellipsis;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 .server__img-container:hover .server__img-tooltip {
-  display: flex;
-  animation: fade .3s ease forwards ;
+    display: flex;
+    animation: fade .3s ease forwards ;
 }

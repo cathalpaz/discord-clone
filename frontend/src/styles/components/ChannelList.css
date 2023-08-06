@@ -37,9 +37,8 @@
     padding-left: 1rem;
     font-weight: 600;
     display: flex;
-    justify-content: space-between;
     height: 18px;
-
+    gap: 6.1rem;
 }
 
 .channel-list-textchannels > p:hover {
@@ -120,5 +119,5 @@
     margin-left: 10px;
     font-size: 1.1rem;
     font-weight: 400;
-    
+
 }

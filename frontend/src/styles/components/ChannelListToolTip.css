@@ -1,0 +1,19 @@
+.create-channel-tooltip {
+    width: 175px;
+    height: 25px;
+    background-color: var(--black);
+    position: absolute;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-overflow: ellipsis;
+    border-radius: 10px;
+    transform: rotate(-45deg);
+
+}
+
+.create-channel-button:hover {
+    color: var(--white);
+    cursor: pointer;
+}
