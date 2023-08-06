@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import "../../styles/components/ChannelMessageList.css";
 import { ChannelMessage } from "./ChannelMessage";
@@ -8,8 +8,35 @@ import {
   updateChannelMessages,
 } from "../../store/singleServer";
 export function ChannelMessageList({ socket }) {
-  if (!socket) return false;
   const { channelId, serverId } = useParams();
+  const user = useSelector((state) => state.session.user);
+  useEffect(() => {
+    if (!socket) return;
+    socket.on(`server-channel-messages-${serverId}`, (data) => {
+      dispatch(updateChannelMessages(data));
+    });
+    socket.on(`server-channel-messages-delete-${serverId}`, (data) => {
+      const { messageId, channelId } = data;
+      dispatch(deleteSingleChannelMessage(channelId, messageId));
+    });
+    socket.on(`server-channel-${channelId}-user-typing`, (data) => {
+      if (data.typing === true) {
+        setUsersTyping((prev) =>
+          data.username === user.username ? [...prev] : [...prev, data.username]
+        );
+      } else {
+        setUsersTyping((prev) =>
+          prev.filter((username) => username !== data.username)
+        );
+      }
+    });
+    return () => {
+      socket.off(`server-channel-messages-${serverId}`);
+      socket.off(`server-channel-messages-delete-${serverId}`);
+      socket.off(`server-channel-${channelId}-user-typing`);
+    };
+  }, [serverId, socket]);
+  const [usersTyping, setUsersTyping] = useState([]);
   const users = useSelector((state) => state.singleServer?.users);
   const channel = useSelector(
     (state) => state.singleServer?.channels[channelId]
@@ -26,20 +53,7 @@ export function ChannelMessageList({ socket }) {
     return [];
   });
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    socket.on(`server-channel-messages-${serverId}`, (data) => {
-      dispatch(updateChannelMessages(data));
-    });
-    socket.on(`server-channel-messages-delete-${serverId}`, (data) => {
-      const { messageId, channelId } = data;
-      dispatch(deleteSingleChannelMessage(channelId, messageId));
-    });
-    return () => {
-      socket.off(`server-channel-messages-${serverId}`);
-      socket.off(`server-channel-messages-delete-${serverId}`);
-    };
-  }, [serverId]);
+  if (!socket) return false;
 
   return (
     <div className='channel-message-list__container'>
@@ -62,6 +76,13 @@ export function ChannelMessageList({ socket }) {
             );
           })}
       </div>
+      {usersTyping.length > 0 && (
+        <div className='users-typing'>
+          {usersTyping.length > 3
+            ? "Several people are typing..."
+            : usersTyping.join(", ") + " is typing..."}
+        </div>
+      )}
     </div>
   );
 }

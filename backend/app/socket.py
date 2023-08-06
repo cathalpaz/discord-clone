@@ -115,3 +115,13 @@ def handle_delete_message(data):
         'messageId': message_id,
         "channelId": channel_id
     }, broadcast=True)
+
+
+@socketio.on("channel-typing")
+def handle_user_typing(data):
+    print("THIS IS THE DATA", data)
+    print(f"user: {data['user_id']} is typing: {data['typing']}")
+    emit(f"server-channel-{data['channel_id']}-user-typing", {
+        'username': data['username'],
+        'typing': data['typing']
+    }, broadcast=True)

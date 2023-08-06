@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../styles/components/SendMessage.css";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -8,20 +8,35 @@ export default function SendMessage({ socket }) {
   const { serverId, channelId } = useParams();
   const singleServer = useSelector((state) => state.singleServer);
   const user = useSelector((state) => state.session.user);
-  if (!socket || !user) return false;
-
-  const handleSendMessage = () => {
-    socket.emit("channel_message", {
-      message,
-      channel_id: channelId,
-      user: {
-        id: user.id,
-        username: user.username,
-      },
-      server_id: serverId,
-    });
-    setMessage("");
-  };
+  const typingTimeoutRef = useRef(null);
+  const [isTyping, setIsTyping] = useState(false);
+  useEffect(() => {
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+    if (message) {
+      if (!isTyping) {
+        setIsTyping(true);
+        socket.emit("channel-typing", {
+          user_id: user.id,
+          channel_id: channelId,
+          server_id: serverId,
+          typing: true,
+          username: user.username,
+        });
+      }
+      typingTimeoutRef.current = setTimeout(() => {
+        setIsTyping(false);
+        socket.emit("channel-typing", {
+          user_id: user.id,
+          channel_id: channelId,
+          server_id: serverId,
+          typing: false,
+          username: user.username,
+        });
+      }, 5000);
+    }
+  }, [message]);
 
   return (
     <div className='send-message-container'>

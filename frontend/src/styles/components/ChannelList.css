@@ -114,3 +114,11 @@
     width: 100%;
     padding: 1px 9px;
 }
+.users-typing {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    
+}
