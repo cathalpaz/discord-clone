@@ -36,7 +36,18 @@ export default function SendMessage({ socket }) {
         });
       }, 5000);
     }
-  }, [message]);
+  }, [message, channelId]);
+
+  useEffect(() => {
+    if (!socket) return;
+    setIsTyping(false);
+    socket.emit("channel-typing", {
+      user_id: user.id,
+      channel_id: channelId,
+      server_id: serverId,
+      typing: false,
+    });
+  }, [channelId]);
 
   return (
     <div className='send-message-container'>
