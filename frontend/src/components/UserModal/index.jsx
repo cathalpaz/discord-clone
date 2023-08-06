@@ -12,9 +12,7 @@ function UserModal() {
   const [color, setColor] = useState(user?.banner_color);
   const [username, setUsername] = useState(user?.username);
   const [birthday, setBirthday] = useState(user?.birthday);
-  const [email, setEmail] = useState(user?.email);
   const [editUsername, setEditUsername] = useState(false);
-  const [editBirthday, setEditBirthday] = useState(false);
   const { closeModal } = useModal();
 
   const handleLogout = () => {
@@ -39,28 +37,28 @@ function UserModal() {
   };
 
   return (
-    <div className='user-modal'>
-      <div style={{ backgroundColor: color }} className='user-modal_banner' />
-      <div className='user-modal_top'>
-        <div className='user-modal_title'>
-          <img className='user-modal_avatar' src={user.avatar} />{" "}
+    <div className="user-modal">
+      <div style={{ backgroundColor: color }} className="user-modal_banner" />
+      <div className="user-modal_top">
+        <div className="user-modal_title">
+          <img className="user-modal_avatar" src={user.avatar} />{" "}
           {user.username}
         </div>
         <form>
           <input
-            className='user-modal_color'
-            type='color'
-            name='color'
-            id='color'
+            className="user-modal_color"
+            type="color"
+            name="color"
+            id="color"
             value={color}
             onChange={(e) => setColor(e.target.value)}
           />
         </form>
       </div>
-      <div className='user-modal_info'>
-        <div className='user-modal__form__group'>
-          <div className='user-modal_info-name'>DISPLAY NAME</div>
-          <div className='form__group'>
+      <div className="user-modal_info">
+        <div className="user-modal__form__group">
+          <div className="user-modal_info-name">DISPLAY NAME</div>
+          <div className="form__group">
             {!editUsername ? (
               <div>{username}</div>
             ) : (
@@ -70,7 +68,7 @@ function UserModal() {
               />
             )}
             <button
-              className='user-modal-edit_btn'
+              className="user-modal-edit_btn"
               onClick={(e) => {
                 e.preventDefault();
                 setEditUsername(!editUsername);
@@ -80,9 +78,9 @@ function UserModal() {
             </button>
           </div>
         </div>
-        <div className='user-modal__form__group'>
-          <div className='user-modal_info-name'>EMAIL</div>
-          <div className='form__group'>
+        <div className="user-modal__form__group">
+          <div className="user-modal_info-name">EMAIL</div>
+          <div className="form__group">
             <div>{user?.email}</div>
             {/* {!editEmail ? (
             ) : (
@@ -100,14 +98,14 @@ function UserModal() {
           </div>
         </div>
         <div>
-          <div className='user-modal_info-name'>BIRTHDAY</div>
-          <div className='form__group'>
+          <div className="user-modal_info-name">BIRTHDAY</div>
+          <div className="form__group">
             <div>{birthday}</div>
           </div>
         </div>
       </div>
-      <div className='user-modal__btns'>
-        <button onClick={handleLogout} className='user-modal_logout'>
+      <div className="user-modal__btns">
+        <button onClick={handleLogout} className="user-modal_logout">
           Logout
         </button>
         <button
@@ -116,7 +114,7 @@ function UserModal() {
             e.preventDefault();
             handleSubmit();
           }}
-          className='user-modal_logout primary'
+          className="user-modal_logout primary"
         >
           Update
         </button>

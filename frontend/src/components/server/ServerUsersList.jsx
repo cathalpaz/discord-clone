@@ -8,15 +8,13 @@ export function ServerUsersList() {
 
   return (
     <>
-      <div className='server-users-list-container'>
-        <header className='server-users-list__header'>
+      <div className="server-users-list-container">
+        <header className="server-users-list__header">
           <h3>Users</h3>
         </header>
-        <div className='server-users-list__users'>
+        <div className="server-users-list__users">
           {serverUsers.map((user, i) => {
-            return (
-              <ServerUser key={i} user={user} />
-            );
+            return <ServerUser key={i} user={user} />;
           })}
         </div>
       </div>

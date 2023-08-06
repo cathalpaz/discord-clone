@@ -10,13 +10,13 @@ import { ChannelMenuDropToolTip } from "./ChannelMenuDropToolTip";
 import "../../styles/components/ChannelMenuDrop.css";
 
 function ChannelMenuDrop() {
-  const [showMenu, setShowMenu] = useState(false);
   const { serverId, channelId } = useParams();
   const server = useSelector((state) => state.servers[serverId]);
   const sessionUser = useSelector((state) => state.session.user);
-  const ulRef = useRef();
-  const serverMenuRef = useRef();
+  const [showMenu, setShowMenu] = useState(false);
   const [serverMenuHover, setServerMenuHover] = useState(false);
+  const serverMenuRef = useRef();
+  const ulRef = useRef();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -52,30 +52,29 @@ function ChannelMenuDrop() {
         showMenu ? (
           <i
             onClick={openMenu}
-            className="fa-solid fa-angle-down channel-menu-button fa-sm"
+            className="fa-solid fa-xmark channel-menu-button"
           ></i>
         ) : (
           <span
-          className="channel-list-create-channel-tooltip"
-          ref={serverMenuRef}
-          style={{ position: "relative" }}
-          onMouseEnter={() => setServerMenuHover(true)}
-          onMouseLeave={() => setServerMenuHover(false)}
-        >
-          {server.owner_id == sessionUser.id ? (
-                <i
+            className="channel-list-create-channel-tooltip"
+            ref={serverMenuRef}
+            style={{ position: "relative" }}
+            onMouseEnter={() => setServerMenuHover(true)}
+            onMouseLeave={() => setServerMenuHover(false)}
+          >
+            {server.owner_id == sessionUser.id ? (
+              <i
                 onClick={openMenu}
-                className="fa-solid fa-xmark channel-menu-button"
+                className="fa-solid fa-angle-down channel-menu-button fa-sm"
               ></i>
-          ) : null}
-          {serverMenuHover && (
-            <ChannelMenuDropToolTip
-              parentRef={serverMenuRef}
-              serverName={"Server menu options"}
-            />
-          )}
-        </span>
-
+            ) : null}
+            {serverMenuHover && (
+              <ChannelMenuDropToolTip
+                parentRef={serverMenuRef}
+                serverName={"Server menu options"}
+              />
+            )}
+          </span>
         )
       ) : showMenu ? (
         <i
@@ -84,26 +83,25 @@ function ChannelMenuDrop() {
         ></i>
       ) : (
         <span
-        className="channel-list-create-channel-tooltip"
-        ref={serverMenuRef}
-        style={{ position: "relative" }}
-        onMouseEnter={() => setServerMenuHover(true)}
-        onMouseLeave={() => setServerMenuHover(false)}
-      >
+          className="channel-list-create-channel-tooltip"
+          ref={serverMenuRef}
+          style={{ position: "relative" }}
+          onMouseEnter={() => setServerMenuHover(true)}
+          onMouseLeave={() => setServerMenuHover(false)}
+        >
+          <i
+            onClick={openMenu}
+            className="fa-solid fa-angle-down channel-menu-button fa-sm"
+          ></i>
 
-              <i
-              onClick={openMenu}
-              className="fa-solid fa-angle-down channel-menu-button fa-sm"
-            ></i>
-
-        {serverMenuHover && (
-          <ChannelMenuDropToolTip
-            parentRef={serverMenuRef}
-            serverName={"Server menu options"}
-          />
-        )}
-      </span>
-      ) }
+          {serverMenuHover && (
+            <ChannelMenuDropToolTip
+              parentRef={serverMenuRef}
+              serverName={"Server menu options"}
+            />
+          )}
+        </span>
+      )}
       {sessionUser?.id === server?.owner.id ? (
         <ul className={ulClassName} ref={ulRef}>
           <div className="channel-menu-container">

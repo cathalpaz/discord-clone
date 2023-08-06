@@ -9,8 +9,8 @@ export function ChannelHeader() {
   );
   return (
     <>
-      <div className='channel-header-container'>
-        <header className='channel-header__title'>
+      <div className="channel-header-container">
+        <header className="channel-header__title">
           <HashTagIcon className={"channel-header__title__icon"} />
           {channelId && channels[channelId]?.name}
         </header>

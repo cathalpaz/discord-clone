@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useModal } from "../../context/Modal";
-import { signUp } from "../../store/session";
 import { thunkGetAllServers } from "../../store/server";
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
-import SearchServers from "../SearchServers";
-import "../../styles/components/ServerList.css";
 import { Server } from "./Server";
 import { ServerToolTip } from "./ServerToolTip";
+import "../../styles/components/ServerList.css";
 
 function ServerList() {
-  const serversStore = useSelector((state) => state.servers);
   const dispatch = useDispatch();
   const history = useHistory();
   const serverIds = useSelector((state) => state.servers.orderedServers);
@@ -41,10 +37,10 @@ function ServerList() {
 
   return (
     <>
-      <div className='serverlist-container'>
+      <div className="serverlist-container">
         <div
           onClick={sendToMain}
-          className='serverlist-friend-button'
+          className="serverlist-friend-button"
           style={{ position: "relative" }}
           ref={dmRef}
           onMouseEnter={() => setDmHover(true)}
@@ -53,7 +49,7 @@ function ServerList() {
           {dmHover && (
             <ServerToolTip serverName={"Direct Messages"} parentRef={dmRef} />
           )}
-          <i className='fa-brands fa-discord fa-lg'></i>
+          <i className="fa-brands fa-discord fa-lg"></i>
         </div>
         <div>
           <p
@@ -65,12 +61,12 @@ function ServerList() {
             }}
           ></p>
         </div>
-        <div className='serverlist-main-list'>
+        <div className="serverlist-main-list">
           {serverIds.map((id) => (
             <Server key={id} serverId={id} onClick={openServer} />
           ))}
           <span
-            className='serverlist-add-server .tooltip-container'
+            className="serverlist-add-server .tooltip-container"
             ref={createServerRef}
             style={{ position: "relative" }}
             onMouseEnter={() => setCreateServerHover(true)}
@@ -82,7 +78,7 @@ function ServerList() {
                 serverName={"Create server"}
               />
             )}
-            <div className='tooltip'>Add a server</div>
+            <div className="tooltip">Add a server</div>
             <OpenModalButton
               modalComponent={<CreateServerModal />}
               buttonText={"+"}
@@ -90,7 +86,7 @@ function ServerList() {
           </span>
           <span
             style={{ position: "relative" }}
-            className='serverlist-add-server'
+            className="serverlist-add-server"
             ref={discoverServersRef}
             onMouseEnter={() => setDiscoverServersHover(true)}
             onMouseLeave={() => setDiscoverServersHover(false)}
@@ -102,7 +98,7 @@ function ServerList() {
               />
             )}
             <i
-              className='fa-solid fa-compass serverlist-add-server-icon'
+              className="fa-solid fa-compass serverlist-add-server-icon"
               onClick={sendToDiscover}
             ></i>
           </span>

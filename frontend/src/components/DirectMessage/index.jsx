@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { thunkGetAllDirectMessages } from "../../store/directMessages";
 import "../../styles/components/DirectMessage.css";
 
-export default function DirectMessage({ searchString }) {
+export default function DirectMessage() {
   const directMessageStore = useSelector((state) => state.directMessages);
   const directMessageId = useSelector(
     (state) => state.directMessages.orderedDirectMessages
@@ -37,14 +37,12 @@ export default function DirectMessage({ searchString }) {
     history.push(`/@/${usrId}`);
   };
 
-  const activeCheck = () => {};
-
   return (
     <>
       <div>
-        <div className='direct-message-options-container'>
-          <div onClick={sendToMain} className='direct-message-icon-friend'>
-            <i className='fa-solid fa-users'></i>
+        <div className="direct-message-options-container">
+          <div onClick={sendToMain} className="direct-message-icon-friend">
+            <i className="fa-solid fa-users"></i>
             <span>Friends</span>
           </div>
         </div>
@@ -59,34 +57,14 @@ export default function DirectMessage({ searchString }) {
         >
           DIRECT MESSAGES
         </p>
-        {/* {ownerMessage
-          .filter((message) =>
-            message.user_to.username
-              .toLowerCase()
-              .includes(searchString.toLowerCase())
-          )
-          .map((message) => (
-            <>
-              <div
-                onClick={() => sendToDM(message)}
-                className='direct-message-container'
-              >
-                <img
-                  className='direct-message __image'
-                  src={message.user_to.avatar}
-                ></img>
-                <p>{message.user_to.username}</p>
-              </div>
-            </>
-          ))} */}
         {dmUsers.orderedUsers.map((usrId) => (
           <>
             <div
               onClick={() => sendToDM(usrId)}
-              className='direct-message-container'
+              className="direct-message-container"
             >
               <img
-                className='direct-message __image'
+                className="direct-message __image"
                 src={
                   dmUsers[usrId].avatar ||
                   "https://discord-clone-a-a.s3.us-west-1.amazonaws.com/default-user.jpg"

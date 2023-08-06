@@ -4,6 +4,7 @@ import ReactDom from "react-dom";
 export function ChannelMenuDropToolTip({ serverName, parentRef }) {
   if (!parentRef.current) return false;
   const [style, setStyle] = useState({});
+  
   useEffect(() => {
     const rect = parentRef.current.getBoundingClientRect();
     setStyle({
@@ -14,7 +15,7 @@ export function ChannelMenuDropToolTip({ serverName, parentRef }) {
     });
   }, [parentRef]);
   return ReactDom.createPortal(
-    <div style={style} className='channel-menu-tooltip'>
+    <div style={style} className="channel-menu-tooltip">
       {serverName}
     </div>,
     document.getElementById("root")

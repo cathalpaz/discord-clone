@@ -1,17 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import "../../styles/components/ChannelMessageList.css";
 import { ChannelMessage } from "./ChannelMessage";
 import {
   deleteSingleChannelMessage,
   updateChannelMessages,
 } from "../../store/singleServer";
+import "../../styles/components/ChannelMessageList.css";
 
 export function ChannelMessageList({ socket }) {
   const { channelId, serverId } = useParams();
   const user = useSelector((state) => state.session.user);
   const messageContainerRef = useRef(null);
+
   useEffect(() => {
     if (!socket) return;
     socket.on(`server-channel-messages-${serverId}`, (data) => {
@@ -64,13 +65,13 @@ export function ChannelMessageList({ socket }) {
   if (!socket) return false;
 
   return (
-    <div className='channel-message-list__container'>
+    <div className="channel-message-list__container">
       <div
-        id='message-container'
-        className='message__container'
+        id="message-container"
+        className="message__container"
         ref={messageContainerRef}
       >
-        <h3 className='channel-message-list__container-title'>
+        <h3 className="channel-message-list__container-title">
           Welcome to #{channel ? channel.name : ""}!
         </h3>
         {users &&
@@ -87,7 +88,7 @@ export function ChannelMessageList({ socket }) {
           })}
       </div>
       {usersTyping.length > 0 && (
-        <div className='users-typing'>
+        <div className="users-typing">
           {usersTyping.length > 3
             ? "Several people are typing..."
             : usersTyping.join(", ") + " is typing..."}

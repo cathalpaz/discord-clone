@@ -28,11 +28,6 @@ export function DirectMessageList({ socket }) {
 
   return (
     <>
-      {/* {newMessagesIds && (
-        <div className='channel-message-list__container'>
-          {user && <DirectMessage messageId={newMessagesIds} />}
-        </div>
-      )} */}
       {newMessagesIds.map((mId) => (
         <DirectMessage key={mId} messageId={mId} usrId={directMessageId} />
       ))}

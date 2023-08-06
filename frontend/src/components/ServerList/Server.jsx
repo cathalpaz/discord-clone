@@ -19,17 +19,17 @@ export function Server({ serverId }) {
       {server.owner.id == userStore.id ||
       server.users.map((user) => user.id == userStore.id) ? (
         <div
-          className='server__container'
+          className="server__container"
           onClick={handleClick}
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <div className='server__img-container' ref={imgRef}>
+          <div className="server__img-container" ref={imgRef}>
             <img
               style={{ width: "3rem", height: "3rem" }}
-              className='serverlist-icon .tooltip-container'
+              className="serverlist-icon .tooltip-container"
               src={server.avatar}
-              alt=''
+              alt=""
             />
             {isHover && (
               <ServerToolTip serverName={server.name} parentRef={imgRef} />

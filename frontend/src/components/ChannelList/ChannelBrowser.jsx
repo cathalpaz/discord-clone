@@ -12,15 +12,16 @@ import { useModal } from "../../context/Modal";
 import { thunkEditChannel } from "../../store/singleServer";
 import { CreateChannelToolTip } from "./CreateChannelToolTip";
 import OpenModalSpan from "../OpenModalSpan";
+import "../../styles/components/ChannelList.css";
 
 export default function ChannelBrowser({ socket }) {
   if (!socket) return false;
-  const history = useHistory();
-  const { serverId, channelId } = useParams();
-  const dispatch = useDispatch();
   const server = useSelector((state) => state.singleServer);
   const user = useSelector((state) => state.session.user);
   const channels = useSelector((state) => state.singleServer?.channels);
+  const history = useHistory();
+  const { serverId, channelId } = useParams();
+  const dispatch = useDispatch();
   const { setModalContent } = useModal();
   const input = useRef(null);
   const [channelNotifications, setChannelNotifications] = useState({});
@@ -161,7 +162,7 @@ export default function ChannelBrowser({ socket }) {
         </div>
 
         {channels.orderedChannelsList.map((cId) => (
-          <div key={cId} className='channel-row'>
+          <div key={cId} className="channel-row">
             <span
               className={`${selectedChannel == cId && "highlight"} ${
                 channelNotifications[cId] && "notification"
@@ -247,9 +248,9 @@ export default function ChannelBrowser({ socket }) {
                                 }
                                 buttonText={
                                   <i
-                                  className="fa-solid fa-trash"
-                                  onClick={handleDelete}
-                                ></i>
+                                    className="fa-solid fa-trash"
+                                    onClick={handleDelete}
+                                  ></i>
                                 }
                               />
                             ) : null}
@@ -260,7 +261,6 @@ export default function ChannelBrowser({ socket }) {
                               />
                             )}
                           </span>
-
                         </>
                       ) : null}
                     </div>

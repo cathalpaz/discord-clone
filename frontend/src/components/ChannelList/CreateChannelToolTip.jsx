@@ -15,8 +15,8 @@ export function CreateChannelToolTip({ serverName, parentRef }) {
     });
   }, [parentRef]);
   return ReactDom.createPortal(
-    <div style={style} className='create-channel-tooltip'>
-        {serverName}
+    <div style={style} className="create-channel-tooltip">
+      {serverName}
     </div>,
     document.getElementById("root")
   );

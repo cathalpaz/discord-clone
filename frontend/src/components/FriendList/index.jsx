@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/FriendList.css";
 import {
@@ -126,7 +126,7 @@ function FriendList({ selectedTab, setSelectedTab }) {
                         ></i>
                       </div>
                       <div className="dots">
-                        <FriendMenuDrop friend={friend}/>
+                        <FriendMenuDrop friend={friend} />
                       </div>
                     </div>
                   </div>

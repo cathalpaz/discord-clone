@@ -22,25 +22,25 @@ export function ChannelMessage({ message, user, socket }) {
   };
 
   return (
-    <div className='channel-message__container'>
-      <div className='channel-message__avatar-container'>
-        <img src={user?.avatar || ""} alt='' />
+    <div className="channel-message__container">
+      <div className="channel-message__avatar-container">
+        <img src={user?.avatar || ""} alt="" />
       </div>
-      <div className='channel-message__info'>
-        <header className='channel-message__info__header-container'>
-          <div className='channel-message__info__header'>
+      <div className="channel-message__info">
+        <header className="channel-message__info__header-container">
+          <div className="channel-message__info__header">
             <span>{user.username}</span>
-            <span className='channel-message__info__header__date'>
+            <span className="channel-message__info__header__date">
               {dayjs(message.created_at).format("MM/DD/YYYY hh:mm A")}
             </span>
             {message.updated && (
-              <span className='channel-message__info__header__edited'>
+              <span className="channel-message__info__header__edited">
                 (edited)
               </span>
             )}
           </div>
           {currentUser.id === user.id ? (
-            <div className='message-hidden'>
+            <div className="message-hidden">
               <OpenModalButton
                 modalComponent={
                   <UpdateMessageModal
@@ -49,16 +49,16 @@ export function ChannelMessage({ message, user, socket }) {
                     type={"channel"}
                   />
                 }
-                buttonText={<i className='fa-solid fa-pencil'></i>}
+                buttonText={<i className="fa-solid fa-pencil"></i>}
                 className={"update-conversation"}
               />
-              <button className='delete-message-button' onClick={deleteChat}>
-                <i className='fa-solid fa-trash'></i>
+              <button className="delete-message-button" onClick={deleteChat}>
+                <i className="fa-solid fa-trash"></i>
               </button>
             </div>
           ) : null}
         </header>
-        <p className='channel-message__info__content'>{message.content}</p>
+        <p className="channel-message__info__content">{message.content}</p>
       </div>
     </div>
   );

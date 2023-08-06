@@ -333,42 +333,44 @@ function SignupFormPage() {
 
             <div className="signup-form-footer">
               <div className="signup-form-avatar">
-
-              <label>
-                AVATAR{" "}
-                <label
-                  style={{
-                    fontSize: "12px",
-                    color: "#F23F42",
-                    paddingLeft: ".1rem",
-                  }}
-                >
-                  {" "}
-                  *
-                </label>{" "}
-              </label>
-              {!avatar ? (
-                <button className="file__input-btn" onClick={handleImageUpload}>
-                  <UploadIcon />
-                </button>
-              ) : (
-                <div className="avatar__preview">
-                  <img src={URL.createObjectURL(avatar)} />
-                </div>
-              )}
-              <input
-                type="file"
-                ref={fileRef}
-                className="file__input"
-                onChange={(e) => {
-                  if (e.target.files[0]) {
-                    const file = e.target.files[0];
-                    if (file.type.substring("image/")) {
-                      setAvatar(file);
+                <label>
+                  AVATAR{" "}
+                  <label
+                    style={{
+                      fontSize: "12px",
+                      color: "#F23F42",
+                      paddingLeft: ".1rem",
+                    }}
+                  >
+                    {" "}
+                    *
+                  </label>{" "}
+                </label>
+                {!avatar ? (
+                  <button
+                    className="file__input-btn"
+                    onClick={handleImageUpload}
+                  >
+                    <UploadIcon />
+                  </button>
+                ) : (
+                  <div className="avatar__preview">
+                    <img src={URL.createObjectURL(avatar)} />
+                  </div>
+                )}
+                <input
+                  type="file"
+                  ref={fileRef}
+                  className="file__input"
+                  onChange={(e) => {
+                    if (e.target.files[0]) {
+                      const file = e.target.files[0];
+                      if (file.type.substring("image/")) {
+                        setAvatar(file);
+                      }
                     }
-                  }
-                }}
-              />
+                  }}
+                />
               </div>
               <div className="signup-form-banner-color">
                 <label>

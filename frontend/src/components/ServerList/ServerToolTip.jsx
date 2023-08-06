@@ -14,7 +14,7 @@ export function ServerToolTip({ serverName, parentRef }) {
     });
   }, [parentRef]);
   return ReactDom.createPortal(
-    <div style={style} className='server__img-tooltip'>
+    <div style={style} className="server__img-tooltip">
       {serverName}
     </div>,
     document.getElementById("root")

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "../../styles/components/SendMessage.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { thunkSendDirectMessage } from "../../store/directMessages";
+import "../../styles/components/SendMessage.css";
 
 export default function DirectMessageSendMessage({ socket }) {
   if (!socket) return false;
@@ -27,10 +27,10 @@ export default function DirectMessageSendMessage({ socket }) {
   };
 
   return (
-    <div className='send-message-container'>
+    <div className="send-message-container">
       <input
-        className='send-message-input'
-        type='textbox'
+        className="send-message-input"
+        type="textbox"
         placeholder={`Message @${otherUser.username}`}
         value={message}
         onChange={(e) => setMessage(e.target.value)}

@@ -33,8 +33,8 @@ function FriendMenuDrop({ friend }) {
   const ulClassName = "friend-list-menu-dropdown" + (showMenu ? "" : " hidden");
 
   const deleteFriend = () => {
-    alert("Feature coming soon!")
-  }
+    alert("Feature coming soon!");
+  };
 
   return (
     <>
@@ -44,7 +44,7 @@ function FriendMenuDrop({ friend }) {
         <div className="friend-list-menu-option">
           <div onClick={deleteFriend} className="delete-friend-container">
             <p>Delete Friend ({friend.user.username})</p>
-            <i className='fa-solid fa-trash'></i>
+            <i className="fa-solid fa-trash"></i>
           </div>
         </div>
       </ul>

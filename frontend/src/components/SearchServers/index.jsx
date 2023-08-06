@@ -45,40 +45,40 @@ function SearchServers() {
 
   return (
     <>
-      <div className='search-servers-container'>
-        <div className='search-servers-left-container'>
-          <div className='search-servers-server-list'>
+      <div className="search-servers-container">
+        <div className="search-servers-left-container">
+          <div className="search-servers-server-list">
             <ServerList />
           </div>
-          <div className='search-servers-option-container'>
+          <div className="search-servers-option-container">
             <SearchServerHeader />
-            <div className='search-servers-option'>
+            <div className="search-servers-option">
               <SearchServerList />
               <UserProfile />
             </div>
           </div>
         </div>
-        <div className='search-server-main-container'>
-          <div className='search-servers-image-container'>
-            <div className='search-servers-image-info'>
+        <div className="search-server-main-container">
+          <div className="search-servers-image-container">
+            <div className="search-servers-image-info">
               <span>Find your community on Slacord</span>
               <p style={{ marginBottom: ".6rem" }}>
                 From gaming, to music, to learning, there's a place for you.
               </p>
-              <div className='search_bar'>
+              <div className="search_bar">
                 <input
-                  className='search_input'
-                  placeholder='Explore communities'
+                  className="search_input"
+                  placeholder="Explore communities"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <i className='fa-solid fa-magnifying-glass search_header-icon '></i>
+                <i className="fa-solid fa-magnifying-glass search_header-icon "></i>
               </div>
             </div>
           </div>
-          <div className='search-server-general-info'>
-            <p className='search_channels-title'>Featured communities</p>
-            <div className='search_channels-display'>
+          <div className="search-server-general-info">
+            <p className="search_channels-title">Featured communities</p>
+            <div className="search_channels-display">
               {filtered.map((server) => (
                 <SearchServerCard key={server.id} server={server} />
               ))}

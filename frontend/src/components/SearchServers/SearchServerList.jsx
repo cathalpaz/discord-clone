@@ -1,10 +1,9 @@
 import React from "react";
 
 export default function SearchServerList() {
-
   const comingSoon = () => {
-    alert('Feature coming soon!')
-  }
+    alert("Feature coming soon!");
+  };
 
   return (
     <div className="search-server-list-container">

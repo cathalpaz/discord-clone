@@ -44,9 +44,9 @@ function CreateServerModal() {
   };
 
   return (
-    <div className='create-server_form_container'>
-      <form onSubmit={handleSubmit} className='server_form'>
-        <div className='server_form-title'>
+    <div className="create-server_form_container">
+      <form onSubmit={handleSubmit} className="server_form">
+        <div className="server_form-title">
           <h2>Customize your server</h2>
           <p>
             Give your new server a personality with a name and an icon. You can
@@ -54,20 +54,20 @@ function CreateServerModal() {
           </p>
           {!avatar ? (
             <button
-              className='server_form__file-upload-btn'
+              className="server_form__file-upload-btn"
               onClick={handleImageUpload}
             >
               <UploadIcon />
             </button>
           ) : (
-            <div className='server_form__file-img-preview'>
-              <img src={URL.createObjectURL(avatar)} alt='' />
+            <div className="server_form__file-img-preview">
+              <img src={URL.createObjectURL(avatar)} alt="" />
             </div>
           )}
           <input
-            className='server_form__file-input'
+            className="server_form__file-input"
             ref={fileRef}
-            type='file'
+            type="file"
             onChange={(e) => {
               if (e.target.files[0]) {
                 const file = e.target.files[0];
@@ -81,16 +81,16 @@ function CreateServerModal() {
         <label>
           SERVER NAME
           <input
-            type='text'
+            type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             maxLength={20}
           />
-          <p className='errors'>{errors}</p>
+          <p className="errors">{errors}</p>
         </label>
-        <div className='server_form-btns'>
+        <div className="server_form-btns">
           <p onClick={() => closeModal()}>Back</p>
-          <button type='submit'>Create</button>
+          <button type="submit">Create</button>
         </div>
       </form>
     </div>

@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
-import "../../styles/LandingPage.css";
 import { useSelector } from "react-redux";
 import Footer from "../Footer";
+import "../../styles/LandingPage.css";
 
 export default () => {
   const history = useHistory();
@@ -67,18 +67,24 @@ export default () => {
                     Login
                   </button>
                 )}
-               {<button onClick={() => alert("Mobile application coming soon! Please view the site on an iPad or computer for now.")}className='nav-bar-mobile-view'>Open Discord</button>}
-
+                {
+                  <button
+                    onClick={() =>
+                      alert(
+                        "Mobile application coming soon! Please view the site on an iPad or computer for now."
+                      )
+                    }
+                    className="nav-bar-mobile-view"
+                  >
+                    Open Discord
+                  </button>
+                }
               </div>
             </div>
           </div>
           <div className="heading-items-container">
-            <h1 className="heading-items-title">
-              IMAGINE A PLACE...
-            </h1>
-            <p
-              className="heading-items-p"
-            >
+            <h1 className="heading-items-title">IMAGINE A PLACE...</h1>
+            <p className="heading-items-p">
               ...where you can belong to a school club, a gaming group, or a
               worldwide art community. Where just you and a handful of friends
               can spend time together. A place that makes it easy to talk every
@@ -102,9 +108,18 @@ export default () => {
                   Open Slacord in your browser
                 </button>
               )}
-              {<button onClick={() => alert("Mobile application coming soon! Please view the site on an iPad or computer for now.")} className="open-discord-button-mobile-view">
+              {
+                <button
+                  onClick={() =>
+                    alert(
+                      "Mobile application coming soon! Please view the site on an iPad or computer for now."
+                    )
+                  }
+                  className="open-discord-button-mobile-view"
+                >
                   Open Slacord in your browser
-              </button>}
+                </button>
+              }
             </div>
           </div>
           <img src={"/images/landing_img2.svg"} className="left-picture" />
@@ -173,17 +188,15 @@ export default () => {
             src={"/images/landing_body_img4.svg"}
             className="body-img4"
           ></img>
-          <p
-            className="body-img5"
-          >
-            Ready to start your journey?
-          </p>
-
+          <p className="body-img5">Ready to start your journey?</p>
 
           <button onClick={sendToApp} className="body-fourth-block-button">
-        <i className="fa-solid fa-download" style={{ paddingRight: ".7rem" }}></i>
-        Download for Windows
-      </button>
+            <i
+              className="fa-solid fa-download"
+              style={{ paddingRight: ".7rem" }}
+            ></i>
+            Download for Windows
+          </button>
         </div>
         <Footer />
       </div>

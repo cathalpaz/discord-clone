@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import "../../styles/components/UpdateMessageModal.css";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 function UpdateMessageModal({ message, type, socket }) {
   const { closeModal } = useModal();
@@ -38,9 +37,9 @@ function UpdateMessageModal({ message, type, socket }) {
   };
 
   return (
-    <div className='update-message__container'>
-      <span className='update-message__title'>Update message</span>
-      <label className='update-message__content'>
+    <div className="update-message__container">
+      <span className="update-message__title">Update message</span>
+      <label className="update-message__content">
         Message:
         <input
           onKeyDown={handleEnter}
@@ -48,11 +47,11 @@ function UpdateMessageModal({ message, type, socket }) {
           onChange={(e) => setNewMessage(e.target.value)}
         />
       </label>
-      <div className='update-message__btns'>
-        <button onClick={closeModal} className='delete-modal-button-no'>
+      <div className="update-message__btns">
+        <button onClick={closeModal} className="delete-modal-button-no">
           Cancel
         </button>
-        <button onClick={updateMessage} className='save-btn'>
+        <button onClick={updateMessage} className="save-btn">
           Save
         </button>
       </div>
