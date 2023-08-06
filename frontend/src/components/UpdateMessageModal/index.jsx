@@ -18,7 +18,6 @@ function UpdateMessageModal({ message, type, socket }) {
 
   const updateMessage = () => {
     // handle socket stuff here
-    // message.updated = True
 
     socket.emit("channel_message", {
       new_message: {

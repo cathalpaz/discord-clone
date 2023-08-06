@@ -84,26 +84,10 @@
     padding-bottom: 100px;
 
 }
-/* /* scrollbar style */
+
 .serverlist-main-list::-webkit-scrollbar {
     display: none;
 }
-
-/* .serverlist-main-list::-webkit-scrollbar-track {
-    background: var(--secondary-background-darker);
-}
-
-.serverlist-main-list::-webkit-scrollbar-thumb {
-    background: var(--secondary-background);
-}
-
-.serverlist-main-list:hover::-webkit-scrollbar-thumb {
-    background: var(--secondary-background-darker);
-}
-
-.serverlist-main-list:hover::-webkit-scrollbar-thumb:hover {
-    background: #555;
-} */
 
 .serverlist-add-server > button {
     color: var(--secondary);

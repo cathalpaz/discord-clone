@@ -82,19 +82,6 @@ function UserModal() {
           <div className="user-modal_info-name">EMAIL</div>
           <div className="form__group">
             <div>{user?.email}</div>
-            {/* {!editEmail ? (
-            ) : (
-              <input value={email} onChange={(e) => setEmail(e.target.value)} />
-            )}
-            <button
-              className='bg'
-              onClick={(e) => {
-                e.preventDefault();
-                setEditEmail(!editEmail);
-              }}
-            >
-              {editEmail ? "Confirm" : "Edit"}
-            </button> */}
           </div>
         </div>
         <div>

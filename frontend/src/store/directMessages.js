@@ -2,13 +2,6 @@ import { actionTypes } from "./actionTypes";
 
 // * see store.example.json for how this state should look with data populated
 const initialState = {
-  // content: null,
-  // id: null,
-  // user_from_id: null,
-  // user_to_id: null,
-  // updated: null,
-  // created_at: null,
-  // updated_at: null
   orderedDirectMessages: [],
   users: {
     orderedUsers: [],

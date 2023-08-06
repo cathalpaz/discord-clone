@@ -167,8 +167,7 @@ body {
     display: flex;
     font-weight: 500;
     gap: 2.55rem;
-    /* margin-right: 6.1rem;
-    margin-left: 2.5rem */
+
 }
 
 .heading-nav-links > p {
@@ -453,7 +452,6 @@ body {
 }
 
 .body-fifth-block-techologies-header {
-    /* position: absolute; */
     margin-top: 4.35rem;
     font-size: 14px;
     margin-left: .8rem;

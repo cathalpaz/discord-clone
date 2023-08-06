@@ -114,26 +114,6 @@
     cursor: default;
 }
 
-/* .login-errors li:nth-child(1){
-    margin-right:.875rem;
-    position:static;
-    transform:translatex(8.8rem) translatey(-0.25rem);
-    min-height:3.55rem;
-    list-style-type:none;
-    color: var(--errors);
-    font-size:1.05rem;
-    font-weight:600;
-}
-
-.login-errors li:nth-child(2){
-    list-style-type:none;
-    color: var(--errors);
-    font-weight:600;
-    margin-bottom:1rem;
-    min-height:2.38rem;
-    transform:translatex(5.13rem) translatey(1.5rem);
-} */
-
 .login-bottom {
     margin: 0;
     display: flex;

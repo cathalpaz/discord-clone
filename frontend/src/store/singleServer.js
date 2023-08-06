@@ -218,8 +218,6 @@ export const singleServerReducer = (state = initialState, action) => {
       return newState;
     }
     case actionTypes.EDIT_CHANNEL: {
-      // const newState = {...state}
-      // newState.channels = {...newState.channels, orderedChannelsList: ... }
       const newState = structuredClone(state);
       const { channel } = action.channel;
       newState.channels[channel.id] = channel;

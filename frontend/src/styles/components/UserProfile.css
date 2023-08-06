@@ -1,15 +1,5 @@
 .user_prof-container {
-    /* width: 240px;
-    position: fixed;
-    bottom: 0;
-    padding: 8px 12px;
-    background-color: #232428;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px; */
-    /* margin-top: 100%; */
-    /* width: 100%; */
+
     display: flex;
     justify-content: space-between;
     align-items: center;
