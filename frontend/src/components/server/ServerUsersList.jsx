@@ -13,11 +13,9 @@ export function ServerUsersList() {
           <h3>Users</h3>
         </header>
         <div className='server-users-list__users'>
-          {serverUsers.map((user) => {
+          {serverUsers.map((user, i) => {
             return (
-              <>
-                <ServerUser user={user} />
-              </>
+              <ServerUser key={i} user={user} />
             );
           })}
         </div>

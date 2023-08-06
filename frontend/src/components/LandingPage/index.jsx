@@ -23,7 +23,6 @@ export default () => {
     alert("Feature coming soon!");
   };
 
-  console.log(window.innerWidth >= 480)
   return (
     <div className="landing-page">
       <div className="landing-page-scroll-container">

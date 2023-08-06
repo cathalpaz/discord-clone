@@ -43,8 +43,9 @@ function Developers() {
   return (
     <div className='dev-container'>
         <h3>Meet the Developers!</h3>
-        {developers.map(dev => (
-            <div className='dev_prof-container'>
+        {developers.map((dev, i) => (
+
+            <div key={i} className='dev_prof-container'>
                 <div className='user_prof-info'>
                     <div className='user_prof-img-container'>
                         <img src={dev.pic} />
@@ -56,6 +57,7 @@ function Developers() {
                 </div>
                 <div className='user_prof-settings'>
                     <OpenModalSpan
+
                         buttonText={'View'}
                         modalComponent={<DevProfile dev={dev} />}
                     />

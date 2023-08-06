@@ -98,8 +98,8 @@ function FriendList({ selectedTab, setSelectedTab }) {
                 </p>
               </div>
             ) : (
-              filteredFriends.map((friend) => (
-                <>
+              filteredFriends.map((friend, i) => (
+                <div key={i}>
                   <div className="friend-list-heading-border"></div>
 
                   <div
@@ -130,7 +130,7 @@ function FriendList({ selectedTab, setSelectedTab }) {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               ))
             )}
           </div>

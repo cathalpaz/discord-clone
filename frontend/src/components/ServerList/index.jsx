@@ -67,9 +67,7 @@ function ServerList() {
         </div>
         <div className='serverlist-main-list'>
           {serverIds.map((id) => (
-            <>
-              <Server serverId={id} onClick={openServer} />
-            </>
+            <Server key={id} serverId={id} onClick={openServer} />
           ))}
           <span
             className='serverlist-add-server .tooltip-container'
