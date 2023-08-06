@@ -97,7 +97,8 @@ def handle_channel_message(data):
              "user_id": data['user']['id'],
              "channel_id": data['channel_id'],
              "updated": False,
-             'id': f"{new_channel_message.id}"
+             'id': f"{new_channel_message.id}",
+             'username': f"{user.username}"
          }, broadcast=True)
     emit(f"server-channel-messages-notifications-{data['server_id']}",
          {

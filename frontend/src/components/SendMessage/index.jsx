@@ -11,6 +11,7 @@ export default function SendMessage({ socket }) {
   const typingTimeoutRef = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
   useEffect(() => {
+    console.log("THIS USEFFECT IS RUNNING");
     if (typingTimeoutRef.current) {
       clearTimeout(typingTimeoutRef.current);
     }
@@ -60,6 +61,7 @@ export default function SendMessage({ socket }) {
       server_id: serverId,
     });
     setMessage("");
+    setIsTyping(false);
   };
   return (
     <div className='send-message-container'>
