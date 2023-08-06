@@ -62,16 +62,16 @@ export default function SendMessage({ socket }) {
     setMessage("");
   };
   return (
-    <div className="send-message-container">
+    <div className='send-message-container'>
       {singleServer.channels[channelId]?.name != undefined ? (
         <input
-          className="send-message-input"
-          type="textbox"
+          className='send-message-input'
+          type='textbox'
           placeholder={`Message #${singleServer.channels[channelId].name}`}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === "Enter" && message.trim() !== "") {
               handleSendMessage();
             }
           }}
