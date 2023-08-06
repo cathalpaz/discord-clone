@@ -89,7 +89,6 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
       method: "PUT",
       body: userFormData,
     });
-    console.log("hi");
     if (res.ok) {
       const data = await res.json();
 
@@ -97,7 +96,6 @@ export const thunkUpdateUser = (userFormData, userId) => async (dispatch) => {
       return data;
     }
   } catch (err) {
-    console.log(err);
     return err;
   }
 };
@@ -126,12 +124,10 @@ export const thunkRejectFriendRequest = (username) => async (dispatch) => {
     });
     if (res.ok) {
       const data = await res.json();
-      console.log("THIS IS THEE DATA", data);
       dispatch(rejectFriendRequest(data.friend));
       return data;
     }
   } catch (err) {
-    console.log("there was an errork", err);
     return err;
   }
 };
@@ -143,7 +139,6 @@ export const thunkAcceptFriendRequest = (username) => async (dispatch) => {
     });
     if (res.ok) {
       const data = await res.json();
-      console.log("this is the data");
       dispatch(acceptFriendRequest(data.friend));
       return data;
     }
@@ -236,14 +231,11 @@ export default function reducer(state = initialState, action) {
     case actionTypes.REJECT_FRIEND_REQUEST: {
       const newState = structuredClone(state);
       const { friendId } = action.payload;
-      console.log("this is the payload", action.payload);
-      console.log("this is the friend from the payload", friendId);
       // Remove from friends list or just change status to rejected? Just gonna change to rejected right now
       const pendingFriend = newState.friends.find((f) => f.id == friendId);
       if (pendingFriend) {
         pendingFriend.status = "REJECTED";
       }
-      console.log("this is the pending friend now", pendingFriend);
       return newState;
     }
     default:

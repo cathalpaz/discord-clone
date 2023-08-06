@@ -19,7 +19,7 @@ function NotFoundPage() {
   const sendToLanding = () => {
     history.push("/")
   }
-  console.log(window.outerWidth == 375)
+
   return (
     <>
         <div className='nav-bar-container'>

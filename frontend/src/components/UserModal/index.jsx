@@ -15,9 +15,8 @@ function UserModal() {
   const [email, setEmail] = useState(user?.email);
   const [editUsername, setEditUsername] = useState(false);
   const [editBirthday, setEditBirthday] = useState(false);
-  // const [editEmail, setEditEmail] = useState(false);
   const { closeModal } = useModal();
-  
+
   const handleLogout = () => {
     dispatch(logout());
     closeModal();
@@ -29,14 +28,11 @@ function UserModal() {
   }, [color]);
 
   const handleSubmit = async () => {
-    // console.log(user)
     const formData = new FormData();
 
     formData.append("username", username);
     formData.append("banner_color", color);
-    // if (email !== user.email) formData.append("email", email);
     if (Array.from(formData.entries()).length) {
-      console.log("change", formData);
       const result = await dispatch(thunkUpdateUser(formData, user.id));
       closeModal();
     }

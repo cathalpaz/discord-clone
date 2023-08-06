@@ -142,7 +142,6 @@ export const directMessagesReducer = (state = initialState, action) => {
     case actionTypes.ADD_DM_USER: {
       const newState = structuredClone(state);
       const { userId, dmUser } = action.payload;
-      console.log("THIS IS THE USERID ", userId);
       if (!newState.users[userId]) {
         newState.users[userId] = {
           username: dmUser.username,

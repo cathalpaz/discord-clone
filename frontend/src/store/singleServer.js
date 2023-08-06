@@ -102,11 +102,9 @@ export const thunkDeleteChannelMessage =
       );
       if (res.ok) {
         const data = await res.json();
-        console.log("THIS IS THE DATA");
         dispatch(deleteSingleChannelMessage(channelId, messageId));
       }
     } catch (err) {
-      console.log(err);
       return err;
     }
   };
