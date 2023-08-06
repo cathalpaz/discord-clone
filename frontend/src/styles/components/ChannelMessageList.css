@@ -8,7 +8,8 @@
 }
 .channel-message__avatar-container {
     width: 45px;
-    height: 45px
+    height: 45px;
+    align-self: baseline;
 }
 .channel-message__avatar-container img {
     width: 100%;
@@ -26,7 +27,7 @@
 .channel-message__info {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
 }
 .channel-message__info__header {
     display: flex;

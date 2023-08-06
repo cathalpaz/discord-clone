@@ -59,7 +59,9 @@ export function ChannelMessage({ message, user, socket }) {
             </div>
           ) : null}
         </header>
-        <p className='channel-message__info__content'>{message.content}</p>
+        <div className='channel-message__info__content'>
+          <p>{message.content}</p>
+        </div>
       </div>
     </div>
   );
