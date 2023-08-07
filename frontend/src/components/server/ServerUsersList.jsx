@@ -6,7 +6,6 @@ import { ServerUser } from "./ServerUser";
 export function ServerUsersList() {
   const serverUsers = useSelector((state) => state.singleServer?.users);
   const server = useSelector(state => state.singleServer)
-  console.log('LOOK', server)
 
   return (
     <>

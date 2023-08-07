@@ -1,13 +1,15 @@
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom";
 import { ServerToolTip } from "./ServerToolTip";
 import { useRef, useState } from "react";
 
-export function Server({ serverId }) {
+export function Server({ sId }) {
   const imgRef = useRef();
-  const server = useSelector((state) => state.servers[serverId]);
+  const server = useSelector((state) => state.servers[sId]);
   const [isHover, setIsHover] = useState(false);
   const userStore = useSelector((state) => state.session.user);
+  const { serverId } = useParams()
+
   if (!server) return false;
   const history = useHistory();
   const handleClick = (e) => {
@@ -25,12 +27,21 @@ export function Server({ serverId }) {
           onMouseLeave={() => setIsHover(false)}
         >
           <div className="server__img-container" ref={imgRef}>
-            <img
-              style={{ width: "3rem", height: "3rem" }}
-              className="serverlist-icon .tooltip-container"
-              src={server.avatar}
-              alt=""
-            />
+            {parseInt(serverId) === server?.id ? (
+              <img
+                style={{ width: "3rem", height: "3rem", border: "2px solid white"}}
+                className="serverlist-icon .tooltip-container"
+                src={server.avatar}
+                alt=""
+              />
+            ) : (
+              <img
+                style={{ width: "3rem", height: "3rem" }}
+                className="serverlist-icon .tooltip-container"
+                src={server.avatar}
+                alt=""
+              />
+            ) }
             {isHover && (
               <ServerToolTip serverName={server.name} parentRef={imgRef} />
             )}
