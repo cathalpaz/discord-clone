@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { thunkGetAllServers } from "../../store/server";
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
@@ -18,12 +18,13 @@ function ServerList() {
   const [createServerHover, setCreateServerHover] = useState(false);
   const [discoverServersHover, setDiscoverServersHover] = useState(false);
   const [dmHover, setDmHover] = useState(false);
+  let onHome = true
 
   useEffect(() => {
     dispatch(thunkGetAllServers());
   }, [dispatch]);
 
-  const openServer = (server) => {
+  const openServer = async (server) => {
     history.push(`/${server.id}/${server.channels[0].id}`);
   };
 
@@ -35,22 +36,60 @@ function ServerList() {
     history.push("/discovery");
   };
 
+  if (window.location.pathname !== "/@") {
+    onHome = false
+  }
+
   return (
     <>
       <div className="serverlist-container">
-        <div
-          onClick={sendToMain}
-          className="serverlist-friend-button"
-          style={{ position: "relative" }}
-          ref={dmRef}
-          onMouseEnter={() => setDmHover(true)}
-          onMouseLeave={() => setDmHover(false)}
+        {onHome ? <div
+          style={{
+            display: "flex",
+            gap: ".45rem",
+            alignItems: "center",
+            marginRight: ".7rem",
+          }}
         >
-          {dmHover && (
-            <ServerToolTip serverName={"Direct Messages"} parentRef={dmRef} />
-          )}
-          <i className="fa-brands fa-discord fa-lg"></i>
-        </div>
+          <div
+            className="serverlist-selector"
+            style={{ height: "2.5rem", marginTop: ".75rem" }}
+          ></div>
+          <div
+            onClick={sendToMain}
+            className="serverlist-friend-button"
+            style={{ position: "relative" }}
+            ref={dmRef}
+            onMouseEnter={() => setDmHover(true)}
+            onMouseLeave={() => setDmHover(false)}
+          >
+            {dmHover && (
+              <ServerToolTip serverName={"Direct Messages"} parentRef={dmRef} />
+            )}
+            <i className="fa-brands fa-discord fa-lg"></i>
+          </div>
+        </div> : <div
+          style={{
+            display: "flex",
+            gap: ".45rem",
+            alignItems: "center",
+          }}
+        >
+          <div
+            onClick={sendToMain}
+            className="serverlist-friend-button"
+            style={{ position: "relative" }}
+            ref={dmRef}
+            onMouseEnter={() => setDmHover(true)}
+            onMouseLeave={() => setDmHover(false)}
+          >
+            {dmHover && (
+              <ServerToolTip serverName={"Direct Messages"} parentRef={dmRef} />
+            )}
+            <i className="fa-brands fa-discord fa-lg"></i>
+          </div>
+        </div>}
+
         <div>
           <p
             style={{

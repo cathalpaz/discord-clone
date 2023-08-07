@@ -28,19 +28,32 @@ export function Server({ sId }) {
         >
           <div className="server__img-container" ref={imgRef}>
             {parseInt(serverId) === server?.id ? (
-              <img
-                style={{ width: "3rem", height: "3rem", border: "2px solid white"}}
-                className="serverlist-icon .tooltip-container"
-                src={server.avatar}
-                alt=""
-              />
+              <>
+                <div style={{display:"flex", gap:".45rem", alignItems:"center"}}>
+                  <div className="serverlist-selector" style={{height:"2.5rem"}}>
+
+                  </div>
+                  <img
+                    style={{ width: "3rem", height: "3rem"}}
+                    className="serverlist-icons .tooltip-container"
+                    src={server.avatar}
+                    alt=""
+                  />
+
+                </div>
+              </>
             ) : (
+              <div style={{display:"flex"}}>
+              <div className="serverlist-false-selector">
+
+              </div>
               <img
                 style={{ width: "3rem", height: "3rem" }}
                 className="serverlist-icon .tooltip-container"
                 src={server.avatar}
                 alt=""
               />
+              </div>
             ) }
             {isHover && (
               <ServerToolTip serverName={server.name} parentRef={imgRef} />
