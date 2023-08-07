@@ -56,8 +56,8 @@ function ServerList() {
             style={{
               borderBottom: "2px solid #35363C",
               width: "2rem",
-              marginTop: ".5rem",
-              marginBottom: ".5rem",
+              marginTop: ".6rem",
+              marginBottom: ".6rem",
             }}
           ></p>
         </div>
