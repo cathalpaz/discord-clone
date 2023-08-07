@@ -8,7 +8,7 @@ For more details of current features, visit our wiki page:
 * [Database Diagram](https://github.com/cathalpaz/discord-clone/wiki/Database-Diagram)
 * [User Stories](https://github.com/cathalpaz/discord-clone/wiki/User-Stories)
 
-#Home and Friends View
+# Home and Friends View
 ![slacord-home](https://github.com/cathalpaz/discord-clone/assets/65454757/4e1aeaab-7515-48c4-bf9f-5c765163bbaa)
 
 ## Technologies used
