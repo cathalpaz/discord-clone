@@ -55,7 +55,7 @@ def seed_users_servers():
 
     if server_2:
         [server_2.users.append(user)
-         for user in [user_1, user_6, user_7, user_8, user_9]]
+         for user in [user_1, user_3, user_6, user_7, user_8, user_9]]
         db.session.commit()
 
     if server_3:
@@ -65,7 +65,7 @@ def seed_users_servers():
 
     if server_4:
         [server_4.users.append(user)
-         for user in [user_11, user_24, user_25, user_26, user_27, user_15, user_12, user_22]]
+         for user in [user_4, user_24, user_25, user_26, user_27, user_15, user_12, user_22]]
         db.session.commit()
 
     if server_5:
@@ -85,7 +85,7 @@ def seed_users_servers():
 
     if server_8:
         [server_8.users.append(user)
-         for user in [user_18, user_19, user_20, user_21, user_22, user_23]]
+         for user in [user_18, user_19, user_20, user_21, user_22, user_23, user_8]]
         db.session.commit()
 
     if server_9:
@@ -95,7 +95,7 @@ def seed_users_servers():
 
     if server_10:
         [server_10.users.append(user)
-         for user in [user_11, user_12, user_13, user_14, user_15, user_16]]
+         for user in [user_10, user_12, user_13, user_14, user_15, user_16]]
         db.session.commit()
 
     if server_11:
