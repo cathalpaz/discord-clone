@@ -74,6 +74,18 @@ def seed_users():
     ari = User(
         username='ari', email='ari@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
     )
+    cathal = User(
+        username='cathal', email='cathal@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
+    jason = User(
+        username='jason', email='jason@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
+    jp = User(
+        username='jp', email='jp@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
+    zachary = User(
+        username='zachary', email='zachary@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
@@ -98,6 +110,10 @@ def seed_users():
     db.session.add(remi)
     db.session.add(amaya)
     db.session.add(ari)
+    db.session.add(cathal)
+    db.session.add(jason)
+    db.session.add(jp)
+    db.session.add(zachary)
 
     db.session.commit()
 

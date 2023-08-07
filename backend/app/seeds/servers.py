@@ -20,6 +20,7 @@ def seed_servers():
     server_4 = Server(
         name='App Academy',
         owner_id=4,
+        public=True
     )
     server_5 = Server(
         name="Hackers' Hideout",
@@ -49,6 +50,11 @@ def seed_servers():
         owner_id=10,
         public=True
     )
+    server_11 = Server(
+        name='Slacord Team',
+        owner_id=1,
+        public=True
+    )
 
     db.session.add(server_1)
     db.session.add(server_2)
@@ -60,6 +66,7 @@ def seed_servers():
     db.session.add(server_8)
     db.session.add(server_9)
     db.session.add(server_10)
+    db.session.add(server_11)
 
     db.session.commit()
 
