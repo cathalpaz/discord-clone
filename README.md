@@ -1,4 +1,6 @@
 # Slacord
+<img width="1705" alt="Screenshot 2023-08-06 at 9 35 05 PM" src="https://github.com/cathalpaz/discord-clone/assets/16927689/01d9ef70-e08b-4e34-bdef-446d4979bab5">
+
 - [LIVE LINK](https://slacord.onrender.com)
 
 Slacord is a clone of Discord, a free communications app that keeps you connected with friends, communities, and developers. Users stay connected to their friends via direct messaging and by joining servers they create together so they can chat in real time.
