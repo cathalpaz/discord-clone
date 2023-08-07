@@ -241,7 +241,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-basis: 26%;
 }
 
 .body-first-block-text > h2 {
@@ -703,7 +702,7 @@ body {
 
     .body-img1 {
         max-height: 100%;
-        margin-left: 18rem;
+        /* margin-left: 18rem; */
     }
 
     .body-first-block-container {
