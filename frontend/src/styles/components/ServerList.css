@@ -21,6 +21,10 @@
     cursor: pointer;
 }
 
+.serverlist-friend-button:active {
+    width: 3.2rem;
+}
+
 .tooltip-container {
   position: relative;
   display: inline-block;
@@ -74,6 +78,10 @@
     cursor: pointer;
 }
 
+.serverlist-icon:active {
+    margin-top: .05rem;
+}
+
 .serverlist-main-list {
     display: flex;
     flex-direction: column;
@@ -106,6 +114,10 @@
     color: var(--light-background);
     background-color: var(--secondary);
     border-radius: 1rem;
+}
+
+ .serverlist-add-server > i:active {
+    margin-top: .1rem;
 }
 
 .general-view-header {
