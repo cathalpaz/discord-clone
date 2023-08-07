@@ -13,7 +13,7 @@ export default function DirectMessageUserSection() {
     "MM/DD/YYYY"
   );
 
-  console.log("note", note);
+  // console.log("note", note);
   return (
     <div className='direct-message-user-container'>
       <div
