@@ -10,11 +10,8 @@ export default function SendMessage({ socket }) {
   const user = useSelector((state) => state.session.user);
   const typingTimeoutRef = useRef(null);
   const [isTyping, setIsTyping] = useState(false);
+  const [isStopTypingScheduled, setIsStopTypingScheduled] = useState(false);
   useEffect(() => {
-    console.log("THIS USEFFECT IS RUNNING");
-    if (typingTimeoutRef.current) {
-      clearTimeout(typingTimeoutRef.current);
-    }
     if (message) {
       if (!isTyping) {
         setIsTyping(true);
@@ -26,7 +23,26 @@ export default function SendMessage({ socket }) {
           username: user.username,
         });
       }
-      typingTimeoutRef.current = setTimeout(() => {
+      if (!isStopTypingScheduled) {
+        setIsStopTypingScheduled(true);
+        typingTimeoutRef.current = setTimeout(() => {
+          setIsTyping(false);
+          setIsStopTypingScheduled(false);
+          socket.emit("channel-typing", {
+            user_id: user.id,
+            channel_id: channelId,
+            server_id: serverId,
+            typing: false,
+            username: user.username,
+          });
+        }, 5000);
+      }
+    } else {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+        setIsStopTypingScheduled(false);
+      }
+      if (isTyping) {
         setIsTyping(false);
         socket.emit("channel-typing", {
           user_id: user.id,
@@ -35,9 +51,9 @@ export default function SendMessage({ socket }) {
           typing: false,
           username: user.username,
         });
-      }, 5000);
+      }
     }
-  }, [message, channelId]);
+  }, [message, channelId, user]);
 
   useEffect(() => {
     if (!socket) return;

@@ -17,7 +17,6 @@ export function ChannelMessageList({ socket }) {
   useEffect(() => {
     if (!socket) return;
     socket.on(`server-channel-messages-${serverId}`, (data) => {
-      console.log("THIS IS THE DATA", data);
       dispatch(updateChannelMessages(data));
     });
     socket.on(`server-channel-messages-delete-${serverId}`, (data) => {
@@ -40,7 +39,7 @@ export function ChannelMessageList({ socket }) {
       socket.off(`server-channel-messages-delete-${serverId}`);
       socket.off(`server-channel-${channelId}-user-typing`);
     };
-  }, [serverId, socket]);
+  }, [serverId, socket, channelId]);
   useEffect(() => {
     if (!socket) return;
     socket.on(`server-channel-messages-${serverId}`, (data) => {
