@@ -74,7 +74,7 @@ export const directMessagesReducer = (state = initialState, action) => {
       const orderedDirectMessages = [...state.orderedDirectMessages];
 
       for (let message of messages) {
-        console.log("MESSAGE", message);
+        // console.log("MESSAGE", message);
         let otherUserId;
         if (message.user_from_id != userId) otherUserId = message.user_from_id;
         else otherUserId = message.user_to_id;

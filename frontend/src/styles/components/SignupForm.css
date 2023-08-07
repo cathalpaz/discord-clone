@@ -29,8 +29,13 @@
 }
 .file__input-btn {
     width: 102px;
-    height: 40px;
+    height: 48px;
     margin: 0.4rem auto;
+    background-color: var(--secondary-background-darker);
+    border: 0;
+    cursor: pointer;
+    border-radius: .2rem;
+    color: var(--white);
 }
 
 .avatar__preview {
@@ -92,18 +97,24 @@
     margin-right: 0.5rem;
 }
 
+.signup-form-banner-color > input{
+    cursor: pointer;
+}
+
 .signup-form-banner-color > input, .signup-form-pronouns > input {
-    height: 2.5rem;
+    height: 3rem;
     background-color: var(--secondary-background-darker);
     border-radius: .2rem;
     margin-bottom: 1rem;
     width: 95%;
     margin-top: 0.4rem;
     color: var(--white);
+    border: 0;
 }
 
 .signup-form-pronouns > input {
     width: 100%;
+    border: 0;
 }
 
 .signup-form > button {

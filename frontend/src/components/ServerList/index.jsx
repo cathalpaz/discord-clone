@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { thunkGetAllServers } from "../../store/server";
 import OpenModalButton from "../OpenModalButton";
 import CreateServerModal from "../CreateServerModal";
@@ -56,14 +56,14 @@ function ServerList() {
             style={{
               borderBottom: "2px solid #35363C",
               width: "2rem",
-              marginTop: ".5rem",
-              marginBottom: ".5rem",
+              marginTop: ".6rem",
+              marginBottom: ".6rem",
             }}
           ></p>
         </div>
         <div className="serverlist-main-list">
           {serverIds.map((id) => (
-            <Server key={id} serverId={id} onClick={openServer} />
+            <Server key={id} sId={id} onClick={openServer} />
           ))}
           <span
             className="serverlist-add-server .tooltip-container"
@@ -84,6 +84,14 @@ function ServerList() {
               buttonText={"+"}
             />
           </span>
+          <div>
+            <p
+              style={{
+                borderBottom: "2px solid #35363C",
+                width: "2rem",
+              }}
+            ></p>
+          </div>
           <span
             style={{ position: "relative" }}
             className="serverlist-add-server"

@@ -43,6 +43,9 @@ def seed_channels():
         {'server_id': 9, 'type': 'text', "name": "jokes"},
         {'server_id': 10, 'type': 'text', "name": "recommendations"},
         {'server_id': 10, 'type': 'text', "name": "deals"},
+        {'server_id': 11, 'type': 'text', "name": "general"},
+        {'server_id': 11, 'type': 'text', "name": "frontend-problems"},
+        {'server_id': 11, 'type': 'text', "name": "backend-problems"},
     ]
 
     for data in channels:

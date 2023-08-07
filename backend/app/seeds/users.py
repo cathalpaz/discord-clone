@@ -17,9 +17,6 @@ def seed_users():
     kai = User(
         username='kai', email='kai@aa.io', password='password', birthday="05/11/1992", banner_color="#808000", bio="this is a test...", pronouns=pronouns[1],
     )
-    eliana = User(
-        username='eliana', email='eliana@aa.io', password='password', birthday="03/11/1994", banner_color="#800000", bio="this is a test...", pronouns=pronouns[2],
-    )
     jayden = User(
         username='jayden', email='jayden@aa.io', password='password', birthday="06/11/1988", banner_color="#00FF00 ", bio="this is a test...", pronouns=pronouns[0],
     )
@@ -29,20 +26,23 @@ def seed_users():
     luca = User(
         username='luca', email='luca@aa.io', password='password', birthday="03/11/1999", banner_color="#008080", bio="this is a test...", pronouns=pronouns[2],
     )
-    rowan = User(
-        username='rowan', email='rowan@aa.io', password='password', birthday="08/11/2000", banner_color="#000080", bio="this is a test...", pronouns=pronouns[1],
-    )
     nova = User(
         username='nova', email='nova@aa.io', password='password', birthday="11/11/1996", banner_color="#FF00FF", bio="this is a test...", pronouns=pronouns[0],
+    )
+    finn = User(
+        username='finn', email='finn@aa.io', password='password', birthday="04/11/2003", banner_color="#F08080", bio="this is a test...", pronouns=pronouns[0],
+    )
+    eliana = User(
+        username='eliana', email='eliana@aa.io', password='password', birthday="03/11/1994", banner_color="#800000", bio="this is a test...", pronouns=pronouns[2],
+    )
+    rowan = User(
+        username='rowan', email='rowan@aa.io', password='password', birthday="08/11/2000", banner_color="#000080", bio="this is a test...", pronouns=pronouns[1],
     )
     amara = User(
         username='amara', email='amara@aa.io', password='password', birthday="10/11/2001", banner_color="#800080", bio="this is a test...", pronouns=pronouns[1],
     )
     aaliyah = User(
         username='aaliyah', email='aaliyah@aa.io', password='password', birthday="01/11/2004", banner_color="#CD5C5C", bio="this is a test...", pronouns=pronouns[2],
-    )
-    finn = User(
-        username='finn', email='finn@aa.io', password='password', birthday="04/11/2003", banner_color="#F08080", bio="this is a test...", pronouns=pronouns[0],
     )
     zion = User(
         username='zion', email='zion@aa.io', password='password', birthday="03/11/1987", banner_color="#FA8072", bio="this is a test...", pronouns=pronouns[1],
@@ -74,20 +74,32 @@ def seed_users():
     ari = User(
         username='ari', email='ari@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
     )
+    cathal = User(
+        username='cathal', email='cathal@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
+    jason = User(
+        username='jason', email='jason@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
+    jp = User(
+        username='jp', email='jp@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
+    zachary = User(
+        username='zachary', email='zachary@aa.io', password='password', birthday="03/11/1992", banner_color="#4682B4", bio="this is a test...", pronouns=pronouns[2],
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(kai)
-    db.session.add(eliana)
     db.session.add(jayden)
     db.session.add(ezra)
     db.session.add(luca)
-    db.session.add(rowan)
     db.session.add(nova)
+    db.session.add(finn)
+    db.session.add(eliana)
+    db.session.add(rowan)
     db.session.add(amara)
     db.session.add(aaliyah)
-    db.session.add(finn)
     db.session.add(zion)
     db.session.add(maeve)
     db.session.add(kayden)
@@ -98,6 +110,10 @@ def seed_users():
     db.session.add(remi)
     db.session.add(amaya)
     db.session.add(ari)
+    db.session.add(cathal)
+    db.session.add(jason)
+    db.session.add(jp)
+    db.session.add(zachary)
 
     db.session.commit()
 

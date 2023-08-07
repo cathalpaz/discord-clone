@@ -98,6 +98,16 @@
     color: var(--white);
 }
 
+.nav-bar-scroll-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+.nav-bar-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
 @media (min-width: 481px) and (max-width: 768px) {
     .nav-bar-links {
         display: none;

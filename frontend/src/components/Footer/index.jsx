@@ -1,9 +1,13 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import "../../styles/LandingPage.css";
 
 export default function Footer() {
+  const history = useHistory()
+
   const sendToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log('aasd')
+    window.scrollTo({ top: 1, behavior: "smooth" });
   };
 
   const sendToRegister = () => {

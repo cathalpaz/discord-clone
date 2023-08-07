@@ -5,6 +5,7 @@ import { ServerUser } from "./ServerUser";
 
 export function ServerUsersList() {
   const serverUsers = useSelector((state) => state.singleServer?.users);
+  const server = useSelector(state => state.singleServer)
 
   return (
     <>
@@ -14,7 +15,7 @@ export function ServerUsersList() {
         </header>
         <div className="server-users-list__users">
           {serverUsers.map((user, i) => {
-            return <ServerUser key={i} user={user} />;
+            return <ServerUser key={i} user={user} server={server} />;
           })}
         </div>
       </div>
