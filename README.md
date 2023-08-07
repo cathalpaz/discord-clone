@@ -1,21 +1,26 @@
 # Slacord
 
-Slacord is a clone of Discord, a free communications app that keeps you connected with friends, gaming communities, and developers. Users stay connected to their friends via direct messaging and by joining servers they create together so they can chat in real time.
+Slacord is a clone of Discord, a free communications app that keeps you connected with friends, communities, and developers. Users stay connected to their friends via direct messaging and by joining servers they create together so they can chat in real time.
+
+For more details of current features, visit our wiki page:
+* [Feature List](https://github.com/cathalpaz/discord-clone/wiki/Feature-List)
+* [Database Diagram](https://github.com/cathalpaz/discord-clone/wiki/Database-Diagram)
+* [User Stories](https://github.com/cathalpaz/discord-clone/wiki/User-Stories)
 
 
 ## Technologies used
 
- - Python
- - JavaScript
- - HTML
- - CSS
- - React.js
- - Redux.js
- - Flask
- - SQLAlchemy
- - Vite.js
- - Websocket
+**Frontend**
+- JavaScript, React, Redux, HTML, CSS, Vite
+
+**Backend**
+- Python, Flask, SQLAlchemy, Websockets
+
+ **Cloud Services**
  - AWS (Amazon Web Services)
+
+## Screenshots/GIFS
+
 
 ## Features
 
