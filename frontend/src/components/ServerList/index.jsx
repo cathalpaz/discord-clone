@@ -84,6 +84,14 @@ function ServerList() {
               buttonText={"+"}
             />
           </span>
+          <div>
+            <p
+              style={{
+                borderBottom: "2px solid #35363C",
+                width: "2rem",
+              }}
+            ></p>
+          </div>
           <span
             style={{ position: "relative" }}
             className="serverlist-add-server"
