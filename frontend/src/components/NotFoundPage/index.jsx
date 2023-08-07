@@ -20,6 +20,10 @@ function NotFoundPage() {
     history.push("/");
   };
 
+  const sendToApp = () => {
+    alert("Feature coming soon!");
+  };
+
   return (
     <>
       <div className="nav-bar-container">
@@ -37,13 +41,13 @@ function NotFoundPage() {
           </p>
         </div>
         <div className="nav-bar-links">
-          <p>Download</p>
-          <p>Nitro</p>
-          <p>Discover</p>
-          <p>Safety</p>
-          <p>Support</p>
-          <p>Blog</p>
-          <p>Careers</p>
+        <p onClick={sendToApp}>Download</p>
+        <p onClick={sendToApp}>Nitro</p>
+        <p onClick={sendToApp}>Discover</p>
+        <p onClick={sendToApp}>Safety</p>
+        <p onClick={sendToApp}>Support</p>
+        <p onClick={sendToApp}>Blog</p>
+        <p onClick={sendToApp}>Careers</p>
         </div>
         <div className="nav-bar-login">
           {sessionUser ? (
