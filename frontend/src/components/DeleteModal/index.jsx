@@ -27,7 +27,6 @@ function DeleteModal({ type, cId }) {
       window.location.reload();
     }
   }
-  console.log("TYPE", type)
   if (type === "channel") {
     word = "#" + state.singleServer.channels[cId].name;
   } else {
