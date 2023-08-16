@@ -199,12 +199,12 @@ function FriendList({ selectedTab, setSelectedTab }) {
         <div className="content-add">
           <div className="Add-Friend">ADD FRIEND</div>
           <div className="Add-Desc">
-            You can add friends with their Discord username
+            You can add friends with their Slacord username
           </div>
           <div className="Add-Input">
             <input
               type="text"
-              placeholder="You can add friends with their Discord username."
+              placeholder="You can add friends with their Slacord username."
               value={searchQuery}
               onChange={searchMessages}
               className="add-a-friend-bar"
