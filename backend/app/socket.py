@@ -3,6 +3,8 @@ from .models import DirectMessage, ChannelMessage, Channel, db, User
 from flask_socketio import SocketIO, emit, send
 from datetime import datetime
 from flask_login import current_user
+from datetime import datetime
+import pytz
 
 
 if os.environ.get("FLASK_ENV") == "production":
@@ -78,7 +80,7 @@ def handle_channel_message(data):
         db.session.commit()
         emit(f"server-channel-messages-{data['server_id']}", {
             'content': data['new_message']['content'],
-             "created_at": f"{old_message.created_at}",
+             "created_at": datetime.utcnow().replace(tzinfo=pytz.utc).strftime("%Y-%m-%d %H:%M:%S %Z"),
              "user_id": data['user']['id'],
              "channel_id": data['channel_id'],
              "updated": True,
@@ -93,7 +95,7 @@ def handle_channel_message(data):
     emit(f"server-channel-messages-{data['server_id']}",
          {
              "content": data['message'],
-             "created_at": f"{new_channel_message.created_at}",
+             "created_at": datetime.utcnow().replace(tzinfo=pytz.utc).strftime("%Y-%m-%d %H:%M:%S %Z"),
              "user_id": data['user']['id'],
              "channel_id": data['channel_id'],
              "updated": False,
