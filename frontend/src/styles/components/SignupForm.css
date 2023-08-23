@@ -115,6 +115,7 @@
 .signup-form-pronouns > input {
     width: 100%;
     border: 0;
+    padding-left: .5rem;
 }
 
 .signup-form > button {
@@ -176,6 +177,7 @@
     width: 30%;
     margin-top: 0.4rem;
     color: var(--white);
+    cursor: pointer;
 }
 
 .signup-errors {
