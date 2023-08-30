@@ -69,9 +69,9 @@ While using Slacord, users can:
 | PUT /api/servers/:id| This fetch will update a server based on server's id | 
 | GET /api/servers/:id/join | This fetch will allow the current signed in user to join the public server | 
 | GET /api/servers/:id/leave | This fetch will allow the current signed in user to leave the public server | 
-| GET /api/server-invites/current |  |
-| POST /api/server-invites/:username/:serverId |  |
-| PUT /api/server-invites/:id | |
+| GET /api/server-invites/current | This fetch will get the current signed in user's server invites |
+| POST /api/server-invites/:username/:serverId | This fetch will send a server invite to the given username inside of the server based on server's id |
+| PUT /api/server-invites/:id | This fetch will allow you to accept or decline a server's invite based on server's id |
 | POST /api/login | This fetch attempts to login a user with the provided credentials. It returns an object representing the current user, if validation succeeds |
 | DELETE /api/login/ | This fetch attempts to log out the current user. |
 
