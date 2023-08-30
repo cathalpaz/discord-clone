@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/components/SearchServers.css";
 import { thunkGetPublicServers } from "../../store/server";
@@ -11,10 +12,11 @@ import { MainLoader } from "../Loading/MainLoader";
 
 function SearchServers() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
   const pubServers = useSelector((state) => state.servers.publicServers);
   const servers = useSelector((state) => state.servers);
   const [loading, setLoading] = useState(true);
-
+  const history = useHistory();
   const [search, setSearch] = useState("");
 
   const allPubs = {};
@@ -43,9 +45,13 @@ function SearchServers() {
     return <MainLoader />;
   }
 
+  const goToMain = () => {
+    history.push("/login")
+  }
+
   return (
     <>
-      <div className="search-servers-container">
+    { user ? <div className="search-servers-container">
         <div className="search-servers-left-container">
           <div className="search-servers-server-list">
             <ServerList />
@@ -85,7 +91,8 @@ function SearchServers() {
             </div>
           </div>
         </div>
-      </div>
+      </div> : <>{goToMain()}</>}
+
     </>
   );
 }

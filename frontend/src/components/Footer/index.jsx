@@ -6,7 +6,7 @@ export default function Footer() {
   const history = useHistory()
 
   const sendToTop = () => {
-    window.scrollTo({ top: 1, behavior: "smooth" });
+    window.scrollTo({ top: 0 });
   };
 
   const sendToRegister = () => {
