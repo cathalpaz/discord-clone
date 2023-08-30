@@ -1,5 +1,5 @@
 # Slacord
-<img width="1705" alt="Screenshot 2023-08-06 at 9 35 05 PM" src="https://github.com/cathalpaz/discord-clone/assets/16927689/01d9ef70-e08b-4e34-bdef-446d4979bab5">
+<img width="1705" alt="Screenshot 2023-08-06 at 9 35 05 PM" src="https://github.com/cathalpaz/discord-clone/assets/16927689/01d9ef70-e08b-4e34-bdef-446d4979bab5"> <br>
 
 - [LIVE LINK](https://slacord.onrender.com)
 
