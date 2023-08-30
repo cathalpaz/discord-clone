@@ -27,9 +27,6 @@ For more details of current features, visit our wiki page:
  **Cloud Services**
  - AWS (Amazon Web Services)
 
-## Screenshots/GIFS
-
-
 ## Features
 
 While using Slacord, users can:
@@ -41,3 +38,49 @@ While using Slacord, users can:
  - Direct message your friends to chat privately
  - Chat in slacord servers that the user is subscribed to, and direct message one another in real time. 
  - Browse community slacord servers. These public servers can be joined by any user to chat in communities with shared interests.
+
+## Endpoints
+
+| REQUEST | PURPOSE |
+| ------- |-------|
+| PUT /api/channels/:id | This fetch attempts to update the server's channel information based on channel id |
+| DELETE  /api/channels/:id | This fetch will delete the channel based on channel's id |
+| GET /api/channels/:id/messages | This fetch will get all channel messages based on channel id |
+| POST /api/channels/:id/messages | This fetch will create channel messages based on channel id |
+| PUT /api/channels/:id/messages/:messageId | This fetch will edit a channel message based on the channel's id and message's id |
+| DELETE /api/channels/:id/messages/:messageId | This fetch will delete a channel message based on the channel's id and message's id |
+| GET /api/@me | This fetch will get all of the direct messages from the current logged in user |
+| GET /api/@me/:id | This fetch will get a single direct message based on the direct message's id |
+| GET /api/@me/friends | This fetch will get all of the current logged in user's friends |
+| POST /api/@me/friends/:username/send-request | This fetch will send a friend request to the given username |
+| POST /api/@me/friends/:username/accept-request | This fetch will accept a friend request to the given username |
+| POST /api/@me/friends/:username/reject-request | This fetch will reject a friend request to the given username |
+| GET /api/@me/friends/:id | This fetch will get all the direct messages of a friend based on friend id |
+| POST /api/@me/:id | This fetch will create a direct messages to a friend based on friend id |
+| PUT /api/@me/:id | This fetch will update a direct messages to a friend based on friend id |
+| DELETE /api/@me/:id | This fetch will delete a direct messages to a friend based on friend id |
+| GET /api/servers | This fetch will get all of the publically available servers | 
+| GET /api/servers/current | This fetch will get all of the current logged in user's servers | 
+| GET /api/servers/:id | This fetch will get the server's information based on server's id | 
+| GET /api/servers/:id/channels | This fetch will get all the channels inside of a server, if you are an authenticated user | 
+| POST /api/servers/:id/channels | This fetch will allow you to create a new server channel if you are the owner of the server | 
+| POST /api/servers/new | This fetch will create a new server | 
+| DELETE /api/servers/:id | This fetch will delete a server based on server's id| 
+| PUT /api/servers/:id| This fetch will update a server based on server's id | 
+| GET /api/servers/:id/join | This fetch will allow the current signed in user to join the public server | 
+| GET /api/servers/:id/leave | This fetch will allow the current signed in user to leave the public server | 
+| GET /api/server-invites/current |  |
+| POST /api/server-invites/:username/:serverId |  |
+| PUT /api/server-invites/:id | |
+| POST /api/login | This fetch attempts to login a user with the provided credentials. It returns an object representing the current user, if validation succeeds |
+| DELETE /api/login/ | This fetch attempts to log out the current user. |
+
+## Future Goals
+
+## Contact Us
+| Jun "JP" Park | Zachary Stalling | Jason Murphy | Cathal Paz |
+| ------ | ----- | ---- | ---- |
+| [GitHub](https://github.com/thejhp1) | [GitHub](https://github.com/zachary5939) | [GitHub](https://github.com/jmurphy1196) | [GitHub](https://github.com/cathalpaz) |
+| [LinkedIn](https://www.linkedin.com/in/jun-park-3b23b7285/) | [LinkedIn](https://www.linkedin.com/in/zachstallings/) | [LinkedIn](https://www.linkedin.com/in/jason-murphy-3704ba1b8/) | [LinkedIn](https://www.linkedin.com/in/cathal-paz/) |
+| [Wellfound](https://wellfound.com/u/jun-park-35) | | | [Wellfound](https://wellfound.com/u/cathal-paz)|
+
