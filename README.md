@@ -76,7 +76,9 @@ While using Slacord, users can:
 | DELETE /api/login/ | This fetch attempts to log out the current user. |
 
 ## Future Goals
-
+* Create the frontend components for sending, accepting and declining a server invite (backend already complete)
+* Create a mobile friendly version
+  
 ## Contact Us
 | Jun "JP" Park | Zachary Stalling | Jason Murphy | Cathal Paz |
 | ------ | ----- | ---- | ---- |
