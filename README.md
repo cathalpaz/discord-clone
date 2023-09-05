@@ -80,7 +80,7 @@ While using Slacord, users can:
 * Create a mobile friendly version
   
 ## Contact Us
-| Jun "JP" Park | Zachary Stalling | Jason Murphy | Cathal Paz |
+| Jun "JP" Park | Zachary Stallings | Jason Murphy | Cathal Paz |
 | ------ | ----- | ---- | ---- |
 | [GitHub](https://github.com/thejhp1) | [GitHub](https://github.com/zachary5939) | [GitHub](https://github.com/jmurphy1196) | [GitHub](https://github.com/cathalpaz) |
 | [LinkedIn](https://www.linkedin.com/in/jun-park-3b23b7285/) | [LinkedIn](https://www.linkedin.com/in/zachstallings/) | [LinkedIn](https://www.linkedin.com/in/jason-murphy-3704ba1b8/) | [LinkedIn](https://www.linkedin.com/in/cathal-paz/) |
