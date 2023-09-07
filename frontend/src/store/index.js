@@ -27,4 +27,13 @@ const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
+const useStarPercents = (review) => {
+  const [starPercent, setStarPercent] = useState(/* review logic here */);
+
+  const setStarPercentNewValue = (newReviewData) => {
+    const newValue = /* review logic here */ setStarPercent(newValue);
+  };
+  return [starPercent, setStarPercentNewValue];
+};
+
 export default configureStore;
