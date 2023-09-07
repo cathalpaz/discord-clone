@@ -57,7 +57,7 @@ export default () => {
                     className="heading-nav-main-button"
                     onClick={sendToMain}
                   >
-                    Open Discord
+                    Open Slacord
                   </button>
                 ) : (
                   <button
@@ -76,7 +76,7 @@ export default () => {
                     }
                     className="nav-bar-mobile-view"
                   >
-                    Open Discord
+                    Open Slacord
                   </button>
                 }
               </div>

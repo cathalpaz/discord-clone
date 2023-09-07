@@ -21,6 +21,8 @@ function SignupFormPage() {
   const [birthdayDay, setBirthdayDay] = useState("");
   const [birthdayYear, setBirthdayYear] = useState("");
   const [avatar, setAvatar] = useState();
+  const [loading, setLoading] = useState(false)
+
   const fileRef = useRef();
 
   const startYear = 1900;
@@ -35,6 +37,7 @@ function SignupFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     const errors = {};
     if (!email.includes("@")) {
       errors.email = "Must be a valid email.";
@@ -90,10 +93,12 @@ function SignupFormPage() {
       const data = await dispatch(signUp(userFormData));
       if (data) {
         setServerError(data);
+        setLoading(false)
       }
     }
 
     setErrors(errors);
+    setLoading(false)
   };
 
   const sentToLogin = () => {
@@ -426,7 +431,7 @@ function SignupFormPage() {
                 />
               </div>
             </div>
-            <button type="submit">Continue</button>
+            {loading ? <button>LOADING <i className="fa-solid fa-spinner fa-spin-pulse"></i> </button>: <button type="submit">Continue</button>}
           </form>
           <span onClick={sentToLogin} className="signup-already-have-account">
             Already have an account?

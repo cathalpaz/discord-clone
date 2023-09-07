@@ -46,8 +46,7 @@ export function ChannelMessageList({ socket }) {
       const existingTypingUser = usersTyping.find(
         (usr) => usr == data.username
       );
-      console.log("users typing", usersTyping);
-      console.log("existing user", existingTypingUser);
+
       if (existingTypingUser) {
         setUsersTyping((prev) => prev.filter((usr) => usr != data.username));
       }

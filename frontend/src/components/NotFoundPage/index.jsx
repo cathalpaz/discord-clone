@@ -53,7 +53,7 @@ function NotFoundPage() {
           <div className="nav-bar-login">
             {sessionUser ? (
               <button className="nav-bar-main-button" onClick={sendToMain}>
-                Open Discord
+                Open Slacord
               </button>
             ) : (
               <button className="nav-bar-login-button" onClick={sendToLogin}>
@@ -69,7 +69,7 @@ function NotFoundPage() {
                 }
                 className="nav-bar-mobile-view"
               >
-                Open Discord
+                Open Slacord
               </button>
             }
           </div>

@@ -4,7 +4,8 @@ import {
   useParams,
   Route,
   Switch,
-} from "react-router-dom/cjs/react-router-dom.min";
+  useHistory
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ServerList from "../ServerList";
 import "../../styles/components/MainPageTemplate.css";
@@ -30,6 +31,7 @@ import DirectMessageUserSection from "../DirectMessage/DirectMessageUserSection"
 
 function MainPageTemplate() {
   const location = useLocation();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const singleServerId = useSelector((state) => state.singleServer.id);
   const { serverId } = useParams();
@@ -39,6 +41,7 @@ function MainPageTemplate() {
   const dispatch = useDispatch();
   const loc = location.pathname.split("/").filter((el) => el !== "");
   const [socketInstance, setSocketInstance] = useState(null);
+
 
   useEffect(() => {
     // TODO clean this up
@@ -99,9 +102,13 @@ function MainPageTemplate() {
     return <MainLoader />;
   }
 
+  const goToMain = () => {
+    history.push("/login")
+  }
+
   return (
     <>
-      <div className="main-page-container" id="main">
+      { user ? <div className="main-page-container" id="main">
         <Switch>
           <Route exact path="/@">
             <div className="main-page-container__item main-page-container__item--1">
@@ -188,7 +195,7 @@ function MainPageTemplate() {
             </div>
           </Route>
         </Switch>
-      </div>
+      </div> : <>{goToMain()}</> }
     </>
   );
 }

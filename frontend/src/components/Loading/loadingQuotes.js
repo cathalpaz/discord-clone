@@ -1,22 +1,22 @@
 export const loadingQuotes = {
   LOADING_LINE_1:
-    "Discord was almost called Bonfire before we picked our name. It was meant to be nice and cozy.",
+    "Slacord was almost called Bonfire before we picked our name. It was meant to be nice and cozy.",
   LOADING_LINE_2:
-    "Discord was almost called Wyvern before we picked our name. Not too proud of that one.",
+    "Slacord was almost called Wyvern before we picked our name. Not too proud of that one.",
   LOADING_LINE_3: "Our logo's name is Clyde.",
   LOADING_LINE_4:
     'There are a bunch of hidden "Easter Eggs" in the app that happen when you click certain things...',
   LOADING_LINE_5:
-    "Discord started as a game company making a mobile game called Fates Forever.",
-  LOADING_LINE_6: "Discordâ€™s official birthday is May 13, 2015.",
+    "Slacord started as a game company making a mobile game called Fates Forever.",
+  LOADING_LINE_6: "Slacordâ€™s official birthday is May 13, 2015.",
   LOADING_LINE_7:
-    "We came up with the idea of Discord Nitro over morning breakfast potatoes.",
+    "We came up with the idea of Slacord Nitro over morning breakfast potatoes.",
   LOADING_LINE_8:
     "Our mascot, Wumpus, was originally created as a character with no friends :(",
   LOADING_LINE_9:
-    "In Discord's early days, light theme was the only theme. Dark theme didn't arrive until August 2015.",
+    "In Slacord's early days, light theme was the only theme. Dark theme didn't arrive until August 2015.",
   LOADING_LINE_10:
-    "In the ancient days, Discord started as a browser-only app.",
+    "In the ancient days, Slacord started as a browser-only app.",
   LOADING_LINE_11:
     "Our HypeSquad program has three houses you can be sorted in to by taking the in-app quiz: Bravery, Balance, and Brilliance.",
   LOADING_LINE_12:
@@ -70,13 +70,13 @@ export const loadingQuotes = {
     "Highlight text in your chat bar to bold, use italics, and more.",
   LOADING_TIP_16:
     "Hide muted channels in a server by right clicking the server name.",
-  LOADING_TIP_17: "Customize Discord's appearance in the user settings menu.",
+  LOADING_TIP_17: "Customize Slacord's appearance in the user settings menu.",
   LOADING_TIP_18:
     "Link your favorite social media accounts in the connections settings.",
   LOADING_TIP_19:
     "You can create channel categories to group and organize your channels.",
   LOADING_TIP_20: "You can join up to 100 servers.",
-  LOADING_TIP_21: "You can drag and drop files onto Discord to upload them.",
+  LOADING_TIP_21: "You can drag and drop files onto Slacord to upload them.",
   LOADING_TIP_22:
     "Change each participant's volume by right-clicking them in a call.",
   LOADING_TIP_23:
