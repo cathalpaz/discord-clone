@@ -109,6 +109,29 @@ def handle_channel_message(data):
          }, broadcast=True)
 
 
+@socketio.on("dm-typing")
+def handle_dm_typing(data):
+    print("THIS IS THE DATA", data)
+    print(f"user: {data['user_id']} is typing: {data['typing']}")
+    if int(data['other_user']) < int(data['user_id']):
+        print("other user is less than")
+        emit(f"user-dm-{data['other_user']}-{data['user_id']}-typing", {
+            'username': data['username'],
+            'typing': data['typing']
+        }, broadcast=True)
+    else:
+        print("other user is greater than")
+        emit(f"user-dm-{data['user_id']}-{data['other_user']}-typing", {
+            'username': data['username'],
+            'typing': data['typing']
+        }, broadcast=True)
+        pass
+    emit(f"user-dm-{data['user_id']}-user-typing", {
+        'username': data['username'],
+        'typing': data['typing']
+    }, broadcast=True)
+
+
 @socketio.on("server-channel-messages-delete")
 def handle_delete_message(data):
     message_id = data['message_id']

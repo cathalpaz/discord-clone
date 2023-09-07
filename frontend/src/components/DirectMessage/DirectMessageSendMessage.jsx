@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { thunkSendDirectMessage } from "../../store/directMessages";
@@ -9,10 +9,62 @@ export default function DirectMessageSendMessage({ socket }) {
   const { directMessageId } = useParams();
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const user = useSelector((state) => state.session.user);
+  const typingTimeoutRef = useRef(null);
+  const [isTyping, setIsTyping] = useState(false);
+  const [isStopTypingScheduled, setIsStopTypingScheduled] = useState(false);
   const otherUser = useSelector(
     (state) => state.directMessages.users[directMessageId]
   );
   if (!otherUser) return false;
+
+  useEffect(() => {
+    if (!socket) return;
+    // socket.emit("dm-typing", {
+    //   user_id: user.id,
+    //   typing: true,
+    //   username: user.username,
+    // });
+
+    if (message) {
+      if (!isTyping) {
+        setIsTyping(true);
+        socket.emit("dm-typing", {
+          user_id: user.id,
+          typing: true,
+          username: user.username,
+          other_user: directMessageId,
+        });
+      }
+      if (!isStopTypingScheduled) {
+        setIsStopTypingScheduled(true);
+        typingTimeoutRef.current = setTimeout(() => {
+          setIsTyping(false);
+          setIsStopTypingScheduled(false);
+          socket.emit("dm-typing", {
+            user_id: user.id,
+            typing: false,
+            username: user.username,
+            other_user: directMessageId,
+          });
+        }, 5000);
+      }
+    } else {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+        setIsStopTypingScheduled(false);
+      }
+      if (isTyping) {
+        setIsTyping(false);
+        socket.emit("dm-typing", {
+          user_id: user.id,
+          typing: false,
+          username: user.username,
+          other_user: directMessageId,
+        });
+      }
+    }
+  }, [message, user]);
 
   const handleSendMessage = async () => {
     setMessage("");
